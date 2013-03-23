@@ -1,0 +1,714 @@
+﻿<SyntaxDefinition name="ABAP" extensions=".abap" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+  <RuleSet ignoreCase="true">
+    <Keywords foreground="#FF006400" fontWeight="normal" fontStyle="normal">
+      <Word>?</Word>
+      <Word>,</Word>
+      <Word>.</Word>
+      <Word>(</Word>
+      <Word>)</Word>
+      <Word>[</Word>
+      <Word>]</Word>
+      <Word>{</Word>
+      <Word>}</Word>
+      <Word>+</Word>
+      <Word>-</Word>
+      <Word>/</Word>
+      <Word>%</Word>
+      <Word>*</Word>
+      <Word>&lt;</Word>
+      <Word>&gt;</Word>
+      <Word>^</Word>
+      <Word>!</Word>
+      <Word>|</Word>
+    </Keywords>
+    <Keywords foreground="#FF0000FF" fontWeight="normal" fontStyle="normal">
+      <Word>CONSTANTS</Word>
+      <Word>CREATE</Word>
+      <Word>DATA</Word>
+      <Word>TYPE</Word>
+      <Word>FIELD-SYMBOLS</Word>
+      <Word>FILED-GROUPS</Word>
+      <Word>INCLUDE</Word>
+      <Word>LOCAL</Word>
+      <Word>PARAMETERS</Word>
+      <Word>RANGES</Word>
+      <Word>SELECTION-SCREEN</Word>
+      <Word>SELECT-OPTIONS</Word>
+      <Word>STATICS</Word>
+      <Word>TABLES</Word>
+      <Word>TYPE-POOL</Word>
+      <Word>TYPE-POOLS</Word>
+      <Word>TYPES</Word>
+    </Keywords>
+    <Keywords foreground="#FF0000FF" fontWeight="bold" fontStyle="normal">
+      <Word>Keywords</Word>
+      <Word>AT LINE-SELECTION</Word>
+      <Word>AT PFn</Word>
+      <Word>AT SELECTION-SCREEN</Word>
+      <Word>AT USER-COMMAND</Word>
+      <Word>END-OF-PAGE</Word>
+      <Word>END-OF-SELECTION</Word>
+      <Word>GET</Word>
+      <Word>INITIALIZATION</Word>
+      <Word>START-OF-SELECTION</Word>
+      <Word>TOP-OF-PAGE</Word>
+      <Word>TOP-OF-PAGE DURING LINE-SELECTION</Word>
+    </Keywords>
+    <Keywords foreground="#FF0000FF" fontWeight="bold" fontStyle="normal">
+      <Word>Keywords</Word>
+      <Word>ABS</Word>
+      <Word>ACOS</Word>
+      <Word>ADD</Word>
+      <Word>ADD-CORRESPONDING</Word>
+      <Word>APPEND</Word>
+      <Word>ASIN</Word>
+      <Word>ASSIGN</Word>
+      <Word>ATAN</Word>
+      <Word>AUTHORITY-CHECK</Word>
+      <Word>BACK</Word>
+      <Word>BREAK-POINT</Word>
+      <Word>CALL</Word>
+      <Word>CEIL</Word>
+      <Word>CLEAR</Word>
+      <Word>COLLECT</Word>
+      <Word>COMMIT</Word>
+      <Word>COMPUTE</Word>
+      <Word>CONCATENATE</Word>
+      <Word>CONDENSE</Word>
+      <Word>COS</Word>
+      <Word>COSH</Word>
+      <Word>DELETE</Word>
+      <Word>DIVIDE</Word>
+      <Word>DIVIDE-CORRESPONDING</Word>
+      <Word>EDITOR-CALL</Word>
+      <Word>EXP</Word>
+      <Word>EXPORT</Word>
+      <Word>EXTRACT</Word>
+      <Word>FILL</Word>
+      <Word>FLOOR</Word>
+      <Word>FORMAT</Word>
+      <Word>FRAC</Word>
+      <Word>FREE</Word>
+      <Word>GET</Word>
+      <Word>HIDE</Word>
+      <Word>IMPORT</Word>
+      <Word>INCLUDE</Word>
+      <Word>INSERT</Word>
+      <Word>LOG</Word>
+      <Word>LOG10</Word>
+      <Word>MESSGAE</Word>
+      <Word>MODIFY</Word>
+      <Word>MOVE</Word>
+      <Word>MOVE-CORRESPONDING</Word>
+      <Word>NEW-LINE</Word>
+      <Word>NEW-PAGE</Word>
+      <Word>POSITION</Word>
+      <Word>PRINT-CONTROL</Word>
+      <Word>PUT</Word>
+      <Word>READ</Word>
+      <Word>REFRESH</Word>
+      <Word>REPLACE</Word>
+      <Word>RESERVE</Word>
+      <Word>SEARCH</Word>
+      <Word>SET</Word>
+      <Word>SHIFT</Word>
+      <Word>SIGN</Word>
+      <Word>SIN</Word>
+      <Word>SINH</Word>
+      <Word>SKIP</Word>
+      <Word>SORT</Word>
+      <Word>SPLIT</Word>
+      <Word>SQRT</Word>
+      <Word>STRLEN</Word>
+      <Word>SUBMIT</Word>
+      <Word>SUBSTRACT</Word>
+      <Word>SUBSTRACT-CORRESPONDING</Word>
+      <Word>SUM</Word>
+      <Word>TAN</Word>
+      <Word>TANH</Word>
+      <Word>TRANSFER</Word>
+      <Word>TRANSLATE</Word>
+      <Word>TRUNC</Word>
+      <Word>ULINE</Word>
+      <Word>UNPACK</Word>
+      <Word>UPDATE</Word>
+      <Word>WINDOW</Word>
+      <Word>WRITE</Word>
+    </Keywords>
+    <Keywords foreground="#FF0000FF" fontWeight="bold" fontStyle="normal">
+      <Word>Keywords</Word>
+      <Word>AT END OF</Word>
+      <Word>ENDAT</Word>
+      <Word>AT Fg</Word>
+      <Word>AT FIRST</Word>
+      <Word>AT LAST</Word>
+      <Word>AT NEW</Word>
+      <Word>CALL</Word>
+      <Word>CASE</Word>
+      <Word>WHEN</Word>
+      <Word>ENDCASE</Word>
+      <Word>CHECK</Word>
+      <Word>CONTINUE</Word>
+      <Word>DO</Word>
+      <Word>ENDDO</Word>
+      <Word>EXEC SQL</Word>
+      <Word>ENDEXEC</Word>
+      <Word>EXIT</Word>
+      <Word>FORM</Word>
+      <Word>ENDFORM</Word>
+      <Word>IF</Word>
+      <Word>ELSE</Word>
+      <Word>ENDIF</Word>
+      <Word>LEAVE</Word>
+      <Word>LOOP</Word>
+      <Word>ENDLOOP</Word>
+      <Word>MODULE</Word>
+      <Word>ENDMODULE</Word>
+      <Word>ON CHANGE OF</Word>
+      <Word>ENDON</Word>
+      <Word>PERFORM</Word>
+      <Word>USING</Word>
+      <Word>SELECT</Word>
+      <Word>ENDSELECT</Word>
+      <Word>STOP</Word>
+      <Word>WHILE</Word>
+      <Word>ENDWHILE</Word>
+    </Keywords>
+    <Keywords foreground="#FF0000FF" fontWeight="bold" fontStyle="normal">
+      <Word>LanguageConstruct</Word>
+      <Word>**</Word>
+      <Word>+,-,*,/</Word>
+      <Word>ABS</Word>
+      <Word>ACOS</Word>
+      <Word>ADD</Word>
+      <Word>ADD-CORRESPONDING</Word>
+      <Word>APPEND</Word>
+      <Word>ASIN</Word>
+      <Word>ASSIGN</Word>
+      <Word>AT</Word>
+      <Word>ATAN</Word>
+      <Word>AUTHORITY-CHCK</Word>
+      <Word>BACK</Word>
+      <Word>BETWEEN</Word>
+      <Word>BINARY</Word>
+      <Word>BLANK</Word>
+      <Word>BREAK-POINT</Word>
+      <Word>CA</Word>
+      <Word>CALL</Word>
+      <Word>CASE</Word>
+      <Word>CEIL</Word>
+      <Word>CENTERED</Word>
+      <Word>CHECK</Word>
+      <Word>CHECKBOX</Word>
+      <Word>PARAMETERS</Word>
+      <Word>WRITE</Word>
+      <Word>CLEAR</Word>
+      <Word>CLIENT SPECIFIED</Word>
+      <Word>DELETE</Word>
+      <Word>INSERT</Word>
+      <Word>MODIFY</Word>
+      <Word>SELECT</Word>
+      <Word>UPDATE</Word>
+      <Word>CLOSE</Word>
+      <Word>CN</Word>
+      <Word>CNT</Word>
+      <Word>CO</Word>
+      <Word>COLLECT</Word>
+      <Word>COMMIT</Word>
+      <Word>COMMUNICATION</Word>
+      <Word>COMPUTE</Word>
+      <Word>CONCATENATE</Word>
+      <Word>CONDENSE</Word>
+      <Word>CONVERT</Word>
+      <Word>COS</Word>
+      <Word>COSH</Word>
+      <Word>COUNTRY</Word>
+      <Word>CP</Word>
+      <Word>CREATE</Word>
+      <Word>CS</Word>
+      <Word>CURSOR</Word>
+      <Word>CLOSE CURSOR</Word>
+      <Word>FETCH NEXT CURSOR</Word>
+      <Word>GET CURSOR FIELD</Word>
+      <Word>OPEN CURSOR</Word>
+      <Word>SET CURSOR</Word>
+      <Word>CUSTOMER-FUNCTION</Word>
+      <Word>DATA</Word>
+      <Word>DATABASE</Word>
+      <Word>DELETE FROM </Word>
+      <Word>EXLORT</Word>
+      <Word>TO</Word>
+      <Word>IMPORT</Word>
+      <Word>FROM</Word>
+      <Word>DATASET</Word>
+      <Word>CLOSE</Word>
+      <Word>DELETE</Word>
+      <Word>EXPORT</Word>
+      <Word>TO</Word>
+      <Word>IMPORT</Word>
+      <Word>FROM</Word>
+      <Word>OPEN</Word>
+      <Word>READ</Word>
+      <Word>TRANSFER</Word>
+      <Word>DEFINE</Word>
+      <Word>DELETE</Word>
+      <Word>DESCRIBE</Word>
+      <Word>DIALOG</Word>
+      <Word>DIV</Word>
+      <Word>DIVIDE</Word>
+      <Word>DIVIDE-CORRESPONDING</Word>
+      <Word>DO</Word>
+      <Word>DYNPRO</Word>
+      <Word>DELETE DYNPRO</Word>
+      <Word>EXPORT DYNPRO</Word>
+      <Word>IMPORT DYNPRO</Word>
+      <Word>EDITOR-CALL</Word>
+      <Word>ELSE</Word>
+      <Word>ELSEIF</Word>
+      <Word>END-OF-DEFINITION</Word>
+      <Word>END-OF-PAGE</Word>
+      <Word>END-OF-SELECTION</Word>
+      <Word>ENDAT</Word>
+      <Word>ENDCASE</Word>
+      <Word>ENDDO</Word>
+      <Word>ENDFORM</Word>
+      <Word>ENDFUNCTION</Word>
+      <Word>ENDIF</Word>
+      <Word>ENDLOOP</Word>
+      <Word>ENDMOULE</Word>
+      <Word>ENDON</Word>
+      <Word>ENDPROVIDE</Word>
+      <Word>ENDSELECT</Word>
+      <Word>ENDWHILE</Word>
+      <Word>EQ</Word>
+      <Word>EXEC SQL</Word>
+      <Word>EXIT</Word>
+      <Word>EXP</Word>
+      <Word>EXPORT</Word>
+      <Word>EXTEND CHECK</Word>
+      <Word>EXTRACT</Word>
+      <Word>FETCH  </Word>
+      <Word>FIELD-GROUPS</Word>
+      <Word>FIELD-SYMBOLS</Word>
+      <Word>FLOOR</Word>
+      <Word>FORM</Word>
+      <Word>FORMAT</Word>
+      <Word>FRAC</Word>
+      <Word>FREE</Word>
+      <Word>FUNCTION</Word>
+      <Word>CALL FUNCTION</Word>
+      <Word>FUNCTION-POOL</Word>
+      <Word>GE</Word>
+      <Word>GENERATE</Word>
+      <Word>GET</Word>
+      <Word>GT</Word>
+      <Word>HIDE</Word>
+      <Word>IF</Word>
+      <Word>IMPORT</Word>
+      <Word>IN</Word>
+      <Word>INCLUDE</Word>
+      <Word>INDEX STRUCTURE</Word>
+      <Word>INFOTYPES</Word>
+      <Word>INITIAL</Word>
+      <Word>INITILIZATION</Word>
+      <Word>INVERSE</Word>
+      <Word>IS</Word>
+      <Word>LANGUAGE</Word>
+      <Word>LE</Word>
+      <Word>LEAVE</Word>
+      <Word>LINE</Word>
+      <Word>MODIFY …</Word>
+      <Word>READ …</Word>
+      <Word>LIST-PROCESSING</Word>
+      <Word>LOAD</Word>
+      <Word>LOCAL</Word>
+      <Word>LOG</Word>
+      <Word>LOOP</Word>
+      <Word>LT</Word>
+      <Word>MARK</Word>
+      <Word>MARGIN</Word>
+      <Word>MATCHCODE</Word>
+      <Word>MEMORY</Word>
+      <Word>EXPORT</Word>
+      <Word>TO</Word>
+      <Word>IMPORT</Word>
+      <Word>FROM</Word>
+      <Word>MESSAGE</Word>
+      <Word>MOD</Word>
+      <Word>MODIFY</Word>
+      <Word>MODULE</Word>
+      <Word>MOVE</Word>
+      <Word>MOVE-CORRESPONDING</Word>
+      <Word>MULTIPLY</Word>
+      <Word>MULTIPLY-CORRESPONGING</Word>
+      <Word>NA</Word>
+      <Word>NE</Word>
+      <Word>NEW-LINE</Word>
+      <Word>NEW-PAGE</Word>
+      <Word>NP</Word>
+      <Word>NS</Word>
+      <Word>OBJECT</Word>
+      <Word>CREATE OBJECT</Word>
+      <Word>FREE OBJECT</Word>
+      <Word>OCCURS</Word>
+      <Word>ON</Word>
+      <Word>OPEN</Word>
+      <Word>OVERLAY</Word>
+      <Word>PACK</Word>
+      <Word>PARAMETERS</Word>
+      <Word>PARAMETER</Word>
+      <Word>GET PARAMETER</Word>
+      <Word>SET PARAMETER</Word>
+      <Word>PERFORM</Word>
+      <Word>PF-STATUS</Word>
+      <Word>POSITION</Word>
+      <Word>PRINT</Word>
+      <Word>PRINT-CONTROL</Word>
+      <Word>PROGRAM</Word>
+      <Word>LEAVE PROGRAM</Word>
+      <Word>PROVIDE</Word>
+      <Word>PUT</Word>
+      <Word>RAISE</Word>
+      <Word>RAISING</Word>
+      <Word>RANGES</Word>
+      <Word>READ</Word>
+      <Word>REFRESH</Word>
+      <Word>REJECT</Word>
+      <Word>REPLACE</Word>
+      <Word>REPORT</Word>
+      <Word>DELETE</Word>
+      <Word>EDITOR-CALL FOR</Word>
+      <Word>INSERT</Word>
+      <Word>READ</Word>
+      <Word>RESERVE</Word>
+      <Word>RESET</Word>
+      <Word>ROLLBACK</Word>
+      <Word>SCAN</Word>
+      <Word>SCREEN</Word>
+      <Word>CALL</Word>
+      <Word>SET</Word>
+      <Word>LEAVE</Word>
+      <Word>LOOP AT</Word>
+      <Word>SCROOL</Word>
+      <Word>SEARCH</Word>
+      <Word>SELECT</Word>
+      <Word>SELECT-OPTIONS </Word>
+      <Word>SELECT-SCREEN</Word>
+      <Word>AT SELECTION-SCREEN</Word>
+      <Word>SET</Word>
+      <Word>SHIFT</Word>
+      <Word>SIGN</Word>
+      <Word>SIN</Word>
+      <Word>SINH</Word>
+      <Word>SKIP</Word>
+      <Word>SORT</Word>
+      <Word>SPLIT</Word>
+      <Word>SQRT</Word>
+      <Word>STATICS</Word>
+      <Word>STOP</Word>
+      <Word>STRLEN</Word>
+      <Word>STRUCTURE</Word>
+      <Word>INCLUDE STRUCTURE</Word>
+      <Word>SUBMIT</Word>
+      <Word>SUBTRACT</Word>
+      <Word>SUBTRACT-CORRESPONDING</Word>
+      <Word>SUM</Word>
+      <Word>SUMMING</Word>
+      <Word>SUPPRESS</Word>
+      <Word>SYMBOL</Word>
+      <Word>SYNTAX-CHECK</Word>
+      <Word>SYNTAX-TRACT</Word>
+      <Word>TABLES</Word>
+      <Word>TABLE </Word>
+      <Word>INTO TABLE</Word>
+      <Word>DELETE</Word>
+      <Word>FROM</Word>
+      <Word>MODIFY</Word>
+      <Word>FROM</Word>
+      <Word>READ</Word>
+      <Word>UPDATE</Word>
+      <Word>FROM</Word>
+      <Word>TAN</Word>
+      <Word>TANH</Word>
+      <Word>TEXTPOOL</Word>
+      <Word>DELETE</Word>
+      <Word>INSERT</Word>
+      <Word>READ</Word>
+      <Word>TIME</Word>
+      <Word>GET TIME</Word>
+      <Word>GET RUN TIME</Word>
+      <Word>TITLEBAR</Word>
+      <Word>TOP-OF-PAGE</Word>
+      <Word>TRANSACTION</Word>
+      <Word>CALL</Word>
+      <Word>LEAVE TO</Word>
+      <Word>TRANSFER</Word>
+      <Word>TRANSLATE</Word>
+      <Word>ULINE</Word>
+      <Word>UNPACK</Word>
+      <Word>UPDATE</Word>
+      <Word>WHEN</Word>
+      <Word>WHERE</Word>
+      <Word>LOOP ATWHERE</Word>
+      <Word>WHERE</Word>
+      <Word>WHILE</Word>
+      <Word>WINDOW</Word>
+      <Word>WORK</Word>
+      <Word>COMMIT WORK</Word>
+      <Word>ROLLBACK WORK</Word>
+      <Word>WRITE</Word>
+      <Word>IF</Word>
+    </Keywords>
+    <Keywords foreground="#FF000000" fontWeight="bold" fontStyle="normal">
+      <Word>this</Word>
+      <Word>super</Word>
+    </Keywords>
+    <Keywords foreground="#FF008B8B" fontWeight="bold" fontStyle="normal">
+      <Word>new</Word>
+      <Word>instanceof</Word>
+      <Word>true</Word>
+      <Word>false</Word>
+    </Keywords>
+    <Keywords foreground="#FF0000FF" fontWeight="bold" fontStyle="normal">
+      <Word>else</Word>
+      <Word>if</Word>
+      <Word>switch</Word>
+      <Word>case</Word>
+    </Keywords>
+    <Keywords foreground="#FF0000FF" fontWeight="bold" fontStyle="normal">
+      <Word>do</Word>
+      <Word>for</Word>
+      <Word>while</Word>
+    </Keywords>
+    <Keywords foreground="#FF000080" fontWeight="normal" fontStyle="normal">
+      <Word>break</Word>
+      <Word>continue</Word>
+      <Word>default</Word>
+      <Word>goto</Word>
+      <Word>return</Word>
+    </Keywords>
+    <Keywords foreground="#FF008080" fontWeight="bold" fontStyle="normal">
+      <Word>try</Word>
+      <Word>throw</Word>
+      <Word>catch</Word>
+      <Word>finally</Word>
+    </Keywords>
+    <Keywords foreground="#FFFF0000" fontWeight="bold" fontStyle="normal">
+      <Word>boolean</Word>
+      <Word>double</Word>
+      <Word>int</Word>
+      <Word>short</Word>
+      <Word>long</Word>
+      <Word>float</Word>
+      <Word>byte</Word>
+      <Word>char</Word>
+    </Keywords>
+    <Keywords foreground="#FFFF0000" fontWeight="normal" fontStyle="normal">
+      <Word>class</Word>
+      <Word>interface</Word>
+      <Word>object</Word>
+    </Keywords>
+    <Keywords foreground="#FFFF0000" fontWeight="normal" fontStyle="normal">
+      <Word>void</Word>
+    </Keywords>
+    <Keywords foreground="#FFA52A2A" fontWeight="normal" fontStyle="normal">
+      <Word>abstract</Word>
+      <Word>const</Word>
+      <Word>static</Word>
+      <Word>final</Word>
+      <Word>native</Word>
+      <Word>extends</Word>
+      <Word>implements</Word>
+      <Word>volatile</Word>
+      <Word>transient</Word>
+      <Word>throws</Word>
+      <Word>strictfp</Word>
+      <Word>synchronized</Word>
+    </Keywords>
+    <Keywords foreground="#FF0000FF" fontWeight="bold" fontStyle="normal">
+      <Word>public</Word>
+      <Word>protected</Word>
+      <Word>private</Word>
+    </Keywords>
+    <Keywords foreground="#FF008000" fontWeight="bold" fontStyle="normal">
+      <Word>package</Word>
+      <Word>import</Word>
+    </Keywords>
+    <Keywords foreground="#FF000000" fontWeight="bold" fontStyle="normal">
+      <Word>null</Word>
+    </Keywords>
+    <Keywords foreground="#FF800080" fontWeight="bold" fontStyle="normal">
+      <Word>INNER</Word>
+      <Word>JOIN</Word>
+      <Word>LEFT</Word>
+      <Word>RIGHT</Word>
+      <Word>OUTER</Word>
+      <Word>UNION</Word>
+    </Keywords>
+    <Keywords foreground="#FF800000" fontWeight="normal" fontStyle="normal">
+      <Word>AS</Word>
+    </Keywords>
+    <Keywords foreground="#FF000080" fontWeight="bold" fontStyle="normal">
+      <Word>AND</Word>
+      <Word>OR</Word>
+      <Word>LIKE</Word>
+    </Keywords>
+    <Keywords foreground="#FF808080" fontWeight="bold" fontStyle="normal">
+      <Word>TOP</Word>
+      <Word>LIMIT</Word>
+      <Word>OPENDATASOURCE</Word>
+      <Word>GO</Word>
+    </Keywords>
+    <Keywords foreground="#FFFF0000" fontWeight="bold" fontStyle="normal">
+      <Word>DROP</Word>
+      <Word>DELETE</Word>
+      <Word>TRUNCATE</Word>
+    </Keywords>
+    <Keywords foreground="#FF0000FF" fontWeight="bold" fontStyle="normal">
+      <Word>BEGIN</Word>
+      <Word>END</Word>
+      <Word>EXEC</Word>
+      <Word>CREATE</Word>
+      <Word>COMMIT</Word>
+      <Word>RAISERROR</Word>
+      <Word>ROLLBACK</Word>
+      <Word>TRAN</Word>
+      <Word>TRANSACTION</Word>
+      <Word>USE</Word>
+      <Word>USER</Word>
+      <Word>VIEW</Word>
+    </Keywords>
+    <Keywords foreground="#FF0000FF" fontWeight="normal" fontStyle="normal">
+      <Word>ADD</Word>
+      <Word>ALL</Word>
+      <Word>ANY</Word>
+      <Word>ASC</Word>
+      <Word>BETWEEN</Word>
+      <Word>BREAK</Word>
+      <Word>BY</Word>
+      <Word>CASCADE</Word>
+      <Word>CASE</Word>
+      <Word>CHECK</Word>
+      <Word>CHECKPOINT</Word>
+      <Word>CLOSE</Word>
+      <Word>COALESCE</Word>
+      <Word>COLLATE</Word>
+      <Word>COLUMN</Word>
+      <Word>COMPUTE</Word>
+      <Word>CONSTRAINT</Word>
+      <Word>CONTAINS</Word>
+      <Word>CONTINUE</Word>
+      <Word>CONVERT</Word>
+      <Word>CROSS</Word>
+      <Word>CURSOR</Word>
+      <Word>DECLARE</Word>
+      <Word>DEFAULT</Word>
+      <Word>DESC</Word>
+      <Word>DISTINCT</Word>
+      <Word>DOUBLE</Word>
+      <Word>ELSE</Word>
+      <Word>ESCAPE</Word>
+      <Word>EXCEPT</Word>
+      <Word>EXECUTE</Word>
+      <Word>EXISTS</Word>
+      <Word>EXIT</Word>
+      <Word>FETCH</Word>
+      <Word>FOR</Word>
+      <Word>FROM</Word>
+      <Word>FULL</Word>
+      <Word>FUNCTION</Word>
+      <Word>GOTO</Word>
+      <Word>GROUP</Word>
+      <Word>HAVING</Word>
+      <Word>IDENTITY</Word>
+      <Word>IDENTITY_INSERT</Word>
+      <Word>IDENTITYCOL</Word>
+      <Word>IF</Word>
+      <Word>IN</Word>
+      <Word>INSERT</Word>
+      <Word>INTO</Word>
+      <Word>IS</Word>
+      <Word>KEY</Word>
+      <Word>NOCHECK</Word>
+      <Word>NOT</Word>
+      <Word>NULL</Word>
+      <Word>NULLIF</Word>
+      <Word>OF</Word>
+      <Word>OFF</Word>
+      <Word>OFFSETS</Word>
+      <Word>ON</Word>
+      <Word>OPEN</Word>
+      <Word>ORDER</Word>
+      <Word>OVER</Word>
+      <Word>PRECISION</Word>
+      <Word>PROC</Word>
+      <Word>PROCEDURE</Word>
+      <Word>PUBLIC</Word>
+      <Word>READ</Word>
+      <Word>READTEXT</Word>
+      <Word>REFERENCES</Word>
+      <Word>RESTORE</Word>
+      <Word>RESTRICT</Word>
+      <Word>RETURN</Word>
+      <Word>ROWCOUNT</Word>
+      <Word>RULE</Word>
+      <Word>SAVE</Word>
+      <Word>SELECT</Word>
+      <Word>SET</Word>
+      <Word>SETUSER</Word>
+      <Word>SOME</Word>
+      <Word>TABLE</Word>
+      <Word>THEN</Word>
+      <Word>TO</Word>
+      <Word>TRIGGER</Word>
+      <Word>UNIQUE</Word>
+      <Word>UPDATE</Word>
+      <Word>VALUES</Word>
+      <Word>VARYING</Word>
+      <Word>WAITFOR</Word>
+      <Word>WHEN</Word>
+      <Word>WHERE</Word>
+      <Word>WHILE</Word>
+      <Word>WITH</Word>
+    </Keywords>
+    <Span foreground="#FF708090" fontWeight="normal" fontStyle="italic" ruleSet="TestSet">
+      <Begin>\*</Begin>
+    </Span>
+    <Span foreground="#FF708090" fontWeight="normal" fontStyle="italic" ruleSet="TestSet">
+      <Begin>"</Begin>
+    </Span>
+    <Span foreground="#FF708090" fontWeight="normal" fontStyle="italic" ruleSet="TestSet" multiline="true">
+      <Begin>/\*</Begin>
+      <End>\*/</End>
+    </Span>
+    <Span foreground="#FFFF00FF" fontWeight="normal" fontStyle="normal">
+      <Begin>'</Begin>
+      <End>'</End>
+      <RuleSet>
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
+    <Rule foreground="#FF191970" fontWeight="bold" fontStyle="normal">[\d\w_]+(?=(\s*\())</Rule>
+    <Rule foreground="#FF00008B" fontWeight="normal" fontStyle="normal">\b0[xX][0-9a-fA-F]+|(\b\d+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?</Rule>
+  </RuleSet>
+  <RuleSet name="TestSet" ignoreCase="true">
+    <Keywords foreground="#FFFF0000" fontWeight="bold" fontStyle="italic">
+      <Word>@TODO</Word>
+    </Keywords>
+    <Keywords foreground="#FFA9A9A9" fontWeight="bold" fontStyle="italic">
+      <Word>@author</Word>
+      <Word>@version</Word>
+      <Word>@param</Word>
+      <Word>@return</Word>
+      <Word>@exception</Word>
+      <Word>@throws</Word>
+      <Word>@see</Word>
+      <Word>@since</Word>
+      <Word>@serial</Word>
+      <Word>@serialField</Word>
+      <Word>@serialData</Word>
+      <Word>@deprecated</Word>
+    </Keywords>
+    <Rule foreground="#FF00008B" fontWeight="normal" fontStyle="normal">\b0[xX][0-9a-fA-F]+|(\b\d+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?</Rule>
+  </RuleSet>
+</SyntaxDefinition>

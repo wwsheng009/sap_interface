@@ -1,0 +1,6 @@
+<SyntaxModes version="1.0">
+  <Mode file       = "ABAP.xshd"
+	      name       = "ABAP"
+	      extensions = ".abap"/>
+
+</SyntaxModes>

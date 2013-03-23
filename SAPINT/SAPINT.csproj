@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C3C95D26-598B-46BE-99C8-58740E4A12E1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAPINT</RootNamespace>
+    <AssemblyName>SAPINT</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\lib\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="sapnco, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\SAP\SAP_DotNetConnector3\sapnco.dll</HintPath>
+    </Reference>
+    <Reference Include="sapnco_utils, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\SAP\SAP_DotNetConnector3\sapnco_utils.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Idocs\IdocMeta\IdocMeta.cs" />
+    <Compile Include="Idocs\IdocMeta\IdocUtil.cs" />
+    <Compile Include="Utils\BapiReturn.cs" />
+    <Compile Include="BapiReturnCollection.cs" />
+    <Compile Include="BusinessObjectMethod.cs" />
+    <Compile Include="Controls\INIClass.cs" />
+    <Compile Include="Controls\ReadIniFile.cs" />
+    <Compile Include="Controls\SystemList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SystemList.Designer.cs">
+      <DependentUpon>SystemList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Converts.cs" />
+    <Compile Include="ERPException.cs" />
+    <Compile Include="Controls\FormAddConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FormAddConfig.Designer.cs">
+      <DependentUpon>FormAddConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RFCTable\CopyTable\FunctionImportTable.cs" />
+    <Compile Include="RFCTable\CopyTable\FunctionReadTable.cs" />
+    <Compile Include="RFCTable\RFCTableInfo.cs" />
+    <Compile Include="RFCTable\TableField.cs" />
+    <Compile Include="RfcTypeConvertor.cs" />
+    <Compile Include="SapConfig\BackupDestinationConfiguration.cs" />
+    <Compile Include="Connect\SAPDestination.cs" />
+    <Compile Include="RFCTable\CopyTable\FunctionCopyTable.cs" />
+    <Compile Include="Function\Json\SAPFunctionJson.cs" />
+    <Compile Include="Function\Json\SAPFunctionJson2.cs" />
+    <Compile Include="Function\Meta\DataTableAndList.cs" />
+    <Compile Include="Function\Meta\FunctionField.cs" />
+    <Compile Include="Function\Meta\FunctionFieldList.cs" />
+    <Compile Include="Function\Meta\FunctionFieldText.cs" />
+    <Compile Include="Function\Meta\MetaValueList.cs" />
+    <Compile Include="Function\Meta\RfcFunctionMetaAsDataTable.cs" />
+    <Compile Include="Function\Json\RfcInputListJson.cs" />
+    <Compile Include="Function\Json\RfcKeyValueJson.cs" />
+    <Compile Include="Function\Json\RfcOutputListJson.cs" />
+    <Compile Include="Function\Meta\RfcFunctionMetaAsList.cs" />
+    <Compile Include="Function\Meta\SAPFunctionEx.cs" />
+    <Compile Include="Function\Meta\SAPFunctionMeta.cs" />
+    <Compile Include="Function\Meta\StructureField.cs" />
+    <Compile Include="Idocs\Idoc.cs" />
+    <Compile Include="Idocs\IdocSegment.cs" />
+    <Compile Include="Idocs\IdocSegmentCollection.cs" />
+    <Compile Include="Idocs\IdocSegmentField.cs" />
+    <Compile Include="Idocs\IdocSegmentFieldCollection.cs" />
+    <Compile Include="Idocs\IdocStatus.cs" />
+    <Compile Include="Idocs\IdocStatusCollection.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Queries\Enums.cs" />
+    <Compile Include="Queries\QueryField.cs" />
+    <Compile Include="Queries\QueryFieldCollection.cs" />
+    <Compile Include="Queries\QueryHelper\QueryHelper.cs" />
+    <Compile Include="Queries\QueryHelper\SearchResultQueryDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Queries\QueryHelper\SearchResultQueryRow.cs" />
+    <Compile Include="Queries\QueryHelper\SearchResultUserGroupsDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Queries\QueryHelper\SearchResultUserGroupsRow.cs" />
+    <Compile Include="Queries\QueryHelper\SearchResultVariantsDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Queries\QueryHelper\SearchResultVariantsRow.cs" />
+    <Compile Include="Queries\QuerySelectionParameter.cs" />
+    <Compile Include="Queries\QuerySelectionParameterCollection.cs" />
+    <Compile Include="Queries\Range.cs" />
+    <Compile Include="Queries\Query.cs" />
+    <Compile Include="Queries\RangeCollection.cs" />
+    <Compile Include="DbHelper\TypeConvertor.cs" />
+    <Compile Include="DbHelper\RfcReadTable.cs" />
+    <Compile Include="DbHelper\RfcTable2Db.cs" />
+    <Compile Include="Connect\SAPLogonConfigList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Connect\SAPConnection.cs" />
+    <Compile Include="Function\SAPFunction.cs" />
+    <Compile Include="DbHelper\SQLiteDBHelper.cs" />
+    <Compile Include="DbHelper\DataTable2Sqlite.cs" />
+    <Compile Include="Controls\SapLogon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SapLogon.Designer.cs">
+      <DependentUpon>SapLogon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SapConfig\DefaultDestinationConfiguration.cs" />
+    <Compile Include="SapConfig\DefaultServerConfiguration.cs" />
+    <Compile Include="SapConfig\LoadSAPConfigFromFile.cs" />
+    <Compile Include="Utils\ABAPCode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\BatchReturn.cs" />
+    <Compile Include="Utils\BatchReturnCollection.cs" />
+    <Compile Include="Utils\BatchStep.cs" />
+    <Compile Include="Utils\BatchStepCollection.cs" />
+    <Compile Include="Utils\ReadTable.cs" />
+    <Compile Include="Utils\ReadTableField.cs" />
+    <Compile Include="Utils\ReadTableFieldCollection.cs" />
+    <Compile Include="Utils\Transaction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\TransactionDialogMode.cs" />
+    <Compile Include="Utils\TransactionType.cs" />
+    <Compile Include="Utils\TransactionUpdateMode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\FormAddConfig.resx">
+      <DependentUpon>FormAddConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SystemList.resx">
+      <DependentUpon>SystemList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SapLogon.resx">
+      <DependentUpon>SapLogon.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SAPINTCONFIG\ConfigFileTool.csproj">
+      <Project>{D1E3F270-7BCC-474F-B6B7-18F3031FF7E5}</Project>
+      <Name>ConfigFileTool</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

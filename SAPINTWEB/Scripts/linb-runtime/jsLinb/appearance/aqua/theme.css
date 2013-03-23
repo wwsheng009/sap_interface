@@ -1,0 +1,826 @@
+/*background here*/
+html, .linb-uibg-base{
+    background:transparent url(Public/bg.png) repeat scroll 0 50%;
+}
+.linb-uibg-bar{
+    background:#EEEEEE;
+}
+.linb-uiborder-inset{
+    border-color:#6D6D6D #fff #fff #6D6D6D;
+}
+.linb-uiborder-outset{
+    border-color:#fff #6D6D6D #6D6D6D #fff;
+}
+
+/*
+.linb-ui-draggable{}
+.linb-uiw-shell{}
+.linb-uiw-frame{}
+.linb-uiw-border{}
+.linb-ui-disabled, .linb-ui-disabled *{}
+.linb-ui-invalid, .linb-ui-invalid *{}
+.linb-ui-ctr{}
+*/
+.linb-ui-dirty{
+    background-image: url('Public/icons.gif')
+}
+/*linb-border*/
+.linb-border-t{
+    top:-3px;
+    height:5px;
+    background-image: url('Border/vertical.gif')
+}
+.linb-border-b{
+    bottom:-3px;
+    height:5px;
+    background-image: url('Border/vertical.gif')
+}
+.linb-border-l{
+    left:-3px;
+    width:5px;
+    background-image: url('Border/horizontal.gif')
+}
+.linb-border-r{
+    right:-3px;
+    width:5px;
+    background-image: url('Border/horizontal.gif')
+}
+.linb-border-lt{
+    left:-3px;
+    top:-3px;
+    width:5px;
+    height:5px;
+    background-image: url('Border/corner.gif')
+}
+.linb-border-rt{
+    right:-3px;
+    top:-3px;
+    width:5px;
+    height:5px;
+    background-image: url('Border/corner.gif')
+}
+.linb-border-rb{
+    right:-3px;
+    bottom:-3px;
+    width:5px;
+    height:5px;
+    background-image: url('Border/corner.gif')
+}
+.linb-border-lb{
+    left:-3px;
+    bottom:-3px;
+    width:5px;
+    height:5px;
+    background-image: url('Border/corner.gif')
+}
+
+
+.linb-ui-btn, .linb-ui-btni, .linb-ui-btnc{
+    background-image:url(Public/button.gif);
+}
+
+.linb-uicmd-close, .linb-uicmd-info, .linb-uicmd-opt, .linb-uicmd-pin, .linb-uicmd-refresh,
+.linb-uicmd-pop, .linb-uicmd-land, .linb-uicmd-min, .linb-uicmd-max, .linb-uicmd-restore,
+.linb-uicmd-check, .linb-uicmd-radio, .linb-uicmd-add,
+/*
+.linb-uicmd-close, .linb-uicmd-info, .linb-uicmd-opt, .linb-uicmd-pin, .linb-uicmd-refresh,
+.linb-uicmd-pop, .linb-uicmd-land, .linb-uicmd-min, .linb-uicmd-max, .linb-uicmd-restore{
+    width:28px;
+    height:15px;
+}*/
+
+.linb-uicmd-toggle, .linb-uicmd-toggle2{
+    background-image: url(Public/icons.gif);
+}
+
+.linb-uibar-top td, .linb-uibar-top-s td, .linb-uibar-bottom td, .linb-uibar-bottom-s td{
+    background-image: url(Public/bar_vertical.gif);
+}
+.linb-uibar-top .linb-uibar-cmdl{
+    top:4px;
+}
+.linb-uibar-top .linb-uibar-cmdr{
+    top:4px;
+}
+
+/*set table height for ff2, set uibar height for performance*/
+.linb-uibar-top, .linb-uibar-top .linb-uibar-t{
+    height:25px;
+}
+.linb-uibar-bottom, .linb-uibar-bottom .linb-uibar-t{
+    height:5px;
+}
+.linb-uibar-top-s, .linb-uibar-top-s .linb-uibar-t, .linb-uibar-bottom-s, .linb-uibar-bottom-s .linb-uibar-t{
+    height:5px;
+}
+/*.linb-uibar-top .linb-uibar-cmdr{
+}*/
+.linb-uicon-main{
+    background-image: url(Public/bar_horizontal.gif);
+}
+.linb-uicon-maini{
+    background-image: url(Public/container_right.gif);
+    background-color: #EEEEEE;
+}
+
+/*linb.UI.Button*/
+.linb-button-border{
+    background-color:#E0E0E0;
+}
+.linb-button-border-mouseover{
+    background-color:#7BB6F3;
+}
+.linb-button-border-mousedown, .linb-button-border-checked{
+    background-color:#57A0EA;
+}
+.linb-button-drop{
+    background-image: url(Button/drop.gif);
+}
+.linb-button-b-t, .linb-button-b-b{
+    height:10px;
+    background-image: url(Button/vertical.gif);
+}
+.linb-button-border-mouseover .linb-button-b-t, .linb-button-border-mouseover .linb-button-b-b{
+    background-image: url(Button/vertical_mouseover.gif);
+}
+.linb-button-border-checked .linb-button-b-t, .linb-button-border-checked .linb-button-b-b, .linb-button-border-mousedown .linb-button-b-t, .linb-button-border-mousedown .linb-button-b-b{
+    background-image: url(Button/vertical_mousedown.gif);
+}
+.linb-button-b-l, .linb-button-b-r{
+    width:4px;
+    background-image: url(Button/horizontal.gif);
+}
+.linb-button-border-mouseover .linb-button-b-l, .linb-button-border-mouseover .linb-button-b-r{
+    background-image: url(Button/horizontal_mouseover.gif);
+}
+.linb-button-border-checked .linb-button-b-l, .linb-button-border-checked .linb-button-b-r, .linb-button-border-mousedown .linb-button-b-l, .linb-button-border-mousedown .linb-button-b-r{
+    background-image: url(Button/horizontal_mousedown.gif);
+}
+.linb-button-b-lt, .linb-button-b-rt, .linb-button-b-rb, .linb-button-b-lb{
+    height:10px;
+    width:4px;
+    background-image: url(Button/corner.gif);
+}
+.linb-button-border-mouseover .linb-button-b-lt, .linb-button-border-mouseover .linb-button-b-rt, .linb-button-border-mouseover .linb-button-b-rb, .linb-button-border-mouseover .linb-button-b-lb{
+    background-image: url(Button/corner_mouseover.gif);
+}
+.linb-button-border-checked .linb-button-b-lt, .linb-button-border-checked .linb-button-b-rt, .linb-button-border-checked .linb-button-b-rb, .linb-button-border-checked .linb-button-b-lb, .linb-button-border-mousedown .linb-button-b-lt, .linb-button-border-mousedown .linb-button-b-rt, .linb-button-border-mousedown .linb-button-b-rb, .linb-button-border-mousedown .linb-button-b-lb{
+    background-image: url(Button/corner_mousedown.gif);
+}
+/*linb-border*/
+.linb-button-b-t{
+    top:-11px;
+    height:11px;
+    background-image: url('Button/vertical.gif')
+}
+.linb-button-b-b{
+    bottom:-11px;
+    height:11px;
+    background-image: url('Button/vertical.gif')
+}
+.linb-button-b-l{
+    left:-11px;
+    width:11px;
+    background-image: url('Button/horizontal.gif')
+}
+.linb-button-b-r{
+    right:-11px;
+    width:11px;
+    background-image: url('Button/horizontal.gif')
+}
+.linb-button-b-lt{
+    left:-11px;
+    top:-11px;
+    width:11px;
+    height:11px;
+    background-image: url('Button/corner.gif')
+}
+.linb-button-b-rt{
+    right:-11px;
+    top:-11px;
+    width:11px;
+    height:11px;
+    background-image: url('Button/corner.gif')
+}
+.linb-button-b-rb{
+    right:-11px;
+    bottom:-11px;
+    width:11px;
+    height:11px;
+    background-image: url('Button/corner.gif')
+}
+.linb-button-b-lb{
+    left:-11px;
+    bottom:-11px;
+    width:11px;
+    height:11px;
+    background-image: url('Button/corner.gif')
+}
+
+
+/*linb.UI.Input*/
+/*linb.UI.ComboInput*/
+.linb-input-readonly .linb-input-border, .linb-comboinput-readonly .linb-comboinput-border{
+    background-image: url(Input/inputbgb.gif);
+}
+.linb-input-box, .linb-comboinput-box{
+    background-image: url(Input/inputbg.gif);
+    border: solid 1px #727272;
+}
+.linb-input-readonly .linb-input-box, .linb-comboinput-readonly .linb-comboinput-box{
+    background:#eee;
+}
+
+.linb-input-box-focus, .linb-input-box-mouseover, .linb-comboinput-box-focus, .linb-comboinput-box-mouseover{
+    border-color:#6F9BDF;
+}
+/* to cover ui-dirty */
+.linb-comboinput-input {
+    background:transparent none;
+}
+.linb-comboinput-r1, .linb-comboinput-r2, .linb-comboinput-btn, .linb-comboinput-sbtn, .linb-comboinput-stop, .linb-comboinput-top,.linb-comboinput-r1t, .linb-comboinput-r2t, .linb-comboinput-r1b, .linb-comboinput-r2b, .linb-comboinput-smin, .linb-comboinput-min
+{
+    background-image: url(ComboInput/bg.gif);
+}
+.linb-input-b-t, .linb-input-b-b,
+.linb-comboinput-b-t, .linb-comboinput-b-b
+{
+    height:2px;
+    background-image: url(Input/vertical.gif);
+}
+.linb-input-box-mouseover .linb-input-b-t, .linb-input-box-mouseover .linb-input-b-b,
+.linb-input-box-focus .linb-input-b-t, .linb-input-box-focus .linb-input-b-b,
+.linb-comboinput-box-mouseover .linb-comboinput-b-t, .linb-comboinput-box-mouseover .linb-comboinput-b-b,
+.linb-comboinput-box-focus .linb-comboinput-b-t, .linb-comboinput-box-focus .linb-comboinput-b-b
+{
+    background-image: url(Input/vertical_mouseover.gif);
+}
+.linb-input-b-l, .linb-input-b-r,
+.linb-comboinput-b-l, .linb-comboinput-b-r{
+    width:2px;
+    background-image: url(Input/horizontal.gif);
+}
+.linb-input-box-mouseover .linb-input-b-l, .linb-input-box-mouseover .linb-input-b-r,
+.linb-input-box-focus .linb-input-b-l, .linb-input-box-focus .linb-input-b-r,
+.linb-comboinput-box-mouseover .linb-comboinput-b-l, .linb-comboinput-box-mouseover .linb-comboinput-b-r,
+.linb-comboinput-box-focus .linb-comboinput-b-l, .linb-comboinput-box-focus .linb-comboinput-b-r
+{
+    background-image: url(Input/horizontal_mouseover.gif);
+}
+.linb-input-b-lt, .linb-input-b-rt, .linb-input-b-rb, .linb-input-b-lb,
+.linb-comboinput-b-lt, .linb-comboinput-b-rt, .linb-comboinput-b-rb, .linb-comboinput-b-lb
+{
+    height:2px;
+    width:2px;
+    background-image: url(Input/corner.gif);
+}
+.linb-input-box-mouseover .linb-input-b-lt, .linb-input-box-mouseover .linb-input-b-rt, .linb-input-box-mouseover .linb-input-b-rb, .linb-input-box-mouseover .linb-input-b-lb,
+.linb-input-box-focus .linb-input-b-lt, .linb-input-box-focus .linb-input-b-rt, .linb-input-box-focus .linb-input-b-rb, .linb-input-box-focus .linb-input-b-lb,
+.linb-comboinput-box-mouseover .linb-comboinput-b-lt, .linb-comboinput-box-mouseover .linb-comboinput-b-rt, .linb-comboinput-box-mouseover .linb-comboinput-b-rb, .linb-comboinput-box-mouseover .linb-comboinput-b-lb,
+.linb-comboinput-box-focus .linb-comboinput-b-lt, .linb-comboinput-box-focus .linb-comboinput-b-rt, .linb-comboinput-box-focus .linb-comboinput-b-rb, .linb-comboinput-box-focus .linb-comboinput-b-lb
+{
+    background-image: url(Input/corner_mouseover.gif);
+}
+.linb-input-b-t, .linb-comboinput-b-t{
+    top:-1px;
+}
+.linb-input-b-b, .linb-comboinput-b-b{
+    bottom:-1px;
+}
+.linb-input-b-l, .linb-comboinput-b-l{
+    left:-1px;
+}
+.linb-input-b-r, .linb-comboinput-b-r{
+    right:-1px;
+}
+.linb-input-b-lt, .linb-comboinput-b-lt{
+    left:-1px;
+    top:-1px;
+}
+.linb-input-b-rt, .linb-comboinput-b-rt{
+    right:-1px;
+    top:-1px;
+}
+.linb-input-b-rb, .linb-comboinput-b-rb{
+    right:-1px;
+    bottom:-1px;
+}
+.linb-input-b-lb, .linb-comboinput-b-lb{
+    left:-1px;
+    bottom:-1px;
+}
+
+
+/*linb.UI.List*/
+.linb-list-item{
+    padding:2px;
+}
+.linb-list-item-mouseover, .linb-list-item-mousedown, .linb-list-item-checked{
+    background-image: url(List/item.gif);
+}
+.linb-list-item-mouseover{
+    background-color:#0149DC;
+    color:#fff;
+}
+.linb-list-item-mousedown{
+    background-color:#0149DC;
+    color:#fff;
+}
+.linb-list-item-checked{
+    background-color:#0149DC;
+    color:#fff;
+}
+.linb-list-mark{
+    background-image: url(Public/icons.gif);
+}
+
+/*linb.UI.Gallery*/
+.linb-iconlist-item-mousedown, .linb-iconlist-item-checked{
+    background-color:#CFD0D0;
+}.linb-gallery-item-mousedown, .linb-gallery-item-checked{
+    background-color:#CFD0D0;
+}
+
+/*linb.UI.Slider*/
+.linb-slider-box-v .linb-slider-decrease, .linb-slider-box-v .linb-slider-increase, .linb-slider-box-h .linb-slider-decrease, .linb-slider-box-h .linb-slider-increase, .linb-slider-box-h .linb-slider-ind1, .linb-slider-box-h .linb-slider-ind2, .linb-slider-box-v .linb-slider-ind1, .linb-slider-box-v .linb-slider-ind2{
+    background-image: url(Public/icons.gif);
+}
+.linb-slider-box-h .linb-slider-ruler, .linb-slider-box-h .linb-slider-rulerleft, .linb-slider-box-h .linb-slider-rulerright{
+    background-image: url(Public/bar_vertical.gif);
+}
+.linb-slider-box-h .linb-slider-ind1, .linb-slider-box-h .linb-slider-ind2{
+    width:11px;
+    height:11px;
+    margin-top:-2px;
+}
+.linb-slider-box-h .linb-slider-ind1-mouseover, .linb-slider-box-h .linb-slider-ind2-mouseover{
+    background-position:-33px -282px;
+}
+.linb-slider-box-h .linb-slider-ind1-mousedown, .linb-slider-box-h .linb-slider-ind2-mousedown{
+    background-position:-45px -282px;
+}
+.linb-slider-box-v .linb-slider-ind1, .linb-slider-box-v .linb-slider-ind2{
+    width:11px;
+    height:11px;
+    margin-left:-2px;
+    background-position:left -262px;
+}
+.linb-slider-box-v .linb-slider-ind1-mouseover, .linb-slider-box-v .linb-slider-ind2-mouseover{
+    background-position:left -274px;
+}
+.linb-slider-box-v .linb-slider-ind1-mousedown, .linb-slider-box-v .linb-slider-ind2-mousedown{
+    background-position:left -286px;
+}
+.linb-slider-box-v .linb-slider-ruler, .linb-slider-box-v .linb-slider-rulerleft, .linb-slider-box-v .linb-slider-rulerright{
+    background-image: url(Public/bar_horizontal.gif);
+}
+
+/*linb.UI.TreeBar*/
+.linb-treebar-border{
+    background-color:#fff;
+}
+.linb-treebar-bar{
+    border:none;
+    background-color:#FFF;
+    color:#000;
+}
+.linb-treebar-bar-mouseover{
+    background-color:#B6D2EE;
+}
+.linb-treebar-bar-checked{
+    background-color:#4E8FDF;
+    color:#fff;
+}
+.linb-treebar-bar-group{
+    background-image: url(Public/bar_vertical.gif);
+    height:14px;
+    padding:2px 4px 8px;
+}
+.linb-treebar-checked{
+    background-image: url(Public/icons.gif);
+}
+.linb-treebar-mark{
+    background-image: url(Public/icons.gif);
+}
+
+/*linb.UI.TreeView*/
+.linb-treeview-image-vertical, 
+.linb-treeview-image-path-1, 
+.linb-treeview-image-path-2, 
+.linb-treeview-image-path-3, 
+.linb-treeview-image-fold-1, 
+.linb-treeview-image-fold-2, 
+.linb-treeview-image-fold-3{
+    background-image: url(Public/icons.gif);
+}
+.linb-treeview-mark{
+    background-image: url(Public/icons.gif);
+}
+
+
+/*linb.UI.Tabs*/
+.linb-tabs-items{
+    padding:0 4px 8px 0;
+}
+.linb-tabs-list{
+    background-image: url(Tabs/line.gif);
+}
+.linb-tabs-item-mousedown, .linb-tabs-item-checked{
+     border-bottom:0;
+}
+.linb-tabs-item, .linb-tabs-itemi, .linb-tabs-itemc{
+    background-image: url(Public/button.gif);
+}
+
+/*linb.UI.ButtonViews*/
+.linb-buttonviews-item, .linb-buttonviews-itemi, .linb-buttonviews-itemc{
+    background-image: url(Public/button.gif);
+}
+
+/*linb.UI.Stacks*/
+.linb-stacks-cmds{
+    top:4px;
+}
+.linb-stacks-item{
+    background-image: url(Public/bar_vertical.gif);
+}
+.linb-stacks-handle{
+    height:14px;
+    padding:2px 0 8px 8px;
+}
+
+
+/*linb.UI.Panel*/
+.linb-panel-panel{
+    background-color:#EEEEEE;
+}
+
+/*linb.UI.PopMenu*/
+.linb-popmenu-items{
+    background:none;
+}
+.linb-popmenu-box{
+    background-color:#F4FCFF;
+}
+.linb-popmenu-item-mouseover{
+    background-color:#C5E5F6;
+}
+.linb-popmenu-itemsplit{
+    background-image:url(Public/split_horizontal.gif);
+}
+.linb-popmenu-checkbox, .linb-popmenu-checkbox-checked, .linb-popmenu-top, .linb-popmenu-bottom,  .linb-popmenu-sub
+{
+    background-image: url(Public/icons.gif);
+}
+
+
+/*linb.UI.Layout*/
+.linb-layout-move-top, .linb-layout-move-bottom{
+    height:10px;
+    border-top:solid 1px #6d6d6d;
+    border-bottom:solid 1px #6d6d6d;
+}
+.linb-layout-move-left, .linb-layout-move-right{
+    width:10px;
+    border-left:solid 1px #6d6d6d;
+    border-right:solid 1px #6d6d6d;
+}
+.linb-layout-move-top-mouseover, .linb-layout-move-bottom-mouseover,
+.linb-layout-move-left-mouseover, .linb-layout-move-right-mouseover{
+    background-color:#C5E5F6;
+}
+
+.linb-layout-cmd-top, .linb-layout-cmd-bottom, .linb-layout-cmd-left, .linb-layout-cmd-right{
+    background-image: url(Public/icons.gif);
+}
+.linb-layout-cmd-top{
+    width:48px;
+    height:12px;
+    margin-left:-24px;
+    background-position:-352px -232px;
+}
+.linb-layout-cmd-bottom{
+    width:48px;
+    height:12px;
+    margin-left:-24px;
+    background-position:-352px -258px;
+}
+.linb-layout-cmd-left{
+    height:48px;
+    width:12px;
+    margin-top:-24px;
+    background-position:-298px -232px;
+}
+.linb-layout-cmd-right{
+    height:48px;
+    width:12px;
+    margin-top:-24px;
+    background-position:-324px -232px;
+}
+.linb-layout-cmd-top-mouseover{
+    background-position:-352px -245px;
+}
+.linb-layout-cmd-bottom-mouseover{
+    background-position:-352px -271px;
+}
+.linb-layout-cmd-left-mouseover{
+    background-position:-311px -232px;
+}
+.linb-layout-cmd-right-mouseover{
+    background-position:-337px -232px;
+}
+
+
+/*linb.UI.ToolBar and linb.UI.MenuBar*/
+.linb-toolbar-handler, .linb-menubar-handler{
+    background-image: url(Public/handler.gif);
+}
+.linb-toolbar-split{
+    background-image: url(Public/split_vertical.gif);
+}
+.linb-toolbar-drop{
+    background-image: url(Button/drop.gif);
+}
+.linb-menubar-item-mouseover,
+.linb-menubar-item-mouseover .linb-menubar-itemi,
+.linb-menubar-item-mouseover .linb-menubar-itemc,
+.linb-menubar-item-mousedown,
+.linb-menubar-item-mousedown .linb-menubar-itemi,
+.linb-menubar-item-mousedown .linb-menubar-itemc
+{
+    background-image: url(Public/button.gif);
+}
+
+
+/*linb.UI.ProgressBar*/
+.linb-progressbar-border{
+    border-color:#00B414;
+}
+.linb-progressbar-fill{
+    background: #02BB14 url(ProgressBar/bar.gif) repeat-x scroll 0 0;
+}
+
+/*linb.UI.DatePicker*/
+/*linb.UI.TimePicker*/
+/*linb.UI.ColorPicker*/
+.linb-datepicker-con, .linb-timepicker-con, .linb-colorpicker-con {
+    border-left:solid 1px #777778;
+    border-top:solid 1px #777778;
+}
+.linb-datepicker-pre, .linb-datepicker-next, .linb-datepicker-pre2, .linb-datepicker-next2{
+    background-image: url(Public/icons.gif);
+}
+.linb-timepicker-pre, .linb-timepicker-next{
+    background-image: url(Public/icons.gif);
+}
+
+/*linb.UI.TreeGrid*/
+.linb-treegrid-hfcell, .linb-treegrid-hcell {
+    border:1px solid #929292;
+    border-left:none;
+    padding-left:1px;
+}
+
+.linb-treegrid-body{
+    border-left:solid 1px #929292;
+}
+.linb-treegrid-cells {
+    border-bottom:1px solid #929292;
+    border-right:1px solid #929292;
+}
+.linb-treegrid-hcells{
+    border-left:solid 1px #929292;
+}
+.linb-treegrid-hfcell-mouseover, .linb-treegrid-hcell-mouseover{
+    background: none;
+}
+
+.linb-treegrid-collist {
+    background: #ACCCED url(TreeGrid/collist.gif) no-repeat center bottom;
+    border:none;
+    border-right:solid 1px #6CAEF3;
+}
+.linb-treegrid-sort, .linb-treegrid-checkbox, .linb-treegrid-checkbox-checked{
+    background-image: url(Public/icons.gif);
+}
+
+.linb-treegrid-fcell, .linb-treegrid-cell{
+     border:none;
+     padding-left:1px;
+     padding-right:1px;
+}
+
+.linb-treegrid-preview{
+    border-right:solid 1px #929292;
+    border-bottom:1px solid #929292;
+}
+.linb-treegrid-summary{
+    border-right:solid 1px #929292;
+    border-bottom:1px solid #929292;
+}
+
+.linb-treegrid-cell-mouseover{
+    background: #B6D2EE;
+}
+
+.linb-treegrid-cells-mouseover{
+    background: #B6D2EE;
+}
+.linb-treegrid-cells-active, .linb-treegrid-cells-active .linb-treegrid-cella, .linb-treegrid-cell-active, .linb-treegrid-cell-active .linb-treegrid-cella{
+    background: #4E8FDF;
+}
+.linb-treegrid-cells-checked, .linb-treegrid-cells-checked .linb-treegrid-cella, .linb-treegrid-cell-checked, .linb-treegrid-cell-checked .linb-treegrid-cella{
+    background: #0D54AE;
+    color:#fff;
+}
+.linb-treegrid-header, .linb-treegrid-hfcell, .linb-treegrid-hcell{
+    background: #fff url(TreeGrid/head.gif) repeat-x left bottom;
+}
+
+.linb-treegrid-hcell-mouseover {
+    background: #F2F9FC url(TreeGrid/head-mouseover.gif) repeat-x left bottom;
+}
+
+/**
+*
+* advance
+*
+**/
+
+/*linb.UI.StatusButtons*/
+.linb-statusbuttons-item-none{
+    background-image: url(Public/icons.gif);
+    background-repeat: no-repeat;
+    background-position: -12px -130px;
+    border-left:solid 1px #7C9CBC;
+    border-right:solid 1px #7C9CBC;
+}
+.linb-statusbuttons-item-left{
+    background-image: url(Public/icons.gif);
+    background-repeat: no-repeat;
+    background-position: left -130px;
+    border-right:solid 1px #7C9CBC;
+}
+.linb-statusbuttons-item-right{
+    background-image: url(Public/icons.gif);
+    background-repeat: no-repeat;
+    background-position: right -130px;
+    border-left:solid 1px #7C9CBC;
+}
+.linb-statusbuttons-item-left-mouseover{
+    background-position: left -153px;
+}
+.linb-statusbuttons-item-left-mousedown{
+    background-position: left -176px;
+}
+.linb-statusbuttons-item-left-checked{
+    background-position: left -176px;
+}
+.linb-statusbuttons-item-none-mouseover{
+    background-position: -20px -153px;
+}
+.linb-statusbuttons-item-none-mousedown{
+    background-position: -20px -176px;
+}
+.linb-statusbuttons-item-none-checked{
+    background-position: -20px -176px;
+}
+.linb-statusbuttons-item-right-mouseover{
+    background-position: right -153px;
+}
+.linb-statusbuttons-item-right-mousedown{
+    background-position: right -176px;
+}
+.linb-statusbuttons-item-right-checked{
+    background-position: right -176px;
+}
+
+/*linb.UI.Poll*/
+.linb-poll-progress, .linb-poll-progressi{
+    background-image: url(Public/icons.gif);
+}
+/*linb.UI.FoldingList*/
+.linb-foldinglist-hl, .linb-foldinglist-hr, .linb-foldinglist-tl, .linb-foldinglist-tr{
+    background-image: url(FoldingList/corner.gif);
+}
+.linb-foldinglist-head{
+    background-image: url(FoldingList/border_top.gif);
+}
+.linb-foldinglist-tail{
+    background-image: url(FoldingList/border_bottom.gif);
+}
+.linb-foldinglist-cmds, .linb-foldinglist-body, .linb-foldinglist-bodyi{
+    background-image: url(FoldingList/border_left.gif);
+    background-repeat: repeat-y;
+}
+
+/*linb.UI.FoldingTabs*/
+.linb-foldingtabs-hl, .linb-foldingtabs-hr, .linb-foldingtabs-tl, .linb-foldingtabs-tr{
+    background-image: url(FoldingList/corner.gif);
+}
+.linb-foldingtabs-handle{
+    background-image: url(FoldingList/border_top.gif);
+}
+.linb-foldingtabs-tail{
+    background-image: url(FoldingList/border_bottom.gif);
+}
+.linb-foldinglist-body, .linb-foldinglist-bodyi{
+    background-image: url(FoldingList/border_left.gif);
+}
+/*linb.UI.TimeLine*/
+.linb-timeline-items{
+    background-image: url(TimeLine/bars.gif);
+}
+.linb-timeline-head{
+    background-image: url(Public/handler.gif);
+}
+.linb-timeline-biglabel, .linb-timeline-smalllabel {
+    background-color:#EEEEEE;
+}
+.linb-timeline-zoomin, .linb-timeline-zoomout, .linb-timeline-date, .linb-timeline-pre, .linb-timeline-next, .linb-timeline-min{
+    background-image: url(Public/icons.gif);
+}
+.linb-timeline-mainc{
+    border:solid 1px #474747;
+}
+.linb-timeline-biglabel{
+    background-color:#E2E2E2;
+    border-bottom:solid 1px #648CB4;
+}
+.linb-timeline-smalllabel{
+    background-color:#E2E2E2;
+    border-bottom:solid 1px #474747;
+}
+.linb-timeline-biglabel div, .linb-timeline-smalllabel div{
+    border-left:solid 1px #648CB4;
+}
+.linb-timeline-normal{
+    background-color:#EEEEEE;
+    border:1px solid #474747;
+}
+/*linb.UI.Range*/
+.linb-range-ruler{
+    background-image: url(Range/bg.gif);
+    _filter: '';
+}
+.linb-range-ruler1{
+   background-image: url(Range/bg.gif);
+    _filter: '';
+}
+.linb-range-ruler3{
+    background-image: url(Range/front.gif);
+    _filter: '';
+}
+.linb-range-ind1, .linb-range-ind2{
+    background-image: url(Public/icons.gif);
+}
+
+
+
+
+
+
+
+
+
+
+/***setting begin***/
+.setting-uikey{
+    font-family: aqua;
+}
+.setting-linb-border{
+    border-style:solid;
+    border-top-width:3px;
+    border-bottom-width:3px;
+    border-left-width:3px;
+    border-right-width:3px;
+}
+.setting-linb-button{
+    border-style:solid;
+    border-top-width:11px;
+    border-bottom-width:11px;
+    border-left-width:11px;
+    border-right-width:11px;
+}
+.setting-linb-input{
+    border-style:solid;
+    border-top-width:1px;
+    border-bottom-width:1px;
+    border-left-width:1px;
+    border-right-width:1px;
+}
+.setting-linb-comboinput{
+    border-style:solid;
+    border-top-width:1px;
+    border-bottom-width:1px;
+    border-left-width:1px;
+    border-right-width:1px;
+}
+.setting-linb-layout{
+    width:12px;
+}
+/***the last one***/
+.setting-uikey{
+    font-family: aqua;
+}
+/***setting end***/

@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{781633CD-6E7B-40F1-8FAC-2BBB11C9F623}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAPINTGUI</RootNamespace>
+    <AssemblyName>SAPINTGUI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\wangws\sap_interface_project\SAP接口功能发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>21.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>35F5B6637AD2A9A303B49522F965E691D07C4CCF</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SAPINTGUI_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NVelocity">
+      <HintPath>..\..\lib\NVelocity.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxHighlighter">
+      <HintPath>..\..\lib\SyntaxHighlighter.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.SQLite, Version=1.0.84.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\System.Data.SQLite\2010\bin\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbapCode\AbapCode.cs" />
+    <Compile Include="CDataGridViewUtils.cs" />
+    <Compile Include="AbapCode\SAPTableField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AbapCode\SAPTableField.Designer.cs">
+      <DependentUpon>SAPTableField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\FormDataBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataBase\FormDataBase.Designer.cs">
+      <DependentUpon>FormDataBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\FormDbUtil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataBase\FormDbUtil.Designer.cs">
+      <DependentUpon>FormDbUtil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\FormSaveDataTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataBase\FormSaveDataTable.Designer.cs">
+      <DependentUpon>FormSaveDataTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSAPToolBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSAPToolBox.Designer.cs">
+      <DependentUpon>FormSAPToolBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbapCode\FormAbapCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbapCode\FormAbapCode.Designer.cs">
+      <DependentUpon>FormAbapCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idoc\FormCopyIdoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idoc\FormCopyIdoc.Designer.cs">
+      <DependentUpon>FormCopyIdoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idoc\FormIdocMeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idoc\FormIdocMeta.Designer.cs">
+      <DependentUpon>FormIdocMeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idoc\FormIdocUtil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idoc\FormIdocUtil.Designer.cs">
+      <DependentUpon>FormIdocUtil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="masterDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>masterDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Table\FormCopyTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\FormCopyTable.Designer.cs">
+      <DependentUpon>FormCopyTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Functions\FormFunctionMetaJson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Functions\FormFunctionMetaJson.Designer.cs">
+      <DependentUpon>FormFunctionMetaJson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbapCode\FormGenerateTableClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbapCode\FormGenerateTableClass.Designer.cs">
+      <DependentUpon>FormGenerateTableClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\FormGetTableMeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\FormGetTableMeta.Designer.cs">
+      <DependentUpon>FormGetTableMeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\FormReadTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\FormReadTable.Designer.cs">
+      <DependentUpon>FormReadTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\FormSAPQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\FormSAPQuery.Designer.cs">
+      <DependentUpon>FormSAPQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\FormTableInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\FormTableInput.Designer.cs">
+      <DependentUpon>FormTableInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\GetTableMetaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Table\GetTableMetaControl.Designer.cs">
+      <DependentUpon>GetTableMetaControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Functions\FormFunctionMetaEx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Functions\FormFunctionMetaEx.Designer.cs">
+      <DependentUpon>FormFunctionMetaEx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\ReadTableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Table\ReadTableControl.Designer.cs">
+      <DependentUpon>ReadTableControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SAPQueryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SAPQueryControl.Designer.cs">
+      <DependentUpon>SAPQueryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\TableInfo.cs" />
+    <EmbeddedResource Include="AbapCode\SAPTableField.resx">
+      <DependentUpon>SAPTableField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\FormDataBase.resx">
+      <DependentUpon>FormDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\FormDbUtil.resx">
+      <DependentUpon>FormDbUtil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\FormSaveDataTable.resx">
+      <DependentUpon>FormSaveDataTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSAPToolBox.resx">
+      <DependentUpon>FormSAPToolBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbapCode\FormAbapCode.resx">
+      <DependentUpon>FormAbapCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idoc\FormCopyIdoc.resx">
+      <DependentUpon>FormCopyIdoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idoc\FormIdocMeta.resx">
+      <DependentUpon>FormIdocMeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idoc\FormIdocUtil.resx">
+      <DependentUpon>FormIdocUtil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\FormCopyTable.resx">
+      <DependentUpon>FormCopyTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Functions\FormFunctionMetaJson.resx">
+      <DependentUpon>FormFunctionMetaJson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbapCode\FormGenerateTableClass.resx">
+      <DependentUpon>FormGenerateTableClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\FormGetTableMeta.resx">
+      <DependentUpon>FormGetTableMeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\FormReadTable.resx">
+      <DependentUpon>FormReadTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\FormSAPQuery.resx">
+      <DependentUpon>FormSAPQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\FormTableInput.resx">
+      <DependentUpon>FormTableInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\GetTableMetaControl.resx">
+      <DependentUpon>GetTableMetaControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Functions\FormFunctionMetaEx.resx">
+      <DependentUpon>FormFunctionMetaEx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\ReadTableControl.resx">
+      <DependentUpon>ReadTableControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SAPQueryControl.resx">
+      <DependentUpon>SAPQueryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="log4net.config" />
+    <None Include="masterDataSet.xsc">
+      <DependentUpon>masterDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="masterDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>masterDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="masterDataSet.xss">
+      <DependentUpon>masterDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="SAPINTGUI_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SAPINTCONFIG\ConfigFileTool.csproj">
+      <Project>{D1E3F270-7BCC-474F-B6B7-18F3031FF7E5}</Project>
+      <Name>ConfigFileTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAPINTDB\SAPINTDB.csproj">
+      <Project>{D5B7F62F-F5B0-48A0-9ABD-0B1F698DD44B}</Project>
+      <Name>SAPINTDB %28SAPINTDB\SAPINTDB%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAPINT\SAPINT.csproj">
+      <Project>{C3C95D26-598B-46BE-99C8-58740E4A12E1}</Project>
+      <Name>SAPINT</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="21.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <script src="../../Scripts/extjs/ext-debug.js" type="text/javascript"></script>
+    
+    <link href="../../Scripts/extjs/resources/css/ext-all.css" rel="stylesheet"
+        type="text/css" />
+    <script src="../../Scripts/extjs/Query/app.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var baseUrl = "@Request.Url.GetLeftPart(UriPartial.Authority)";
+
+    </script>
+    <style type="text/css">
+.hover { background: #f0f1ff; color: #006bd2; }
+
+.line {
+	font-size: 12px;
+	background: #fafae6;
+	width: 302px;
+	padding: 2px;
+}
+
+#searchresult {
+	width: 500px;
+	position: absolute;
+	left: 10px;
+	top: 100px;
+	z-index: 1;
+	overflow: hidden;
+	border: 1px solid #add8e6;
+	border-top: none;
+	background: #afdbde;
+}
+    </style>
+</head>
+<body>
+    <div class="page">
+        
+        <div id="manu">
+        </div>
+        <div id="main">
+            @RenderBody()
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+</body>
+</html>

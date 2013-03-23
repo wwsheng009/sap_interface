@@ -1,0 +1,721 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6CAF605A-4A34-48C0-A3DB-90B38C1D6CAA}</ProjectGuid>
+    <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MvcSapInterface</RootNamespace>
+    <AssemblyName>MvcSapInterface</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SAP\LinbController.cs" />
+    <Compile Include="Controllers\SAP\QueryController.cs" />
+    <Compile Include="Controllers\SAP\SapAccountController.cs" />
+    <Compile Include="Controllers\SAP\Se37Controller.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\extjs\ext-all.js" />
+    <Content Include="Scripts\extjs\ext-debug.js" />
+    <Content Include="Scripts\extjs\resources\css\ext-all.css" />
+    <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.5.1.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\changelog.txt" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\accordion.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\calendar.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\combo.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\combobox.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\combogrid.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\combotree.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\datagrid.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\datagrid2.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\datagrid3.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\datagrid4.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\datagrid5.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\datebox.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\datetimebox.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\demo.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\dialog.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\draggable.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\droppable.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\droppable1.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\droppable2.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\easyloader.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\form.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\layout.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\layout1.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\layout2.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\linkbutton.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\menu.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\menubutton.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\messager.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\numberbox.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\numberbox2.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\numberspinner.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\pagination.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\panel.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\panel2.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\progressbar.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\propertygrid.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\resizable.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\searchbox.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\slider.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\splitbutton.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\tabs.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\tabs_href_test.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\timespinner.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\tree.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\tree2.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\treegrid.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\treegrid2.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\treegrid3.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\validatebox.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\demo\window.html" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\easyloader.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\jquery-1.7.2.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\jquery.easyui.min.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\licence_gpl.txt" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\license_commercial.txt" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-af.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-bg.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-ca.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-cs.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-cz.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-da.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-de.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-en.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-es.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-fr.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-nl.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-tr.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-zh_CN.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\locale\easyui-lang-zh_TW.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.accordion.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.calendar.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.combo.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.combobox.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.combogrid.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.combotree.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.datagrid.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.datebox.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.datetimebox.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.dialog.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.draggable.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.droppable.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.form.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.layout.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.linkbutton.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.menu.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.menubutton.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.messager.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.numberbox.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.numberspinner.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.pagination.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.panel.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.parser.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.progressbar.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.propertygrid.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.resizable.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.searchbox.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.slider.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.spinner.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.splitbutton.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.tabs.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.timespinner.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.tree.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.treegrid.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.validatebox.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\plugins\jquery.window.js" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\readme.txt" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\accordion.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\calendar.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\combo.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\combobox.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\datagrid.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\datebox.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\dialog.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\easyui.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\accordion_collapse.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\accordion_expand.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\blank.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\button_a_bg.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\button_plain_hover.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\button_span_bg.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\calendar_nextmonth.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\calendar_nextyear.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\calendar_prevmonth.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\calendar_prevyear.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\combo_arrow.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\datagrid_header_bg.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\datagrid_row_collapse.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\datagrid_row_expand.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\datagrid_sort_asc.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\datagrid_sort_desc.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\datagrid_title_bg.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\datebox_arrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\layout_button_down.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\layout_button_left.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\layout_button_right.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\layout_button_up.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\menu.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\menu_downarrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\menu_rightarrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\menu_sep.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\menu_split_downarrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\messager_error.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\messager_info.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\messager_question.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\messager_warning.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\pagination_first.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\pagination_last.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\pagination_load.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\pagination_loading.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\pagination_next.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\pagination_prev.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\panel_loading.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\panel_title.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\panel_tools.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\panel_tool_collapse.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\panel_tool_expand.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\searchbox_button.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\slider_handle.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\spinner_arrow_down.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\spinner_arrow_up.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tabs_active.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tabs_close.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tabs_enabled.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tabs_leftarrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tabs_rightarrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_arrows.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_checkbox_0.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_checkbox_1.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_checkbox_2.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_dnd_no.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_dnd_yes.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_elbow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_file.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_folder.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_folder_open.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\tree_loading.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\validatebox_pointer.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\validatebox_warning.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\layout.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\linkbutton.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\menu.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\menubutton.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\messager.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\pagination.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\panel.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\progressbar.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\propertygrid.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\searchbox.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\slider.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\spinner.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\splitbutton.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\tabs.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\tree.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\validatebox.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\window.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\accordion.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\calendar.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\combo.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\combobox.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\datagrid.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\datebox.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\dialog.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\easyui.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\accordion_collapse.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\accordion_expand.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\blank.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\button_a_bg.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\button_plain_hover.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\button_span_bg.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\calendar_nextmonth.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\calendar_nextyear.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\calendar_prevmonth.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\calendar_prevyear.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\combo_arrow.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\datagrid_header_bg.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\datagrid_row_collapse.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\datagrid_row_expand.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\datagrid_sort_asc.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\datagrid_sort_desc.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\datagrid_title_bg.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\datebox_arrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\layout_button_down.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\layout_button_left.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\layout_button_right.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\layout_button_up.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\menu.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\menu_downarrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\menu_rightarrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\menu_sep.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\menu_split_downarrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\messager_error.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\messager_info.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\messager_question.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\messager_warning.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\pagination_first.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\pagination_last.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\pagination_load.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\pagination_loading.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\pagination_next.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\pagination_prev.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\panel_loading.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\panel_title.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\panel_tools.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\panel_tool_collapse.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\panel_tool_expand.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\searchbox_button.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\slider_handle.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\spinner_arrow_down.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\spinner_arrow_up.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tabs_close.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tabs_enabled.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tabs_leftarrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tabs_rightarrow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_arrows.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_checkbox_0.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_checkbox_1.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_checkbox_2.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_dnd_no.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_dnd_yes.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_elbow.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_file.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_folder.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_folder_open.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\tree_loading.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\validatebox_pointer.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\validatebox_warning.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\layout.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\linkbutton.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\menu.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\menubutton.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\messager.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\pagination.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\panel.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\progressbar.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\propertygrid.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\searchbox.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\slider.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\spinner.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\splitbutton.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\tabs.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\tree.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\validatebox.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\window.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icon.css" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\back.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\blank.gif" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\cancel.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\cut.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\edit_add.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\edit_remove.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\filesave.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\help.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\mini_add.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\mini_edit.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\mini_refresh.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\no.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\ok.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\pencil.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\print.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\redo.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\reload.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\search.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\sum.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\tip.png" />
+    <Content Include="Scripts\jquery-easyui-1.2.6\themes\icons\undo.png" />
+    <Content Include="Scripts\jquery-jsonview\jquery.jsonview.css" />
+    <Content Include="Scripts\jquery-jsonview\jquery.jsonview.js" />
+    <Content Include="Scripts\jquery-jsonview\KelpJSONView.css" />
+    <Content Include="Scripts\jquery-jsonview\KelpJSONView.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\linb-runtime\addBuilderLink.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Border\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Border\horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Border\vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Button\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Button\corner_mousedown.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Button\corner_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Button\drop.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Button\horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Button\horizontal_mousedown.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Button\horizontal_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Button\vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Button\vertical_mousedown.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Button\vertical_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\ColorPicker\bg.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\ColorPicker\clr.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\ColorPicker\picker.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\ComboInput\bg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\FoldingList\border_bottom.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\FoldingList\border_left.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\FoldingList\border_top.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\FoldingList\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Input\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Input\corner_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Input\horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Input\horizontal_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Input\inputbg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Input\inputbgb.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Input\vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Input\vertical_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\List\item.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\ProgressBar\bar.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Public\bar_horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Public\bar_vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Public\bg.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Public\busy.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Public\button.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Public\container_right.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Public\handler.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Public\icons.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Public\split_horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Public\split_vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Range\bg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Range\front.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Shadow\bottom.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Shadow\right.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Shadow\right_bottom.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\Tabs\line.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\theme.css" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\TreeGrid\collist.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\TreeGrid\head-mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\TreeGrid\head.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\aqua\TreeGrid\head_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Border\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Border\horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Border\vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Button\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Button\corner_mousedown.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Button\corner_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Button\drop.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Button\horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Button\horizontal_mousedown.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Button\horizontal_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Button\vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Button\vertical_mousedown.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Button\vertical_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\ColorPicker\bg.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\ColorPicker\clr.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\ColorPicker\picker.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\ComboInput\bg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\FoldingList\border_bottom.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\FoldingList\border_left.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\FoldingList\border_top.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\FoldingList\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Input\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Input\corner_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Input\horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Input\horizontal_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Input\inputbg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Input\inputbgb.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Input\vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Input\vertical_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\List\item.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\PopMenu\bg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\ProgressBar\bar.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Public\bar_horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Public\bar_vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Public\busy.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Public\button.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Public\container_right.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Public\handler.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Public\icons.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Public\split_horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Public\split_vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Range\bg.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Range\front.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\RichEditor\editor-sprite.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\RichEditor\toolbar.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Shadow\bottom.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Shadow\right.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Shadow\right_bottom.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\Tabs\line.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\TreeGrid\collist.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\TreeGrid\head-mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\TreeGrid\head.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\default\TreeGrid\head_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Border\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Border\horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Border\vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Button\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Button\corner_mousedown.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Button\corner_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Button\drop.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Button\horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Button\horizontal_mousedown.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Button\horizontal_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Button\vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Button\vertical_mousedown.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Button\vertical_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\ColorPicker\bg.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\ColorPicker\clr.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\ColorPicker\picker.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\ComboInput\bg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\FoldingList\border_bottom.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\FoldingList\border_left.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\FoldingList\border_top.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\FoldingList\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Input\corner.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Input\corner_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Input\horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Input\horizontal_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Input\inputbg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Input\inputbgb.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Input\vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Input\vertical_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\List\item.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\PopMenu\bg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\ProgressBar\bar.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Public\bar_horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Public\bar_vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Public\busy.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Public\button.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Public\container_right.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Public\handler.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Public\icons.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Public\split_horizontal.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Public\split_vertical.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Range\bg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Range\front.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Shadow\bottom.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Shadow\right.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Shadow\right_bottom.png" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\Tabs\line.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\theme.css" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\TreeGrid\collist.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\TreeGrid\head-mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\TreeGrid\head.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\appearance\vista\TreeGrid\head_mouseover.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\bg.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\busy.gif" />
+    <Content Include="Scripts\linb-runtime\jsLinb\js\adv-all.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\js\adv-debug.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\js\adv-raw.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\js\Coder-debug.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\js\Coder.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\js\Com\TimeSpan.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\js\linb-all.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\js\linb-debug.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\js\linb-raw.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\js\linb.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\Locale\cn.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\Locale\en.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\Locale\ja.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\Locale\tw.js" />
+    <Content Include="Scripts\linb-runtime\jsLinb\ondrag.gif" />
+    <Content Include="Scripts\linb-runtime\loading.gif" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\myjs\query.js" />
+    <Content Include="Scripts\myjs\se37.js" />
+    <Content Include="Scripts\myjs\linb.js" />
+    <Content Include="Scripts\Query\app.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Scripts\linb-runtime\jsLinb\appearance\aqua\PopMenu\" />
+    <Folder Include="Scripts\Query\app\controller\" />
+    <Folder Include="Scripts\Query\app\model\" />
+    <Folder Include="Scripts\Query\app\store\" />
+    <Folder Include="Scripts\Query\app\view\" />
+    <Folder Include="Scripts\Query\data\" />
+    <Folder Include="Views\SapAccount\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\combobox_data.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\datagrid_data.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\datagrid_data2.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\datagrid_data3.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\form_data.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\propertygrid_data.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\treegrid_data.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\treegrid_data2.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\treegrid_data3.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\treegrid_subdata.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\demo\tree_data.json" />
+    <None Include="Scripts\jquery-easyui-1.2.6\themes\default\images\Thumbs.db" />
+    <None Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\Thumbs.db" />
+    <Content Include="Views\Se37\Index.cshtml" />
+    <Content Include="Views\Shared\_SapExtLayout.cshtml" />
+    <Content Include="Views\Query\Index.cshtml" />
+    <Content Include="Views\Linb\Index.cshtml" />
+    <Content Include="Views\Query\Query.cshtml" />
+    <Content Include="Views\Shared\_SapLayout.cshtml" />
+    <Content Include="Views\Query\query1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SAPINT\SAPINT.csproj">
+      <Project>{C3C95D26-598B-46BE-99C8-58740E4A12E1}</Project>
+      <Name>SAPINT</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>9158</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2144/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
