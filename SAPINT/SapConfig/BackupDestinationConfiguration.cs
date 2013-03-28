@@ -24,7 +24,7 @@ namespace SAPINT.SapConfig
                 RfcConfigParameters parms = new RfcConfigParameters();
                 parms.Add(RfcConfigParameters.Name, "RETDEV");
                 parms.Add(RfcConfigParameters.AppServerHost, "192.168.0.208");
-                parms.Add(RfcConfigParameters.SAPRouter, "/H/183.62.136.248/H/");
+                parms.Add(RfcConfigParameters.SAPRouter, "");
                 parms.Add(RfcConfigParameters.SystemNumber, "00");
                 parms.Add(RfcConfigParameters.SystemID, "RET");
                 parms.Add(RfcConfigParameters.User, "WWS");
@@ -43,7 +43,7 @@ namespace SAPINT.SapConfig
                 RfcConfigParameters parms = new RfcConfigParameters();
                 parms.Add(RfcConfigParameters.Name, "RETNEW");
                 parms.Add(RfcConfigParameters.AppServerHost, "192.168.0.208");
-                parms.Add(RfcConfigParameters.SAPRouter, "/H/183.62.136.248/H/");
+                parms.Add(RfcConfigParameters.SAPRouter, "");
                 parms.Add(RfcConfigParameters.SystemNumber, "00");
                 parms.Add(RfcConfigParameters.SystemID, "RET");
                 parms.Add(RfcConfigParameters.User, "wwsheng");
@@ -63,7 +63,7 @@ namespace SAPINT.SapConfig
                 parms.Add(RfcConfigParameters.Name, "CHJ");
                 parms.Add(RfcConfigParameters.AppServerHost, "192.168.0.252");
                 parms.Add(RfcConfigParameters.SystemNumber, "00");
-                parms.Add(RfcConfigParameters.SAPRouter, "/H/61.141.22.72/H/");
+                parms.Add(RfcConfigParameters.SAPRouter, "");
                 parms.Add(RfcConfigParameters.SystemID, "DEV");
                 parms.Add(RfcConfigParameters.User, "wwsheng");
                 parms.Add(RfcConfigParameters.Password, "wwsheng");

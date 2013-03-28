@@ -54,6 +54,7 @@
             this.fILEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fILEToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.opnfiledlg = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             this.sapTableField1 = new SAPINTCODE.SAPTableField();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.btnPrettyCode);
             this.splitContainer1.Panel2.Controls.Add(this.btnExcuteCode);
             this.splitContainer1.Panel2.Controls.Add(this.btnGenerateCode);
@@ -223,7 +225,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.textResult);
-            this.splitContainer3.Size = new System.Drawing.Size(695, 675);
+            this.splitContainer3.Size = new System.Drawing.Size(693, 675);
             this.splitContainer3.SplitterDistance = 519;
             this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 11;
@@ -243,8 +245,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.textResultCode);
-            this.splitContainer2.Size = new System.Drawing.Size(695, 519);
-            this.splitContainer2.SplitterDistance = 350;
+            this.splitContainer2.Size = new System.Drawing.Size(693, 519);
+            this.splitContainer2.SplitterDistance = 348;
             this.splitContainer2.TabIndex = 8;
             // 
             // textTemplate
@@ -252,7 +254,7 @@
             this.textTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textTemplate.Location = new System.Drawing.Point(0, 0);
             this.textTemplate.Name = "textTemplate";
-            this.textTemplate.Size = new System.Drawing.Size(346, 515);
+            this.textTemplate.Size = new System.Drawing.Size(344, 515);
             this.textTemplate.TabIndex = 0;
             this.textTemplate.Text = "";
             this.textTemplate.WordWrap = false;
@@ -278,7 +280,7 @@
             this.textResult.Multiline = true;
             this.textResult.Name = "textResult";
             this.textResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textResult.Size = new System.Drawing.Size(691, 147);
+            this.textResult.Size = new System.Drawing.Size(689, 147);
             this.textResult.TabIndex = 4;
             // 
             // menuStrip1
@@ -358,6 +360,16 @@
             this.fILEToolStripMenuItem1.Size = new System.Drawing.Size(43, 21);
             this.fILEToolStripMenuItem1.Text = "FILE";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(302, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // sapTableField1
             // 
             this.sapTableField1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -430,6 +442,7 @@
         private System.Windows.Forms.Button btnGenerateCode;
         private System.Windows.Forms.Button btnPrettyCode;
         private System.Windows.Forms.Button btnExcuteCode;
+        private System.Windows.Forms.Button button1;
        
     }
 }

@@ -80,7 +80,7 @@ namespace SAPINTGUI
 
         private void btnAbapCode_Click(object sender, EventArgs e)
         {
-            SAPINTCODE.FormAbapCode form = new SAPINTCODE.FormAbapCode();
+            SAPINTCODE.FormAbapCode2 form = new SAPINTCODE.FormAbapCode2();
             form.Show();
         }
 

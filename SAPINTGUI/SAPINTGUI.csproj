@@ -51,7 +51,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>21.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>35F5B6637AD2A9A303B49522F965E691D07C4CCF</ManifestCertificateThumbprint>
@@ -79,19 +80,28 @@
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.TextEditor">
+      <HintPath>..\lib\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
-      <HintPath>..\..\lib\log4net.dll</HintPath>
+      <HintPath>..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NVelocity">
-      <HintPath>..\..\lib\NVelocity.dll</HintPath>
+      <HintPath>..\lib\NVelocity.dll</HintPath>
+    </Reference>
+    <Reference Include="Puzzle.SyntaxBox.NET4">
+      <HintPath>..\lib\Puzzle.SyntaxBox.NET4.dll</HintPath>
     </Reference>
     <Reference Include="SyntaxHighlighter">
-      <HintPath>..\..\lib\SyntaxHighlighter.dll</HintPath>
+      <HintPath>..\lib\SyntaxHighlighter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -111,6 +121,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbapCode\AbapCode.cs" />
+    <Compile Include="AbapCode\FormCodeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbapCode\FormCodeEditor.Designer.cs">
+      <DependentUpon>FormCodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbapCode\FormAbapCode2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbapCode\FormAbapCode2.Designer.cs">
+      <DependentUpon>FormAbapCode2.cs</DependentUpon>
+    </Compile>
     <Compile Include="CDataGridViewUtils.cs" />
     <Compile Include="AbapCode\SAPTableField.cs">
       <SubType>UserControl</SubType>
@@ -246,8 +268,14 @@
       <DependentUpon>SAPQueryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Table\TableInfo.cs" />
+    <EmbeddedResource Include="AbapCode\FormCodeEditor.resx">
+      <DependentUpon>FormCodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbapCode\SAPTableField.resx">
       <DependentUpon>SAPTableField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbapCode\FormAbapCode2.resx">
+      <DependentUpon>FormAbapCode2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataBase\FormDataBase.resx">
       <DependentUpon>FormDataBase.cs</DependentUpon>
@@ -320,6 +348,10 @@
       <DependentUpon>SAPQueryControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="abap.syn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
     <None Include="log4net.config" />

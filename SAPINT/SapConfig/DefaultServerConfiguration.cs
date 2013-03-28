@@ -17,7 +17,7 @@ namespace SAPINT.SapConfig
 
         // Events
         public event RfcServerManager.ConfigurationChangeHandler ConfigurationChanged;
-        private RfcServerCollection severSetting;
+       // private RfcServerCollection severSetting;
 
         // Methods
         internal DefaultServerConfiguration(RfcServerCollection serverCollection)

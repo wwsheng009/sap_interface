@@ -534,6 +534,7 @@ namespace SAPINTCODE
 
         private void prettyCode()
         {
+            
             //WordColorInit();
             textResultCode.Settings.Comment = "\"";
 
@@ -825,6 +826,12 @@ namespace SAPINTCODE
             }
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SAPINTGUI.AbapCode.FormCodeEditor formCodeEditor = new SAPINTGUI.AbapCode.FormCodeEditor();
+            formCodeEditor.Show();
         }
 
 
