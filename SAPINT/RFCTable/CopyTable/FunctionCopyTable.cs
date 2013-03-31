@@ -14,8 +14,8 @@ namespace SAPINT.Function
         private IRfcTable DATA = null;
         private IRfcTable FIELDS = null;
 
-        private static RfcDestination targetDestination = null;
-        private static RfcDestination destination = null;
+        //private static RfcDestination targetDestination = null;
+        //private static RfcDestination destination = null;
 
         private List<String> conditions = null;
 

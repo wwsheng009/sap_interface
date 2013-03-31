@@ -10,7 +10,7 @@ namespace SAPINT
 {
    public class SAPConnection
     {
-       private RfcDestination des;
+       private RfcDestination des = null;
        private string _sysName;
        private bool logging;
        private string client;

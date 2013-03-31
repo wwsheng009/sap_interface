@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Data.Common;
-   // using System.Data.SQLite;
+    // using System.Data.SQLite;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -132,7 +132,7 @@
                     {
                         continue;
                     }
-                   // outputlist.FieldTypeList.Add(pMetadata.Name, pMetadata.DataType.ToString());
+                    // outputlist.FieldTypeList.Add(pMetadata.Name, pMetadata.DataType.ToString());
                     if (pMetadata.DataType == RfcDataType.STRUCTURE)
                     {
                         Dictionary<String, String> stru = null;
@@ -200,7 +200,7 @@
             try
             {
                 //RfcCustomDestination des = SAPDestination.GetDesByName("DM0_800").CreateCustomDestination();
-                RfcCustomDestination des = SAPDestination.GetDesByName(ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient()).CreateCustomDestination();
+                RfcCustomDestination des = SAPDestination.GetDesByName(new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient()).CreateCustomDestination();
                 // SAPBackupConfig config = new SAPBackupConfig();
                 //RfcConfigParameters paras =  config.GetParameters("DM0_800");
                 des.User = usname;
@@ -259,13 +259,13 @@
                 DataTable dt = RfcTableToDataTable(DFIES_TAB);
                 return dt;
             }
-            catch(RfcAbapException abapException)
+            catch (RfcAbapException abapException)
             {
                 throw new SAPException(abapException.Key + abapException.Message);
             }
             catch (RfcAbapBaseException abapbaseException)
             {
-                throw new SAPException(abapbaseException.PlainText+ abapbaseException.Message);
+                throw new SAPException(abapbaseException.PlainText + abapbaseException.Message);
             }
             catch (Exception ex)
             {
@@ -309,6 +309,32 @@
             return dtRet;
         }
 
+
+        public static DataTable SearchRfcFunctions(string sysName, string functionName,string functionGroup)
+        {
+            try
+            {
+                RfcDestination destination = SAPDestination.GetDesByName(sysName);
+                //string _funame = string.Format("*{0}*", functionName);
+                string _funame = functionName;
+                IRfcFunction RFC_FUNCTION_SEARCH = destination.Repository.CreateFunction("RFC_FUNCTION_SEARCH");
+                RFC_FUNCTION_SEARCH.SetValue("FUNCNAME", _funame);
+                RFC_FUNCTION_SEARCH.SetValue("GROUPNAME", functionGroup);
+                RFC_FUNCTION_SEARCH.Invoke(destination);
+                IRfcTable FUNCTIONS = RFC_FUNCTION_SEARCH.GetTable("FUNCTIONS");
+
+                return RfcTableToDataTable(FUNCTIONS);
+
+            }
+            catch (RfcAbapException rfce)
+            {
+                throw new SAPException(rfce.Key + rfce.Message);
+            }
+            catch (Exception e)
+            {
+                throw new SAPException(e.Message);
+            }
+        }
         //public static rfcdestination getdestination(string sysname)
         //{
         //    return sapdestination.getdesbyname(sysname);
@@ -333,8 +359,9 @@
                 IRfcTable FUNCTIONS = RFC_FUNCTION_SEARCH.GetTable("FUNCTIONS");
                 if (FUNCTIONS.RowCount > 0)
                 {
-                   // RfcTableToDb dbhelper = new RfcTableToDb("RFC_FUNCTIONS", "FUNCTIONS", FUNCTIONS);
-                  //  dbhelper.saveTable();
+
+                    // RfcTableToDb dbhelper = new RfcTableToDb("RFC_FUNCTIONS", "FUNCTIONS", FUNCTIONS);
+                    //  dbhelper.saveTable();
                     //ThreadStart threadStart = new ThreadStart(dbhelper.saveTable);
                     //Thread thread = new Thread(threadStart);
                     //thread.Start();
@@ -355,7 +382,7 @@
             }
         }
 
-        
+
         #endregion Methods
     }
 }

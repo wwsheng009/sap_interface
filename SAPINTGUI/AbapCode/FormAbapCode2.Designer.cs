@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.sapTableField1 = new SAPINTCODE.SAPTableField();
             this.btnInserTemplate = new System.Windows.Forms.Button();
             this.btnUpdateTemplate = new System.Windows.Forms.Button();
             this.btnOpenTemplateTable = new System.Windows.Forms.Button();
@@ -60,6 +59,7 @@
             this.fILEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fILEToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.opnfiledlg = new System.Windows.Forms.OpenFileDialog();
+            this.sapTableField1 = new SAPINTCODE.SAPTableField();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -82,6 +82,7 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -125,14 +126,6 @@
             this.splitContainer4.Size = new System.Drawing.Size(312, 713);
             this.splitContainer4.SplitterDistance = 356;
             this.splitContainer4.TabIndex = 2;
-            // 
-            // sapTableField1
-            // 
-            this.sapTableField1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sapTableField1.Location = new System.Drawing.Point(0, 0);
-            this.sapTableField1.Name = "sapTableField1";
-            this.sapTableField1.Size = new System.Drawing.Size(312, 356);
-            this.sapTableField1.TabIndex = 1;
             // 
             // btnInserTemplate
             // 
@@ -247,7 +240,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.textResult);
-            this.splitContainer3.Size = new System.Drawing.Size(689, 675);
+            this.splitContainer3.Size = new System.Drawing.Size(685, 675);
             this.splitContainer3.SplitterDistance = 519;
             this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 11;
@@ -267,8 +260,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.textResultCode);
-            this.splitContainer2.Size = new System.Drawing.Size(689, 519);
-            this.splitContainer2.SplitterDistance = 344;
+            this.splitContainer2.Size = new System.Drawing.Size(685, 519);
+            this.splitContainer2.SplitterDistance = 342;
             this.splitContainer2.TabIndex = 8;
             // 
             // textTemplate
@@ -292,7 +285,7 @@
             this.textTemplate.LockCursorUpdate = false;
             this.textTemplate.Name = "textTemplate";
             this.textTemplate.ShowScopeIndicator = false;
-            this.textTemplate.Size = new System.Drawing.Size(340, 515);
+            this.textTemplate.Size = new System.Drawing.Size(338, 515);
             this.textTemplate.SmoothScroll = false;
             this.textTemplate.SplitviewH = -4;
             this.textTemplate.SplitviewV = -4;
@@ -330,7 +323,7 @@
             this.textResultCode.LockCursorUpdate = false;
             this.textResultCode.Name = "textResultCode";
             this.textResultCode.ShowScopeIndicator = false;
-            this.textResultCode.Size = new System.Drawing.Size(337, 515);
+            this.textResultCode.Size = new System.Drawing.Size(335, 515);
             this.textResultCode.SmoothScroll = false;
             this.textResultCode.SplitviewH = -4;
             this.textResultCode.SplitviewV = -4;
@@ -367,7 +360,7 @@
             this.textResult.LockCursorUpdate = false;
             this.textResult.Name = "textResult";
             this.textResult.ShowScopeIndicator = false;
-            this.textResult.Size = new System.Drawing.Size(685, 147);
+            this.textResult.Size = new System.Drawing.Size(681, 147);
             this.textResult.SmoothScroll = false;
             this.textResult.SplitviewH = -4;
             this.textResult.SplitviewV = -4;
@@ -461,6 +454,14 @@
             this.fILEToolStripMenuItem1.Size = new System.Drawing.Size(43, 21);
             this.fILEToolStripMenuItem1.Text = "FILE";
             // 
+            // sapTableField1
+            // 
+            this.sapTableField1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sapTableField1.Location = new System.Drawing.Point(0, 0);
+            this.sapTableField1.Name = "sapTableField1";
+            this.sapTableField1.Size = new System.Drawing.Size(312, 356);
+            this.sapTableField1.TabIndex = 0;
+            // 
             // FormAbapCode2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -503,7 +504,7 @@
         private System.Windows.Forms.ToolStripMenuItem fILEToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem fILEToolStripMenuItem2;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private SAPTableField sapTableField1;
+
         private System.Windows.Forms.ToolStripMenuItem 模板ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tspProcessTemplate;
         private System.Windows.Forms.ToolStripMenuItem 代码ToolStripMenuItem;
@@ -528,7 +529,7 @@
         private Alsing.SourceCode.SyntaxDocument syntaxDocument2;
         private Alsing.Windows.Forms.SyntaxBoxControl textResult;
         private Alsing.SourceCode.SyntaxDocument syntaxDocument3;
-       
+        private SAPTableField sapTableField1;
     }
 }
 

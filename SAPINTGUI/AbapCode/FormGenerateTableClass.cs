@@ -24,14 +24,16 @@ namespace SAPINTCODE
             InitializeComponent();
 
             this.cbxSystemList.DataSource = SAPINT.SAPLogonConfigList.SystemNameList;
-            this.textBoxTemplate.Text =
+            this.textBoxTemplate.Document.Text =
 @"public class $rfctable.Name
 {
 #foreach($field in $rfctable.Fields)
 	public $field.DOTNETTYPE $field.FIELDNAME {get;set;} // $field.FIELDTEXT
 #end
 }";
-
+            Alsing.SourceCode.SyntaxDefinition sl = new Alsing.SourceCode.SyntaxDefinitionLoader().Load("CSharp.syn");
+            this.textBoxTemplate.Document.Parser.Init(sl);
+            this.textBoxResult.Document.Parser.Init(sl);
         }
 
         private void btnGenerateCode_Click(object sender, EventArgs e)
@@ -59,8 +61,8 @@ namespace SAPINTCODE
 
                 ct.Put("rfctable", rfctable);
                 System.IO.StringWriter vltWriter = new System.IO.StringWriter();
-                ve.Evaluate(ct, vltWriter, null, this.textBoxTemplate.Text);
-                this.textBoxResult.Text = vltWriter.GetStringBuilder().ToString();
+                ve.Evaluate(ct, vltWriter, null, this.textBoxTemplate.Document.Text);
+                this.textBoxResult.Document.Text = vltWriter.GetStringBuilder().ToString();
                 MessageBox.Show("处理成功");
             }
             catch (Exception exception)

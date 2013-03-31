@@ -17,11 +17,11 @@ namespace SAPINTGUI.Idoc
         public FormCopyIdoc()
         {
             InitializeComponent();
-            this.cbxDbConnection.DataSource = ConfigFileTool.SAPGlobalSettings.getDbConnectionList();
-            this.cbxDbConnection.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
+            this.cbxDbConnection.DataSource = new ConfigFileTool.SAPGlobalSettings().getDbConnectionList();
+            this.cbxDbConnection.Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
 
-            this.cbxSapSystem.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
-            this.cbxSapSystem.Text = ConfigFileTool.SAPGlobalSettings.GetDefultSAPServer();
+            this.cbxSapSystem.DataSource = new ConfigFileTool.SAPGlobalSettings().getSAPClientList();
+            this.cbxSapSystem.Text = new ConfigFileTool.SAPGlobalSettings().GetDefultSAPServer();
 
         }
 

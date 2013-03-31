@@ -12,7 +12,7 @@ namespace SAPINTDB
         private netlib7 db2 = null;
 
         public DbUtil() {
-            String defaultConnection = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
+            String defaultConnection = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
             db2 = new netlib7(defaultConnection);
             
         }

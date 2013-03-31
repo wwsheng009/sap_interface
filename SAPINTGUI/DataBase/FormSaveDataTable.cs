@@ -86,9 +86,9 @@ namespace SAPINTGUI.DataBase
             InitializeComponent();
             // SAPINT.SAPLogonConfigList.SystemNameList.ForEach(name => this.txtSapSystem.Items.Add(name));
             this.txtSapSystem.Text = _sapSystemName;
-            this.txtSapSystem.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
-            this.txtLocalDbConnection.DataSource = ConfigFileTool.SAPGlobalSettings.getDbConnectionList();
-            this.txtLocalDbConnection.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
+            this.txtSapSystem.DataSource = new ConfigFileTool.SAPGlobalSettings().getSAPClientList();
+            this.txtLocalDbConnection.DataSource = new ConfigFileTool.SAPGlobalSettings().getDbConnectionList();
+            this.txtLocalDbConnection.Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
         }
 
         private bool check()

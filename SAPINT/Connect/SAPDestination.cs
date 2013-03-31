@@ -96,15 +96,16 @@
                 }
                 catch (Exception EE)
                 {
-                    try
-                    {
-                        RfcDestinationManager.RegisterDestinationConfiguration(new BackupDestinationConfiguration());
-                        destination = RfcDestinationManager.GetDestination(SystemName);
-                    }
-                    catch (Exception e)
-                    {
-                        throw new SAPException(e.Message + "请在配置文件加上兼容配置");
-                    }
+                    //try
+                    //{
+                    //    RfcDestinationManager.RegisterDestinationConfiguration(new BackupDestinationConfiguration());
+                    //    destination = RfcDestinationManager.GetDestination(SystemName);
+                    //}
+                    //catch (Exception e)
+                    //{
+                    //    throw new SAPException(e.Message + "请在配置文件加上兼容配置");
+                    //}
+                    throw new SAPException(EE.Message);
                 }
             }
 

@@ -44,7 +44,7 @@ namespace SAPINTDB
 
         public IdocDb()
         {
-            this.ConnectionName = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
+            this.ConnectionName = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
             logicDb = new netlib7(ConnectionName);
 
         }
@@ -116,7 +116,7 @@ namespace SAPINTDB
                 String criteria = idocNumber.PadLeft(16, '0');
                 criteria = String.Format("DOCNUM = '{0}'", criteria);
 
-                String readTableFunction = ConfigFileTool.SAPGlobalSettings.GetReadTableFunction();
+                String readTableFunction = new ConfigFileTool.SAPGlobalSettings().GetReadTableFunction();
 
                 idocReadItem = new SAPINT.Utils.ReadTable(SystemName);
                 idocReadItem.TableName = "EDID4";

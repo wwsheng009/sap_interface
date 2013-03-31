@@ -35,14 +35,14 @@
             this.btnCacheMe = new System.Windows.Forms.Button();
             this.btnLoadCache = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbx_systemlist = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.CheckTable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FieldText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FieldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Select = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.SelectCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnRemoveCache = new System.Windows.Forms.Button();
+            this.cbx_systemlist = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,16 +112,6 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "表   名:";
             // 
-            // cbx_systemlist
-            // 
-            this.cbx_systemlist.FormattingEnabled = true;
-            this.cbx_systemlist.Location = new System.Drawing.Point(57, 4);
-            this.cbx_systemlist.Name = "cbx_systemlist";
-            this.cbx_systemlist.Size = new System.Drawing.Size(118, 20);
-            this.cbx_systemlist.TabIndex = 19;
-            this.cbx_systemlist.SelectedValueChanged += new System.EventHandler(this.cbx_systemlist_SelectedValueChanged);
-            this.cbx_systemlist.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cbx_systemlist_MouseClick);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -150,11 +140,11 @@
             // 
             // Select
             // 
-            this.Select.HeaderText = "";
-            this.Select.Name = "Select";
-            this.Select.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Select.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Select.Width = 20;
+            this.SelectCol.HeaderText = "";
+            this.SelectCol.Name = "Select";
+            this.SelectCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SelectCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.SelectCol.Width = 20;
             // 
             // dataGridView1
             // 
@@ -163,7 +153,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Select,
+            this.SelectCol,
             this.FieldName,
             this.FieldText,
             this.CheckTable});
@@ -184,13 +174,22 @@
             this.btnRemoveCache.UseVisualStyleBackColor = true;
             this.btnRemoveCache.Click += new System.EventHandler(this.btnRemoveCache_Click);
             // 
+            // cbx_systemlist
+            // 
+            this.cbx_systemlist.FormattingEnabled = true;
+            this.cbx_systemlist.Location = new System.Drawing.Point(58, 2);
+            this.cbx_systemlist.Name = "cbx_systemlist";
+            this.cbx_systemlist.Size = new System.Drawing.Size(117, 20);
+            this.cbx_systemlist.TabIndex = 21;
+            this.cbx_systemlist.SelectedIndexChanged += new System.EventHandler(this.cbx_systemlist_SelectedIndexChanged_1);
+            // 
             // SAPTableField
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbx_systemlist);
             this.Controls.Add(this.btnRemoveCache);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbx_systemlist);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLoadCache);
@@ -216,13 +215,13 @@
         private System.Windows.Forms.Button btnCacheMe;
         private System.Windows.Forms.Button btnLoadCache;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbx_systemlist;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn CheckTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn FieldText;
         private System.Windows.Forms.DataGridViewTextBoxColumn FieldName;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Select;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn SelectCol;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnRemoveCache;
+        public System.Windows.Forms.ComboBox cbx_systemlist;
     }
 }

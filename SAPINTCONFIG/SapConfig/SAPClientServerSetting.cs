@@ -220,13 +220,11 @@ namespace ConfigFileTool
                             if (configuration6 != null)
                             {
                                 return configuration6.Servers;
-                                //  RfcServerManager.RegisterServerConfiguration(new DefaultServerConfiguration(configuration6.Servers));
-                                //    RfcServerManager.loadedFromParameterFile = true;
                             }
                         }
                     }
                 }
-                catch (Exception exception)
+                catch (Exception )
                 {
                     // RfcTrace.LogError("Could not initialize configuration:", null, exception);
                     

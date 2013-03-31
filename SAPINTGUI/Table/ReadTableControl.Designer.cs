@@ -27,10 +27,6 @@
         {
             this.Run = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Select = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.FieldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FieldText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CheckTable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.Option = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTableName = new System.Windows.Forms.TextBox();
@@ -43,12 +39,16 @@
             this.btn_loadInfo = new System.Windows.Forms.Button();
             this.btn_refreshInfo = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbx_systemlist = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnUnSelect = new System.Windows.Forms.Button();
             this.btnCacheMe = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDelimiter = new System.Windows.Forms.ComboBox();
+            this.cbx_systemlist = new SAPINT.Controls.CboxSystemList();
+            this.SelectCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.FieldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FieldText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CheckTable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -71,7 +71,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Select,
+            this.SelectCol,
             this.FieldName,
             this.FieldText,
             this.CheckTable});
@@ -82,32 +82,8 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(235, 263);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // Select
-            // 
-            this.Select.HeaderText = "";
-            this.Select.Name = "Select";
-            this.Select.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Select.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Select.Width = 20;
-            // 
-            // FieldName
-            // 
-            this.FieldName.HeaderText = "字段";
-            this.FieldName.Name = "FieldName";
-            this.FieldName.Width = 60;
-            // 
-            // FieldText
-            // 
-            this.FieldText.HeaderText = "描述";
-            this.FieldText.Name = "FieldText";
-            // 
-            // CheckTable
-            // 
-            this.CheckTable.HeaderText = "检查表";
-            this.CheckTable.Name = "CheckTable";
-            this.CheckTable.ReadOnly = true;
-            this.CheckTable.Width = 60;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // dataGridView2
             // 
@@ -219,16 +195,6 @@
             this.label3.Size = new System.Drawing.Size(47, 12);
             this.label3.TabIndex = 17;
             this.label3.Text = "SAP系统";
-            // 
-            // cbx_systemlist
-            // 
-            this.cbx_systemlist.FormattingEnabled = true;
-            this.cbx_systemlist.Location = new System.Drawing.Point(63, 3);
-            this.cbx_systemlist.Name = "cbx_systemlist";
-            this.cbx_systemlist.Size = new System.Drawing.Size(124, 20);
-            this.cbx_systemlist.TabIndex = 1;
-            this.cbx_systemlist.SelectionChangeCommitted += new System.EventHandler(this.cbx_systemlist_SelectionChangeCommitted);
-            this.cbx_systemlist.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cbx_systemlist_MouseClick);
             // 
             // splitContainer1
             // 
@@ -354,16 +320,49 @@
             this.txtDelimiter.TabIndex = 24;
             this.txtDelimiter.Text = "※";
             // 
+            // cbx_systemlist
+            // 
+            this.cbx_systemlist.FormattingEnabled = true;
+            this.cbx_systemlist.Location = new System.Drawing.Point(63, 4);
+            this.cbx_systemlist.Name = "cbx_systemlist";
+            this.cbx_systemlist.Size = new System.Drawing.Size(122, 20);
+            this.cbx_systemlist.TabIndex = 25;
+            // 
+            // Select
+            // 
+            this.SelectCol.HeaderText = "";
+            this.SelectCol.Name = "Select";
+            this.SelectCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SelectCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.SelectCol.Width = 20;
+            // 
+            // FieldName
+            // 
+            this.FieldName.HeaderText = "字段";
+            this.FieldName.Name = "FieldName";
+            this.FieldName.Width = 60;
+            // 
+            // FieldText
+            // 
+            this.FieldText.HeaderText = "描述";
+            this.FieldText.Name = "FieldText";
+            // 
+            // CheckTable
+            // 
+            this.CheckTable.HeaderText = "检查表";
+            this.CheckTable.Name = "CheckTable";
+            this.CheckTable.Width = 60;
+            // 
             // ReadTableControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbx_systemlist);
             this.Controls.Add(this.txtDelimiter);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnCacheMe);
             this.Controls.Add(this.btnUnSelect);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.cbx_systemlist);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_refreshInfo);
             this.Controls.Add(this.btn_loadInfo);
@@ -401,16 +400,16 @@
         private System.Windows.Forms.Button btn_loadInfo;
         private System.Windows.Forms.Button btn_refreshInfo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbx_systemlist;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Select;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FieldName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FieldText;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CheckTable;
         private System.Windows.Forms.Button btnUnSelect;
         private System.Windows.Forms.Button btnCacheMe;
         private System.Windows.Forms.DataGridViewTextBoxColumn Option;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox txtDelimiter;
+        private SAPINT.Controls.CboxSystemList cbx_systemlist;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn SelectCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FieldName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FieldText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CheckTable;
     }
 }

@@ -24,8 +24,12 @@ namespace SAPINT
                 return _systemNameList;
             }
         }
+
         
+        /// <summary>
         //根据SAP GUI 客户端保存的配置文件的路径自动加载系统配置列表
+        /// </summary>
+        /// <returns></returns>
         public static bool loadDefaultSystemListFromSAPLogonIniFile()
         {
             SapConfigClass _config;
@@ -54,7 +58,7 @@ namespace SAPINT
                     for (int i = 1; i < sessionCount; i++)
                     {
                         string key = "Item" + i;
-                        
+
                         _config = new SapConfigClass();
                         _config.Name = sDescription[key];
                         if (string.IsNullOrEmpty(_config.Name))
@@ -74,7 +78,7 @@ namespace SAPINT
                         _config.IdleTimeout = "60";
                         SAPLogonConfigList.AddConfig(_config.Name, _config);
                     }
-                    
+
                     success = true;
                 }
             }

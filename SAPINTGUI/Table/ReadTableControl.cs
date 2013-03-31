@@ -83,6 +83,11 @@ namespace SAPINTGUI
         //运行按钮
         private void button1_Click(object sender, EventArgs e)
         {
+            loadTable();
+        }
+
+        private void loadTable()
+        {
             if (!check())
             {
                 return;
@@ -115,12 +120,15 @@ namespace SAPINTGUI
                 {
                     if (dataGridView1.Rows[i].Cells["FieldName"].Value != null)
                     {
-                        if (dataGridView1.Rows[i].Cells["Select"] != null & (bool)dataGridView1.Rows[i].Cells["Select"].Value == true)
+                        if (dataGridView1.Rows[i].Cells["Select"].Value != null)
                         {
-                            string s = dataGridView1.Rows[i].Cells["FieldName"].Value.ToString();
-                            if (!string.IsNullOrEmpty(s))
+                            if ((bool)dataGridView1.Rows[i].Cells["Select"].Value == true)
                             {
-                                dt.AddField(s);
+                                string s = dataGridView1.Rows[i].Cells["FieldName"].Value.ToString();
+                                if (!string.IsNullOrEmpty(s))
+                                {
+                                    dt.AddField(s);
+                                }
                             }
                         }
                     }
@@ -336,16 +344,16 @@ namespace SAPINTGUI
                 MessageBox.Show("加载失败");
             }
         }
-        private void cbx_systemlist_Enter(object sender, EventArgs e)
-        {
-            cbx_systemlist.DataSource = null;
-            cbx_systemlist.DataSource = SAPINT.SAPLogonConfigList.SystemNameList;
-        }
-        private void cbx_systemlist_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.cbx_systemlist.DataSource = null;
-            this.cbx_systemlist.DataSource = SAPINT.SAPLogonConfigList.SystemNameList;
-        }
+        //private void cbx_systemlist_Enter(object sender, EventArgs e)
+        //{
+        //    cbx_systemlist.DataSource = null;
+        //    cbx_systemlist.DataSource = SAPINT.SAPLogonConfigList.SystemNameList;
+        //}
+        //private void cbx_systemlist_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    this.cbx_systemlist.DataSource = null;
+        //    this.cbx_systemlist.DataSource = SAPINT.SAPLogonConfigList.SystemNameList;
+        //}
         //批量取消选中
         private void btnUnSelect_Click(object sender, EventArgs e)
         {
@@ -396,7 +404,7 @@ namespace SAPINTGUI
                     switch (e.KeyCode)
                     {
                         case Keys.C:
-                            CDataGridViewUtils.CopyToClipboard(dataGridView2);
+                            //  CDataGridViewUtils.CopyToClipboard(dataGridView2);
                             break;
                         case Keys.V:
                             // PasteClipboardValue(dgvBatchInput  ,false);
@@ -420,5 +428,52 @@ namespace SAPINTGUI
             this._systemName = cbx_systemlist.Text;
             eventGetTable(this, null);
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return;
+            }
+            if (e.ColumnIndex != 3)
+            {
+                return;
+            }
+            DataGridViewCell cell = this.dataGridView1[e.ColumnIndex, e.RowIndex];
+            if (cell.Value != null)
+            {
+                if (!string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                {
+                    this.txtTableName.Text = cell.Value.ToString();
+                    loadTable();
+                }
+            }
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Modifiers == Keys.Control)
+                {
+                    switch (e.KeyCode)
+                    {
+                        case Keys.C:
+                            // CDataGridViewUtils.CopyToClipboard(dataGridView1);
+                            break;
+                        case Keys.V:
+                            // PasteClipboardValue(dgvBatchInput  ,false);
+                            CDataGridViewUtils.Paste(dataGridView1, "", 0, false);
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Copy/paste operation failed. " + ex.Message, "Copy/Paste", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
     }
 }

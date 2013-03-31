@@ -51,8 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>21.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>35F5B6637AD2A9A303B49522F965E691D07C4CCF</ManifestCertificateThumbprint>
@@ -84,10 +83,10 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>SAPINTGUI.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.TextEditor">
-      <HintPath>..\lib\ICSharpCode.TextEditor.dll</HintPath>
-    </Reference>
     <Reference Include="log4net">
       <HintPath>..\lib\log4net.dll</HintPath>
     </Reference>
@@ -99,9 +98,6 @@
     </Reference>
     <Reference Include="Puzzle.SyntaxBox.NET4">
       <HintPath>..\lib\Puzzle.SyntaxBox.NET4.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxHighlighter">
-      <HintPath>..\lib\SyntaxHighlighter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -164,11 +160,11 @@
     <Compile Include="FormSAPToolBox.Designer.cs">
       <DependentUpon>FormSAPToolBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbapCode\FormAbapCode.cs">
+    <Compile Include="Functions\FormSearchRfcFunction.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbapCode\FormAbapCode.Designer.cs">
-      <DependentUpon>FormAbapCode.cs</DependentUpon>
+    <Compile Include="Functions\FormSearchRfcFunction.Designer.cs">
+      <DependentUpon>FormSearchRfcFunction.cs</DependentUpon>
     </Compile>
     <Compile Include="Idoc\FormCopyIdoc.cs">
       <SubType>Form</SubType>
@@ -289,8 +285,8 @@
     <EmbeddedResource Include="FormSAPToolBox.resx">
       <DependentUpon>FormSAPToolBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbapCode\FormAbapCode.resx">
-      <DependentUpon>FormAbapCode.cs</DependentUpon>
+    <EmbeddedResource Include="Functions\FormSearchRfcFunction.resx">
+      <DependentUpon>FormSearchRfcFunction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idoc\FormCopyIdoc.resx">
       <DependentUpon>FormCopyIdoc.cs</DependentUpon>
@@ -354,6 +350,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
+    <None Include="CSharp.syn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="log4net.config" />
     <None Include="masterDataSet.xsc">
       <DependentUpon>masterDataSet.xsd</DependentUpon>
@@ -376,6 +375,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="SAPINTGUI_TemporaryKey.pfx" />
+    <None Include="sql.syn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SAPINTCONFIG\ConfigFileTool.csproj">

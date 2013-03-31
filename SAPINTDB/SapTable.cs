@@ -754,9 +754,10 @@ namespace SAPINTDB
             //  String defaultDb = null;
             if (String.IsNullOrWhiteSpace(DbConnectionString))
             {
-                DbConnectionString = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
+
+                DbConnectionString = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
             }
-            //defaultDb = ConfigFileTool.SAPGlobalSettings.GetDefaultDb();
+            //defaultDb = new ConfigFileTool.SAPGlobalSettings().GetDefaultDb();
             if (string.IsNullOrWhiteSpace(DbConnectionString))
             {
                 throw new SAPException("没有配置默认的数据库连接！！");

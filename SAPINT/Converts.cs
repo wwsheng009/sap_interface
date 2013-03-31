@@ -1448,7 +1448,7 @@ namespace SAPINT
             switch (type)
             {
                 case RfcDataType.BCD:
-                    if (o == "")
+                    if (o.ToString() == "")
                     {
                         o = 0;
                         break;
@@ -1456,7 +1456,7 @@ namespace SAPINT
                     o = int.Parse(output.ToString());
                     break;
                 case RfcDataType.BYTE:
-                    if (o == "")
+                    if (o.ToString() == "")
                     {
                         o = 0;
                         break;
@@ -1491,7 +1491,7 @@ namespace SAPINT
                 case RfcDataType.DTWEEK:
                     break;
                 case RfcDataType.FLOAT:
-                    if (o == "")
+                    if (o.ToString() == "")
                     {
                         o = 0;
                         break;
@@ -1499,7 +1499,7 @@ namespace SAPINT
                     o = float.Parse(output.ToString());
                     break;
                 case RfcDataType.INT1:
-                    if (o == "")
+                    if (o.ToString() == "")
                     {
                         o = 0;
                         break;
@@ -1507,7 +1507,7 @@ namespace SAPINT
                     o = int.Parse(output.ToString());
                     break;
                 case RfcDataType.INT2:
-                    if (o == "")
+                    if (o.ToString() == "")
                     {
                         o = 0;
                         break;
@@ -1515,7 +1515,7 @@ namespace SAPINT
                     o = int.Parse(output.ToString());
                     break;
                 case RfcDataType.INT4:
-                    if (o == "")
+                    if (o.ToString() == "")
                     {
                         o = 0;
                         break;
@@ -1523,7 +1523,7 @@ namespace SAPINT
                     o = int.Parse(output.ToString());
                     break;
                 case RfcDataType.INT8:
-                    if (o == "")
+                    if (o.ToString() == "")
                     {
                         o = 0;
                         break;

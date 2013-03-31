@@ -14,8 +14,8 @@ namespace SAPINTGUI.DataBase
         public FormDbUtil()
         {
             InitializeComponent();
-            this.cbxDbConnection.DataSource = ConfigFileTool.SAPGlobalSettings.getDbConnectionList();
-            this.cbxDbConnection.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
+            this.cbxDbConnection.DataSource = new ConfigFileTool.SAPGlobalSettings().getDbConnectionList();
+            this.cbxDbConnection.Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
 
         }
 

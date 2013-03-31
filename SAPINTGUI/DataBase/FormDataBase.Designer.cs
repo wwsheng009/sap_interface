@@ -30,17 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.btnExcute = new System.Windows.Forms.Button();
-            this.syntaxRichTextBox1 = new SyntaxHighlighter.SyntaxRichTextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnUpdateDb = new System.Windows.Forms.Button();
-            this.sAPConfigFromFileBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.syntaxBoxControl1 = new Alsing.Windows.Forms.SyntaxBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sAPConfigFromFileBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnExcute
             // 
-            this.btnExcute.Location = new System.Drawing.Point(63, 12);
+            this.btnExcute.Location = new System.Drawing.Point(13, 12);
             this.btnExcute.Name = "btnExcute";
             this.btnExcute.Size = new System.Drawing.Size(142, 45);
             this.btnExcute.TabIndex = 0;
@@ -48,33 +46,21 @@
             this.btnExcute.UseVisualStyleBackColor = true;
             this.btnExcute.Click += new System.EventHandler(this.btnExcute_Click);
             // 
-            // syntaxRichTextBox1
-            // 
-            this.syntaxRichTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.syntaxRichTextBox1.Location = new System.Drawing.Point(63, 63);
-            this.syntaxRichTextBox1.Name = "syntaxRichTextBox1";
-            this.syntaxRichTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.syntaxRichTextBox1.Size = new System.Drawing.Size(771, 134);
-            this.syntaxRichTextBox1.TabIndex = 1;
-            this.syntaxRichTextBox1.Text = "";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(63, 203);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 203);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(771, 400);
+            this.dataGridView1.Size = new System.Drawing.Size(822, 400);
             this.dataGridView1.TabIndex = 2;
             // 
             // btnUpdateDb
             // 
-            this.btnUpdateDb.Location = new System.Drawing.Point(223, 12);
+            this.btnUpdateDb.Location = new System.Drawing.Point(175, 12);
             this.btnUpdateDb.Name = "btnUpdateDb";
             this.btnUpdateDb.Size = new System.Drawing.Size(120, 45);
             this.btnUpdateDb.TabIndex = 3;
@@ -82,23 +68,49 @@
             this.btnUpdateDb.UseVisualStyleBackColor = true;
             this.btnUpdateDb.Click += new System.EventHandler(this.btnUpdateDb_Click);
             // 
-            // sAPConfigFromFileBindingSource
+            // syntaxBoxControl1
             // 
-            this.sAPConfigFromFileBindingSource.DataSource = typeof(SAPINT.SapConfig.SAPConfigFromFile);
+            this.syntaxBoxControl1.ActiveView = Alsing.Windows.Forms.ActiveView.BottomRight;
+            this.syntaxBoxControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.syntaxBoxControl1.AutoListPosition = null;
+            this.syntaxBoxControl1.AutoListSelectedText = "";
+            this.syntaxBoxControl1.AutoListVisible = false;
+            this.syntaxBoxControl1.BackColor = System.Drawing.Color.White;
+            this.syntaxBoxControl1.BorderStyle = Alsing.Windows.Forms.BorderStyle.None;
+            this.syntaxBoxControl1.CopyAsRTF = false;
+            this.syntaxBoxControl1.FontName = "Courier new";
+            this.syntaxBoxControl1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.syntaxBoxControl1.InfoTipCount = 1;
+            this.syntaxBoxControl1.InfoTipPosition = null;
+            this.syntaxBoxControl1.InfoTipSelectedIndex = 0;
+            this.syntaxBoxControl1.InfoTipVisible = false;
+            this.syntaxBoxControl1.Location = new System.Drawing.Point(13, 66);
+            this.syntaxBoxControl1.LockCursorUpdate = false;
+            this.syntaxBoxControl1.Name = "syntaxBoxControl1";
+            this.syntaxBoxControl1.ShowScopeIndicator = false;
+            this.syntaxBoxControl1.Size = new System.Drawing.Size(821, 131);
+            this.syntaxBoxControl1.SmoothScroll = false;
+            this.syntaxBoxControl1.SplitviewH = -4;
+            this.syntaxBoxControl1.SplitviewV = -4;
+            this.syntaxBoxControl1.TabGuideColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
+            this.syntaxBoxControl1.TabIndex = 4;
+            this.syntaxBoxControl1.Text = "syntaxBoxControl1";
+            this.syntaxBoxControl1.WhitespaceColor = System.Drawing.SystemColors.ControlDark;
             // 
             // FormDataBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 615);
+            this.Controls.Add(this.syntaxBoxControl1);
             this.Controls.Add(this.btnUpdateDb);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.syntaxRichTextBox1);
             this.Controls.Add(this.btnExcute);
             this.Name = "FormDataBase";
             this.Text = "FormDataBase";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sAPConfigFromFileBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -106,9 +118,9 @@
         #endregion
 
         private System.Windows.Forms.Button btnExcute;
-        private SyntaxHighlighter.SyntaxRichTextBox syntaxRichTextBox1;
+
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource sAPConfigFromFileBindingSource;
         private System.Windows.Forms.Button btnUpdateDb;
+        private Alsing.Windows.Forms.SyntaxBoxControl syntaxBoxControl1;
     }
 }

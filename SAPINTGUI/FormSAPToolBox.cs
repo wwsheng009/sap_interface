@@ -129,5 +129,11 @@ namespace SAPINTGUI
             FormCopyIdoc formCopyIdoc = new FormCopyIdoc();
             formCopyIdoc.Show();
         }
+
+        private void btnSearchRfcFunction_Click(object sender, EventArgs e)
+        {
+            Functions.FormSearchRfcFunction formsearchRfcFunction = new Functions.FormSearchRfcFunction();
+            formsearchRfcFunction.Show();
+        }
     }
 }

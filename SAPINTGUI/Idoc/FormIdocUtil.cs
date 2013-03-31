@@ -19,7 +19,7 @@ namespace SAPINTGUI.Idoc
 
         private void btnReadIdocFromDb_Click(object sender, EventArgs e)
         {
-            String dbName = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
+            String dbName = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
             dt = new DataTable();
             SAPINTDB.netlib7 dbhelper = new SAPINTDB.netlib7(dbName);
 

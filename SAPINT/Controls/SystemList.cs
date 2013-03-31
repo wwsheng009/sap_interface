@@ -20,8 +20,12 @@ namespace SAPINT.Controls
         protected override void InitLayout()
         {
             base.InitLayout();
-            base.DataSource = null;
-            base.DataSource = SAPINT.SAPLogonConfigList.SystemNameList;
+            DataSource = null;
+           // base.DataSource = SAPINT.SAPLogonConfigList.SystemNameList;
+            List<String> clients = new ConfigFileTool.SAPGlobalSettings().getSAPClientList();
+            DataSource = clients;
+            Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient();
+            
            // this.Parent.Enter += new EventHandler(Parent_Enter);
         }
 

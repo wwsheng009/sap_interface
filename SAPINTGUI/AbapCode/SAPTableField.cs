@@ -41,9 +41,9 @@ namespace SAPINTCODE
         public SAPTableField()
         {
             InitializeComponent();
-            this.cbx_systemlist.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
-            this.cbx_systemlist.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
+            
             _tablelist = new List<TableInfo>();
+            
         }
 
         private bool check()
@@ -231,7 +231,7 @@ namespace SAPINTCODE
             RemoveFieldsAndOptionFromMemory(this.txtTableName.Text.Trim().ToUpper());
         }
 
-        private void cbx_systemlist_SelectedValueChanged(object sender, EventArgs e)
+        private void cbx_systemlist_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             this.SystemName = cbx_systemlist.Text;
         }

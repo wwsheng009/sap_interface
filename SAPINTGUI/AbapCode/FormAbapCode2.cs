@@ -10,7 +10,6 @@ using SAPINT.Utils;
 using System.IO;
 using NVelocity;
 using NVelocity.App;
-using SyntaxHighlighter;
 //using System.Data.SQLite;
 
 
@@ -28,9 +27,12 @@ namespace SAPINTCODE
         public FormAbapCode2()
         {
             InitializeComponent();
-            SAPINT.SAPLogonConfigList.InitSystemList();
+          //  SAPINT.SAPLogonConfigList.InitSystemList();
             //   InitKeyWordList();
             this.WindowState = FormWindowState.Maximized;
+
+            this.sapTableField1.cbx_systemlist.DataSource = new ConfigFileTool.SAPGlobalSettings().getSAPClientList();
+            this.sapTableField1.cbx_systemlist.Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient();
         }
 
 
@@ -749,7 +751,7 @@ namespace SAPINTCODE
         DataTable dt;
         private void btnOpenTemplateTable_Click(object sender, EventArgs e)
         {
-            String dbName = ConfigFileTool.SAPGlobalSettings.GetTemplateDb();
+            String dbName = new ConfigFileTool.SAPGlobalSettings().GetTemplateDb();
             dt = new DataTable();
             SAPINTDB.netlib7 dbhelper = new SAPINTDB.netlib7(dbName);
             dbhelper.LogEvents = true;
@@ -761,7 +763,7 @@ namespace SAPINTCODE
 
         private void btnUpdateTemplate_Click(object sender, EventArgs e)
         {
-            String dbName = ConfigFileTool.SAPGlobalSettings.GetTemplateDb();
+            String dbName = new ConfigFileTool.SAPGlobalSettings().GetTemplateDb();
             SAPINTDB.netlib7 dbhelper = new SAPINTDB.netlib7(dbName);
             dbhelper.LogEvents = true;
             dbhelper.DataTableUpdate(dt, "Select * from codeTemplate");

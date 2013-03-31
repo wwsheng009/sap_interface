@@ -23,11 +23,12 @@ namespace ConfigFileTool
 
         public void loadConfigOptions()
         {
+            SAPGlobalSettings setting = new SAPGlobalSettings();
 
-            this.cbxDb.DataSource = ConfigFileTool.SAPGlobalSettings.getDbConnectionList();
+            this.cbxDb.DataSource = setting.getDbConnectionList();
 
-            cbxSAPClient.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
-            cbxSAPServer.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPServerList();
+            cbxSAPClient.DataSource = setting.getSAPClientList();
+            cbxSAPServer.DataSource = setting.getSAPServerList();
 
 
 

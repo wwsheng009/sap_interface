@@ -40,7 +40,7 @@ namespace MiniServer
            // RfcServerManager.RegisterServerConfiguration(new MyServerConfig());//2
 
             Type[] handlers = new Type[1] { typeof(MiniServerHandler) };//3
-            string defaultServer = ConfigFileTool.SAPGlobalSettings.GetDefultSAPServer();
+            string defaultServer = new ConfigFileTool.SAPGlobalSettings().GetDefultSAPServer();
             RfcServer server = RfcServerManager.GetServer(defaultServer, handlers);//3
 
             server.RfcServerError += OnRfcServerError;
@@ -157,7 +157,7 @@ namespace MiniServer
             for (int i = 0; i < control.RowCount; i++)
             {
                 IRfcStructure tControl = control[i];
-                string client = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
+                string client = new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient();
                 string TableName = "T" + tControl["DOCNUM"].GetValue().ToString().Trim();
                 SAPINTDB.SapTable idoctable = new SAPINTDB.SapTable(client, TableName, "EDI_DD40");
                 DataTable dt = GetDataTableFromRfcTable(data);
@@ -265,7 +265,7 @@ namespace MiniServer
                 }
             }
 
-           // IdocMeta idocMeta = new IdocMeta(ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient(), idoc);
+           // IdocMeta idocMeta = new IdocMeta(new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient(), idoc);
            // idocMeta.getIdocTypeDefinition();
            // idocMeta.deCompileIdoc();
 

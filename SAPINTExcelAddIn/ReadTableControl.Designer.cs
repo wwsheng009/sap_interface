@@ -30,7 +30,7 @@
         {
             this.Run = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Select = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.SelectCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.FieldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FieldText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CheckTable = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,7 +72,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Select,
+            this.SelectCol,
             this.FieldName,
             this.FieldText,
             this.CheckTable});
@@ -86,11 +86,11 @@
             // 
             // Select
             // 
-            this.Select.HeaderText = "";
-            this.Select.Name = "Select";
-            this.Select.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Select.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Select.Width = 20;
+            this.SelectCol.HeaderText = "";
+            this.SelectCol.Name = "Select";
+            this.SelectCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SelectCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.SelectCol.Width = 20;
             // 
             // FieldName
             // 
@@ -318,7 +318,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbx_systemlist;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Select;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn SelectCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn FieldName;
         private System.Windows.Forms.DataGridViewTextBoxColumn FieldText;
         private System.Windows.Forms.DataGridViewTextBoxColumn CheckTable;

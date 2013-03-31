@@ -84,7 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultSetting.cs" />
+    <Compile Include="SAPGlobalSettings.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

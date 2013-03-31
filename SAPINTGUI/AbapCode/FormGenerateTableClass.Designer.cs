@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnGenerateCode = new System.Windows.Forms.Button();
             this.cbxSystemList = new System.Windows.Forms.ComboBox();
             this.textBoxTableName = new System.Windows.Forms.TextBox();
@@ -35,12 +36,15 @@
             this.lable2 = new System.Windows.Forms.Label();
             this.btnGetTableDefinitioin = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.textBoxTemplate = new SyntaxHighlighter.SyntaxRichTextBox();
-            this.textBoxResult = new SyntaxHighlighter.SyntaxRichTextBox();
             this.dgvFieldList = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.btnSelect = new System.Windows.Forms.Button();
             this.btnCancle = new System.Windows.Forms.Button();
+            this.syntaxDocument1 = new Alsing.SourceCode.SyntaxDocument(this.components);
+            this.textBoxTemplate = new Alsing.Windows.Forms.SyntaxBoxControl();
+            this.syntaxDocument2 = new Alsing.SourceCode.SyntaxDocument(this.components);
+            this.textBoxResult = new Alsing.Windows.Forms.SyntaxBoxControl();
+            this.syntaxDocument3 = new Alsing.SourceCode.SyntaxDocument(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -123,24 +127,6 @@
             this.splitContainer1.SplitterDistance = 206;
             this.splitContainer1.TabIndex = 10;
             // 
-            // textBoxTemplate
-            // 
-            this.textBoxTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxTemplate.Location = new System.Drawing.Point(0, 0);
-            this.textBoxTemplate.Name = "textBoxTemplate";
-            this.textBoxTemplate.Size = new System.Drawing.Size(335, 206);
-            this.textBoxTemplate.TabIndex = 0;
-            this.textBoxTemplate.Text = "";
-            // 
-            // textBoxResult
-            // 
-            this.textBoxResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxResult.Location = new System.Drawing.Point(0, 0);
-            this.textBoxResult.Name = "textBoxResult";
-            this.textBoxResult.Size = new System.Drawing.Size(335, 202);
-            this.textBoxResult.TabIndex = 0;
-            this.textBoxResult.Text = "";
-            // 
             // dgvFieldList
             // 
             this.dgvFieldList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -190,6 +176,90 @@
             this.btnCancle.UseVisualStyleBackColor = true;
             this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
+            // syntaxDocument1
+            // 
+            this.syntaxDocument1.Lines = new string[] {
+        ""};
+            this.syntaxDocument1.MaxUndoBufferSize = 1000;
+            this.syntaxDocument1.Modified = false;
+            this.syntaxDocument1.UndoStep = 0;
+            // 
+            // textBoxTemplate
+            // 
+            this.textBoxTemplate.ActiveView = Alsing.Windows.Forms.ActiveView.BottomRight;
+            this.textBoxTemplate.AutoListPosition = null;
+            this.textBoxTemplate.AutoListSelectedText = "";
+            this.textBoxTemplate.AutoListVisible = false;
+            this.textBoxTemplate.BackColor = System.Drawing.Color.White;
+            this.textBoxTemplate.BorderStyle = Alsing.Windows.Forms.BorderStyle.None;
+            this.textBoxTemplate.CopyAsRTF = false;
+            this.textBoxTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxTemplate.Document = this.syntaxDocument2;
+            this.textBoxTemplate.FontName = "Courier new";
+            this.textBoxTemplate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.textBoxTemplate.InfoTipCount = 1;
+            this.textBoxTemplate.InfoTipPosition = null;
+            this.textBoxTemplate.InfoTipSelectedIndex = 0;
+            this.textBoxTemplate.InfoTipVisible = false;
+            this.textBoxTemplate.Location = new System.Drawing.Point(0, 0);
+            this.textBoxTemplate.LockCursorUpdate = false;
+            this.textBoxTemplate.Name = "textBoxTemplate";
+            this.textBoxTemplate.ShowScopeIndicator = false;
+            this.textBoxTemplate.Size = new System.Drawing.Size(335, 206);
+            this.textBoxTemplate.SmoothScroll = false;
+            this.textBoxTemplate.SplitviewH = -4;
+            this.textBoxTemplate.SplitviewV = -4;
+            this.textBoxTemplate.TabGuideColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
+            this.textBoxTemplate.TabIndex = 0;
+            this.textBoxTemplate.Text = "syntaxBoxControl1";
+            this.textBoxTemplate.WhitespaceColor = System.Drawing.SystemColors.ControlDark;
+            // 
+            // syntaxDocument2
+            // 
+            this.syntaxDocument2.Lines = new string[] {
+        ""};
+            this.syntaxDocument2.MaxUndoBufferSize = 1000;
+            this.syntaxDocument2.Modified = false;
+            this.syntaxDocument2.UndoStep = 0;
+            // 
+            // textBoxResult
+            // 
+            this.textBoxResult.ActiveView = Alsing.Windows.Forms.ActiveView.BottomRight;
+            this.textBoxResult.AutoListPosition = null;
+            this.textBoxResult.AutoListSelectedText = "";
+            this.textBoxResult.AutoListVisible = false;
+            this.textBoxResult.BackColor = System.Drawing.Color.White;
+            this.textBoxResult.BorderStyle = Alsing.Windows.Forms.BorderStyle.None;
+            this.textBoxResult.CopyAsRTF = false;
+            this.textBoxResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxResult.Document = this.syntaxDocument3;
+            this.textBoxResult.FontName = "Courier new";
+            this.textBoxResult.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.textBoxResult.InfoTipCount = 1;
+            this.textBoxResult.InfoTipPosition = null;
+            this.textBoxResult.InfoTipSelectedIndex = 0;
+            this.textBoxResult.InfoTipVisible = false;
+            this.textBoxResult.Location = new System.Drawing.Point(0, 0);
+            this.textBoxResult.LockCursorUpdate = false;
+            this.textBoxResult.Name = "textBoxResult";
+            this.textBoxResult.ShowScopeIndicator = false;
+            this.textBoxResult.Size = new System.Drawing.Size(335, 202);
+            this.textBoxResult.SmoothScroll = false;
+            this.textBoxResult.SplitviewH = -4;
+            this.textBoxResult.SplitviewV = -4;
+            this.textBoxResult.TabGuideColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
+            this.textBoxResult.TabIndex = 0;
+            this.textBoxResult.Text = "syntaxBoxControl1";
+            this.textBoxResult.WhitespaceColor = System.Drawing.SystemColors.ControlDark;
+            // 
+            // syntaxDocument3
+            // 
+            this.syntaxDocument3.Lines = new string[] {
+        ""};
+            this.syntaxDocument3.MaxUndoBufferSize = 1000;
+            this.syntaxDocument3.Modified = false;
+            this.syntaxDocument3.UndoStep = 0;
+            // 
             // FormGenerateTableClass
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -229,11 +299,14 @@
         private System.Windows.Forms.Label lable2;
         private System.Windows.Forms.Button btnGetTableDefinitioin;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private SyntaxHighlighter.SyntaxRichTextBox textBoxResult;
-        private SyntaxHighlighter.SyntaxRichTextBox textBoxTemplate;
         private System.Windows.Forms.DataGridView dgvFieldList;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Button btnCancle;
+        private Alsing.SourceCode.SyntaxDocument syntaxDocument1;
+        private Alsing.Windows.Forms.SyntaxBoxControl textBoxTemplate;
+        private Alsing.SourceCode.SyntaxDocument syntaxDocument2;
+        private Alsing.Windows.Forms.SyntaxBoxControl textBoxResult;
+        private Alsing.SourceCode.SyntaxDocument syntaxDocument3;
     }
 }

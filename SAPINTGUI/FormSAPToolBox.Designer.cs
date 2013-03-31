@@ -46,6 +46,7 @@
             this.btnIdocMeta = new System.Windows.Forms.Button();
             this.btnCopyIdocToLocalDb = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSearchRfcFunction = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -239,6 +240,7 @@
             this.tableLayoutPanel3.Controls.Add(this.button4, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.button7, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnSytemConfig, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.btnSearchRfcFunction, 1, 1);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 311);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
@@ -310,6 +312,16 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "ABAP工具箱";
             // 
+            // btnSearchRfcFunction
+            // 
+            this.btnSearchRfcFunction.Location = new System.Drawing.Point(106, 51);
+            this.btnSearchRfcFunction.Name = "btnSearchRfcFunction";
+            this.btnSearchRfcFunction.Size = new System.Drawing.Size(98, 42);
+            this.btnSearchRfcFunction.TabIndex = 12;
+            this.btnSearchRfcFunction.Text = "搜索RFC函数";
+            this.btnSearchRfcFunction.UseVisualStyleBackColor = true;
+            this.btnSearchRfcFunction.Click += new System.EventHandler(this.btnSearchRfcFunction_Click);
+            // 
             // FormSAPToolBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -353,5 +365,6 @@
         private System.Windows.Forms.Button btnDbUtil;
         private System.Windows.Forms.Button btnCopyIdocToLocalDb;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSearchRfcFunction;
     }
 }

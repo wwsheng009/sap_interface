@@ -29,9 +29,12 @@ namespace SAPINT.SapConfig
                 RfcServerParameters current = (RfcServerParameters)enumerator.Current;
                 RfcConfigParameters parameters2 = new RfcConfigParameters(0x20);
                // PropertyInfo[] properties = Type.GetType("SAP.Middleware.Connector.RfcServerParameters").GetProperties();
-                PropertyInfo[] properties = Assembly.LoadFrom("ConfigFileTool.dll").GetType("ConfigFileTool.SapConfig.RfcServerParameters").GetProperties();
+               // PropertyInfo[] properties = Assembly.LoadFrom("ConfigFileTool.dll").GetType("ConfigFileTool.SapConfig.RfcServerParameters").GetProperties();
+                PropertyInfo[] properties = current.GetType().GetProperties();
                // Type type = Type.GetType("SAP.Middleware.Connector.RfcConfigParameters");
-                Type type = Assembly.LoadFrom("sapnco.dll").GetType("SAP.Middleware.Connector.RfcConfigParameters");
+               // Type type = Assembly.LoadFrom("sapnco.dll").GetType("SAP.Middleware.Connector.RfcConfigParameters");
+
+                Type type = parameters2.GetType();
                 for (int i = 0; i < properties.Length; i++)
                 {
                     string str = properties[i].GetValue(current, null) as string;

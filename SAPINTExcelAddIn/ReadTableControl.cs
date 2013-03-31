@@ -447,10 +447,6 @@ namespace ExcelAddIn1
         {
             SaveFieldsAndOptiontoMemory(this.txtTableName.Text.Trim().ToUpper());
         }
-
-
-
-
     }
 
 

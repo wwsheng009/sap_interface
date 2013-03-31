@@ -28,16 +28,18 @@ namespace SAPINT.SapConfig
                 {
                     RfcDestinationParameters current = (RfcDestinationParameters)enumerator.Current;
                     RfcConfigParameters parameters2 = new RfcConfigParameters(0x20);
+                    
                     //RfcConfigParameters parameters2 = new RfcConfigParameters();
                     // Assembly a = Assembly.LoadFrom("sapnco.dll");
-                    String ConfigFileToolpath = System.AppDomain.CurrentDomain.BaseDirectory + "ConfigFileTool.dll";
+                   // String ConfigFileToolpath = System.AppDomain.CurrentDomain.BaseDirectory + "ConfigFileTool.dll";
+                   // PropertyInfo[] properties = Assembly.LoadFrom(ConfigFileToolpath).GetType("ConfigFileTool.SapConfig.RfcDestinationParameters").GetProperties();
+                    PropertyInfo[] properties = current.GetType().GetProperties();
+                    //  PropertyInfo[] properties = Assembly.LoadFrom("ConfigFileTool.dll").GetType("ConfigFileTool.SapConfig.RfcDestinationParameters").GetProperties();
 
-                    PropertyInfo[] properties = Assembly.LoadFrom(ConfigFileToolpath).GetType("ConfigFileTool.SapConfig.RfcDestinationParameters").GetProperties();
-                    String sapncoPath = System.AppDomain.CurrentDomain.BaseDirectory + "sapnco.dll";
-
-                    Type type = Assembly.LoadFrom(sapncoPath).GetType("SAP.Middleware.Connector.RfcConfigParameters");
-                    //PropertyInfo[] properties = Type.GetType("SAP.Middleware.Connector.RfcDestinationParameters").GetProperties();
-                    //Type type = Type.GetType("SAP.Middleware.Connector.RfcConfigParameters");
+                   // String sapncoPath = System.AppDomain.CurrentDomain.BaseDirectory + "sapnco.dll";
+                   //  Type type = Assembly.LoadFrom(sapncoPath).GetType("SAP.Middleware.Connector.RfcConfigParameters");
+                   //  Type type = Assembly.LoadFrom("sapnco.dll").GetType("SAP.Middleware.Connector.RfcConfigParameters");
+                    Type type = parameters2.GetType();
                     for (int i = 0; i < properties.Length; i++)
                     {
 
@@ -56,7 +58,7 @@ namespace SAPINT.SapConfig
 
                 throw new SAPException(exception.Message + "无法加载程序集ConfigFileTool.exe,或sapnco.dll");
             }
-            
+
         }
 
         public bool ChangeEventsSupported()
