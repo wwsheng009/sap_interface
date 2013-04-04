@@ -30,8 +30,17 @@ namespace SAPINTDB
         {
          //   providerName = SAPGlobalSettings.config.ConnectionStrings[configConnectionName].ProviderName;
          //   connectionString = SAPGlobalSettings.config.ConnectionStrings[configConnectionName].ConnectionString;
-            providerName = ConfigurationManager.ConnectionStrings[configConnectionName].ProviderName;
-            connectionString = ConfigurationManager.ConnectionStrings[configConnectionName].ConnectionString;
+            if (new SAPGlobalSettings().getConnectionStrings()[configConnectionName] == null)
+            {
+                errorMessage = String.Format("Can't find the connection {0}",configConnectionName);
+                throw new Exception(errorMessage);
+            }
+            else
+            {
+                providerName = new SAPGlobalSettings().getConnectionStrings()[configConnectionName].ProviderName;
+                connectionString = new SAPGlobalSettings().getConnectionStrings()[configConnectionName].ConnectionString;
+            }
+            
         }
         /// <summary>
         /// Advanced constructor (provider and connection string must be specified)

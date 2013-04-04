@@ -1,0 +1,1993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" dslVersion="1.0.0.0" Id="f53857c1-ff1b-44e1-9998-a772c28520b6" name="SapTable_SapTable" mode="DotNet" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="42eea921-e459-44f3-92b9-efab200b2976" name="SapTable_SapTable" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification Id="cfbcc4bb-3188-485d-b2c7-1638404da16d" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="e39d9569-576e-40bd-a52b-dcf640f22a7e" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="be0bcc0a-3387-419a-b8c7-f496623439d5" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="b40a4b7a-6d9b-4d31-8f62-3ea9bdf15f01" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="73e794de-8eec-4e25-a373-451ec7bb62bd" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="4718e2e1-41fb-49a5-a7e3-876a1e35453f" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="16825e5a-291e-4491-8714-0d0e6e6ebf66" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="bb739d53-73ca-4175-ba77-b057aaeeabe8" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="1518732d-236b-4989-9771-d2eac0c9aad6" LastKnownName="ExecutionOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="be0bcc0a-3387-419a-b8c7-f496623439d5" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="8cbb9297-70be-41b0-b06a-02f2cf621483" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="88388f5c-d418-45e6-9603-23d9b3032e87" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="b40a4b7a-6d9b-4d31-8f62-3ea9bdf15f01" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="8d1a2a9e-aa31-4181-8173-52e4ca41d3f7" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="3f4515f6-6361-43dc-ab62-deee3db46f60" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="90e4e3d7-f161-49ed-a462-0f060a340902" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="7acc4ad2-1379-45c9-b178-f855db15a897" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="d9954e15-a24b-4bb6-944d-0cee314bcc99" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="90e4e3d7-f161-49ed-a462-0f060a340902" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="6f9a8d16-eef9-4b43-959f-3e945337c6bc" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="73e794de-8eec-4e25-a373-451ec7bb62bd" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="7acc4ad2-1379-45c9-b178-f855db15a897" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4718e2e1-41fb-49a5-a7e3-876a1e35453f" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="d9954e15-a24b-4bb6-944d-0cee314bcc99" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="3f4515f6-6361-43dc-ab62-deee3db46f60" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="701c7dcc-ad80-4ed2-90d7-d10f49f6a16b" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="16825e5a-291e-4491-8714-0d0e6e6ebf66" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="f12f56d0-850f-4d46-b30f-7360e652225b" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="1518732d-236b-4989-9771-d2eac0c9aad6" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="bb739d53-73ca-4175-ba77-b057aaeeabe8" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="ae267894-bcdf-4bc0-beab-76af2b61e191" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="3ba975de-6309-4efa-a453-8b0430cc3e6c" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="f9b02175-3ae9-43e6-abfd-09f413884b04" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="9858dcb3-ea33-434c-a255-1ef969eed01c" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="fb7a1ec9-0ad1-4bcd-a97c-5269160eed51" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="d7edb43c-c9be-44bd-9bda-0d2a97e870aa" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="11204bb9-2f74-4fab-8762-b437ea1711e7" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="feb39291-da75-4b32-8272-122965855779" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="548e397c-80cd-42f1-859f-21ffaead7db3" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="1cd2937d-53a9-4172-b088-9d7a6b510a08" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="37b6e7e0-9b80-4e14-ba2f-9b1a40447bfe" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="9b58388c-dcab-40dd-87a7-53c541f78240" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="8d36880e-2d77-4176-ac11-229ab05563a3" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="7d331b42-6e1a-4440-9c3d-e08195705db9" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="30734189-9068-48ba-b653-06db084889e7" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="bb739d53-73ca-4175-ba77-b057aaeeabe8" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="9c523d0e-939f-4d31-acde-ae411723c4c9" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="ae267894-bcdf-4bc0-beab-76af2b61e191" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <combinedFragment Id="834c11e7-7778-481e-a1dc-a35447b39bca" name="CombinedFragment1" interactionOperator="Opt" customInteractionOperator="If">
+            <coveredLifelines>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+              <lifelineMoniker Id="e9f12431-3dd7-4c7e-a307-b1487cf05d17" LastKnownName="SAPException : SAPException" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="47691129-78d5-48a2-a9bf-f2750489f46b" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+                  <lifelineMoniker Id="e9f12431-3dd7-4c7e-a307-b1487cf05d17" LastKnownName="SAPException : SAPException" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="8113c9b2-a29a-4bac-8bba-ee0dcade8e67" guardText="if (String.IsNullOrWhiteSpace(SystemName))" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="3ba975de-6309-4efa-a453-8b0430cc3e6c" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="d7edb43c-c9be-44bd-9bda-0d2a97e870aa" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="d1425e23-8fea-4473-81e3-559ab2c22d2e" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="2ac64bf4-fd3c-4c01-919f-60ab4bd76f57" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="3ba975de-6309-4efa-a453-8b0430cc3e6c" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="d1425e23-8fea-4473-81e3-559ab2c22d2e" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="e9f12431-3dd7-4c7e-a307-b1487cf05d17" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="03f951b6-8f4d-4be7-bf4c-7bf17b4aee38" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="e9f12431-3dd7-4c7e-a307-b1487cf05d17" LastKnownName="SAPException : SAPException" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="c27945d2-c3bc-4a79-a12b-4ab3dc838cc0" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="8608bd16-eea0-4d7c-8f8e-3cd3abecf257" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="bbbb09ce-d901-4e8e-b603-b8d0fb2081fd" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="1a170b92-6baf-4d36-a1d8-b1e2e011f7b2" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="8608bd16-eea0-4d7c-8f8e-3cd3abecf257" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="91b4cf48-1e66-43cc-832e-b274dc77dc86" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="e9f12431-3dd7-4c7e-a307-b1487cf05d17" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="f9b02175-3ae9-43e6-abfd-09f413884b04" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="bbbb09ce-d901-4e8e-b603-b8d0fb2081fd" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="e9f12431-3dd7-4c7e-a307-b1487cf05d17" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="1a170b92-6baf-4d36-a1d8-b1e2e011f7b2" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="e9f12431-3dd7-4c7e-a307-b1487cf05d17" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="9858dcb3-ea33-434c-a255-1ef969eed01c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="c27945d2-c3bc-4a79-a12b-4ab3dc838cc0" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="eb375dbf-44a3-4f71-8417-b2b70264bcc1" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="e9f12431-3dd7-4c7e-a307-b1487cf05d17" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="3dd9bc09-1540-4e9d-9892-0cdd8e5a0a87" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="fb7a1ec9-0ad1-4bcd-a97c-5269160eed51" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="2ac64bf4-fd3c-4c01-919f-60ab4bd76f57" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="e9f12431-3dd7-4c7e-a307-b1487cf05d17" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="d7edb43c-c9be-44bd-9bda-0d2a97e870aa" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <combinedFragment Id="201fff42-4913-4886-b8ec-747fac148ffd" name="CombinedFragment2" interactionOperator="Opt" customInteractionOperator="If">
+            <coveredLifelines>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+              <lifelineMoniker Id="31936a13-3eef-42a6-9fe1-553f92926635" LastKnownName="SAPException : SAPException" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="c6773914-75f5-4ecc-a9d1-e1b07d116b52" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+                  <lifelineMoniker Id="31936a13-3eef-42a6-9fe1-553f92926635" LastKnownName="SAPException : SAPException" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="866897ff-6140-4190-a1c5-399db637c249" guardText="if (String.IsNullOrWhiteSpace(StructureName))" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="11204bb9-2f74-4fab-8762-b437ea1711e7" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="37b6e7e0-9b80-4e14-ba2f-9b1a40447bfe" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="a75f1cc5-3f47-448d-bd8e-f945a7c0e6e7" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="32121e03-1f32-4634-a94f-72292e326da8" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="11204bb9-2f74-4fab-8762-b437ea1711e7" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="a75f1cc5-3f47-448d-bd8e-f945a7c0e6e7" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="31936a13-3eef-42a6-9fe1-553f92926635" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="a5a6bc3e-3acb-4f53-9b11-ee8866c52569" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="31936a13-3eef-42a6-9fe1-553f92926635" LastKnownName="SAPException : SAPException" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="feb36252-0286-4df5-a004-dda13664bed5" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="cd2c28bc-f7f7-41d8-a09c-4153746edded" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="bc784e20-4ec2-44a4-a111-f904f424801c" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="2cfcef83-1986-42b1-95ee-fe23b05ce72c" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="cd2c28bc-f7f7-41d8-a09c-4153746edded" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="6d7ecd10-8e8b-400f-84e2-5ad90b2f34b0" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="31936a13-3eef-42a6-9fe1-553f92926635" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="feb39291-da75-4b32-8272-122965855779" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="bc784e20-4ec2-44a4-a111-f904f424801c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="31936a13-3eef-42a6-9fe1-553f92926635" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="548e397c-80cd-42f1-859f-21ffaead7db3" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2cfcef83-1986-42b1-95ee-fe23b05ce72c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="31936a13-3eef-42a6-9fe1-553f92926635" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="feb36252-0286-4df5-a004-dda13664bed5" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="2b05b7f0-72e1-4855-9483-92bccfb2fdfc" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="31936a13-3eef-42a6-9fe1-553f92926635" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="1cd2937d-53a9-4172-b088-9d7a6b510a08" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="1e0709a1-c3a8-40d0-9908-94cda1fd6d2a" name="LostFoundTarget" />
+          <operandOccurrenceSpecification Id="37b6e7e0-9b80-4e14-ba2f-9b1a40447bfe" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="32121e03-1f32-4634-a94f-72292e326da8" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="31936a13-3eef-42a6-9fe1-553f92926635" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="f39791f3-ee4a-42c3-b86b-51cb821bee72" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="5674125a-4afa-46f1-b3c4-b4159ce15d0a" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="d1c2bd7d-285c-4b0f-b3b3-84ca2e3d9489" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="c626b75a-1e2e-4ec3-9ff1-8ac9d929b93a" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="267e2e40-fb95-4315-b867-f9911e3eb17a" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="6bfb2b10-2bff-4756-a6c3-43585c335684" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="2a8d2942-0bf6-4411-94f5-c8eadf016b84" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="d3a844e4-8c5a-44fc-bd7f-838356bd4f49" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="b0e5a604-c3ca-448e-8ddc-e1c086c76c32" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="6e652595-e845-41d1-ac47-d15182eb8065" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="1e4c243a-787b-4b33-bbd2-ff57fa120d1f" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="36b8d2df-56e3-49a0-8c12-12e49595bb4a" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="77046ba6-6e2c-4ff5-811e-2237f14dcc4c" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="fd531607-1887-4c40-871b-b3f252611cd6" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="30e6acee-c3b5-4d0a-86e4-4647d096447f" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="0d4a6d9d-3dc3-4716-82cd-6c92c2ebad44" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="97e4dafc-a7ee-4f20-95ed-d64d410a80ac" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="43e2b430-2ac5-4164-82a3-5cd386eddccb" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="50652c80-53cd-48ec-b245-4dd9b1414aab" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="a4ba2073-54b8-4307-a0a4-886558ca363b" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="9c136771-3e4c-4b40-92b0-a6f89d922803" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="0892eec7-ff1c-4bcc-a831-978d8b7d188f" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="1f6ee95f-a81d-4270-86f4-9aaec92602a1" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="46a30a3e-9ed2-47e3-ada7-e934fe8c0025" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="773a11e8-50ed-462f-8d36-f6d0da8d6f4e" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="c6730fe8-e151-412e-8988-a6e4c472d395" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="cc9fa6b4-495a-40dd-bc3e-4a1bda664087" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="d1c2bd7d-285c-4b0f-b3b3-84ca2e3d9489" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="a89d668a-c722-40f7-9b97-066b877a99a9" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="9b58388c-dcab-40dd-87a7-53c541f78240" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="c626b75a-1e2e-4ec3-9ff1-8ac9d929b93a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <combinedFragment Id="47a484a1-6b38-4ace-a7a9-127fd03df1aa" name="CombinedFragment3" interactionOperator="Alt" customInteractionOperator="Try">
+            <coveredLifelines>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+              <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="04b1651c-7bae-449d-b56c-b959e11ff383" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+                  <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+                  <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+                  <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+                  <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+                  <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+                </coveredLifelines>
+                <fragments>
+                  <combinedFragment Id="7686df3a-a1fb-4929-b5d8-213fbceaaec1" name="CombinedFragment1" interactionOperator="Alt" customInteractionOperator="Try">
+                    <coveredLifelines>
+                      <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+                    </coveredLifelines>
+                    <operands>
+                      <interactionOperand Id="943f6ca5-cebd-44dc-876f-bf5311c65f15" name="InteractionOperand1">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="cde0e911-3f70-4793-bc90-651e4b15d437" guardText="try" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="0e5e184a-27b0-4f5c-8be2-f134f9d53790" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="98ea3c00-70e7-4a3f-bbf9-b1278ad1cac6" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                      <interactionOperand Id="a290fc95-a5eb-49b4-9781-3eeca44fd3b5" name="InteractionOperand2">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="a7d356e3-4e11-4bef-b7bc-8ef4b849398c" guardText="catch (RfcAbapException)" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="d564f667-199b-4815-8e42-04593d6dd891" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="cb2346c3-6641-4383-80a7-8aff36f52d2b" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                      <interactionOperand Id="d03d2404-0968-4823-ac43-e3eb0ba918dd" name="InteractionOperand3">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="78c463d0-4251-4b0f-b4af-fa3425a0d7de" guardText="catch (RfcAbapBaseException)" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="0ddf852f-e10e-4e06-beb7-7a74eb64d9e3" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="472b5db3-51d4-4988-8052-1f88a43493fb" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                      <interactionOperand Id="8db345d5-9477-49b5-b22a-ae8fd88a9a77" name="InteractionOperand4">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="38367175-825a-4957-86e1-4dbc56f80373" guardText="catch (Exception)" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="000f061b-12f5-446c-af66-0c3a24bd5c74" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="cceeebc3-5c22-4aca-9f4f-f6fa283942e4" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                    </operands>
+                  </combinedFragment>
+                  <combinedFragment Id="333d3e3c-7729-4253-b6fe-565e7f4dd838" name="CombinedFragment2" interactionOperator="Opt" customInteractionOperator="If">
+                    <coveredLifelines>
+                      <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+                      <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+                    </coveredLifelines>
+                    <operands>
+                      <interactionOperand Id="b950110c-a874-4059-93fd-c0f3fc856820" name="InteractionOperand1">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+                          <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="960d67c3-f440-42cc-a973-c7b91c2f1934" guardText="if (dt==null)" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="d3a844e4-8c5a-44fc-bd7f-838356bd4f49" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="36b8d2df-56e3-49a0-8c12-12e49595bb4a" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="84bf4612-1356-4c04-9858-413b21db1578" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="7a132d76-ae7f-411c-b9dd-4257792a8f86" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                    </operands>
+                  </combinedFragment>
+                  <combinedFragment Id="aa64f136-7958-4425-ab15-ced9660c568a" name="CombinedFragment3" interactionOperator="Loop" customInteractionOperator="Loop">
+                    <coveredLifelines>
+                      <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+                      <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+                      <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+                    </coveredLifelines>
+                    <operands>
+                      <interactionOperand Id="d672c546-d66d-4116-8799-0a1b89ce687e" name="InteractionOperand1">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+                          <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+                          <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="06b849b8-d071-4772-bfc5-16a015a38f1e" guardText="foreach (dt.Rows)">
+                            <maxInt>
+                              <literalString Id="17556550-b6f6-4a11-bf8d-762a2a40e90d" name="LiteralString1" />
+                            </maxInt>
+                            <minInt>
+                              <literalString Id="b568d425-fc46-4b66-a251-8ff78604c7a0" name="LiteralString2" />
+                            </minInt>
+                          </interactionConstraint>
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="30e6acee-c3b5-4d0a-86e4-4647d096447f" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="a4ba2073-54b8-4307-a0a4-886558ca363b" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="19e28f3c-fc80-4075-9726-10ba675948f7" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="1afb196c-eb57-49e8-8bef-308eb6f5c044" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="0c7ebcf0-a921-4bf5-9874-fa494022d626" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="1077d0bb-6f58-4ada-aa62-a48988ff073b" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                    </operands>
+                  </combinedFragment>
+                </fragments>
+                <guard>
+                  <interactionConstraint Id="abf571ab-47f6-47a1-a0f9-0108558c2c6d" guardText="try" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="267e2e40-fb95-4315-b867-f9911e3eb17a" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="9c136771-3e4c-4b40-92b0-a6f89d922803" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="a82aeb54-c6e0-446f-9322-fa54558f7efb" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="9e56cea4-ac4a-4025-82a0-ac1556423f4c" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="44f58090-c2bf-4870-968a-a16f5b503afd" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="3be514de-2e25-49bd-9e9a-84b5a8dd364a" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="b49ba191-142c-4dd9-935b-4c38ff0fa97d" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="058d24ac-14c9-4f57-9584-aab219c5e6a0" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="fb037e86-3e73-4f19-b3e0-11f8a5eb4309" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="e93e3177-354d-4ecc-aed1-5bfae1217e52" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="8e3c8ad4-afb1-4f4a-82c9-69613c19ba2f" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="32af225c-7e5e-4074-9203-2bcdaab89abf" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+              <interactionOperand Id="f5ff993e-e17d-414a-a2b8-3870b4f8085a" name="InteractionOperand2">
+                <coveredLifelines>
+                  <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+                  <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+                  <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+                  <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+                  <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+                  <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="d53c235d-8173-4f66-a77f-5c7d347f2253" guardText="catch (Exception)" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="0892eec7-ff1c-4bcc-a831-978d8b7d188f" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="c6730fe8-e151-412e-8988-a6e4c472d395" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="f8f5d8fe-2aa5-4aed-9d5a-069ef67a8994" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="2f8d19ef-8baf-44e7-a626-89634069fc39" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="9a96abb6-6bad-4e3d-a322-7573dfca7e95" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="e2d1a695-d7b3-4fa4-a657-6311d68b8155" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="70c14d79-48cf-4f6a-9b3d-cb9db50f2eb0" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="5cf5786b-10db-42cc-bda4-148f147b86a9" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="bf9ae5a2-9586-438b-b891-46fcac16fbd2" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="c9fdab8e-e95e-44d2-916a-9e432e8f0fe6" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="2282894c-8506-455c-be65-14b57ad113a4" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="cc2ec06e-34b9-4bfb-83c2-2ccf96cbd338" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="a82aeb54-c6e0-446f-9322-fa54558f7efb" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="8e3c8ad4-afb1-4f4a-82c9-69613c19ba2f" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="b49ba191-142c-4dd9-935b-4c38ff0fa97d" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="44f58090-c2bf-4870-968a-a16f5b503afd" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="267e2e40-fb95-4315-b867-f9911e3eb17a" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="fb037e86-3e73-4f19-b3e0-11f8a5eb4309" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="9fa4dc35-2985-4942-a484-c728746286ff" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="e28fd7ee-2039-433c-9d28-110f9eb2b849" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="7a8e7b24-76c0-402f-8156-b35371a3c6b1" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="caef23c2-d2e4-4cb8-9f7b-ef1b3f705673" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="0e5e184a-27b0-4f5c-8be2-f134f9d53790" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="09e9b61e-05cf-44b4-8a22-a2e64c75befc" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="1d4457b4-a3ea-40e8-80cb-f18113970901" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="26a46811-1df9-42c0-86db-104b66bfa07f" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="98ea3c00-70e7-4a3f-bbf9-b1278ad1cac6" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="d564f667-199b-4815-8e42-04593d6dd891" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="f4c3c0ee-fce1-403e-a54f-098e3d79c16a" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="77757063-e2b5-4708-8856-c88787d4071b" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="cb2346c3-6641-4383-80a7-8aff36f52d2b" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="0ddf852f-e10e-4e06-beb7-7a74eb64d9e3" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="12c4369e-c613-4ca8-b2e9-ed2c53179a77" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="7893fd08-f6b8-48b3-945c-977be896b126" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="472b5db3-51d4-4988-8052-1f88a43493fb" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="000f061b-12f5-446c-af66-0c3a24bd5c74" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="0ad9531e-ed7b-48bb-a545-88af34e8d0ef" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="d8d1fdb6-00bd-43e4-8068-4e4f159e793c" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="cceeebc3-5c22-4aca-9f4f-f6fa283942e4" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="721923a0-baa7-42e4-9330-b20a56bacc50" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="7a8e7b24-76c0-402f-8156-b35371a3c6b1" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="65ee7b3a-98a2-4051-8506-b2af3f028f2e" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6bfb2b10-2bff-4756-a6c3-43585c335684" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="caef23c2-d2e4-4cb8-9f7b-ef1b3f705673" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="0e5e184a-27b0-4f5c-8be2-f134f9d53790" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="09e9b61e-05cf-44b4-8a22-a2e64c75befc" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="d308e8a1-97b6-4264-b2a4-d507264922cc" name="LostFoundTarget" />
+          <lostFoundTarget Id="e1771b39-79a9-4251-abd0-0194e157b4fb" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="1d4457b4-a3ea-40e8-80cb-f18113970901" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="26a46811-1df9-42c0-86db-104b66bfa07f" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="bdfefdff-8eae-46a5-aa0a-a6deb2c151df" name="LostFoundTarget" />
+          <operandOccurrenceSpecification Id="98ea3c00-70e7-4a3f-bbf9-b1278ad1cac6" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="d564f667-199b-4815-8e42-04593d6dd891" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <lostFoundTarget Id="0cfd910b-cd70-4928-b179-3a2e8f763dfc" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="f4c3c0ee-fce1-403e-a54f-098e3d79c16a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="89a218f3-e037-41ef-a77f-8fb4693197a4" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="77757063-e2b5-4708-8856-c88787d4071b" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="cb2346c3-6641-4383-80a7-8aff36f52d2b" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="0ddf852f-e10e-4e06-beb7-7a74eb64d9e3" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="12c4369e-c613-4ca8-b2e9-ed2c53179a77" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="37421525-6c13-4734-a16e-52ff6784b44f" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="7893fd08-f6b8-48b3-945c-977be896b126" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="b9076fff-3a45-4dd8-8a75-f357c4724450" name="LostFoundTarget" />
+          <operandOccurrenceSpecification Id="472b5db3-51d4-4988-8052-1f88a43493fb" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="000f061b-12f5-446c-af66-0c3a24bd5c74" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <lostFoundTarget Id="44a2fc1b-4c1b-4a5f-90ca-57492c073429" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="0ad9531e-ed7b-48bb-a545-88af34e8d0ef" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="35ad0403-c042-4ce1-8896-fc219997c537" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="d8d1fdb6-00bd-43e4-8068-4e4f159e793c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="cceeebc3-5c22-4aca-9f4f-f6fa283942e4" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="721923a0-baa7-42e4-9330-b20a56bacc50" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2a8d2942-0bf6-4411-94f5-c8eadf016b84" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="e28fd7ee-2039-433c-9d28-110f9eb2b849" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="798425c5-7339-47b0-89d9-dd60820383df" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="d3a844e4-8c5a-44fc-bd7f-838356bd4f49" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="84bf4612-1356-4c04-9858-413b21db1578" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="33187c96-d7a6-4ce4-874a-acd8307eec8b" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="d464d5eb-62a7-48ee-a3f9-3efbcf8da6d3" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="2364564f-4ca2-4ce0-8c79-d6a5ff34fa72" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="6237e162-d96a-48eb-a5e3-f718683dee9b" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="8a6dee47-2e96-41a3-be59-003a22e4ecab" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="2364564f-4ca2-4ce0-8c79-d6a5ff34fa72" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="fc481da7-706c-46b9-98e2-c244c0811b0e" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b0e5a604-c3ca-448e-8ddc-e1c086c76c32" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6237e162-d96a-48eb-a5e3-f718683dee9b" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="8a6dee47-2e96-41a3-be59-003a22e4ecab" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6e652595-e845-41d1-ac47-d15182eb8065" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="d464d5eb-62a7-48ee-a3f9-3efbcf8da6d3" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="4699de4d-a5ed-455f-ae13-5342b026e693" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="df032d3b-f1a8-4cc7-98ec-87a5d8fa909d" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="1e4c243a-787b-4b33-bbd2-ff57fa120d1f" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="36b8d2df-56e3-49a0-8c12-12e49595bb4a" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="7a132d76-ae7f-411c-b9dd-4257792a8f86" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="abe0f29d-734e-4e6c-bbb4-88e92961d517" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="ade9564e-3289-4ddd-bc0a-9e8a40341ca9" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="6ed14149-7384-45bb-a7f5-f6e3f651e99f" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="712e094f-f7b0-4448-86c6-a81e7fdf5e99" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="932b802f-ce12-44ab-8473-c2a40a958cd8" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="6ed14149-7384-45bb-a7f5-f6e3f651e99f" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="cb5fa63a-a5e0-48b3-b75b-b9d6de01aae9" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="712e094f-f7b0-4448-86c6-a81e7fdf5e99" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="77046ba6-6e2c-4ff5-811e-2237f14dcc4c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="932b802f-ce12-44ab-8473-c2a40a958cd8" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="fd531607-1887-4c40-871b-b3f252611cd6" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="ade9564e-3289-4ddd-bc0a-9e8a40341ca9" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="b9e49010-a715-4f5c-82b8-151b9d2dd240" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="30e6acee-c3b5-4d0a-86e4-4647d096447f" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="0c7ebcf0-a921-4bf5-9874-fa494022d626" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="19e28f3c-fc80-4075-9726-10ba675948f7" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="d4f583c0-4101-4b1e-934d-8a0e8d37e810" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="c92693ca-35aa-40d0-ab8b-800126babaa2" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="b27501c9-4170-4239-aeaa-58301f2b5045" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="b884664f-027d-4048-9338-4e2e8801683f" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="36ffa6ac-613d-46ae-a18d-59da5c43cd42" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="b27501c9-4170-4239-aeaa-58301f2b5045" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="f208426f-e39b-43a7-b81b-e4ffe94213f1" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b884664f-027d-4048-9338-4e2e8801683f" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="0d4a6d9d-3dc3-4716-82cd-6c92c2ebad44" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="36ffa6ac-613d-46ae-a18d-59da5c43cd42" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="97e4dafc-a7ee-4f20-95ed-d64d410a80ac" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="c92693ca-35aa-40d0-ab8b-800126babaa2" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="41bc4ea2-f482-4d06-815d-4b970dc033b6" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="9f6372cd-25bb-41a4-ae17-d14a3883c209" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="8704821b-a258-476c-be03-4ed853972bd9" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="beaaf7c1-1998-4935-abf4-b8f933ffcc92" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="1d72f95c-9d4d-4022-8aa2-1f2d01bfb608" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="a56be7c5-34df-446f-96c6-4620f1ff881a" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="beaaf7c1-1998-4935-abf4-b8f933ffcc92" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e24ad3f1-1f7c-4a0b-ac70-49ff05bd6f2f" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="43e2b430-2ac5-4164-82a3-5cd386eddccb" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="1d72f95c-9d4d-4022-8aa2-1f2d01bfb608" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a56be7c5-34df-446f-96c6-4620f1ff881a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="50652c80-53cd-48ec-b245-4dd9b1414aab" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="8704821b-a258-476c-be03-4ed853972bd9" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="6c9b40a0-5ec7-430b-9793-b56995eabca7" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="1077d0bb-6f58-4ada-aa62-a48988ff073b" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="a4ba2073-54b8-4307-a0a4-886558ca363b" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="1afb196c-eb57-49e8-8bef-308eb6f5c044" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="058d24ac-14c9-4f57-9584-aab219c5e6a0" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="9e56cea4-ac4a-4025-82a0-ac1556423f4c" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="9c136771-3e4c-4b40-92b0-a6f89d922803" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="e93e3177-354d-4ecc-aed1-5bfae1217e52" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="32af225c-7e5e-4074-9203-2bcdaab89abf" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="3be514de-2e25-49bd-9e9a-84b5a8dd364a" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="70c14d79-48cf-4f6a-9b3d-cb9db50f2eb0" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="2282894c-8506-455c-be65-14b57ad113a4" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="9a96abb6-6bad-4e3d-a322-7573dfca7e95" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="f8f5d8fe-2aa5-4aed-9d5a-069ef67a8994" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="bf9ae5a2-9586-438b-b891-46fcac16fbd2" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="0892eec7-ff1c-4bcc-a831-978d8b7d188f" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="502f78cb-1afa-4d2b-a46a-a9d3a1b05aac" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="f05b3ad4-775f-44d6-9b14-28ece32ee5a7" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="1c74926a-9946-45f4-b985-6987254c4f19" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="34db7f69-0900-44f4-b3d9-4fb6d42d409e" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="3878f2e8-ba4a-458a-beff-c8e04fa1f014" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="1c74926a-9946-45f4-b985-6987254c4f19" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="00ab6d08-98fc-45bc-9afa-59d49b491cdd" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="34db7f69-0900-44f4-b3d9-4fb6d42d409e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="1f6ee95f-a81d-4270-86f4-9aaec92602a1" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="46a30a3e-9ed2-47e3-ada7-e934fe8c0025" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="3878f2e8-ba4a-458a-beff-c8e04fa1f014" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="f05b3ad4-775f-44d6-9b14-28ece32ee5a7" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="9b868ded-c6a2-4387-9a87-08bd769fd8b0" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="c016b115-da2a-4c6f-9562-d8dd1c106430" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="773a11e8-50ed-462f-8d36-f6d0da8d6f4e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="2f8d19ef-8baf-44e7-a626-89634069fc39" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="26b5603c-6886-445a-9a24-cea3be1ebff3" LastKnownName="SAPFunction" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="c6730fe8-e151-412e-8988-a6e4c472d395" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="cc2ec06e-34b9-4bfb-83c2-2ccf96cbd338" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0a4d2138-3da5-4634-a618-e6e89527ec83" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="c9fdab8e-e95e-44d2-916a-9e432e8f0fe6" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" LastKnownName="tablerow : TableField" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="e2d1a695-d7b3-4fa4-a657-6311d68b8155" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="378fead8-8938-45db-a925-08ba9653eb4f" LastKnownName="SAPException : SAPException" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="5cf5786b-10db-42cc-bda4-148f147b86a9" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="cc9fa6b4-495a-40dd-bc3e-4a1bda664087" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="8d36880e-2d77-4176-ac11-229ab05563a3" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="5674125a-4afa-46f1-b3c4-b4159ce15d0a" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="829e1adc-6e90-4df8-8291-aabd04575fee" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="d7598e65-5ebb-45b8-bfc5-7b01b2a79d63" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="01cf3acb-32e9-4699-a103-2050d25489cc" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="40e6a698-8aed-4887-9d6a-30f50d1a2f1c" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="96715b34-3da0-434b-85de-b825f1cd0a35" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="87712cdf-5444-4b3f-93bd-c0fc81b21b59" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="6370b831-710f-4132-b2bd-f7e8b1a602fd" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="042ae54f-980d-46a6-8e42-1b3158d359e7" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="40e6a698-8aed-4887-9d6a-30f50d1a2f1c" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="8b012d61-9600-4efe-91f4-bada7d46a95c" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="7d331b42-6e1a-4440-9c3d-e08195705db9" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="96715b34-3da0-434b-85de-b825f1cd0a35" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="fe227e7f-e833-4b51-98aa-fa246116e9b2" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="fd46e516-2575-452d-a3c5-2cddc032b5f0" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="ca8656ef-3396-419d-bbde-96f79aa2741b" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="c818a16f-4091-4e98-8072-28a3d270fb7e" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="b37c0892-0390-45b1-b8ad-d980bfe5255a" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="ca8656ef-3396-419d-bbde-96f79aa2741b" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="031fe569-85e2-4a70-bab9-2e79690eca35" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="c818a16f-4091-4e98-8072-28a3d270fb7e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="87712cdf-5444-4b3f-93bd-c0fc81b21b59" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6370b831-710f-4132-b2bd-f7e8b1a602fd" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b37c0892-0390-45b1-b8ad-d980bfe5255a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="fd46e516-2575-452d-a3c5-2cddc032b5f0" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="cb19328f-052f-41c8-996e-4bffa462fe01" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" LastKnownName="Fields : List&lt;TableField&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="042ae54f-980d-46a6-8e42-1b3158d359e7" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="30734189-9068-48ba-b653-06db084889e7" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="01cf3acb-32e9-4699-a103-2050d25489cc" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="816afde8-0d6d-4065-874c-483cec2ed42d" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="8f695678-6954-46f2-be5f-4aa79f4fe892" LastKnownName="this.rfcTableInfo : RFCTableInfo" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="1518732d-236b-4989-9771-d2eac0c9aad6" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="1fb72f71-bf79-47a9-ae38-845d537d0792" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="e39d9569-576e-40bd-a52b-dcf640f22a7e" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="ca715e9b-6f44-4b25-b542-4135ee8a6184" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" LastKnownName="this : SapTable" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="a428fcc5-1acc-4d03-ba61-382d77d1eb1a" name="this : SapTable" isActor="false" lifelineDisplayName="this : SapTable" referencedInstance="(Assembly=$(d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b.OutputPathUri) Namespace=SAPINTDB Type=SapTable ObjectInstance=&quot;Object instance 3&quot;)" referencedType="SAPINTDB‎.SapTable">
+            <referencesInternal>
+              <reference Id="b2494108-845a-4e8c-8fe1-3a3745d86aa5" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINTDB)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b.OutputPathUri)&amp;quot; Namespace=SAPINTDB Type=SapTable)&quot;)" tag="DGQL" />
+              <reference Id="e18866a5-f71d-49b8-b2bc-978624bc6039" handle="(Assembly=&quot;$(d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b.OutputPathUri)&quot; Namespace=SAPINTDB Type=SapTable)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="be0bcc0a-3387-419a-b8c7-f496623439d5" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="e39d9569-576e-40bd-a52b-dcf640f22a7e" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="8f695678-6954-46f2-be5f-4aa79f4fe892" name="this.rfcTableInfo : RFCTableInfo" isActor="false" lifelineDisplayName="this.rfcTableInfo : RFCTableInfo" referencedInstance="(Assembly=$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri) Namespace=SAPINT.RFCTable Type=RFCTableInfo ObjectInstance=&quot;Object instance 16&quot;)" referencedType="SAPINT‎.RFCTable‎.RFCTableInfo">
+            <referencesInternal>
+              <reference Id="e923bbab-9e23-4fd8-98fa-f7d2dc7e60f3" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT.RFCTable)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo)&quot;)" tag="DGQL" />
+              <reference Id="da6e9704-aaba-4c87-be7c-d0bbfbd69eed" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="90e4e3d7-f161-49ed-a462-0f060a340902" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="3f4515f6-6361-43dc-ab62-deee3db46f60" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="d1c2bd7d-285c-4b0f-b3b3-84ca2e3d9489" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="5674125a-4afa-46f1-b3c4-b4159ce15d0a" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="40e6a698-8aed-4887-9d6a-30f50d1a2f1c" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="01cf3acb-32e9-4699-a103-2050d25489cc" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="e9f12431-3dd7-4c7e-a307-b1487cf05d17" name="SAPException : SAPException" isActor="false" lifelineDisplayName="SAPException : SAPException" referencedInstance="(Assembly=$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri) Namespace=SAPINT Type=SAPException ObjectInstance=&quot;Object instance 36&quot;)" referencedType="SAPINT‎.SAPException">
+            <referencesInternal>
+              <reference Id="6360139a-6299-4bff-82aa-26f0c9ab07e3" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)" tag="DGQL" />
+              <reference Id="e5aa228c-985a-4937-b345-e87f34837291" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="d1425e23-8fea-4473-81e3-559ab2c22d2e" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="8608bd16-eea0-4d7c-8f8e-3cd3abecf257" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="c27945d2-c3bc-4a79-a12b-4ab3dc838cc0" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="2ac64bf4-fd3c-4c01-919f-60ab4bd76f57" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="31936a13-3eef-42a6-9fe1-553f92926635" name="SAPException : SAPException" isActor="false" lifelineDisplayName="SAPException : SAPException" referencedInstance="(Assembly=$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri) Namespace=SAPINT Type=SAPException ObjectInstance=&quot;Object instance 46&quot;)" referencedType="SAPINT‎.SAPException">
+            <referencesInternal>
+              <reference Id="ca4c3677-8120-424c-9c63-a386ef39b962" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)" tag="DGQL" />
+              <reference Id="390b256e-1b26-45e3-80b8-7495ebde038c" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="a75f1cc5-3f47-448d-bd8e-f945a7c0e6e7" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="cd2c28bc-f7f7-41d8-a09c-4153746edded" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="feb36252-0286-4df5-a004-dda13664bed5" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="32121e03-1f32-4634-a94f-72292e326da8" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="26b5603c-6886-445a-9a24-cea3be1ebff3" name="SAPFunction" isActor="false" lifelineDisplayName="SAPFunction" referencedType="SAPINT‎.Function‎.SAPFunction">
+            <referencesInternal>
+              <reference Id="da7df474-23dc-4d2a-a341-13e245de2363" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT.Function)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.Function Type=SAPFunction)&quot;)" tag="DGQL" />
+              <reference Id="15377b16-e3ee-4923-bca4-e68cdd0c1e17" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT.Function Type=SAPFunction)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="a82aeb54-c6e0-446f-9322-fa54558f7efb" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="7a8e7b24-76c0-402f-8156-b35371a3c6b1" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="e28fd7ee-2039-433c-9d28-110f9eb2b849" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="9e56cea4-ac4a-4025-82a0-ac1556423f4c" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="f8f5d8fe-2aa5-4aed-9d5a-069ef67a8994" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="2f8d19ef-8baf-44e7-a626-89634069fc39" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="378fead8-8938-45db-a925-08ba9653eb4f" name="SAPException : SAPException" isActor="false" lifelineDisplayName="SAPException : SAPException" referencedInstance="(Assembly=$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri) Namespace=SAPINT Type=SAPException ObjectInstance=&quot;Object instance 87&quot;)" referencedType="SAPINT‎.SAPException">
+            <referencesInternal>
+              <reference Id="ff69e044-02ee-4398-9603-6c62d5833d81" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)" tag="DGQL" />
+              <reference Id="ba92ffa0-903a-4a5f-9965-fb7195c0d102" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="44f58090-c2bf-4870-968a-a16f5b503afd" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="84bf4612-1356-4c04-9858-413b21db1578" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="2364564f-4ca2-4ce0-8c79-d6a5ff34fa72" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="d464d5eb-62a7-48ee-a3f9-3efbcf8da6d3" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="7a132d76-ae7f-411c-b9dd-4257792a8f86" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="3be514de-2e25-49bd-9e9a-84b5a8dd364a" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="9a96abb6-6bad-4e3d-a322-7573dfca7e95" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="e2d1a695-d7b3-4fa4-a657-6311d68b8155" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="5567acc5-f530-4b5c-8622-afc1a16cec6b" name="Fields : List&lt;TableField&gt;" isActor="false" lifelineDisplayName="Fields : List&lt;TableField&gt;" referencedInstance="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1 GenericArguments=[(Assembly=$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri) Namespace=SAPINT.RFCTable Type=TableField)]) ObjectInstance=&quot;Object instance 93&quot;)" referencedType="System‎.Collections‎.Generic‎.List‎&lt;TableField‎&gt;">
+            <referencesInternal>
+              <reference Id="0a2d5dcb-0a0d-4c1d-a4a7-5ccaf038c32a" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))&quot;)" tag="DGQL" />
+              <reference Id="acc22833-d662-4d7e-96e6-f6ff7ecd40d6" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="b49ba191-142c-4dd9-935b-4c38ff0fa97d" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="6ed14149-7384-45bb-a7f5-f6e3f651e99f" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="ade9564e-3289-4ddd-bc0a-9e8a40341ca9" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="0c7ebcf0-a921-4bf5-9874-fa494022d626" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="beaaf7c1-1998-4935-abf4-b8f933ffcc92" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="8704821b-a258-476c-be03-4ed853972bd9" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="1077d0bb-6f58-4ada-aa62-a48988ff073b" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="058d24ac-14c9-4f57-9584-aab219c5e6a0" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="70c14d79-48cf-4f6a-9b3d-cb9db50f2eb0" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="5cf5786b-10db-42cc-bda4-148f147b86a9" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="ca8656ef-3396-419d-bbde-96f79aa2741b" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="fd46e516-2575-452d-a3c5-2cddc032b5f0" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="77fbdc7e-7623-4ed0-a1b0-5400cb8bfd57" name="tablerow : TableField" isActor="false" lifelineDisplayName="tablerow : TableField" referencedInstance="(Assembly=$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri) Namespace=SAPINT.RFCTable Type=TableField ObjectInstance=&quot;Object instance 100&quot;)" referencedType="SAPINT‎.RFCTable‎.TableField">
+            <referencesInternal>
+              <reference Id="e5aa1b8a-8f8b-425f-9428-155a00e10d52" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT.RFCTable)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.RFCTable Type=TableField)&quot;)" tag="DGQL" />
+              <reference Id="d0591d27-01cd-486a-8450-7f5d7bd14b51" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT.RFCTable Type=TableField)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="fb037e86-3e73-4f19-b3e0-11f8a5eb4309" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="19e28f3c-fc80-4075-9726-10ba675948f7" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="b27501c9-4170-4239-aeaa-58301f2b5045" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="c92693ca-35aa-40d0-ab8b-800126babaa2" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="1afb196c-eb57-49e8-8bef-308eb6f5c044" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="e93e3177-354d-4ecc-aed1-5bfae1217e52" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="bf9ae5a2-9586-438b-b891-46fcac16fbd2" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="c9fdab8e-e95e-44d2-916a-9e432e8f0fe6" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="0a4d2138-3da5-4634-a618-e6e89527ec83" name="SAPException : SAPException" isActor="false" lifelineDisplayName="SAPException : SAPException" referencedInstance="(Assembly=$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri) Namespace=SAPINT Type=SAPException ObjectInstance=&quot;Object instance 136&quot;)" referencedType="SAPINT‎.SAPException">
+            <referencesInternal>
+              <reference Id="67a2f818-5cb3-4b3b-9f7c-bb05285a3986" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)" tag="DGQL" />
+              <reference Id="ca4bf10a-0458-4235-b5c0-71b9ef0635fa" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="8e3c8ad4-afb1-4f4a-82c9-69613c19ba2f" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="32af225c-7e5e-4074-9203-2bcdaab89abf" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="2282894c-8506-455c-be65-14b57ad113a4" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="1c74926a-9946-45f4-b985-6987254c4f19" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="f05b3ad4-775f-44d6-9b14-28ece32ee5a7" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="cc2ec06e-34b9-4bfb-83c2-2ccf96cbd338" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="ca0e45da-b66e-4342-8fa2-3fd2af7cad00" name="创建 SapTable" messageKind="Found" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="d01168fd-0950-4ea6-8846-0132a72b0ac0" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINTDB)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b.OutputPathUri)&amp;quot; Namespace=SAPINTDB Type=SapTable)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b.OutputPathUri)&amp;quot; Namespace=SAPINTDB Type=SapTable Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="d01b54fd-f8f4-4872-b891-93f0884638fb" handle="(Assembly=&quot;$(d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b.OutputPathUri)&quot; Namespace=SAPINTDB Type=SapTable Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <lostFoundTargetMoniker Id="88388f5c-d418-45e6-9603-23d9b3032e87" LastKnownName="LostFoundTarget" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="b40a4b7a-6d9b-4d31-8f62-3ea9bdf15f01" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="e8ac90a8-5bb3-4fe5-8151-6a067e7dd1ed" name="创建 RFCTableInfo" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new SAPINT.RFCTable.RFCTableInfo()">
+            <referencesInternal>
+              <reference Id="5afa54e3-37a5-4ed3-8a20-ffab67de5bcf" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT.RFCTable)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="a19878de-1e25-4c99-b953-27d80bc9f1e0" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="73e794de-8eec-4e25-a373-451ec7bb62bd" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="7acc4ad2-1379-45c9-b178-f855db15a897" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="13faf8a1-3016-4b5a-a99e-4ac669f9f331" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="d9954e15-a24b-4bb6-944d-0cee314bcc99" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="4718e2e1-41fb-49a5-a7e3-876a1e35453f" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="92b07244-600d-4f31-8af9-63e2f235393a" name="prepareFieldsFromSapSystem" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="prepareFieldsFromSapSystem()">
+            <referencesInternal>
+              <reference Id="c8d034ea-8b49-4824-8ed3-f0e0043a8866" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINTDB)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b.OutputPathUri)&amp;quot; Namespace=SAPINTDB Type=SapTable)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b.OutputPathUri)&amp;quot; Namespace=SAPINTDB Type=SapTable Member=prepareFieldsFromSapSystem)&quot;)" tag="DGQL" />
+              <reference Id="363a3cab-0b50-485f-842e-e887b4055abb" handle="(Assembly=&quot;$(d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b.OutputPathUri)&quot; Namespace=SAPINTDB Type=SapTable Member=prepareFieldsFromSapSystem)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="16825e5a-291e-4491-8714-0d0e6e6ebf66" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="ae267894-bcdf-4bc0-beab-76af2b61e191" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="276b40a8-ffa5-4da0-ba5d-aa23853634eb" name="创建 SAPException" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new SAPException(&quot;SAP系统不能为空&quot;)">
+            <referencesInternal>
+              <reference Id="c7dc4545-2d34-4bd5-9879-86f1bcf914ba" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="50ed0dad-4389-46f6-861e-2492f98eb7d2" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="f9b02175-3ae9-43e6-abfd-09f413884b04" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="bbbb09ce-d901-4e8e-b603-b8d0fb2081fd" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="82bd4fee-8c85-4f48-96e9-988f2886ca38" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="1a170b92-6baf-4d36-a1d8-b1e2e011f7b2" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="9858dcb3-ea33-434c-a255-1ef969eed01c" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="1ecb6b3f-c90a-4e8b-8988-91b99e409767" name="Throw" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="throw new SAPException(&quot;SAP系统不能为空&quot;)">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="fb7a1ec9-0ad1-4bcd-a97c-5269160eed51" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="3dd9bc09-1540-4e9d-9892-0cdd8e5a0a87" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="e6d10dfb-f647-40ed-9e52-31adcc0c5b90" name="创建 SAPException" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new SAPException(&quot;结构定义不能为空&quot;)">
+            <referencesInternal>
+              <reference Id="36d211dc-b19c-45f4-a35d-0dfb018e75ee" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="d5e36f9b-4106-42cd-aecd-fab5fb61a032" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="feb39291-da75-4b32-8272-122965855779" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="bc784e20-4ec2-44a4-a111-f904f424801c" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="e594fc44-a390-434e-b396-149a86cec50c" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="2cfcef83-1986-42b1-95ee-fe23b05ce72c" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="548e397c-80cd-42f1-859f-21ffaead7db3" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="6058f4b9-a590-4673-8182-8dea11e009df" name="Throw" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="throw new SAPException(&quot;结构定义不能为空&quot;)">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="1cd2937d-53a9-4172-b088-9d7a6b510a08" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="1e0709a1-c3a8-40d0-9908-94cda1fd6d2a" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="eb7839e6-0528-484c-aa57-d3e7bcd5a76d" name="GetTableDefinition" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="rfcTableInfo.GetTableDefinition(SystemName, StructureName)">
+            <referencesInternal>
+              <reference Id="40c7402a-aad7-41e8-abe0-e3cd8833c459" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT.RFCTable)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo Member=(Name=GetTableDefinition OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="c9c3883e-5543-4d20-9372-ac6b4fe3d5cc" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo Member=(Name=GetTableDefinition OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="9b58388c-dcab-40dd-87a7-53c541f78240" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="c626b75a-1e2e-4ec3-9ff1-8ac9d929b93a" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="32f1af79-4751-4d92-bee7-3b2be3551010" name="DDIF_FIELDINFO_GET" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="SAPINT.Function.SAPFunction.DDIF_FIELDINFO_GET(pSystemName, pTableName)">
+            <referencesInternal>
+              <reference Id="e41c0cdb-b54b-4925-b9e6-647a7b7c4a24" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT.Function)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.Function Type=SAPFunction)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.Function Type=SAPFunction Member=(Name=DDIF_FIELDINFO_GET OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="93a2f243-949a-4b3a-89e2-099fa31db569" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT.Function Type=SAPFunction Member=(Name=DDIF_FIELDINFO_GET OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="6bfb2b10-2bff-4756-a6c3-43585c335684" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="caef23c2-d2e4-4cb8-9f7b-ef1b3f705673" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="46f8a06f-4391-4a3f-b435-da8a5e37c287" name="GetDesByName" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="5118b6b2-dcb9-4e4d-a258-40c2ea32972d" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPDestination)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPDestination Member=(Name=GetDesByName OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="6dd9ccff-df60-4c60-9906-778d9d85bc9e" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPDestination Member=(Name=GetDesByName OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1XXW/TQBCcn2L1ATUSikFCCEGDVJwWIqBUbd4QQufgtAG3CT23YH49s3Oxa6cJ9ClSJctysrc3N/t1tyfv4RQZrjCDQ87fPxx9Q6JRjkPOOFxQ9xp7OMGcT4Golt5zpsQAO9jFPjyfjOiUK007JV9OzUvEeg4kvaW2wDmuiYu5wmGBr9RdUmueTKmZUIrp2T6OMcIRxhylwsQYci7l6rMVRJ9+m88RR8FnT+bANWghI74l5271Q6ELWXD6n1OK8HEZj/k1YIwV84BRZMSFdW/IVs1E+IQb4XNyOPpknGe04epchjg9WT6vzdsj/GR8lt9Xd3KYSDrm+jlZA2PEOgWUp7yL33iB5+gRd0LdVNYyejGRf217M62KGemM88bq+U5pO25U/xd1V/hBXZ+RHjB/6+Zu8IzzTyhdkGUivVlI69o0I9tUp1KVyBRXs06FdqnlsocvfKM1OR3RTqadNFPmQt28OCtrPe7WSMhu33b79qHt24r5iN7Ymn/t464e/6tHM6OJTlBGvdkr68wmy0yfkvlcfI7nPqEXThkwjg+U7bTlWtGuW+g2nvm61OksqZ3Tey/soW5aL5zdsSMizG9X53lbnWrIfnDbrULtN3ctQ9+/cxm6XQXzaays5Ypyc8fqk69QTboetY0z8bjL2xZ6+6Lr7g+0u69Wbkd9KcV3ytapVjt4Zenp0h+zsZAXTp602Zv3Qbg33lG2btm0YcgxV1/X90b1RWa1jaWJ73gStBUyjO779fcX6P1XSygOAAA=
+
+SAPDestination
+SAPDestination.GetDesByName(sysName)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="09e9b61e-05cf-44b4-8a22-a2e64c75befc" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="d308e8a1-97b6-4264-b2a4-d507264922cc" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="032349dd-124c-4496-b441-3d48b96497c3" name="RfcTableToDataTable" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="1d092cbc-b373-47ec-b504-6b845904980b" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT.Function)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.Function Type=SAPFunction)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.Function Type=SAPFunction Member=(Name=RfcTableToDataTable OverloadingParameters=[(Assembly=&amp;quot;$(ProgramFilesUri)/SAP/SAP_DotNetConnector3/sapnco.dll&amp;quot; Namespace=SAP.Middleware.Connector Type=IRfcTable)]))&quot;)" tag="DGQL" />
+              <reference Id="c7695260-ef48-4eba-8412-702e1de3d9d8" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT.Function Type=SAPFunction Member=(Name=RfcTableToDataTable OverloadingParameters=[(Assembly=&quot;$(ProgramFilesUri)/SAP/SAP_DotNetConnector3/sapnco.dll&quot; Namespace=SAP.Middleware.Connector Type=IRfcTable)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2XQU/bQBCF56dYHCq4xJVaoaollWhCqNU2IOJbVSE72OA2xDQ2UPPr+81sbEwcRe2NqpHlZHf2zcybt+txciATSWQhmUQy4/OB2YUMbDaTESuRXGN7LwdyJjlXKV4z+sRKJX3ZkV05lIIrAR3jqdaUeDMsb8W368hGx1hLuZJbcD4ekdzIObY5VmWSYpky8mF2KKcSyFhCZrFhfBmyFuN9uYLowVs5e8wc54LILlZ/BTnCf85KScyckYe1Av2I7CK+LGtTjn3qrbP0USMFGTKPrd4QjyGzkvvR6smJ3Jn3jPUItlrPJbmiRmWnQEHMr2sVfSE/4aXKv+uoO7DRKf45UV1EjzocqmC8K7/kjezLXqNc/X0OX406Ng4Dq3jOWOvPifWq2SnVJG+0bvPZpHsP9TJ8LozLvVWcYO1mau9E0FF2T75xe2s0C4id2BnKTBm3S4uO/w7eit2e2e2Z/ZfObJ1hTEb12nSGt4q3FRvYqU6oVj2rRrnBUskJvlemX0SFQeeZ1lifLXZCdPVc3SHXUwpqmBvTilg5FReGHtm7tDCcvkU1Q2HP2dzib+5H/+de1p3IoXWUmc9iY087tlqea/c6w5ZatqTZ+af5MvPyTbmpRS24U3L7rV9i96baD2w9aj+i3nVrd/Ka9ZeMrokyNbtmiP9qJys7qYnV1X7blPaLUbV03W3bo55bjxqiV8DpmIAPYf7BMCcgvi85rvahOuc+l+Om+W6MUWSsnmZo9zXX/z4yVmXbWRQZ4n3b9L/6v4Puo28Wv8PFWWukm/3p/5TfqNh4ktIMAAA=
+
+SAPFunction
+RfcTableToDataTable(DFIES_TAB)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="1d4457b4-a3ea-40e8-80cb-f18113970901" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="e1771b39-79a9-4251-abd0-0194e157b4fb" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="fefca8e0-0e6f-40e7-98e8-91df2269a37d" name="Return" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="return dt">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="26a46811-1df9-42c0-86db-104b66bfa07f" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="bdfefdff-8eae-46a5-aa0a-a6deb2c151df" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="096effb8-8dea-4424-95e6-cbbc06c1d907" name="创建 SAPException" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="4a12bd84-2d8d-420c-a4d8-ae796ebd151c" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="0108b949-71c7-497b-88ca-073e4ed2c9bd" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2YbW/SUBTHz0dpeGFGYrjOGDU6TBbGZuNki+ydWZbCgKHlwRU266f3d04LtDxEjNkSWdNceu+55+l/zum5LQfSlI7cSl8CCfn9xepaarYK5ZidQAbQPsiBXMgNHJF8kRHXRDzx4a1KSfbkEHoE30BayMVQu/CGUN6Js6tusxOoE/RM4XNIBDKWK2hDqOpHF0qbmcOvQznHQgO7Dm7lcXLEXgvp3hJHBU/UY49V4nGE5kRXNcfpMWL2FvS6/DS+MT70QTaUMpgWfA1o19yfBlrNvXrXY+8W2gx1LY1CE+kbwx6ApYYXgUVDdZwyb7EXmsQmeyWrnIjdoa1jdI1AGZnUsdWeRrdkVefDESEbcFc9RdXtItrHqboz+L5BbUNdrquZxTfyKvVMrY3Nn8B8ytu5gDa1Kk2q+SNzjXTWRp5Pq3nWOyOknFHciicJdbnbZqW9+ewT/PFO1ocnn1Ms6lMVfDOtVSxpdDUzmtM74whZB3igPvbQGMzPrgSVdpeva6P0TH6ARqP5fiViNZudIz9Ca6LRo0clXJrFPTx/K6+pZ0dWOmhQa515t8rb65uUA1uffdUaMbrYdpnT9t6wfYdWAXWdaK3bu6NSK/KC2QAtbaOrhdY8E1lkm7ISW+11DFc2KxN7K9BYluWS4a2JqW/P5tBy1jVsmqnEhtZVj1k5fUJ2s4sVVbpLVfo3Z2+Rjz/l42HO93zenuK7ZAVcU0Ow6ELLnWqVY3OfOuLykbhi+KA8tXWD1Rm0E6ukooM9xhPzvIjbP3T+pj3ZCW/S77US94mqjpfpff24LE6A//gE2O67bn+r77rsmfEwX3bZLzq39f9vvwH68OOhqhMAAA==
+(Assembly=$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri) Namespace=SAPINT Type=SAPException ObjectInstance="Object instance 74")
+SAPException : SAPException
+new SAPException(abapException.Key + abapException.Message)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="f4c3c0ee-fce1-403e-a54f-098e3d79c16a" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="0cfd910b-cd70-4928-b179-3a2e8f763dfc" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="5cb289a5-9f95-42ea-abde-a3f4b5bbfaaf" name="Throw" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="throw new SAPException(abapException.Key + abapException.Message)">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="77757063-e2b5-4708-8856-c88787d4071b" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="89a218f3-e037-41ef-a77f-8fb4693197a4" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="e0a9f09c-89a9-43ad-91ae-b77840100011" name="创建 SAPException" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="79f5e3ee-766b-4b37-9e26-55012872de58" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="b709f960-2765-4ce4-9dd2-2204fbae6042" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2Y227aQBCG51EsLqogVWyrVukpVIoISa2mJCq5q6LIECC05tAY0rpP32/GBmwOKlWVSCWWtXh3dk7/zHjW5kCa0pFb6UsgIb+/WF1LzVahHLMTyADaezmQC7mBI5LPMuKaiCc+vFUpyZ4cQo/gG0gLuRhqF94QyltxdtVtdgJ1gp4pfA6JQMZyBW0IVf3oQmkzc/h1KOdYaGDXwa08To7YayHdW+Ko4Il67LFKPI7QnOiq5jg9Rszegl6Xn8Y3xoc+yIZSBtOCrwHtmvvjQKu5V+967N1Cm6GupVFoIn1j2AOw1PAisGiojlPmLfZCk9hkr2SVE7E7tHWMrhEoI5M6ttrT6Jas6nw4ImQD7qqnqLpdRPswVXcG31eobajLdTWz+ErepJ6ptbH5E5hPeTsX0KZWpUk1f2Cukc7ayPNpNc96Z4SUM4pb8SShLnfbrLQ3n32EP97J+vDkU4pFfaqCb6a1iiWNrmZGc3pnHCHrAA/Uxx4ag/nZlaDS7vJlbZSeyHfQaDTfrUSsZrNz5EdoTTR69KiES7O4h+evZZ96dmSlgwa11pl3q7y9vkk5sPXZV60Ro4ttlzltfxi2b9AqoK4TrXV7d/KS/WfMBmhpG10ttOaZyCLblJXYaq9juLJZmdhbgcayLJcMb01MfXs2h5azrmHTTCU2tK56zMrpE7KbXayo0l2q0r85e4t8/Ckf93O+5/P2GN8lK+CaGoJFF1ruVKscm/vUEZePxBXDB+WprRuszqCdWCUVHewhnpinRdz+ofM37clOeJN+r5X4nKjqeJHe14/L4gT4j0+A7b7r9rf6rsueGffzZZf9onNb///2Gz4TQk6qEwAA
+(Assembly=$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri) Namespace=SAPINT Type=SAPException ObjectInstance="Object instance 79")
+SAPException : SAPException
+new SAPException(abapbaseException.PlainText + abapbaseException.Message)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="12c4369e-c613-4ca8-b2e9-ed2c53179a77" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="37421525-6c13-4734-a16e-52ff6784b44f" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="2fa885eb-143d-4855-b09a-3458feede162" name="Throw" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="throw new SAPException(abapbaseException.PlainText + abapbaseException.Message)">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="7893fd08-f6b8-48b3-945c-977be896b126" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="b9076fff-3a45-4dd8-8a75-f357c4724450" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="9d46eaa5-6a50-4532-b423-b1f976363d54" name="创建 SAPException" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="901a494e-d283-478b-8b61-90d6aa6f843a" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="176ae978-4c94-4107-beae-1d14cd00cd8b" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2Y227aQBCG51EsLqogVWxTRVXUhkoRIanVlEQld1UUGQKE1hwaQ1r36fvN2IDNQaWqEqnEshbvzs7pnxnP2hxJUzpyL30JJOT3F6tbqdkqlFN2AhlAey9HciV3cETyWUZcE/HEh7cqJdmTY+gRfANpIRdD7cIbQnkrzq66zc6gTtAzhc8hEchYbqANoaofXShtZg6/juUSCw3sOriVx8kJey2ke0scFTxRjz1WiccRmhNd1Rynx4jZW9Dr8tP4xvjQB9lQymBa8DWg3XJ/Hmg19+pdj717aDPUtTQKTaTvDHsAlhpeBBYN1XHOvMVeaBKb7JWsciJ2h7aO0TUCZWRSp1Z7Gt2SVZ0PR4RswF31FFW3i2ifpuou4PsKtQ11ua5mFg/ldeqZWhubP4H5lLdzBW1qVZpU8wfmGumsjTyfVvOsd0ZIOaO4FU8S6nK3zUp789lH+OOdrA9PPqVY1Kcq+GZaq1jS6GpmNKcPxhGyDvBAfeyhMZifXQkq7S5f1kbphXwHjUbz3UrEaja7RH6E1kSjR49KuDSLe3h+KG+oZ0dWOmhQa515t8rb65uUA1uffdUaMbrYdpnT9odh+watAuo60Vq39yAH7L9iNkBL2+hqoTXPRBbZpqzEVnsdw5XNysTeCjSWZblmeGti6tuzObScdQ2bZiqxoXXVY1ZOn5Dd7GJFle5Slf7N2Vvk40/5eJzzPZ+35/guWQHX1BAsutByp1rl2NynTrh8JG4YPijPbd1gdQHtzCqp6GBP8cS8LOL2D52/aU92wpv0e63EfaKq4yC9r47rovv/x91/u2+6/a2+6bLnxeN81WW/5tzW/739Bu7ZcQqmEwAA
+(Assembly=$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri) Namespace=SAPINT Type=SAPException ObjectInstance="Object instance 82")
+SAPException : SAPException
+new SAPException(ex.Message)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="0ad9531e-ed7b-48bb-a545-88af34e8d0ef" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="44a2fc1b-4c1b-4a5f-90ca-57492c073429" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="ce259253-c127-4a48-83fb-84cfedae3dca" name="Throw" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="throw new SAPException(ex.Message)">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="d8d1fdb6-00bd-43e4-8068-4e4f159e793c" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="35ad0403-c042-4ce1-8896-fc219997c537" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="abcec06d-5440-4a28-b678-a82cff03d46b" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="721923a0-baa7-42e4-9330-b20a56bacc50" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="2a8d2942-0bf6-4411-94f5-c8eadf016b84" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="e40ef1b2-f89e-4d57-8d83-a91fb5651fbd" name="创建 SAPException" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new SAPException(String.Format(&quot;无法获取表结构{0}的定义&quot;,pTableName))">
+            <referencesInternal>
+              <reference Id="40f59368-fa61-49fb-b0c0-db297b35f520" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="2c7cc6e4-85ca-4d67-9500-61505b64cad8" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="b0e5a604-c3ca-448e-8ddc-e1c086c76c32" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="6237e162-d96a-48eb-a5e3-f718683dee9b" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="eed062ee-8a34-4494-85a0-bed278ae09f8" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="8a6dee47-2e96-41a3-be59-003a22e4ecab" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="6e652595-e845-41d1-ac47-d15182eb8065" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="d1b4f79c-907b-4cb1-98d6-0fec317e363b" name="Throw" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="throw new SAPException(String.Format(&quot;无法获取表结构{0}的定义&quot;,pTableName))">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="1e4c243a-787b-4b33-bbd2-ff57fa120d1f" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="df032d3b-f1a8-4cc7-98ec-87a5d8fa909d" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="40cd254a-cb8e-4132-b6ba-48f8f493a5a1" name="创建 List‎&lt;TableField‎&gt;" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new List&lt;TableField&gt;()">
+            <referencesInternal>
+              <reference Id="c7527a4a-db0e-448d-aa74-bd70d2430cb6" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="2a3d3502-ed53-44c9-9444-ea28b6436702" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="77046ba6-6e2c-4ff5-811e-2237f14dcc4c" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="712e094f-f7b0-4448-86c6-a81e7fdf5e99" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="f129a15a-380b-47ca-9c6e-0eac4769ec4b" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="932b802f-ce12-44ab-8473-c2a40a958cd8" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="fd531607-1887-4c40-871b-b3f252611cd6" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="8cd8a249-734d-4a00-bd9f-4e43f0f643fe" name="创建 TableField" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new TableField()">
+            <referencesInternal>
+              <reference Id="76496804-fa47-4851-b207-fe99052dfdc8" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT.RFCTable)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.RFCTable Type=TableField)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.RFCTable Type=TableField Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="6ad5819c-962d-4dbb-aa07-1867bccebd2f" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT.RFCTable Type=TableField Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="0d4a6d9d-3dc3-4716-82cd-6c92c2ebad44" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="b884664f-027d-4048-9338-4e2e8801683f" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="38e4bf36-91db-4c70-895c-a514f83bd9a1" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="36ffa6ac-613d-46ae-a18d-59da5c43cd42" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="97e4dafc-a7ee-4f20-95ed-d64d410a80ac" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="ac4df72a-b359-4291-af24-7a94cc21f252" name="Add" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="Fields.Add(tablerow)">
+            <referencesInternal>
+              <reference Id="e49a9603-1596-42b7-a675-eeb81d21f3fc" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=(Name=Add OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) ParameterIdentifier=0)]))&quot;)" tag="DGQL" />
+              <reference Id="0073efd9-aa84-4a35-ac9e-35ac5344fd17" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=(Name=Add OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) ParameterIdentifier=0)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="43e2b430-2ac5-4164-82a3-5cd386eddccb" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="1d72f95c-9d4d-4022-8aa2-1f2d01bfb608" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="82720947-344c-4710-9d2d-e6701f071dbd" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="a56be7c5-34df-446f-96c6-4620f1ff881a" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="50652c80-53cd-48ec-b245-4dd9b1414aab" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="9164275a-545d-4249-8301-2843ab377cb7" name="创建 SAPException" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new SAPException(exception.Message)">
+            <referencesInternal>
+              <reference Id="d374331a-2bd7-40b3-81b6-e28716545469" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="ee27a0f4-778b-483b-a134-67b25709cc3d" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT Type=SAPException Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="1f6ee95f-a81d-4270-86f4-9aaec92602a1" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="34db7f69-0900-44f4-b3d9-4fb6d42d409e" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="86a5021b-efdf-40a3-b271-7a4c28499d5d" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="3878f2e8-ba4a-458a-beff-c8e04fa1f014" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="46a30a3e-9ed2-47e3-ada7-e934fe8c0025" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="ff6b0aa1-a913-4d4c-8193-980b724e772d" name="Throw" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="throw new SAPException(exception.Message)">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="773a11e8-50ed-462f-8d36-f6d0da8d6f4e" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="c016b115-da2a-4c6f-9562-d8dd1c106430" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="5ab91aca-e1fb-4b51-a9d4-e8f44775028b" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="cc9fa6b4-495a-40dd-bc3e-4a1bda664087" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="8d36880e-2d77-4176-ac11-229ab05563a3" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="ef460c3f-f924-45db-8805-1127b602ab50" name="TransformDataType" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="rfcTableInfo.TransformDataType()">
+            <referencesInternal>
+              <reference Id="dadca5bc-3deb-408b-a5a5-173ca33326b5" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SAPINT.RFCTable)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&amp;quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo Member=TransformDataType)&quot;)" tag="DGQL" />
+              <reference Id="f1ff6875-efc9-48c7-89df-a66e9a205d1b" handle="(Assembly=&quot;$(c3c95d26-598b-46be-99c8-58740e4a12e1.OutputPathUri)&quot; Namespace=SAPINT.RFCTable Type=RFCTableInfo Member=TransformDataType)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="7d331b42-6e1a-4440-9c3d-e08195705db9" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="96715b34-3da0-434b-85de-b825f1cd0a35" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="c2326c20-8375-4e13-9f50-56904370eea1" name="ForEach" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="Fields.ForEach(row =&gt;...">
+            <referencesInternal>
+              <reference Id="675e7125-8649-44b2-b12c-33c06594a474" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=(Name=ForEach OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System Type=(Name=Action GenericParameterCount=1 GenericArguments=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) ParameterIdentifier=0)]))]))&quot;)" tag="DGQL" />
+              <reference Id="3d725b1a-d194-4b83-9180-f2dad8009e79" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=(Name=ForEach OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System Type=(Name=Action GenericParameterCount=1 GenericArguments=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) ParameterIdentifier=0)]))]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="87712cdf-5444-4b3f-93bd-c0fc81b21b59" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="c818a16f-4091-4e98-8072-28a3d270fb7e" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="598f1cb2-75ae-4980-bd30-17acba71653a" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="b37c0892-0390-45b1-b8ad-d980bfe5255a" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="6370b831-710f-4132-b2bd-f7e8b1a602fd" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="e0b8adf4-b626-44cf-8b5b-1b0c5649d3ee" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="042ae54f-980d-46a6-8e42-1b3158d359e7" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="30734189-9068-48ba-b653-06db084889e7" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="8cbb9297-70be-41b0-b06a-02f2cf621483" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="ca715e9b-6f44-4b25-b542-4135ee8a6184" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="6f9a8d16-eef9-4b43-959f-3e945337c6bc" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="701c7dcc-ad80-4ed2-90d7-d10f49f6a16b" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="9c523d0e-939f-4d31-acde-ae411723c4c9" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="1fb72f71-bf79-47a9-ae38-845d537d0792" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="91b4cf48-1e66-43cc-832e-b274dc77dc86" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="eb375dbf-44a3-4f71-8417-b2b70264bcc1" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="6d7ecd10-8e8b-400f-84e2-5ad90b2f34b0" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="2b05b7f0-72e1-4855-9483-92bccfb2fdfc" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="a89d668a-c722-40f7-9b97-066b877a99a9" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="829e1adc-6e90-4df8-8291-aabd04575fee" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="65ee7b3a-98a2-4051-8506-b2af3f028f2e" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="798425c5-7339-47b0-89d9-dd60820383df" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="fc481da7-706c-46b9-98e2-c244c0811b0e" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="4699de4d-a5ed-455f-ae13-5342b026e693" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="cb5fa63a-a5e0-48b3-b75b-b9d6de01aae9" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="b9e49010-a715-4f5c-82b8-151b9d2dd240" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="f208426f-e39b-43a7-b81b-e4ffe94213f1" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="41bc4ea2-f482-4d06-815d-4b970dc033b6" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e24ad3f1-1f7c-4a0b-ac70-49ff05bd6f2f" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="6c9b40a0-5ec7-430b-9793-b56995eabca7" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="00ab6d08-98fc-45bc-9afa-59d49b491cdd" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="9b868ded-c6a2-4387-9a87-08bd769fd8b0" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="8b012d61-9600-4efe-91f4-bada7d46a95c" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="816afde8-0d6d-4065-874c-483cec2ed42d" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="031fe569-85e2-4a70-bab9-2e79690eca35" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="cb19328f-052f-41c8-996e-4bffa462fe01" name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+</SequenceDesignerModel>

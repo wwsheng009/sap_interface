@@ -22,6 +22,7 @@ namespace SAPINTCODE
         public FormGenerateTableClass()
         {
             InitializeComponent();
+            SAPINTGUI.CDataGridViewUtils.HookDataGridView(dgvFieldList);
 
             this.cbxSystemList.DataSource = SAPINT.SAPLogonConfigList.SystemNameList;
             this.textBoxTemplate.Document.Text =
@@ -36,6 +37,8 @@ namespace SAPINTCODE
             this.textBoxResult.Document.Parser.Init(sl);
         }
 
+        
+
         private void btnGenerateCode_Click(object sender, EventArgs e)
         {
 
@@ -48,12 +51,15 @@ namespace SAPINTCODE
         {
             if (rfctable.Fields.Count ==0 )
             {
+                
                 MessageBox.Show("没有字段");
                 return;
             }
             try
             {
                 VelocityEngine ve = new VelocityEngine();
+
+
                 ve.Init();
                 VelocityContext ct = new VelocityContext();
 

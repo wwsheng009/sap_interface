@@ -135,5 +135,35 @@ namespace SAPINTGUI
             Functions.FormSearchRfcFunction formsearchRfcFunction = new Functions.FormSearchRfcFunction();
             formsearchRfcFunction.Show();
         }
+
+        private void btnCodeEditor_Click(object sender, EventArgs e)
+        {
+            AbapCode.FormCodeEditor frm = new AbapCode.FormCodeEditor();
+            frm.Show();
+        }
+
+        private void btnCodeManager_Click(object sender, EventArgs e)
+        {
+            AbapCode.FormCodeManager frm = new AbapCode.FormCodeManager();
+            frm.Show();
+        }
+
+        private void btnImportFile_Click(object sender, EventArgs e)
+        {
+            AbapCode.FormImportFile frm = new AbapCode.FormImportFile();
+            frm.Show();
+        }
+
+        private void btnLoadSapProgram_Click(object sender, EventArgs e)
+        {
+            AbapCode.FormLoadSapProgram frm = new AbapCode.FormLoadSapProgram();
+            frm.Show();
+        }
+
+        private void btnCodeSearch_Click(object sender, EventArgs e)
+        {
+            AbapCode.FormCodeSearch frm = new AbapCode.FormCodeSearch();
+            frm.Show();
+        }
     }
 }

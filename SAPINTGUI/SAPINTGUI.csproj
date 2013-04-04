@@ -116,7 +116,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbapCode\AbapCode.cs" />
     <Compile Include="AbapCode\FormCodeEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,7 +128,37 @@
     <Compile Include="AbapCode\FormAbapCode2.Designer.cs">
       <DependentUpon>FormAbapCode2.cs</DependentUpon>
     </Compile>
-    <Compile Include="CDataGridViewUtils.cs" />
+    <Compile Include="AbapCode\FormCodeManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbapCode\FormCodeManager.Designer.cs">
+      <DependentUpon>FormCodeManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbapCode\FormCodeSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbapCode\FormCodeSearch.Designer.cs">
+      <DependentUpon>FormCodeSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbapCode\FormGetText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbapCode\FormGetText.Designer.cs">
+      <DependentUpon>FormGetText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbapCode\FormImportFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbapCode\FormImportFile.Designer.cs">
+      <DependentUpon>FormImportFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbapCode\FormLoadSapProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbapCode\FormLoadSapProgram.Designer.cs">
+      <DependentUpon>FormLoadSapProgram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\CDataGridViewUtils.cs" />
     <Compile Include="AbapCode\SAPTableField.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -183,6 +212,10 @@
     </Compile>
     <Compile Include="Idoc\FormIdocUtil.Designer.cs">
       <DependentUpon>FormIdocUtil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\ListViewHelper.cs" />
+    <Compile Include="Controls\ListViewNF.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="masterDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -264,8 +297,24 @@
       <DependentUpon>SAPQueryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Table\TableInfo.cs" />
+    <Compile Include="Util\FileUtil.cs" />
     <EmbeddedResource Include="AbapCode\FormCodeEditor.resx">
       <DependentUpon>FormCodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbapCode\FormCodeManager.resx">
+      <DependentUpon>FormCodeManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbapCode\FormCodeSearch.resx">
+      <DependentUpon>FormCodeSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbapCode\FormGetText.resx">
+      <DependentUpon>FormGetText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbapCode\FormImportFile.resx">
+      <DependentUpon>FormImportFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbapCode\FormLoadSapProgram.resx">
+      <DependentUpon>FormLoadSapProgram.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbapCode\SAPTableField.resx">
       <DependentUpon>SAPTableField.cs</DependentUpon>

@@ -27,7 +27,7 @@ namespace SAPINTCODE
         public FormAbapCode2()
         {
             InitializeComponent();
-          //  SAPINT.SAPLogonConfigList.InitSystemList();
+            //  SAPINT.SAPLogonConfigList.InitSystemList();
             //   InitKeyWordList();
             this.WindowState = FormWindowState.Maximized;
 
@@ -41,8 +41,8 @@ namespace SAPINTCODE
 
             foreach (string keyword in ABAPKeyWordList)
             {
-              //  this.textResultCode.Settings.Keywords.Add(keyword);
-              //  this.textres
+                //  this.textResultCode.Settings.Keywords.Add(keyword);
+                //  this.textres
             }
 
 
@@ -64,7 +64,7 @@ namespace SAPINTCODE
             box.Text = "";
             try
             {
-                if (abap.Execute())
+                if (abap.InstallAndRun())
                 {
                     for (int i = 0; i < abap.ResultLineCount; i++)
                     {
@@ -117,7 +117,7 @@ namespace SAPINTCODE
                 MessageBox.Show("没有选中的字段");
                 return;
             }
-            if (this.sapTableField1.TableList.Count == 0 )
+            if (this.sapTableField1.TableList.Count == 0)
             {
                 MessageBox.Show("没有选中的字段");
                 return;
@@ -146,9 +146,6 @@ namespace SAPINTCODE
 
         private void tspGenerateCode_Click(object sender, EventArgs e)
         {
-            AbapCode code = new AbapCode();
-            code.Tables = this.sapTableField1.TableList;
-            this.textResultCode.Document.Text = code.Excute();
         }
 
         private void InitKeyWordList()
@@ -748,7 +745,8 @@ namespace SAPINTCODE
         }
 
 
-        DataTable dt;
+        DataTable dt = null;
+        DataRow row = null;
         private void btnOpenTemplateTable_Click(object sender, EventArgs e)
         {
             String dbName = new ConfigFileTool.SAPGlobalSettings().GetTemplateDb();
@@ -759,6 +757,7 @@ namespace SAPINTCODE
             dbhelper.DataTableFill(dt, "Select * from codeTemplate");
             this.userDataGridView.DataSource = null;
             this.userDataGridView.DataSource = dt;
+
         }
 
         private void btnUpdateTemplate_Click(object sender, EventArgs e)
@@ -798,15 +797,33 @@ namespace SAPINTCODE
         {
             prettyCode();
         }
-
+       // SAPINTGUI.AbapCode.Codedb codedb = null;
         private void userDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0)
+            {
+                return;
+            }
+            row = dt.Rows[e.RowIndex];
+
+         //   codedb = new SAPINTGUI.AbapCode.Codedb(row);
+            
+
+            
             dgvSelectedCell = userDataGridView[e.ColumnIndex, e.RowIndex];
             try
             {
                 //if (checkboxAuto.Checked == true)
                 //{
+
+                if (this.textResultCode.Focused)
+                {
+                    this.textResultCode.Document.Text = dgvSelectedCell.Value.ToString();
+                }
+                else
+                {
                     this.textTemplate.Document.Text = dgvSelectedCell.Value.ToString();
+                }
                 //}
             }
             catch (Exception E)
@@ -831,16 +848,7 @@ namespace SAPINTCODE
 
                 MessageBox.Show(E.Message);
             }
-
-
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SAPINTGUI.AbapCode.FormCodeEditor formCodeEditor = new SAPINTGUI.AbapCode.FormCodeEditor();
-            formCodeEditor.Show();
-        }
-
 
     }
 

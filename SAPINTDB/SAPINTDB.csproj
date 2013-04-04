@@ -50,6 +50,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\..\dapper-dot-net\Dapper\bin\Debug\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DapperExtensions">
+      <HintPath>..\..\Dapper-Extensions\DapperExtensions\bin\Debug\DapperExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\log4net.dll</HintPath>
@@ -64,6 +70,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeManager\Code.cs" />
+    <Compile Include="CodeManager\Codedb.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="backupnetlib7.cs" />
     <Compile Include="DbUtil.cs" />

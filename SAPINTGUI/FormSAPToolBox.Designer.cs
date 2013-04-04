@@ -41,16 +41,23 @@
             this.btnDbUtil = new System.Windows.Forms.Button();
             this.btnIdocUtil = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSearchRfcFunction = new System.Windows.Forms.Button();
             this.btnStartServer = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnIdocMeta = new System.Windows.Forms.Button();
             this.btnCopyIdocToLocalDb = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSearchRfcFunction = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnCodeEditor = new System.Windows.Forms.Button();
+            this.btnCodeManager = new System.Windows.Forms.Button();
+            this.btnImportFile = new System.Windows.Forms.Button();
+            this.btnLoadSapProgram = new System.Windows.Forms.Button();
+            this.btnCodeSearch = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // button4
@@ -249,6 +256,16 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(207, 96);
             this.tableLayoutPanel3.TabIndex = 16;
             // 
+            // btnSearchRfcFunction
+            // 
+            this.btnSearchRfcFunction.Location = new System.Drawing.Point(106, 51);
+            this.btnSearchRfcFunction.Name = "btnSearchRfcFunction";
+            this.btnSearchRfcFunction.Size = new System.Drawing.Size(98, 42);
+            this.btnSearchRfcFunction.TabIndex = 12;
+            this.btnSearchRfcFunction.Text = "搜索RFC函数";
+            this.btnSearchRfcFunction.UseVisualStyleBackColor = true;
+            this.btnSearchRfcFunction.Click += new System.EventHandler(this.btnSearchRfcFunction_Click);
+            // 
             // btnStartServer
             // 
             this.btnStartServer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -312,21 +329,81 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "ABAP工具箱";
             // 
-            // btnSearchRfcFunction
+            // tableLayoutPanel5
             // 
-            this.btnSearchRfcFunction.Location = new System.Drawing.Point(106, 51);
-            this.btnSearchRfcFunction.Name = "btnSearchRfcFunction";
-            this.btnSearchRfcFunction.Size = new System.Drawing.Size(98, 42);
-            this.btnSearchRfcFunction.TabIndex = 12;
-            this.btnSearchRfcFunction.Text = "搜索RFC函数";
-            this.btnSearchRfcFunction.UseVisualStyleBackColor = true;
-            this.btnSearchRfcFunction.Click += new System.EventHandler(this.btnSearchRfcFunction_Click);
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.btnCodeEditor, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnCodeManager, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnImportFile, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btnLoadSapProgram, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btnCodeSearch, 0, 2);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(218, 189);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(200, 122);
+            this.tableLayoutPanel5.TabIndex = 19;
+            // 
+            // btnCodeEditor
+            // 
+            this.btnCodeEditor.Location = new System.Drawing.Point(3, 3);
+            this.btnCodeEditor.Name = "btnCodeEditor";
+            this.btnCodeEditor.Size = new System.Drawing.Size(94, 37);
+            this.btnCodeEditor.TabIndex = 0;
+            this.btnCodeEditor.Text = "新建代码";
+            this.btnCodeEditor.UseVisualStyleBackColor = true;
+            this.btnCodeEditor.Click += new System.EventHandler(this.btnCodeEditor_Click);
+            // 
+            // btnCodeManager
+            // 
+            this.btnCodeManager.Location = new System.Drawing.Point(103, 3);
+            this.btnCodeManager.Name = "btnCodeManager";
+            this.btnCodeManager.Size = new System.Drawing.Size(94, 37);
+            this.btnCodeManager.TabIndex = 1;
+            this.btnCodeManager.Text = "代码管理";
+            this.btnCodeManager.UseVisualStyleBackColor = true;
+            this.btnCodeManager.Click += new System.EventHandler(this.btnCodeManager_Click);
+            // 
+            // btnImportFile
+            // 
+            this.btnImportFile.Location = new System.Drawing.Point(3, 46);
+            this.btnImportFile.Name = "btnImportFile";
+            this.btnImportFile.Size = new System.Drawing.Size(94, 37);
+            this.btnImportFile.TabIndex = 2;
+            this.btnImportFile.Text = "导入文件";
+            this.btnImportFile.UseVisualStyleBackColor = true;
+            this.btnImportFile.Click += new System.EventHandler(this.btnImportFile_Click);
+            // 
+            // btnLoadSapProgram
+            // 
+            this.btnLoadSapProgram.Location = new System.Drawing.Point(103, 46);
+            this.btnLoadSapProgram.Name = "btnLoadSapProgram";
+            this.btnLoadSapProgram.Size = new System.Drawing.Size(94, 37);
+            this.btnLoadSapProgram.TabIndex = 3;
+            this.btnLoadSapProgram.Text = "读取SAP程序";
+            this.btnLoadSapProgram.UseVisualStyleBackColor = true;
+            this.btnLoadSapProgram.Click += new System.EventHandler(this.btnLoadSapProgram_Click);
+            // 
+            // btnCodeSearch
+            // 
+            this.btnCodeSearch.Location = new System.Drawing.Point(3, 89);
+            this.btnCodeSearch.Name = "btnCodeSearch";
+            this.btnCodeSearch.Size = new System.Drawing.Size(91, 30);
+            this.btnCodeSearch.TabIndex = 4;
+            this.btnCodeSearch.Text = "代码搜索";
+            this.btnCodeSearch.UseVisualStyleBackColor = true;
+            this.btnCodeSearch.Click += new System.EventHandler(this.btnCodeSearch_Click);
             // 
             // FormSAPToolBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 417);
+            this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
@@ -338,6 +415,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,5 +444,11 @@
         private System.Windows.Forms.Button btnCopyIdocToLocalDb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSearchRfcFunction;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button btnCodeEditor;
+        private System.Windows.Forms.Button btnCodeManager;
+        private System.Windows.Forms.Button btnImportFile;
+        private System.Windows.Forms.Button btnLoadSapProgram;
+        private System.Windows.Forms.Button btnCodeSearch;
     }
 }

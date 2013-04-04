@@ -20,15 +20,13 @@ namespace SAPINT.Controls
         protected override void InitLayout()
         {
             base.InitLayout();
-            DataSource = null;
-           // base.DataSource = SAPINT.SAPLogonConfigList.SystemNameList;
-            List<String> clients = new ConfigFileTool.SAPGlobalSettings().getSAPClientList();
-            DataSource = clients;
+            Items.Clear();
+            var list = new ConfigFileTool.SAPGlobalSettings().SapClientList;
+            list.ForEach(x => Items.Add(x));
             Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient();
-            
-           // this.Parent.Enter += new EventHandler(Parent_Enter);
+
         }
 
-     
+
     }
 }

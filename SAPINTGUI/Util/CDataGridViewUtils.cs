@@ -8,6 +8,36 @@ namespace SAPINTGUI
 {
     public class CDataGridViewUtils
     {
+        public static void HookDataGridView(DataGridView dgv)
+        {
+
+            dgv.KeyDown += dgv_KeyDown;
+        }
+
+        static void dgv_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            try
+            {
+                if (e.Modifiers == Keys.Control)
+                {
+                    switch (e.KeyCode)
+                    {
+                        case Keys.C:
+                            //  CDataGridViewUtils.CopyToClipboard(dataGridView2);
+                            break;
+                        case Keys.V:
+                            // PasteClipboardValue(dgvBatchInput  ,false);
+                            Paste((DataGridView)sender, "", 0, false);
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Copy/paste operation failed. " + ex.Message, "Copy/Paste", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         public static void UnSelectRows(DataGridView dgv)
         {
             //this.dataGridView1.Rows.Clear();

@@ -19,9 +19,6 @@ namespace SAPINTGUI.Functions
             InitializeComponent();
             this.cbxSapClientList.DataSource = new ConfigFileTool.SAPGlobalSettings().getSAPClientList();
             this.cbxSapClientList.Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient();
-
-            
-
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

@@ -238,7 +238,8 @@
             }
             catch (RfcAbapException rfce)
             {
-                throw new SAPException(rfce.Key + rfce.Message);
+                return false;
+              //  throw new SAPException(rfce.Key + rfce.Message);
             }
         }
         /// <summary>
