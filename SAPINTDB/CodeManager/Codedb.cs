@@ -128,7 +128,10 @@ namespace SAPINTDB.CodeManager
             return true;
 
         }
-
+        public bool DeleteCode(Code _code)
+        {
+            return Db.Delete(_code);
+        }
         public Code SaveCode(Code _code)
         {
             CodeVersion version = new CodeVersion();
@@ -375,7 +378,7 @@ namespace SAPINTDB.CodeManager
             index.Content = version.Content;
             //index.Desc = version.Desc;
             //index.Title = version.Title;
-            //index.CodeId = version.CodeId.ToString();
+            index.CodeId = version.CodeId;
             Db.Insert(index);
 
         }
@@ -390,6 +393,84 @@ namespace SAPINTDB.CodeManager
         public void Commit()
         {
             Db.Commit();
+        }
+
+        public void DeleteCodeList(List<Code> removed)
+        {
+            if (removed != null)
+            {
+                BeginTransaction();
+                foreach (var item in removed)
+                {
+                    DeleteCode(item);
+                    var codpre = Predicates.Field<CodeVersion>(f => f.CodeId, Operator.Eq, item.Id, false);
+                    Db.Delete<CodeVersion>(codpre);
+                    var codpre2 = Predicates.Field<CodeIndex>(f => f.CodeId, Operator.Eq, item.Id, false);
+                    Db.Delete<CodeIndex>(codpre2);
+                }
+                Commit();
+            }
+
+        }
+
+        public bool DeleteTreeNode(CodeTree codeTreeNode)
+        {
+
+            if (codeTreeNode == null)
+            {
+                return false;
+            }
+            var id = codeTreeNode.Id;
+
+
+            var tree = Db.Get<CodeTree>(id);
+            if (tree == null)
+            {
+                throw new Exception("Id is not valid");
+            }
+            wholeTreeList.Clear();
+            wholeCodeList.Clear();
+            wholeTreeList.Add(tree);
+
+            getWholeCodeTree(tree.Id);
+
+            Db.BeginTransaction();
+            foreach (var item in wholeTreeList)
+            {
+                Db.Delete(item);
+            }
+            foreach (var item in wholeCodeList)
+            {
+                Db.Delete(item);
+                var codpre = Predicates.Field<CodeVersion>(f => f.CodeId, Operator.Eq, item.Id, false);
+                Db.Delete<CodeVersion>(codpre);
+                var codpre2 = Predicates.Field<CodeIndex>(f => f.CodeId, Operator.Eq, item.Id, false);
+                Db.Delete<CodeIndex>(codpre2);
+
+            }
+            Db.Commit();
+            return true;
+        }
+        List<CodeTree> wholeTreeList = new List<CodeTree>();
+        List<Code> wholeCodeList = new List<Code>();
+
+        private void getWholeCodeTree(String id)
+        {
+            var pre = Predicates.Field<CodeTree>(f => f.ParentId, Operator.Eq, id, false);
+            var subTreeList = Db.GetList<CodeTree>(pre).ToList<CodeTree>();
+
+            var codpre = Predicates.Field<Code>(f => f.TreeId, Operator.Eq, id, false);
+            var _codeList = Db.GetList<Code>(codpre).ToList<Code>();
+            wholeCodeList.AddRange(_codeList);
+            if (subTreeList.Count > 0)
+            {
+                wholeTreeList.AddRange(subTreeList);
+
+                foreach (var item in subTreeList)
+                {
+                    getWholeCodeTree(item.Id);
+                }
+            }
         }
     }
 }

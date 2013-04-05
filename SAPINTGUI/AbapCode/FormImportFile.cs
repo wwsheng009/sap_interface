@@ -25,7 +25,7 @@ namespace SAPINTGUI.AbapCode
 
         // private string path = null;
         public string fileName { get; set; }
-
+        Codedb db = new Codedb();
 
         public FormImportFile()
         {
@@ -131,7 +131,7 @@ namespace SAPINTGUI.AbapCode
                 throw new DirectoryNotFoundException("文件夹不存在: " + folderFullName);
 
             }
-            
+
             dt.Clear();
             //dt.AcceptChanges();
             loadFileList(folderFullName);
@@ -340,6 +340,7 @@ namespace SAPINTGUI.AbapCode
         {
             try
             {
+                //ReadFiles();
                 if (ReadFile())
                 {
                     MessageBox.Show("导入成功");
@@ -355,10 +356,51 @@ namespace SAPINTGUI.AbapCode
                 MessageBox.Show(ex.Message);
             }
         }
+        private bool ImportPreCheck()
+        {
+            int selectedItems = 0;
+            foreach (DataRow item in dt.Rows)
+            {
+                if (String.IsNullOrWhiteSpace(item["Select"].ToString()))
+                {
+                    continue;
+                }
+                var isSelect = (bool)item["Select"];
+                if (isSelect)
+                {
+                    selectedItems++;
+                }
+            }
+            if (selectedItems == 0)
+            {
+                MessageBox.Show("请选择需要需要导入的代码");
+                return false;
+            }
+            if (String.IsNullOrEmpty(this.TreeId))
+            {
+                var codeTree = new CodeTree();
+                codeTree.Text = this.txtFolder.Text;
+                if (String.IsNullOrEmpty(codeTree.Text))
+                {
+                    codeTree.Text = "Import File " + DateTime.Now;
+                }
 
+                codeTree = db.SaveTreeNode(codeTree);
+                this.TreeId = codeTree.Id;
+            }
+            return true;
+
+        }
         private bool ReadFile()
         {
+            if (!ImportPreCheck())
+            {
+                return false;
+            }
+
             List<Code> list = new List<Code>();
+
+
 
             foreach (DataRow item in dt.Rows)
             {
@@ -369,13 +411,13 @@ namespace SAPINTGUI.AbapCode
                 var isSelect = (bool)item["Select"];
                 if (isSelect)
                 {
-                    fileName = item["FullName"].ToString();
-                    FileInfo file = new FileInfo(fileName);
+                    var tempFile = item["FullName"].ToString();
+                    FileInfo file = new FileInfo(tempFile);
                     if (!file.Exists)
                     {
                         continue;
                     }
-                    StreamReader sr = new StreamReader(fileName);
+                    StreamReader sr = new StreamReader(tempFile);
                     String s = sr.ReadToEnd();
                     sr.Close();
                     if (String.IsNullOrEmpty(s))
@@ -383,10 +425,14 @@ namespace SAPINTGUI.AbapCode
                         continue;
                     }
 
-                    SAPINTDB.CodeManager.Code code = new Code();
+                    Code code = new Code();
                     code.Content = s;
+                    if (!String.IsNullOrEmpty(TreeId))
+                    {
+                        code.TreeId = TreeId;
+                    }
                     code.Title = file.Name.Replace(file.Extension, "");
-                    code.Desc = fileName;
+                    code.Desc = tempFile;
                     list.Add(code);
                     index = int.Parse(item["Index"].ToString());
                     pos.Add(index, code);
@@ -396,7 +442,7 @@ namespace SAPINTGUI.AbapCode
 
             }
 
-            Codedb db = new Codedb();
+
             if (db.SaveCodeList(list))
             {
                 foreach (var item in pos)
@@ -410,8 +456,75 @@ namespace SAPINTGUI.AbapCode
                 return false;
             }
         }
+        //private void ReadFiles()
+        //{
+        //    var _folderList = new Dictionary<String, String>();
+        //    var _directoryInfoList = new List<DirectoryInfo>();
+
+        //    foreach (DataRow item in dt.Rows)
+        //    {
+        //        if (String.IsNullOrWhiteSpace(item["Select"].ToString()))
+        //        {
+        //            continue;
+        //        }
+        //        var isSelect = (bool)item["Select"];
+        //        if (isSelect)
+        //        {
+        //            var tmpFile = item["FullName"].ToString();
+        //            var _fileInfo = new FileInfo(tmpFile);
+        //            if (!_fileInfo.Exists)
+        //            {
+        //                continue;
+        //            }
+
+        //            var _folder = item["DirectoryName"].ToString();
+        //            var _folderInfo = new DirectoryInfo(_folder);
+        //            if (_folderInfo.Exists)
+        //            {
+        //                if (!_directoryInfoList.Contains(_folderInfo))
+        //                {
+        //                    _directoryInfoList.Add(_folderInfo);
+        //                }
+        //            }
+        //        }
+
+        //    }
+
+        //    var topFolderInfoList = new List<DirectoryInfo>();
+        //    foreach (var item in _directoryInfoList)
+        //    {
+        //        var parentFolder = item.Parent;
+
+        //        var x = item;
+        //        do
+        //        {
+        //            x = x.Parent;
+        //        } while (_directoryInfoList.Contains(x));
+
+        //        if (!_directoryInfoList.Contains(parentFolder))
+        //        {
+        //            topFolderInfoList.Add(item);
+        //        }
+        //    }
+        //    var treeNodeList = new Dictionary<DirectoryInfo, CodeTree>();
+        //    //foreach (var item in topFolderInfoList)
+        //    //{
+        //    //    var codetree = new CodeTree();
+        //    //    codetree.Text = item.Name;
+        //    //    codetree.Type = "Folder";
+        //    //    var newCodeTree = db.SaveTreeNode(codetree);
+        //    //    treeNodeList.Add(item, newCodeTree);
+
+        //    //}
 
 
+
+        //}
+        //private void SaveFiles()
+        //{
+
+
+        //}
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
@@ -479,5 +592,33 @@ namespace SAPINTGUI.AbapCode
         }
 
         // public string isSelect { get; set; }
+
+        private string _treeId;
+        private string _treePath;
+        public string TreeId
+        {
+            get
+            {
+                return _treeId;
+            }
+            set
+            {
+                this._treeId = value;
+                this.txtTreeId.Text = _treeId;
+            }
+        }
+        public string TreePath
+        {
+            get
+            {
+                return _treePath;
+            }
+            set
+            {
+                this._treePath = value;
+                this.txtTreePath.Text = _treePath;
+            }
+        }
+
     }
 }

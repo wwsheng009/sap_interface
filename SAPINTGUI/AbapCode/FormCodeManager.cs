@@ -45,29 +45,46 @@ namespace SAPINTGUI.AbapCode
             treeView1.BeforeExpand += treeView1_BeforeExpand;
             treeView1.Click += treeView1_Click;
             treeView1.NodeMouseClick += treeView1_NodeMouseClick;
+            treeView1.AfterSelect += treeView1_AfterSelect;
 
+            this.listBox1.SelectionMode = SelectionMode.MultiExtended;
             this.listBox1.SelectedValueChanged += listBox1_SelectedValueChanged;
 
+        }
+
+        void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            listBox1.DataSource = null;
+            var codeTree = e.Node.Tag as CodeTree;
+            if (codeTree != null)
+            {
+                this.listBox1.DataSource = codeTree.CodeList;
+                this.listBox1.DisplayMember = "Title";
+            }
         }
 
         void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             // listBox1.SelectedItem
             var code = listBox1.SelectedItem as Code;
-            this.syntaxBoxControl1.Document.Text = code.Content + code.Title;
+            if (code != null)
+            {
+                this.syntaxBoxControl1.Document.Text = code.Content;
+            }
+
             // throw new NotImplementedException();
         }
-        void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void updateTreeNode(TreeNode node)
         {
-            if (e.Node != null)
+            if (node != null)
             {
-                e.Node.Nodes.Clear();
+                node.Nodes.Clear();
 
-                var codeTreeNode = e.Node.Tag as CodeTree;
+                var codeTreeNode = node.Tag as CodeTree;
                 //if (codeTreeNode.SubTreeList == null || codeTreeNode.SubTreeList.Count == 0)
                 //{
                 codeTreeNode = db.GetTree(codeTreeNode.Id);
-                e.Node.Tag = codeTreeNode;
+                node.Tag = codeTreeNode;
                 //}
 
                 if (codeTreeNode.CodeList != null)
@@ -102,11 +119,27 @@ namespace SAPINTGUI.AbapCode
                         newNodeList.Add(nodeTree);
 
                     }
-                    e.Node.Nodes.AddRange(newNodeList.ToArray());
+                    node.Nodes.AddRange(newNodeList.ToArray());
 
                 }
 
             }
+        }
+        void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            try
+            {
+                if (e.Node != null)
+                {
+                    updateTreeNode(e.Node);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
             //throw new NotImplementedException();
         }
 
@@ -121,45 +154,45 @@ namespace SAPINTGUI.AbapCode
             // throw new NotImplementedException();
         }
 
-        private void addNewFolderToTheListViewNode()
+        private void addNewFolderToTheListViewNode(TreeNode node)
         {
-            var node = this.treeView1.SelectedNode;
-            if (node != null)
+            var treeNode = node;
+            CodeTree codeTree = null;
+            if (treeNode != null)
             {
-                var parentNodeTree = node.Tag as CodeTree;
-                if (parentNodeTree == null)
+                codeTree = treeNode.Tag as CodeTree;
+            }
+
+
+            var folderName = getFolderName();
+            if (String.IsNullOrEmpty(folderName))
+            {
+                return;
+            }
+            var nodeTree = new CodeTree();
+            nodeTree.Text = folderName;
+            if (codeTree != null && !String.IsNullOrEmpty(codeTree.Id))
+            {
+                nodeTree.ParentId = codeTree.Id;
+            }
+            var newNode = db.SaveTreeNode(nodeTree);
+            if (newNode != null)
+            {
+
+                var treeNode1 = new TreeNode();
+                treeNode1.Text = newNode.Text;
+                treeNode1.Tag = newNode;
+                if (treeNode != null)
                 {
-                    MessageBox.Show("节点不是CodeTree");
-                    return;
-                }
-                var folderName = getFolderName();
-                if (String.IsNullOrEmpty(folderName))
-                {
-                    return;
-                }
-                var nodeTree = new CodeTree();
-                nodeTree.Text = folderName;
-                if (String.IsNullOrEmpty(parentNodeTree.Id))
-                {
-                    nodeTree.ParentId = string.Empty;
+                    treeNode.Nodes.Add(treeNode1);
                 }
                 else
                 {
-                    nodeTree.ParentId = parentNodeTree.Id;
+                    this.treeView1.Nodes.Add(treeNode1);
                 }
-                var newNode = db.SaveTreeNode(nodeTree);
-                if (newNode != null)
-                {
-                    parentNodeTree.SubTreeList.Add(newNode);
-                    var treeNode = new TreeNode();
-                    treeNode.Text = newNode.Text;
-                    treeNode.Tag = newNode;
-                    node.Nodes.Add(treeNode);
-                }
-                node.Tag = parentNodeTree;
-                this.treeView1.SelectedNode = node;
-
             }
+
+
         }
         private void addNewCodeToTheLisViewNode()
         {
@@ -200,7 +233,7 @@ namespace SAPINTGUI.AbapCode
         }
         private void newFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            addNewFolderToTheListViewNode();
+            addNewFolderToTheListViewNode(this.treeView1.SelectedNode);
         }
 
         private void newFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -260,6 +293,155 @@ namespace SAPINTGUI.AbapCode
                 node.Text = newCodeNode.Text;
                 node.Tag = newCodeNode;
             }
+        }
+
+        private void toolStripMenuItemEditCode_Click(object sender, EventArgs e)
+        {
+            var selectItem = listBox1.SelectedItem as Code;
+            if (selectItem != null)
+            {
+                var frm = new FormCodeEditor();
+                frm.code = selectItem;
+                frm.Show();
+            }
+        }
+
+        private void toolStripMenuItemDeleteCode_Click(object sender, EventArgs e)
+        {
+            var selettedCodeList = listBox1.SelectedItems;
+            var codelist = listBox1.DataSource as List<Code>;
+
+            var removed = new List<Code>();
+            if (selettedCodeList != null)
+            {
+                foreach (var item in selettedCodeList)
+                {
+                    removed.Add(item as Code);
+                    codelist.Remove(item as Code);
+                }
+            }
+            db.DeleteCodeList(removed);
+
+            listBox1.DataSource = null;
+            listBox1.DataSource = codelist;
+            listBox1.DisplayMember = "Title";
+
+            var selectedNode = treeView1.SelectedNode.Tag as CodeTree;
+            if (selectedNode != null)
+            {
+                selectedNode.CodeList = codelist;
+
+            }
+            //for (int i = 0; i < selettedCodeList.Count; i++)
+            //{
+            //    //  var item = selettedCodeList[i] as Code;
+            //    db.DeleteCode(codelist[i]);
+            //}
+
+
+
+            //var selectedCode = listBox1.SelectedItem as Code;
+            //if (selectedCode != null)
+            //{
+            //    var DeleteOk = db.DeleteCode(selectedCode);
+            //    if (DeleteOk)
+            //    {
+            //        var codelist = listBox1.DataSource as List<Code>;
+
+            //        codelist.Remove(selectedCode);
+
+            //        //listBox1.Items.Remove(selectedCode);
+            //        listBox1.DataSource = null;
+            //        listBox1.DataSource = codelist;
+            //        listBox1.DisplayMember = "Title";
+
+            //        var selectedNode = treeView1.SelectedNode.Tag as CodeTree;
+            //        if (selectedNode != null)
+            //        {
+            //            selectedNode.CodeList.Remove(selectedCode);
+
+            //        }
+            //    }
+            //}
+        }
+
+        private void toolStripMenuItemImportFile_Click(object sender, EventArgs e)
+        {
+            var seletedNode = this.treeView1.SelectedNode;
+            if (seletedNode == null)
+            {
+                MessageBox.Show("请先选择文件夹");
+                return;
+            }
+            var codetreeNode = seletedNode.Tag as CodeTree;
+            if (codetreeNode == null)
+            {
+                MessageBox.Show("无效的节点");
+                return;
+            }
+            var frm = new FormImportFile();
+            frm.TreeId = codetreeNode.Id;
+            frm.TreePath = seletedNode.FullPath;
+            frm.Show();
+        }
+
+        private void toolStripMenuItemImportFromSap_Click(object sender, EventArgs e)
+        {
+            var seletedNode = this.treeView1.SelectedNode;
+            if (seletedNode == null)
+            {
+                MessageBox.Show("请先选择文件夹");
+                return;
+            }
+            var codetreeNode = seletedNode.Tag as CodeTree;
+            if (codetreeNode == null)
+            {
+                MessageBox.Show("无效的节点");
+                return;
+            }
+            var frm = new FormImporSapProgram();
+            frm.TreeId = codetreeNode.Id;
+            frm.TreePath = seletedNode.FullPath;
+            frm.Show();
+        }
+
+        private void toolStripMenuItemDeleteFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var treeNode = treeView1.SelectedNode;
+                var codeTreeNode = treeNode.Tag as CodeTree;
+                if (codeTreeNode == null)
+                {
+                    MessageBox.Show("请选择文件夹");
+                    return;
+                }
+                if (db.DeleteTreeNode(codeTreeNode))
+                {
+                    //  updateTreeNode(treeNode);
+                }
+                if (treeNode.Parent != null)
+                {
+                    treeNode.Parent.Nodes.Remove(treeNode);
+                }
+                else
+                {
+                    treeView1.Nodes.Remove(treeNode);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+
+        private void ToolStripMenuItemAddTopFolder_Click_1(object sender, EventArgs e)
+        {
+            addNewFolderToTheListViewNode(null);
         }
 
     }

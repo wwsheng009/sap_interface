@@ -152,11 +152,11 @@
     <Compile Include="AbapCode\FormImportFile.Designer.cs">
       <DependentUpon>FormImportFile.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbapCode\FormLoadSapProgram.cs">
+    <Compile Include="AbapCode\FormImporSapProgram.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbapCode\FormLoadSapProgram.Designer.cs">
-      <DependentUpon>FormLoadSapProgram.cs</DependentUpon>
+    <Compile Include="AbapCode\FormImporSapProgram.Designer.cs">
+      <DependentUpon>FormImporSapProgram.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\CDataGridViewUtils.cs" />
     <Compile Include="AbapCode\SAPTableField.cs">
@@ -313,8 +313,8 @@
     <EmbeddedResource Include="AbapCode\FormImportFile.resx">
       <DependentUpon>FormImportFile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbapCode\FormLoadSapProgram.resx">
-      <DependentUpon>FormLoadSapProgram.cs</DependentUpon>
+    <EmbeddedResource Include="AbapCode\FormImporSapProgram.resx">
+      <DependentUpon>FormImporSapProgram.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbapCode\SAPTableField.resx">
       <DependentUpon>SAPTableField.cs</DependentUpon>

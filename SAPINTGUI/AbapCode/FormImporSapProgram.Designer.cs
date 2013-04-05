@@ -1,6 +1,6 @@
 ﻿namespace SAPINTGUI.AbapCode
 {
-    partial class FormLoadSapProgram
+    partial class FormImporSapProgram
     {
         /// <summary>
         /// Required designer variable.
@@ -44,6 +44,8 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtDevClass = new System.Windows.Forms.TextBox();
+            this.txtTreeId = new System.Windows.Forms.TextBox();
+            this.txtTreePath = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -69,11 +71,11 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(298, 32);
+            this.btnLoad.Location = new System.Drawing.Point(510, 32);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(75, 23);
+            this.btnLoad.Size = new System.Drawing.Size(111, 23);
             this.btnLoad.TabIndex = 16;
-            this.btnLoad.Text = "加载";
+            this.btnLoad.Text = "读取程序(方法2)";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -98,7 +100,7 @@
             this.syntaxBoxControl1.LockCursorUpdate = false;
             this.syntaxBoxControl1.Name = "syntaxBoxControl1";
             this.syntaxBoxControl1.ShowScopeIndicator = false;
-            this.syntaxBoxControl1.Size = new System.Drawing.Size(272, 438);
+            this.syntaxBoxControl1.Size = new System.Drawing.Size(272, 415);
             this.syntaxBoxControl1.SmoothScroll = false;
             this.syntaxBoxControl1.SplitviewH = -4;
             this.syntaxBoxControl1.SplitviewV = -4;
@@ -118,10 +120,19 @@
             // cboxSystemList1
             // 
             this.cboxSystemList1.FormattingEnabled = true;
+            this.cboxSystemList1.Items.AddRange(new object[] {
+            "中山悦晨测试机",
+            "LH205",
+            "RET900",
+            "RET765",
+            "CHJ",
+            "BYD",
+            "WWS"});
             this.cboxSystemList1.Location = new System.Drawing.Point(12, 6);
             this.cboxSystemList1.Name = "cboxSystemList1";
             this.cboxSystemList1.Size = new System.Drawing.Size(116, 20);
             this.cboxSystemList1.TabIndex = 19;
+            this.cboxSystemList1.Text = "LH205";
             // 
             // dataGridView1
             // 
@@ -130,12 +141,12 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(415, 438);
+            this.dataGridView1.Size = new System.Drawing.Size(415, 415);
             this.dataGridView1.TabIndex = 20;
             // 
             // btnSearchReport
             // 
-            this.btnSearchReport.Location = new System.Drawing.Point(196, 32);
+            this.btnSearchReport.Location = new System.Drawing.Point(196, 33);
             this.btnSearchReport.Name = "btnSearchReport";
             this.btnSearchReport.Size = new System.Drawing.Size(75, 23);
             this.btnSearchReport.TabIndex = 21;
@@ -148,7 +159,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(2, 61);
+            this.splitContainer1.Location = new System.Drawing.Point(2, 84);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -158,15 +169,15 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.syntaxBoxControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(691, 438);
+            this.splitContainer1.Size = new System.Drawing.Size(691, 415);
             this.splitContainer1.SplitterDistance = 415;
             this.splitContainer1.TabIndex = 22;
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(408, 32);
+            this.btnImport.Location = new System.Drawing.Point(410, 32);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(75, 23);
+            this.btnImport.Size = new System.Drawing.Size(94, 23);
             this.btnImport.TabIndex = 23;
             this.btnImport.Text = "导入";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -174,9 +185,9 @@
             // 
             // btnReadObjectFromSap
             // 
-            this.btnReadObjectFromSap.Location = new System.Drawing.Point(498, 32);
+            this.btnReadObjectFromSap.Location = new System.Drawing.Point(281, 32);
             this.btnReadObjectFromSap.Name = "btnReadObjectFromSap";
-            this.btnReadObjectFromSap.Size = new System.Drawing.Size(75, 23);
+            this.btnReadObjectFromSap.Size = new System.Drawing.Size(123, 23);
             this.btnReadObjectFromSap.TabIndex = 24;
             this.btnReadObjectFromSap.Text = "读取程序";
             this.btnReadObjectFromSap.UseVisualStyleBackColor = true;
@@ -218,11 +229,29 @@
             this.txtDevClass.Size = new System.Drawing.Size(100, 21);
             this.txtDevClass.TabIndex = 28;
             // 
-            // FormLoadSapProgram
+            // txtTreeId
+            // 
+            this.txtTreeId.Location = new System.Drawing.Point(13, 57);
+            this.txtTreeId.Name = "txtTreeId";
+            this.txtTreeId.ReadOnly = true;
+            this.txtTreeId.Size = new System.Drawing.Size(246, 21);
+            this.txtTreeId.TabIndex = 29;
+            // 
+            // txtTreePath
+            // 
+            this.txtTreePath.Location = new System.Drawing.Point(265, 57);
+            this.txtTreePath.Name = "txtTreePath";
+            this.txtTreePath.ReadOnly = true;
+            this.txtTreePath.Size = new System.Drawing.Size(340, 21);
+            this.txtTreePath.TabIndex = 30;
+            // 
+            // FormImporSapProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(705, 501);
+            this.Controls.Add(this.txtTreePath);
+            this.Controls.Add(this.txtTreeId);
             this.Controls.Add(this.txtDevClass);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelSelect);
@@ -235,7 +264,7 @@
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSapProgram);
-            this.Name = "FormLoadSapProgram";
+            this.Name = "FormImporSapProgram";
             this.Text = "FormLoadSapProgram";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -264,5 +293,7 @@
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDevClass;
+        private System.Windows.Forms.TextBox txtTreeId;
+        private System.Windows.Forms.TextBox txtTreePath;
     }
 }

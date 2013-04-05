@@ -11,12 +11,13 @@ using SAPINTDB.CodeManager;
 
 namespace SAPINTGUI.AbapCode
 {
-    public partial class FormLoadSapProgram : Form
+    public partial class FormImporSapProgram : Form
     {
         DataTable dt = null;
         Dictionary<int, Code> pos = new Dictionary<int, Code>();
+        Codedb db = new Codedb();
 
-        public FormLoadSapProgram()
+        public FormImporSapProgram()
         {
             InitializeComponent();
 
@@ -57,7 +58,7 @@ namespace SAPINTGUI.AbapCode
 	 	    //	new DataColumn("TRANSLTTXT",typeof(String)),
                
             });
-            dt.Columns["Index"].AutoIncrement = true;
+            // dt.Columns["Index"].AutoIncrement = true;
             dt.Columns["Select"].DefaultValue = false;
             this.dataGridView1.DataSource = dt;
             this.dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -71,11 +72,11 @@ namespace SAPINTGUI.AbapCode
             var cell = dataGridView1.CurrentCell;
             if (cell != null && cell.Value != null)
             {
-                if (cell.OwningColumn.Name =="Header")
+                if (cell.OwningColumn.Name == "Header")
                 {
                     this.syntaxBoxControl1.Document.Text = cell.Value.ToString();
                 }
-               
+
             }
         }
 
@@ -202,30 +203,33 @@ START-OF-SELECTION.
             {
                 this.SapSysName = this.cboxSystemList1.Text.Trim().ToUpper();
                 SAPINT.Utils.ABAPCode abap = new SAPINT.Utils.ABAPCode(SapSysName);
-                var list = abap.SearchProgram(this.txtSapProgram.Text,this.txtDevClass.Text);
+                var list = abap.SearchProgram(this.txtSapProgram.Text, this.txtDevClass.Text);
                 //list.ForEach(x => { });
+                int index = 0;
                 foreach (var item in list)
                 {
                     var r = dt.NewRow();
-                  //  r["PGMID"] = item.PGMID;
-                   // r["OBJECT"] = item.OBJECT;
+                    r["Index"] = index;
+                    index++;
+                    //  r["PGMID"] = item.PGMID;
+                    // r["OBJECT"] = item.OBJECT;
                     r["OBJ_NAME"] = item.OBJ_NAME;
-                  //  r["KORRNUM"] = item.KORRNUM;
-                   // r["SRCSYSTEM"] = item.SRCSYSTEM;
+                    //  r["KORRNUM"] = item.KORRNUM;
+                    // r["SRCSYSTEM"] = item.SRCSYSTEM;
                     r["AUTHOR"] = item.AUTHOR;
                     r["SRCDEP"] = item.SRCDEP;
                     r["DEVCLASS"] = item.DEVCLASS;
-                 //   r["GENFLAG"] = item.GENFLAG;
-                 //   r["EDTFLAG"] = item.EDTFLAG;
-                 //   r["CPROJECT"] = item.CPROJECT;
+                    //   r["GENFLAG"] = item.GENFLAG;
+                    //   r["EDTFLAG"] = item.EDTFLAG;
+                    //   r["CPROJECT"] = item.CPROJECT;
                     r["MASTERLANG"] = item.MASTERLANG;
-                 //   r["VERSID"] = item.VERSID;
-                 //   r["PAKNOCHECK"] = item.PAKNOCHECK;
-                 //   r["OBJSTABLTY"] = item.OBJSTABLTY;
-                  //  r["COMPONENT"] = item.COMPONENT;
-                 //   r["CRELEASE"] = item.CRELEASE;
-                 //   r["DELFLAG"] = item.DELFLAG;
-                 //   r["TRANSLTTXT"] = item.TRANSLTTXT;
+                    //   r["VERSID"] = item.VERSID;
+                    //   r["PAKNOCHECK"] = item.PAKNOCHECK;
+                    //   r["OBJSTABLTY"] = item.OBJSTABLTY;
+                    //  r["COMPONENT"] = item.COMPONENT;
+                    //   r["CRELEASE"] = item.CRELEASE;
+                    //   r["DELFLAG"] = item.DELFLAG;
+                    //   r["TRANSLTTXT"] = item.TRANSLTTXT;
                     dt.Rows.Add(r);
                 }
                 this.dataGridView1.AutoResizeColumns();
@@ -277,11 +281,9 @@ START-OF-SELECTION.
             this.syntaxBoxControl1.Document.Text = s;
             return s;
         }
-        private bool LoadObjectFromSap()
+
+        private bool ImportPreCheck()
         {
-
-            List<Code> list = new List<Code>();
-
 
             this.SapSysName = cboxSystemList1.Text;
             if (String.IsNullOrEmpty(SapSysName))
@@ -290,6 +292,50 @@ START-OF-SELECTION.
                 return false;
             }
 
+            int selectedItems = 0;
+            foreach (DataRow item in dt.Rows)
+            {
+                if (String.IsNullOrWhiteSpace(item["Select"].ToString()))
+                {
+                    continue;
+                }
+                var isSelect = (bool)item["Select"];
+                if (isSelect)
+                {
+                    selectedItems++;
+                }
+            }
+            if (selectedItems == 0)
+            {
+                MessageBox.Show("请选择需要需要导入的代码");
+                return false;
+            }
+
+            if (String.IsNullOrEmpty(this.TreeId))
+            {
+                var codeTree = new CodeTree();
+                codeTree.Text = cboxSystemList1.Text + txtSapProgram.Text;
+                if (String.IsNullOrEmpty(codeTree.Text))
+                {
+                    codeTree.Text = "Import SAP OBJECT " + DateTime.Now;
+                }
+                codeTree = db.SaveTreeNode(codeTree);
+                this.TreeId = codeTree.Id;
+            }
+
+            return true;
+
+        }
+
+        private bool LoadObjectFromSap()
+        {
+            if (!ImportPreCheck())
+            {
+                return false;
+            }
+
+            List<Code> list = new List<Code>();
+            pos.Clear();
             this.AbapCode = new SAPINT.Utils.ABAPCode(SapSysName);
             foreach (DataRow item in dt.Rows)
             {
@@ -315,18 +361,19 @@ START-OF-SELECTION.
                         continue;
                     }
 
-                    SAPINTDB.CodeManager.Code code = new Code();
+                    Code code = new Code();
                     code.Content = s;
                     code.Title = obj;
-                    //code.Desc = item[];
+                    if (!String.IsNullOrEmpty(this.TreeId))
+                    {
+                        code.TreeId = TreeId;
+                    }
                     list.Add(code);
                     var index = int.Parse(item["Index"].ToString());
                     pos.Add(index, code);
                 }
 
             }
-
-            Codedb db = new Codedb();
             if (db.SaveCodeList(list))
             {
                 foreach (var item in pos)
@@ -394,5 +441,33 @@ START-OF-SELECTION.
 
             }
         }
+
+        private string _treeId;
+        private string _treePath;
+        public string TreeId
+        {
+            get
+            {
+                return _treeId;
+            }
+            set
+            {
+                this._treeId = value;
+                this.txtTreeId.Text = _treeId;
+            }
+        }
+        public string TreePath
+        {
+            get
+            {
+                return _treePath;
+            }
+            set
+            {
+                this._treePath = value;
+                this.txtTreePath.Text = _treePath;
+            }
+        }
+
     }
 }

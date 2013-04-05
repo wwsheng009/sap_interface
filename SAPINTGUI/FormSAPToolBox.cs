@@ -156,7 +156,7 @@ namespace SAPINTGUI
 
         private void btnLoadSapProgram_Click(object sender, EventArgs e)
         {
-            AbapCode.FormLoadSapProgram frm = new AbapCode.FormLoadSapProgram();
+            AbapCode.FormImporSapProgram frm = new AbapCode.FormImporSapProgram();
             frm.Show();
         }
 

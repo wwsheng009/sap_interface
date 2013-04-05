@@ -49,6 +49,8 @@
             this.chxFilter = new System.Windows.Forms.CheckBox();
             this.txtExtension = new System.Windows.Forms.TextBox();
             this.btnAddExtension = new System.Windows.Forms.Button();
+            this.txtTreeId = new System.Windows.Forms.TextBox();
+            this.txtTreePath = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -59,7 +61,7 @@
             // 
             // btnChooseFolder
             // 
-            this.btnChooseFolder.Location = new System.Drawing.Point(429, 28);
+            this.btnChooseFolder.Location = new System.Drawing.Point(433, 4);
             this.btnChooseFolder.Name = "btnChooseFolder";
             this.btnChooseFolder.Size = new System.Drawing.Size(94, 23);
             this.btnChooseFolder.TabIndex = 0;
@@ -77,7 +79,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 7);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 3;
@@ -90,14 +92,14 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(368, 424);
+            this.dataGridView1.Size = new System.Drawing.Size(368, 399);
             this.dataGridView1.TabIndex = 4;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(321, 57);
+            this.button2.Location = new System.Drawing.Point(290, 56);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 25);
+            this.button2.Size = new System.Drawing.Size(137, 25);
             this.button2.TabIndex = 5;
             this.button2.Text = "导入选择的文件";
             this.button2.UseVisualStyleBackColor = true;
@@ -105,7 +107,7 @@
             // 
             // btnChooseFile
             // 
-            this.btnChooseFile.Location = new System.Drawing.Point(429, 57);
+            this.btnChooseFile.Location = new System.Drawing.Point(433, 58);
             this.btnChooseFile.Name = "btnChooseFile";
             this.btnChooseFile.Size = new System.Drawing.Size(94, 23);
             this.btnChooseFile.TabIndex = 7;
@@ -115,9 +117,9 @@
             // 
             // btnListFile
             // 
-            this.btnListFile.Location = new System.Drawing.Point(431, 2);
+            this.btnListFile.Location = new System.Drawing.Point(433, 31);
             this.btnListFile.Name = "btnListFile";
-            this.btnListFile.Size = new System.Drawing.Size(92, 23);
+            this.btnListFile.Size = new System.Drawing.Size(94, 23);
             this.btnListFile.TabIndex = 8;
             this.btnListFile.Text = "列出文件";
             this.btnListFile.UseVisualStyleBackColor = true;
@@ -144,7 +146,7 @@
             this.syntaxBoxControl1.LockCursorUpdate = false;
             this.syntaxBoxControl1.Name = "syntaxBoxControl1";
             this.syntaxBoxControl1.ShowScopeIndicator = false;
-            this.syntaxBoxControl1.Size = new System.Drawing.Size(264, 424);
+            this.syntaxBoxControl1.Size = new System.Drawing.Size(264, 399);
             this.syntaxBoxControl1.SmoothScroll = false;
             this.syntaxBoxControl1.SplitviewH = -4;
             this.syntaxBoxControl1.SplitviewV = -4;
@@ -163,7 +165,7 @@
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(56, 58);
+            this.btnSelect.Location = new System.Drawing.Point(89, 57);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(75, 23);
             this.btnSelect.TabIndex = 10;
@@ -173,7 +175,7 @@
             // 
             // btnCancelSelect
             // 
-            this.btnCancelSelect.Location = new System.Drawing.Point(137, 59);
+            this.btnCancelSelect.Location = new System.Drawing.Point(170, 57);
             this.btnCancelSelect.Name = "btnCancelSelect";
             this.btnCancelSelect.Size = new System.Drawing.Size(75, 23);
             this.btnCancelSelect.TabIndex = 11;
@@ -198,7 +200,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(89, 88);
+            this.splitContainer1.Location = new System.Drawing.Point(89, 113);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -208,7 +210,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.syntaxBoxControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(636, 424);
+            this.splitContainer1.Size = new System.Drawing.Size(636, 399);
             this.splitContainer1.SplitterDistance = 368;
             this.splitContainer1.TabIndex = 13;
             // 
@@ -227,7 +229,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(217, 37);
+            this.label2.Location = new System.Drawing.Point(307, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 17;
@@ -240,7 +242,7 @@
             0,
             0,
             0});
-            this.numericSize.Location = new System.Drawing.Point(277, 31);
+            this.numericSize.Location = new System.Drawing.Point(227, 30);
             this.numericSize.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -270,7 +272,7 @@
             // chxFilter
             // 
             this.chxFilter.AutoSize = true;
-            this.chxFilter.Location = new System.Drawing.Point(0, 99);
+            this.chxFilter.Location = new System.Drawing.Point(14, 88);
             this.chxFilter.Name = "chxFilter";
             this.chxFilter.Size = new System.Drawing.Size(48, 16);
             this.chxFilter.TabIndex = 20;
@@ -279,7 +281,7 @@
             // 
             // txtExtension
             // 
-            this.txtExtension.Location = new System.Drawing.Point(0, 122);
+            this.txtExtension.Location = new System.Drawing.Point(0, 113);
             this.txtExtension.Name = "txtExtension";
             this.txtExtension.Size = new System.Drawing.Size(83, 21);
             this.txtExtension.TabIndex = 21;
@@ -294,11 +296,29 @@
             this.btnAddExtension.UseVisualStyleBackColor = true;
             this.btnAddExtension.Click += new System.EventHandler(this.btnAddExtension_Click);
             // 
+            // txtTreeId
+            // 
+            this.txtTreeId.Location = new System.Drawing.Point(89, 87);
+            this.txtTreeId.Name = "txtTreeId";
+            this.txtTreeId.ReadOnly = true;
+            this.txtTreeId.Size = new System.Drawing.Size(228, 21);
+            this.txtTreeId.TabIndex = 23;
+            // 
+            // txtTreePath
+            // 
+            this.txtTreePath.Location = new System.Drawing.Point(323, 88);
+            this.txtTreePath.Name = "txtTreePath";
+            this.txtTreePath.ReadOnly = true;
+            this.txtTreePath.Size = new System.Drawing.Size(335, 21);
+            this.txtTreePath.TabIndex = 24;
+            // 
             // FormImportFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(726, 524);
+            this.Controls.Add(this.txtTreePath);
+            this.Controls.Add(this.txtTreeId);
             this.Controls.Add(this.btnAddExtension);
             this.Controls.Add(this.txtExtension);
             this.Controls.Add(this.chxFilter);
@@ -351,5 +371,7 @@
         private System.Windows.Forms.CheckBox chxFilter;
         private System.Windows.Forms.TextBox txtExtension;
         private System.Windows.Forms.Button btnAddExtension;
+        private System.Windows.Forms.TextBox txtTreeId;
+        private System.Windows.Forms.TextBox txtTreePath;
     }
 }
