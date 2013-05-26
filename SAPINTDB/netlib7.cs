@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.IO;
+using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using ConfigFileTool;
@@ -30,15 +31,15 @@ namespace SAPINTDB
         {
          //   providerName = SAPGlobalSettings.config.ConnectionStrings[configConnectionName].ProviderName;
          //   connectionString = SAPGlobalSettings.config.ConnectionStrings[configConnectionName].ConnectionString;
-            if (new SAPGlobalSettings().getConnectionStrings()[configConnectionName] == null)
+            if (SAPGlobalSettings.getConnectionStrings()[configConnectionName] == null)
             {
                 errorMessage = String.Format("Can't find the connection {0}",configConnectionName);
                 throw new Exception(errorMessage);
             }
             else
             {
-                providerName = new SAPGlobalSettings().getConnectionStrings()[configConnectionName].ProviderName;
-                connectionString = new SAPGlobalSettings().getConnectionStrings()[configConnectionName].ConnectionString;
+                providerName = SAPGlobalSettings.getConnectionStrings()[configConnectionName].ProviderName;
+                connectionString = SAPGlobalSettings.getConnectionStrings()[configConnectionName].ConnectionString;
             }
             
         }
@@ -1998,7 +1999,7 @@ namespace SAPINTDB
             string s = "";
             try
             {
-                StreamReader f = new StreamReader(fileName);
+                StreamReader f = new StreamReader(fileName, Encoding.Default);
                 s = f.ReadToEnd();
                 f.Close();
             }
@@ -2109,7 +2110,7 @@ namespace SAPINTDB
             serializer.Serialize(memoryStream, o);
             memoryStream.Seek(0, SeekOrigin.Begin);
 
-            StreamReader stream = new StreamReader(memoryStream);
+            StreamReader stream = new StreamReader(memoryStream, Encoding.Default);
             string returnValue = stream.ReadToEnd();
             stream.Close();
 

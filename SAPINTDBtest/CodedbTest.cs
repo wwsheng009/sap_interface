@@ -22,9 +22,8 @@ namespace SAPINTDBtest
 
             codedb.SaveCode(code);
 
-            CodeVersion version = new CodeVersion();
-            version.Content = "sdfef";
-            codedb.saveVersion(version);
+
+            codedb.SaveVersion(code);
 
            // code = codedb.getCodebyId(10);
         }

@@ -9,7 +9,7 @@ namespace SAPINT.Function.Meta
     public static class SAPFunctionMeta
     {
         /// <summary>
-        /// 把Jco中的字段元数据添加到Table中
+        /// 把RFC中的字段元数据添加到Table中
         /// </summary>
         /// <param name="pMetadata"></param>
         /// <param name="dt"></param>
@@ -36,10 +36,16 @@ namespace SAPINT.Function.Meta
             }
             dt.Rows.Add(dtrow);
         }
+        /// <summary>
+        /// 读取RFC函数的全部信息
+        /// </summary>
+        /// <param name="sysName"></param>
+        /// <param name="funame"></param>
+        /// <returns></returns>
         public static RfcFunctionMetaAsList GetFuncMetaAsList(string sysName, string funame)
         {
             funame = funame.ToUpper().Trim();
-            RfcFunctionMetadata MetaData = getRfcFunctionMetadata(sysName, funame);
+            RfcFunctionMetadata MetaData = GetRfcFunctionMetadata(sysName, funame);
             RfcFunctionMetaAsList metaList = new RfcFunctionMetaAsList();
             // metaList.Import.Add(
             //根据参数的方向，分为四种（CHANGING,EXPORT,IMPORT,TABLES);
@@ -117,7 +123,7 @@ namespace SAPINT.Function.Meta
         /// <param name="sysName"></param>
         /// <param name="funame"></param>
         /// <returns></returns>
-        public static RfcFunctionMetadata getRfcFunctionMetadata(string sysName, string funame)
+        public static RfcFunctionMetadata GetRfcFunctionMetadata(string sysName, string funame)
         {
             funame = funame.ToUpper().Trim();
             if (string.IsNullOrEmpty(funame))
@@ -158,7 +164,7 @@ namespace SAPINT.Function.Meta
             RfcFunctionMetaAsDataTable metaTable = null;
             try
             {
-                RfcFunctionMetadata MetaData = getRfcFunctionMetadata(sysName, funame);
+                RfcFunctionMetadata MetaData = GetRfcFunctionMetadata(sysName, funame);
                 metaTable = new RfcFunctionMetaAsDataTable();
                 DataTable dtImport = RfcFunctionMetaAsDataTable.ParameterDefinitionView();
                 DataTable dtExport = dtImport.Copy();
@@ -197,7 +203,7 @@ namespace SAPINT.Function.Meta
                                 DataRow dr = dtStructure.NewRow();
                                 RfcFieldMetadata fieldm = strucmeta[f];
                                 dr["Name"] = fieldm.Name;
-                                dr["DataType"] = fieldm.DataType;
+                                dr["DataType"] = fieldm.DataType.ToString();
                                 dr["Decimals"] = fieldm.Decimals;
                                 dr["Length"] = fieldm.NucLength;
                                 dr["Documentation"] = fieldm.Documentation;

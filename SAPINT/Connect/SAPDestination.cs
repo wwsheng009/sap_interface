@@ -1,12 +1,11 @@
 ﻿namespace SAPINT
-{
+    {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using SAP.Middleware.Connector;
     using SAPINT.SapConfig;
-
     /// <summary>
     /// 根据系统的名字来获取一个SAP CLIENT实例。
     /// </summary>
@@ -24,7 +23,6 @@
           //  RfcDestinationManager.RegisterDestinationConfiguration(new DefaultDestinationConfiguration());
 
         }
-
         public static string SystemName
         {
             set

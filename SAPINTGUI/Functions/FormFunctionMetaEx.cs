@@ -9,19 +9,27 @@ using System.Windows.Forms;
 using SAPINT;
 using SAPINT.Function;
 using SAPINT.Function.Meta;
-namespace SAPINTGUI
+
+namespace SAPINTGUI.Functions
 {
-    public partial class FormFunctionMetaEx : Form
+    public partial class FormFunctionMetaEx : DockWindow
     {
         string _funcName = "";  //当前的函数名
         private string _systemName;//连接的SAP系统的配置名称
-        FunctionField currentChooseField = null;
+        private FunctionField selectedField = null;
         SAPFunctionEx function = null;
         public FormFunctionMetaEx()
         {
             InitializeComponent();
+            new DgvFilterPopup.DgvFilterManager(this.dgvDetail);
+            new DgvFilterPopup.DgvFilterManager(this.dgvTableContent);
+            this.cbx_SystemList.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            this.cbx_SystemList.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
+
+            CDataGridViewUtils.CopyPasteDataGridView(this.dgvTableContent);
+
         }
-        
+
         /// <summary>
         /// //从服务器加载函数的具体信息,包括每个参数的名称，数据类型
         /// 如果是结构体，还显示它的字段列表。
@@ -37,12 +45,15 @@ namespace SAPINTGUI
                 try
                 {
                     function = new SAPFunctionEx(_systemName, _funcName);
+                    
                     if (function.FunctionMeta == null)
                     {
                         MessageBox.Show("无法找到函数信息！！");
                         return;
                     }
                     ParseMetaData();
+                    this.button2.Enabled = true;
+                    this.Text = "RFC函数:" + _funcName;
                 }
                 catch (Exception ee)
                 {
@@ -100,8 +111,8 @@ namespace SAPINTGUI
             String dataType = dgv.Rows[e.RowIndex].Cells[FuncFieldText.DataType].Value.ToString();
             String dataTypeName = dgv.Rows[e.RowIndex].Cells[FuncFieldText.DataTypeName].Value.ToString();
             String defaultValue = dgv.Rows[e.RowIndex].Cells[FuncFieldText.DefaultValue].Value.ToString();
-            currentChooseField = new FunctionField(name, dataType, dataTypeName, defaultValue);
-            if (String.IsNullOrEmpty(currentChooseField.Name))
+            selectedField = new FunctionField(name, dataType, dataTypeName, defaultValue);
+            if (String.IsNullOrEmpty(selectedField.Name))
             {
                 MessageBox.Show("点击选择参数");
                 return;
@@ -111,9 +122,9 @@ namespace SAPINTGUI
                 DataTable dt = function.FunctionMeta.StructureDetail[dataTypeName];
                 dgvDetail.DataSource = dt;
                 dgvDetail.AutoResizeColumns();
-                if (function.TableValueList.Keys.Contains(currentChooseField.Name))
+                if (function.TableValueList.Keys.Contains(selectedField.Name))
                 {
-                    DataTable dtResult = function.TableValueList[currentChooseField.Name];
+                    DataTable dtResult = function.TableValueList[selectedField.Name];
                     if (dtResult != null)
                     {
                         dgvTableContent.DataSource = dtResult;
@@ -141,20 +152,20 @@ namespace SAPINTGUI
         //填充结构或表数据
         private void InputSomethingIntoTable()
         {
-            if (String.IsNullOrEmpty(currentChooseField.Name))
+            if (String.IsNullOrEmpty(selectedField.Name))
             {
                 return;
             }
             DataTable dtInput = null;
-            if (function.TableValueList.Keys.Contains(currentChooseField.Name))
+            if (function.TableValueList.Keys.Contains(selectedField.Name))
             {
-                dtInput = function.TableValueList[currentChooseField.Name];
+                dtInput = function.TableValueList[selectedField.Name];
             }
             else
             {
-                if (!String.IsNullOrWhiteSpace(currentChooseField.DataTypeName))
+                if (!String.IsNullOrWhiteSpace(selectedField.DataTypeName))
                 {
-                    dtInput = function.TableValueList[currentChooseField.DataTypeName];
+                    dtInput = function.TableValueList[selectedField.DataTypeName];
                 }
             }
             if (dtInput == null)
@@ -163,18 +174,18 @@ namespace SAPINTGUI
                 return;
             }
             FormTableInput formInput = new FormTableInput();
-            if (currentChooseField.DataType == SAPDataType.STRUCTURE.ToString())
+            if (selectedField.DataType == SAPDataType.STRUCTURE.ToString())
             {
                 formInput.DataType = SAPDataType.STRUCTURE.ToString();
             }
-            else if (currentChooseField.DataType == SAPDataType.TABLE.ToString())
+            else if (selectedField.DataType == SAPDataType.TABLE.ToString())
             {
                 formInput.DataType = SAPDataType.TABLE.ToString();
             }
             formInput.DgvSource = dtInput;
             formInput.InitializeDataSource();
             formInput.ShowDialog();
-            function.TableValueList[currentChooseField.Name] = formInput.DgvSource;
+            function.TableValueList[selectedField.Name] = formInput.DgvSource;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -185,7 +196,7 @@ namespace SAPINTGUI
             //根据返回的结果处理控件
             foreach (var item in function.TableValueList)
             {
-                if (item.Value.Rows.Count > 0)
+                if (item.Value.Rows.Count >= 0)
                 {
                     foreach (DataGridViewRow row in dgvTables.Rows)
                     {
@@ -223,6 +234,29 @@ namespace SAPINTGUI
         private void button2_Click(object sender, EventArgs e)
         {
             ExcuteFunction();
+        }
+
+        private void btnSaveToDb_Click(object sender, EventArgs e)
+        {
+            if (this.selectedField == null)
+            {
+                return;
+            }
+            if (dgvTableContent.DataSource != null)
+            {
+                var dt = dgvTableContent.DataSource as DataTable;
+                if (dt != null)
+                {
+                    SAPINTGUI.DataBase.FormSaveDataTable formSaveDt = new DataBase.FormSaveDataTable();
+                    formSaveDt.Dt = dt;
+                    formSaveDt.SapSystemName = this._systemName;
+                    formSaveDt.SapTableName = selectedField.Name;
+                    formSaveDt.SapStrutureName = selectedField.DataTypeName;
+
+                    formSaveDt.Show();
+                }
+            }
+
         }
 
     }

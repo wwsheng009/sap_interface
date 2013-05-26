@@ -10,18 +10,20 @@ using SAPINT.Utils;
 using System.Xml.Serialization;
 using System.IO;
 using SAPINT;
+using System.Threading;
 namespace SAPINTGUI
 {
-    public delegate void GetSAPTable(ReadTableControl sender, DataTable resultdt);
+    public delegate void EventGetSAPTable(ReadTableControl sender, DataTable resultdt);
     public partial class ReadTableControl : UserControl
     {
-        public event GetSAPTable eventGetTable;//当读取到数据时，通过监视者。
-        ReadTable dt;           //读取实例
+        public event EventGetSAPTable EventGetTable;//当读取到数据时，通过监视者。
+
+        private ReadTable dt;           //读取实例
         string _tableName = "";  //当前的表名
         List<TableInfo> tablelist;  //缓存列表
         private string _systemName;//连接的SAP系统的配置名称
         string filepath = @"C:\ReadTable.xml"; //配置文件的路径。
-
+        public event delegateMessage EventMessage;
         public String TableName
         {
             get
@@ -41,12 +43,25 @@ namespace SAPINTGUI
             private set;
             get;
         }
+        public void SendMessage(String message)
+        {
+            if (this.EventMessage != null)
+            {
+                EventMessage(message);
+            }
+        }
         public ReadTableControl()
         {
             InitializeComponent();
             rowNum.Text = "500";
             tablelist = new List<TableInfo>();
-
+            this.cbx_systemlist.DataSource = null;
+            this.cbx_systemlist.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            cbx_systemlist.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
+            new DgvFilterPopup.DgvFilterManager(this.dataGridView1);
+            new DgvFilterPopup.DgvFilterManager(this.dataGridView2);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dataGridView1);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dataGridView2);
         }
         private bool check()
         {
@@ -95,6 +110,7 @@ namespace SAPINTGUI
             Parent.Text = _tableName;
             try
             {
+
                 loadTableData();
                 SaveFieldsAndOptiontoMemory(this.txtTableName.Text.Trim().ToUpper());
             }
@@ -108,7 +124,9 @@ namespace SAPINTGUI
         {
             try
             {
-                dt = new ReadTable(_systemName.ToUpper().Trim());
+                SendMessage("开始");
+                dt = new ReadTable(_systemName);
+                dt.eventMessage += dt_eventMessage;
                 // dt.SetCustomFunctionName("Z_XTRACT_IS_TABLE");
                 dt.SetCustomFunctionName("Z_SAPINT_READ_TABLE2");
                 dt.TableName = _tableName;
@@ -116,13 +134,14 @@ namespace SAPINTGUI
                 //  dt.Fields.Clear();
                 // dt.Options.Clear();
                 //从界面上加载条件与字段列表
+                SendMessage("加载字段列表");
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     if (dataGridView1.Rows[i].Cells["FieldName"].Value != null)
                     {
-                        if (dataGridView1.Rows[i].Cells["Select"].Value != null)
+                        if (dataGridView1.Rows[i].Cells[0].Value != null)
                         {
-                            if ((bool)dataGridView1.Rows[i].Cells["Select"].Value == true)
+                            if ((bool)dataGridView1.Rows[i].Cells[0].Value == true)
                             {
                                 string s = dataGridView1.Rows[i].Cells["FieldName"].Value.ToString();
                                 if (!string.IsNullOrEmpty(s))
@@ -133,6 +152,7 @@ namespace SAPINTGUI
                         }
                     }
                 }
+                SendMessage("加载条件");
                 for (int i = 0; i < dataGridView2.Rows.Count; i++)
                 {
                     if (dataGridView2[0, i].Value != null)
@@ -145,15 +165,42 @@ namespace SAPINTGUI
                     }
                 }
                 dt.RowCount = Convert.ToInt32(rowNum.Text);
-                dt.Run();
-                ResultAsTable = dt.Result;
-                eventGetTable(this, ResultAsTable);
+                SendMessage("开始异步调用");
+                try
+                {
+                    Thread thread = new Thread(new ThreadStart(excute));
+                    thread.Start();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
 
             }
             catch (Exception ee)
             {
                 MessageBox.Show(ee.Message);
             }
+        }
+
+        private void excute()
+        {
+
+            dt.Run();
+            ResultAsTable = dt.Result;
+            if (EventGetTable != null)
+            {
+                EventGetTable(this, ResultAsTable);
+            }
+
+
+
+
+
+        }
+        void dt_eventMessage(string message)
+        {
+            SendMessage(message);
         }
         //保存当前的字段与条件到内存中。
         bool SaveFieldsAndOptiontoMemory(string TableName)
@@ -175,7 +222,7 @@ namespace SAPINTGUI
                 FieldName = item.Cells["FieldName"].Value == null ? "" : item.Cells["FieldName"].Value.ToString(),
                 FieldText = item.Cells["FieldText"].Value == null ? "" : item.Cells["FieldText"].Value.ToString(),
                 CheckTable = item.Cells["CheckTable"].Value == null ? "" : item.Cells["CheckTable"].Value.ToString(),
-                Active = item.Cells["Select"].Value == null ? false : (bool)item.Cells["Select"].Value
+                Active = item.Cells[0].Value == null ? false : (bool)item.Cells[0].Value
             });
                 }
             }
@@ -364,9 +411,9 @@ namespace SAPINTGUI
                 {
                     if (row.Cells["FieldName"].Value != null)
                     {
-                        if ((bool)row.Cells["Select"].Value == true)
+                        if ((bool)row.Cells[0].Value == true)
                         {
-                            row.Cells["Select"].Value = false;
+                            row.Cells[0].Value = false;
                         }
                     }
                 }
@@ -382,10 +429,14 @@ namespace SAPINTGUI
                 {
                     if (row.Cells["FieldName"].Value != null)
                     {
-                        if ((bool)row.Cells["Select"].Value == false)
+                        if (row.Cells[0].Value != null)
                         {
-                            row.Cells["Select"].Value = true;
+                            if ((bool)row.Cells[0].Value == false)
+                            {
+                                row.Cells[0].Value = true;
+                            }
                         }
+
                     }
                 }
             }
@@ -395,30 +446,6 @@ namespace SAPINTGUI
             SaveFieldsAndOptiontoMemory(this.txtTableName.Text.Trim().ToUpper());
         }
 
-        private void dataGridView2_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.Modifiers == Keys.Control)
-                {
-                    switch (e.KeyCode)
-                    {
-                        case Keys.C:
-                            //  CDataGridViewUtils.CopyToClipboard(dataGridView2);
-                            break;
-                        case Keys.V:
-                            // PasteClipboardValue(dgvBatchInput  ,false);
-                            CDataGridViewUtils.Paste(dataGridView2, "", 0, false);
-                            break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Copy/paste operation failed. " + ex.Message, "Copy/Paste", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
 
         public string _delimiter { get; set; }
 
@@ -426,7 +453,7 @@ namespace SAPINTGUI
         private void cbx_systemlist_SelectionChangeCommitted(object sender, EventArgs e)
         {
             this._systemName = cbx_systemlist.Text;
-            eventGetTable(this, null);
+            EventGetTable(this, null);
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

@@ -8,31 +8,6 @@
     using SAPINT.Function;
     using System.Collections.Generic;
 
-
-   public class CTADIR
-    {
-        public String PGMID { get; set; } // 请求和任务中的程序标识
-        public String OBJECT { get; set; } // 对象类型
-        public String OBJ_NAME { get; set; } // 对象目录中的对象名
-        public String KORRNUM { get; set; } // 升级请求/任务并包括版本 3.0
-        public String SRCSYSTEM { get; set; } // 对象的原始系统
-        public String AUTHOR { get; set; } // 仓库对象的负责人
-        public String SRCDEP { get; set; } // 开发对象的修复标志
-        public String DEVCLASS { get; set; } // 传输组织器的开发类
-        public String GENFLAG { get; set; } // 生成标志
-        public String EDTFLAG { get; set; } // 标志：对象仅可使用特定编辑器编辑
-        public String CPROJECT { get; set; } // 内部使用
-        public String MASTERLANG { get; set; } // 资源库对象中的原始语言
-        public String VERSID { get; set; } // 内部使用
-        public String PAKNOCHECK { get; set; } // Exception Indicator for Package Check
-        public String OBJSTABLTY { get; set; } // Release Status of a Development Object
-        public String COMPONENT { get; set; } // Software Component
-        public String CRELEASE { get; set; } // SAP R/3 版本
-        public String DELFLAG { get; set; } // Deletion Flag
-        public String TRANSLTTXT { get; set; } // Translate Technical Texts into Development Language
-    }
-
-
     public class ABAPCode : Component
     {
         private List<String> _code;
@@ -45,7 +20,7 @@
         public List<String> SourceCode { get; set; }
         //public List<String> ProgramList { get; set; }
 
-        public List<CTADIR> ProgramList = null;
+
         public ABAPCode()
         {
             this._code = new List<String>();
@@ -66,53 +41,67 @@
             }
         }
 
-        public List<CTADIR> SearchProgram(String searchTerm,String devClass)
+        public List<CTRDIR> SearchProgram(String searchTerm)
         {
             //if (String.IsNullOrEmpty(searchTerm))
             //{
             //    throw new SAPException(String.Format("{0} 不能为空",searchTerm));
             //}
-            SourceCode = new List<string>();
+            //SourceCode = new List<string>();
             //ProgramList = new List<string>();
-            
+
             try
             {
                 var destination = SAPDestination.GetDesByName(_sysName);
                 IRfcFunction function = destination.Repository.CreateFunction("Z_SAPINT_READ_PROGRAM");
                 function.SetValue("PROGRAMNAME", searchTerm);
-                function.SetValue("I_DEVCLASS", devClass);
+                // function.SetValue("I_OBJECT", objecType);
+                // function.SetValue("I_DEVCLASS", devClass);
                 function.Invoke(destination);
-               // IRfcTable source = function.GetTable("ET_PROGRAM");
-               // IRfcTable programlist = function.GetTable("ET_TADIR");
+                // IRfcTable source = function.GetTable("ET_PROGRAM");
+                // IRfcTable programlist = function.GetTable("ET_TADIR");
 
 
-                IRfcTable rfctable_TADIR = function.GetTable("ET_TADIR");
-                ProgramList = new List<CTADIR>();
-                // CTADIR _CTADIR;
-                for (int i = 0; i < rfctable_TADIR.RowCount; i++)
+                // IRfcTable rfctable_TADIR = function.GetTable("ET_TADIR");
+                // var dt = SAPINT.Function.SAPFunction.RfcTableToDataTable(rfctable_TADIR);
+                List<CTRDIR> _TRDIR_LIST = new List<CTRDIR>();
+                IRfcTable rfctable_TRDIR = function.GetTable("ET_TRDIR");
+
+                // CTRDIR _CTRDIR;
+                for (int i = 0; i < rfctable_TRDIR.RowCount; i++)
                 {
-                    var _Program = new CTADIR();
-                    _Program.PGMID = rfctable_TADIR[i].GetString("PGMID"); // PgID
-                    _Program.OBJECT = rfctable_TADIR[i].GetString("OBJECT"); // 对象
-                    _Program.OBJ_NAME = rfctable_TADIR[i].GetString("OBJ_NAME"); // 对象名
-                    _Program.KORRNUM = rfctable_TADIR[i].GetString("KORRNUM"); // 请求/任务 (版本 3.0)
-                    _Program.SRCSYSTEM = rfctable_TADIR[i].GetString("SRCSYSTEM"); // 初始状态
-                    _Program.AUTHOR = rfctable_TADIR[i].GetString("AUTHOR"); // 开发对象的负责人
-                    _Program.SRCDEP = rfctable_TADIR[i].GetString("SRCDEP"); // 修复标志
-                    _Program.DEVCLASS = rfctable_TADIR[i].GetString("DEVCLASS"); // 开发类
-                    _Program.GENFLAG = rfctable_TADIR[i].GetString("GENFLAG"); // 生成
-                    _Program.EDTFLAG = rfctable_TADIR[i].GetString("EDTFLAG"); // Edt.
-                    _Program.CPROJECT = rfctable_TADIR[i].GetString("CPROJECT"); // 内部使用
-                    _Program.MASTERLANG = rfctable_TADIR[i].GetString("MASTERLANG"); // L
-                    _Program.VERSID = rfctable_TADIR[i].GetString("VERSID"); // 版本号码
-                    _Program.PAKNOCHECK = rfctable_TADIR[i].GetString("PAKNOCHECK"); // Check exception
-                    _Program.OBJSTABLTY = rfctable_TADIR[i].GetString("OBJSTABLTY"); // Release
-                    _Program.COMPONENT = rfctable_TADIR[i].GetString("COMPONENT"); // Software Component
-                    _Program.CRELEASE = rfctable_TADIR[i].GetString("CRELEASE"); // 释放
-                    _Program.DELFLAG = rfctable_TADIR[i].GetString("DELFLAG"); // Object Deleted
-                    _Program.TRANSLTTXT = rfctable_TADIR[i].GetString("TRANSLTTXT"); // Translate
-                    ProgramList.Add(_Program);
-         
+                    var _TRDIR = new CTRDIR();
+                    _TRDIR.name = rfctable_TRDIR[i].GetString("NAME"); // Program
+                    _TRDIR.sqlx = rfctable_TRDIR[i].GetString("SQLX"); // 
+                    _TRDIR.edtx = rfctable_TRDIR[i].GetString("EDTX"); // 
+                    _TRDIR.varcl = rfctable_TRDIR[i].GetString("VARCL"); // 
+                    _TRDIR.dbapl = rfctable_TRDIR[i].GetString("DBAPL"); // 
+                    _TRDIR.dbna = rfctable_TRDIR[i].GetString("DBNA"); // 
+                    _TRDIR.clas = rfctable_TRDIR[i].GetString("CLAS"); // Class
+                    _TRDIR.type = rfctable_TRDIR[i].GetString("TYPE"); // Selection screen version
+                    _TRDIR.occurs = rfctable_TRDIR[i].GetString("OCCURS"); // 
+                    _TRDIR.subc = rfctable_TRDIR[i].GetString("SUBC"); // Prog. type
+                    _TRDIR.appl = rfctable_TRDIR[i].GetString("APPL"); // Appl.
+                    _TRDIR.secu = rfctable_TRDIR[i].GetString("SECU"); // 
+                    _TRDIR.cnam = rfctable_TRDIR[i].GetString("CNAM"); // Created By
+                    _TRDIR.cdat = rfctable_TRDIR[i].GetString("CDAT"); // Created on
+                    _TRDIR.unam = rfctable_TRDIR[i].GetString("UNAM"); // 
+                    _TRDIR.udat = rfctable_TRDIR[i].GetString("UDAT"); // Changed on
+                    _TRDIR.vern = rfctable_TRDIR[i].GetString("VERN"); // 
+                    _TRDIR.levl = rfctable_TRDIR[i].GetString("LEVL"); // 
+                    _TRDIR.rstat = rfctable_TRDIR[i].GetString("RSTAT"); // Program status
+                    _TRDIR.rmand = rfctable_TRDIR[i].GetString("RMAND"); // 
+                    _TRDIR.rload = rfctable_TRDIR[i].GetString("RLOAD"); // 
+                    _TRDIR.fixpt = rfctable_TRDIR[i].GetString("FIXPT"); // 
+                    _TRDIR.sset = rfctable_TRDIR[i].GetString("SSET"); // 
+                    _TRDIR.sdate = rfctable_TRDIR[i].GetString("SDATE"); // 
+                    _TRDIR.stime = rfctable_TRDIR[i].GetString("STIME"); // 
+                    _TRDIR.idate = rfctable_TRDIR[i].GetString("IDATE"); // 
+                    _TRDIR.itime = rfctable_TRDIR[i].GetString("ITIME"); // 
+                    _TRDIR.ldbname = rfctable_TRDIR[i].GetString("LDBNAME"); // LDB name
+                    _TRDIR.uccheck = rfctable_TRDIR[i].GetString("UCCHECK"); // Unicode checks
+                    _TRDIR_LIST.Add(_TRDIR);
+
                 }
 
                 //for (int i = 0; i < source.RowCount; i++)
@@ -126,7 +115,7 @@
                 //    programlist.CurrentIndex = i;
                 //    ProgramList.Add(programlist.GetString("OBJ_NAME"));
                 //}
-                return ProgramList;
+                return _TRDIR_LIST;
             }
             catch (RfcAbapException abapException)
             {
@@ -146,15 +135,16 @@
             }
             try
             {
-                
+
                 var destination = SAPDestination.GetDesByName(_sysName);
                 IRfcFunction function = destination.Repository.CreateFunction("Z_SAPINT_READ_PROGRAM");
                 function.SetValue("PROGRAMNAME", program);
+                //function.SetValue("I_OBJECT", objectType);
                 function.Invoke(destination);
-                IRfcTable programlist = function.GetTable("ET_TADIR");
+                IRfcTable programlist = function.GetTable("ET_TRDIR");
                 if (programlist.RowCount != 1)
                 {
-                    throw new SAPException("无法找到程序");
+                    // throw new SAPException("无法找到程序");
                 }
 
                 IRfcTable source = function.GetTable("ET_PROGRAM");
@@ -162,7 +152,7 @@
                 for (int i = 0; i < source.RowCount; i++)
                 {
                     source.CurrentIndex = i;
-                    
+
                     code.Add(source.GetString("ZEILE"));
                 }
 
@@ -177,6 +167,27 @@
 
                 throw;
             }
+        }
+        public String InstallAndRun(String CodeContent)
+        {
+
+            AddStringBlock(CodeContent);
+
+            var result = string.Empty;
+            if (InstallAndRun())
+            {
+                for (int i = 0; i < ResultLineCount; i++)
+                {
+                    result += GetResultLine(i) + "\r\n";
+                }
+            }
+            else
+            {
+                result = "ABAP Error: " + LastABAPSyntaxError;
+            }
+            return result;
+
+
         }
         public bool InstallAndRun()
         {
@@ -196,7 +207,7 @@
                 }
                 else
                 {
-                    
+
                     bool hasFunction = SAPFunction.CheckFunction(_sysName, "ZRFC_ABAP_INSTALL_AND_RUN");
                     if (hasFunction)
                     {
@@ -215,7 +226,7 @@
                 {
                     throw new SAPException("无法找到运行程序");
                 }
-                
+
                 IRfcTable table = function.GetTable("PROGRAM");
 
                 if (this._code.Count <= 1)
@@ -232,6 +243,10 @@
 
                 function.Invoke(_des);
             }
+            catch (RfcCommunicationException e)
+            {
+                throw new SAPException(e.Message);
+            }
             catch (RfcAbapException e)
             {
                 throw new SAPException(e.Key + e.Message);
@@ -241,7 +256,7 @@
             {
                 return false;
             }
-            
+
             IRfcTable table2 = function.GetTable("WRITES");
             for (int i = 0; i < table2.RowCount; i++)
             {
@@ -286,6 +301,16 @@
         public void AddCodeLine(string line)
         {
             this._code.Add(line);
+        }
+
+        public void AddStringBlock(String StringBlock)
+        {
+            ResetCode();
+            string[] lines = StringBlock.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            foreach (var item in lines)
+            {
+                AddCodeLine(item);
+            }
         }
     }
 }

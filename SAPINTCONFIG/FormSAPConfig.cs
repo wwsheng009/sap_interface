@@ -23,12 +23,10 @@ namespace ConfigFileTool
 
         public void loadConfigOptions()
         {
-            SAPGlobalSettings setting = new SAPGlobalSettings();
-
-            this.cbxDb.DataSource = setting.getDbConnectionList();
-
-            cbxSAPClient.DataSource = setting.getSAPClientList();
-            cbxSAPServer.DataSource = setting.getSAPServerList();
+          
+            this.cbxDb.DataSource = SAPGlobalSettings.getDbConnectionList();
+            cbxSAPClient.DataSource = SAPGlobalSettings.getSAPClientList();
+            cbxSAPServer.DataSource = SAPGlobalSettings.getSAPServerList();
 
 
 
@@ -59,6 +57,11 @@ namespace ConfigFileTool
         private void readConfig()
         {
             // SapDefaultSettingSection defaultSettingSection = (SapDefaultSettingSection)ConfigurationManager.GetSection("SAPDefaultSetting");
+            SAPGlobalSettings.reload();
+            this.cbxDb.DataSource = SAPGlobalSettings.getDbConnectionList();
+            cbxSAPClient.DataSource = SAPGlobalSettings.getSAPClientList();
+            cbxSAPServer.DataSource = SAPGlobalSettings.getSAPServerList();
+
             SapDefaultSettingSection defaultSettingSection = (SapDefaultSettingSection)SAPGlobalSettings.config.GetSection("SAPDefaultSetting");
             this.cbxSAPClient.Text = defaultSettingSection.DefaultSapClient;
             this.cbxDb.Text = defaultSettingSection.DefaultDb;

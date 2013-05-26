@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxSAPServer = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cbxDb = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cbxSAPClient = new System.Windows.Forms.ComboBox();
@@ -37,8 +39,6 @@
             this.btnWriteConfig = new System.Windows.Forms.Button();
             this.txtKeyValues = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbxSAPServer = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -53,10 +53,27 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(484, 103);
+            this.groupBox1.Size = new System.Drawing.Size(484, 75);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "默认设置";
+            // 
+            // cbxSAPServer
+            // 
+            this.cbxSAPServer.FormattingEnabled = true;
+            this.cbxSAPServer.Location = new System.Drawing.Point(95, 44);
+            this.cbxSAPServer.Name = "cbxSAPServer";
+            this.cbxSAPServer.Size = new System.Drawing.Size(143, 20);
+            this.cbxSAPServer.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 47);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 12);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "默认SAP服务器";
             // 
             // cbxDb
             // 
@@ -69,7 +86,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(259, 22);
+            this.label2.Location = new System.Drawing.Point(262, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 3;
@@ -78,15 +95,15 @@
             // cbxSAPClient
             // 
             this.cbxSAPClient.FormattingEnabled = true;
-            this.cbxSAPClient.Location = new System.Drawing.Point(117, 18);
+            this.cbxSAPClient.Location = new System.Drawing.Point(95, 18);
             this.cbxSAPClient.Name = "cbxSAPClient";
-            this.cbxSAPClient.Size = new System.Drawing.Size(121, 20);
+            this.cbxSAPClient.Size = new System.Drawing.Size(143, 20);
             this.cbxSAPClient.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 23);
+            this.label1.Location = new System.Drawing.Point(6, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 12);
             this.label1.TabIndex = 1;
@@ -120,7 +137,7 @@
             this.txtKeyValues.Multiline = true;
             this.txtKeyValues.Name = "txtKeyValues";
             this.txtKeyValues.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtKeyValues.Size = new System.Drawing.Size(478, 297);
+            this.txtKeyValues.Size = new System.Drawing.Size(478, 345);
             this.txtKeyValues.TabIndex = 4;
             // 
             // groupBox2
@@ -129,29 +146,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.txtKeyValues);
-            this.groupBox2.Location = new System.Drawing.Point(12, 141);
+            this.groupBox2.Location = new System.Drawing.Point(12, 93);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(484, 317);
+            this.groupBox2.Size = new System.Drawing.Size(484, 365);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "全局设置";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 12);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "默认SAP服务器";
-            // 
-            // cbxSAPServer
-            // 
-            this.cbxSAPServer.FormattingEnabled = true;
-            this.cbxSAPServer.Location = new System.Drawing.Point(117, 54);
-            this.cbxSAPServer.Name = "cbxSAPServer";
-            this.cbxSAPServer.Size = new System.Drawing.Size(121, 20);
-            this.cbxSAPServer.TabIndex = 6;
             // 
             // FormSAPConfig
             // 

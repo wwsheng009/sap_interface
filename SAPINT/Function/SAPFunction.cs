@@ -14,9 +14,22 @@
     using SAP.Middleware.Connector;
     using SAPINT.DbHelper;
     using SAPINT.Function.Meta;
+    using SAPINT.RFCTable;
     //与SAP间的接口。
+
+    public delegate void DeletgateSendMessage(string message);
+
     public static class SAPFunction
     {
+
+        public static event DeletgateSendMessage EventSendMessage;
+        public static void SendMessage(String message)
+        {
+            if (EventSendMessage != null)
+            {
+                EventSendMessage(message);
+            }
+        }
         #region Methods
 
         /// <summary>
@@ -31,7 +44,7 @@
         {
             try
             {
-                RfcFunctionMetadata MetaData = SAPFunctionMeta.getRfcFunctionMetadata(sysName, funame);
+                RfcFunctionMetadata MetaData = SAPFunctionMeta.GetRfcFunctionMetadata(sysName, funame);
                 IRfcFunction function = MetaData.CreateFunction();
                 //初步序列化后的参数还需要进一步进行格式化，把结构体与表格都转化成SAP格式。
                 if (input != null)
@@ -143,7 +156,8 @@
                             for (int s = 0; s < structure.Metadata.FieldCount; s++)
                             {
                                 RfcFieldMetadata field = structure.Metadata[s];
-                                object result = structure.GetObject(field.Name).ToString();
+                                object result = null;
+                                result = structure.GetString(field.Name);
                                 result = Converts.RfcToDoNetValue(result, field.DataType).ToString();
                                 stru.Add(field.Name, result.ToString());
                             }
@@ -167,7 +181,7 @@
                                 for (int z = 0; z < rfcTableLine.Metadata.FieldCount; z++)
                                 {
                                     RfcFieldMetadata field = rfcTableLine[z].Metadata;
-                                    Object result = rfcTableLine.GetObject(field.Name);
+                                    Object result = rfcTableLine.GetValue(field.Name);
                                     result = Converts.RfcToDoNetValue(result, field.DataType).ToString();
                                     row.Add(field.Name, result.ToString());
                                 }
@@ -178,7 +192,7 @@
                     }
                     else
                     {
-                        Object result = function.GetObject(pMetadata.Name);
+                        Object result = function.GetValue(pMetadata.Name);
                         result = Converts.RfcToDoNetValue(result, pMetadata.DataType);
                         outputlist.FieldValueList.Add(pMetadata.Name, result.ToString());
                     }
@@ -200,7 +214,7 @@
             try
             {
                 //RfcCustomDestination des = SAPDestination.GetDesByName("DM0_800").CreateCustomDestination();
-                RfcCustomDestination des = SAPDestination.GetDesByName(new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient()).CreateCustomDestination();
+                RfcCustomDestination des = SAPDestination.GetDesByName(ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient()).CreateCustomDestination();
                 // SAPBackupConfig config = new SAPBackupConfig();
                 //RfcConfigParameters paras =  config.GetParameters("DM0_800");
                 des.User = usname;
@@ -238,8 +252,8 @@
             }
             catch (RfcAbapException rfce)
             {
-                return false;
-              //  throw new SAPException(rfce.Key + rfce.Message);
+                //return false;
+                throw new SAPException(rfce.Key + rfce.Message);
             }
         }
         /// <summary>
@@ -295,8 +309,8 @@
                     RfcElementMetadata rfcEMD = rfcTable.GetElementMetadata(liElement);
                     //Console.WriteLine("Name:" + rfcEMD.Name);
                     //Console.WriteLine("DatType:" + rfcEMD.DataType);
-                    //Console.WriteLine("Object:" + row.GetObject(liElement));
-                    Object o = Converts.RfcToDoNetValue(row.GetObject(liElement), rfcEMD.DataType);
+                    //Console.WriteLine("Object:" + row.GetValue(liElement));
+                    Object o = Converts.RfcToDoNetValue(row.GetValue(liElement), rfcEMD.DataType);
                     if (String.IsNullOrWhiteSpace(o.ToString()))
                     {
                         o = "";
@@ -311,7 +325,7 @@
         }
 
 
-        public static DataTable SearchRfcFunctions(string sysName, string functionName,string functionGroup)
+        public static DataTable SearchRfcFunctions(string sysName, string functionName, string functionGroup)
         {
             try
             {
@@ -348,7 +362,7 @@
         /// <param name="sysName"></param>
         /// <param name="functionName"></param>
         /// <returns></returns>
-        public static bool GetRFCfunctionListAndSaveToSqliteDb(string sysName, string functionName)
+        public static bool GetRFCfunctionListAndSaveToDb(string sysName, string functionName)
         {
             try
             {
@@ -360,7 +374,12 @@
                 IRfcTable FUNCTIONS = RFC_FUNCTION_SEARCH.GetTable("FUNCTIONS");
                 if (FUNCTIONS.RowCount > 0)
                 {
+                    //保存结果到数据库。
 
+                    var _table = new SapTable(sysName, "RFC_FUNCTIONS", "RFCFUNC");
+                    _table.DbConnectionString = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
+                    _table.NewTable = true;
+                    _table.saveDataTable(SAPFunction.RfcTableToDataTable(FUNCTIONS));
                     // RfcTableToDb dbhelper = new RfcTableToDb("RFC_FUNCTIONS", "FUNCTIONS", FUNCTIONS);
                     //  dbhelper.saveTable();
                     //ThreadStart threadStart = new ThreadStart(dbhelper.saveTable);

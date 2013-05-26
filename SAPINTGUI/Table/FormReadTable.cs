@@ -6,10 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DgvFilterPopup;
 using SAPINTDB;
+using SAPINT.Utils;
+using SAPINT.RFCTable;
+using WeifenLuo.WinFormsUI.Docking;
+
 namespace SAPINTGUI
 {
-    public partial class FormReadTable : Form
+    public partial class FormReadTable : DockWindow
     {
         DataTable localdt = null;
         String SystemName = null;
@@ -18,29 +23,80 @@ namespace SAPINTGUI
         public FormReadTable()
         {
             InitializeComponent();
-            readTableControl1.eventGetTable += new GetSAPTable(readTableControl1_eventGetTable);
+            this.readTableControl1.EventMessage += readTableControl1_EventMessage;
+            this.readTableControl1.EventGetTable += readTableControl1_EventGetTable;
+
+            DgvFilterManager fm = new DgvFilterManager();
+            fm.ColumnFilterAdding += fm_ColumnFilterAdding;
+            fm.DataGridView = dataGridView1;
+
+            this.textboxLog.KeyDown += textboxLog_KeyDown;
         }
 
-        void readTableControl1_eventGetTable(ReadTableControl sender, DataTable resultdt)
+        void textboxLog_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.A && e.Control == true)
+            {
+                this.textboxLog.SelectAll();
+            }
+            //throw new NotImplementedException();
+        }
+
+        void readTableControl1_EventGetTable(ReadTableControl sender, DataTable resultdt)
+        {
+            if (resultdt == null)
+            {
+                return;
+            }
+            localdt = resultdt;
             this.SystemName = sender.SystemName;
             this.TableName = sender.TableName;
-
-            if (resultdt != null)
+            this.Text = "表：" + TableName;
+            if (this.dataGridView1.InvokeRequired)
             {
-                localdt = resultdt;
-                this.dataGridView1.DataSource = resultdt;
-                this.dataGridView1.AutoResizeColumns();
+                this.Invoke(new EventGetSAPTable(readTableControl1_EventGetTable), new object[] { sender, resultdt });
             }
+            else
+            {
+                if (chxNotShow.Checked)
+                {
+
+                }
+                else
+                {
+                    this.dataGridView1.DataSource = resultdt;
+                    this.dataGridView1.AutoResizeColumns();
+                }
+
+
+            }
+        }
+
+        void readTableControl1_EventMessage(string message)
+        {
+            if (this.textboxLog.InvokeRequired)
+            {
+                this.Invoke(new delegateMessage(readTableControl1_EventMessage), new object[] { message });
+            }
+            else
+            {
+                var m = DateTime.Now.ToLocalTime() + "==>" + message + "\r\n";
+                this.textboxLog.AppendText(m);
+            }
+        }
+
+        void fm_ColumnFilterAdding(object sender, ColumnFilterEventArgs e)
+        {
+            e.ColumnFilter = new DgvComboBoxColumnFilter();
         }
         private void button1_Click(object sender, EventArgs e)
         {
-           // readTableControl1.
+            // readTableControl1.
         }
 
         private void btnSaveToDb_Click(object sender, EventArgs e)
         {
-           // saveDataTableToDataBase();
+            // saveDataTableToDataBase();
             ShowSaveDataTableDialog();
         }
         private void ShowSaveDataTableDialog()
@@ -69,7 +125,7 @@ namespace SAPINTGUI
                         {
                             MessageBox.Show("保存失败！！！");
                         }
-                        
+
                     }
                     catch (Exception exception)
                     {
@@ -80,9 +136,5 @@ namespace SAPINTGUI
                 }
             }
         }
-
-      
-
-        
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI
+﻿namespace SAPINTGUI.Functions
 {
     partial class FormFunctionMetaJson
     {

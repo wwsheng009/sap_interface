@@ -4,11 +4,107 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data;
+using System.Text.RegularExpressions;
 namespace SAPINTGUI
 {
-    public class CDataGridViewUtils
+    public static class CDataGridViewUtils
     {
-        public static void HookDataGridView(DataGridView dgv)
+        public static void SearchDataGridView(this DataGridView dgv, string searchString = null)
+        {
+            if (string.IsNullOrEmpty(searchString))
+            {
+                FormSearchText form = new FormSearchText();
+                form.ShowDialog();
+                searchString = form.Result;
+            }
+            if (string.IsNullOrEmpty(searchString))
+            {
+                return;
+            }
+            if (dgv.Rows.Count == 0 || dgv.ColumnCount == 0)
+            {
+                return;
+            }
+            bool rowFound = false;
+
+            if (dgv.DataSource is DataTable)
+            {
+                var dt = dgv.DataSource as DataTable;
+                if (!dt.Columns.Contains("Match_Result"))
+                {
+                    dt.Columns.Add("Match_Result", typeof(String));
+                    dt.Columns["Match_Result"].SetOrdinal(0);
+                    dgv.DataSource = null;
+                    dgv.DataSource = dt;
+                }
+
+            }
+            else
+            {
+                if (!dgv.Columns.Contains("Match_Result"))
+                {
+                    DataGridViewCell cell = new DataGridViewTextBoxCell();
+                    DataGridViewColumn column = new DataGridViewColumn();
+                    column.CellTemplate = cell;
+                    column.Name = "Match_Result";
+                    column.ValueType = typeof(bool);
+
+                    dgv.Columns.Add(column);
+                    column.DisplayIndex = 0;
+
+                }
+
+            }
+
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                rowFound = false;
+                row.Cells["Match_Result"].Value = "";
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (rowFound == true)
+                    {
+                        continue;
+                    }
+                    if (cell.Value == null)
+                    {
+                        continue;
+                    }
+                    var value = cell.Value.ToString();
+
+                    if (Regex.IsMatch(value, searchString))
+                    {
+                        // cell.Style.ForeColor = System.Drawing.Color.Blue;
+                        rowFound = true;
+                        //cell.Style.BackColor = System.Drawing.Color.Black;
+                        break;
+                    }
+                    else
+                    {
+                        //  cell.Style.ForeColor = System.Drawing.Color.Black;
+                    }
+
+                }
+
+
+                if (rowFound == true)
+                {
+
+                    row.Cells["Match_Result"].Value = "match";
+
+                    row.Selected = true;
+                }
+                //else
+                //{
+                //    row.Cells["Match_Result"].Value = "";
+                //    //row.Cells["SearchResult"].Value = "UnMatch";
+                //}
+                // dgv.Sort(dgv.Columns["SearchResult"],System.ComponentModel.ListSortDirection.Ascending);
+            }
+            dgv.Refresh();
+        }
+
+        public static void CopyPasteDataGridView(DataGridView dgv)
         {
 
             dgv.KeyDown += dgv_KeyDown;
@@ -16,7 +112,7 @@ namespace SAPINTGUI
 
         static void dgv_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
             try
             {
                 if (e.Modifiers == Keys.Control)
@@ -47,6 +143,11 @@ namespace SAPINTGUI
                 {
                     if (row.Cells[1].Value != null)
                     {
+                        if (row.Cells[0].Value == DBNull.Value)
+                        {
+                            row.Cells[0].Value = false;
+                            continue;
+                        }
                         if ((bool)row.Cells[0].Value == true)
                         {
                             row.Cells[0].Value = false;
@@ -65,7 +166,18 @@ namespace SAPINTGUI
                 {
                     if (row.Cells[1].Value != null)
                     {
-                        if ((bool)row.Cells[0].Value == false)
+                        var value = row.Cells[0].Value;
+
+                        if (String.IsNullOrEmpty(value.ToString()))
+                        {
+                            row.Cells[0].Value = false;
+                        }
+                        if (value==DBNull.Value)
+                        {
+                            row.Cells[0].Value = true;
+                            continue;
+                        }
+                        if ((bool)value == false)
                         {
                             row.Cells[0].Value = true;
                         }

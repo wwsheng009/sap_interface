@@ -629,15 +629,15 @@
                     StatusVar4 = structure["STAPA4"].GetValue().ToString()
                 };
 
-                //注意要用GETOBJECT来获取原始值。
+                //注意要用GetValue来获取原始值。
 
                 //DateTime time = new DateTime(
-                //    Convert.ToInt32(structure["CREDAT"].GetObject().ToString().Substring(0, 4)),
-                //    Convert.ToInt32(structure["CREDAT"].GetObject().ToString().Substring(4, 2)),
-                //    Convert.ToInt32(structure["CREDAT"].GetObject().ToString().Substring(6, 2)),
-                //    Convert.ToInt32(structure["CRETIM"].GetObject().ToString().Substring(0, 2)),
-                //    Convert.ToInt32(structure["CRETIM"].GetObject().ToString().Substring(2, 2)),
-                //    Convert.ToInt32(structure["CRETIM"].GetObject().ToString().Substring(4, 2)));
+                //    Convert.ToInt32(structure["CREDAT"].GetValue().ToString().Substring(0, 4)),
+                //    Convert.ToInt32(structure["CREDAT"].GetValue().ToString().Substring(4, 2)),
+                //    Convert.ToInt32(structure["CREDAT"].GetValue().ToString().Substring(6, 2)),
+                //    Convert.ToInt32(structure["CRETIM"].GetValue().ToString().Substring(0, 2)),
+                //    Convert.ToInt32(structure["CRETIM"].GetValue().ToString().Substring(2, 2)),
+                //    Convert.ToInt32(structure["CRETIM"].GetValue().ToString().Substring(4, 2)));
                 //status.CreationDateTime = time;
                 status.CreationDate = structure["CREDAT"].GetValue().ToString();
                 status.CreationTime = structure["CRETIM"].GetValue().ToString();

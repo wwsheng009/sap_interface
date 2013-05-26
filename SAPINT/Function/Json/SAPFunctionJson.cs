@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using SAP.Middleware.Connector;
 using SAPINT.DbHelper;
 using SAPINT.Function.Meta;
+using SAPINT.RFCTable;
 
 namespace SAPINT.Function
 {
@@ -214,14 +215,20 @@ namespace SAPINT.Function
                     else if (pMetadata.DataType == RfcDataType.TABLE)
                     {
                         List<object> tb_list = new List<object>();
-                        IRfcTable tble = function.GetTable(pMetadata.Name);
-                        var readItems = tble.RowCount;
+                        IRfcTable table = function.GetTable(pMetadata.Name);
+                        var readItems = table.RowCount;
                         if (readItems > 0)
                         {
                             try
                             {
-                               // RfcTableToDb dbhelper = new RfcTableToDb(funame, d.Name, tble);
-                              //  dbhelper.saveTable();
+                                //保存结果到数据库。
+                                RfcTableMetadata tableMeta = pMetadata.ValueMetadataAsTableMetadata;
+                                var _table = new SapTable(sysName, funame + "_" + pMetadata.Name, tableMeta.LineType.Name);
+                                _table.DbConnectionString = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
+                                _table.NewTable = true;
+                                _table.saveDataTable(SAPFunction.RfcTableToDataTable(table));
+                                // RfcTableToDb dbhelper = new RfcTableToDb(funame, d.Name, tble);
+                                //  dbhelper.saveTable();
                             }
                             catch (Exception ee)
                             {
@@ -239,7 +246,7 @@ namespace SAPINT.Function
                         }
                         for (int rowc = 0; rowc < readItems; rowc++)
                         {
-                            IRfcStructure row = tble[rowc];
+                            IRfcStructure row = table[rowc];
                             Dictionary<string, object> rowd = new Dictionary<string, object>();
                             for (int x = 0; x < row.Metadata.FieldCount; x++)
                             {
@@ -297,7 +304,6 @@ namespace SAPINT.Function
                 RfcFunctionMetadata MetaData = destination.Repository.GetFunctionMetadata(funame);
                 IRfcFunction function = null;
                 function = MetaData.CreateFunction();
-
                 //根据参数的方向，分为四种（CHANGING,EXPORT,IMPORT,TABLES);
                 for (int i = 0; i < MetaData.ParameterCount; i++)
                 {
@@ -408,7 +414,8 @@ namespace SAPINT.Function
             catch (Exception ee)
             {
                 outJson = JsonConvert.SerializeObject(ee);
-                throw new SAPException(ee.Message);
+                //throw new SAPException(ee.Message);
+                return false;
             }
 
         }

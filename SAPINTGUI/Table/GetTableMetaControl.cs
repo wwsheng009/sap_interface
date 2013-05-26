@@ -13,22 +13,37 @@ using SAPINT;
 using SAPINT.Function;
 namespace SAPINTGUI
 {
-    public delegate void delegateGetTableInfo(DataTable dataTableInfo);
+    public delegate void DelegateGetTableInfo(GetTableMetaControl dataTableInfo);
     /// <summary>
     /// 用于获取一个表或结构的元数据，如长度，类型
     /// </summary>
     public partial class GetTableMetaControl : UserControl
     {
-        public event delegateGetTableInfo eventGetTableInfo;
+        public event DelegateGetTableInfo eventGetTableInfo;
         string _tableName = "";  //当前的表名
         List<TableInfo> tablelist;  //缓存列表
         private string _systemName;//连接的SAP系统的配置名称
         List<String> TitleList;
+        public DataTable DtMetaList = null;
+
+        public string TableName
+        {
+            get
+            {
+                return this._tableName;
+            }
+        }
         public GetTableMetaControl()
         {
             InitializeComponent();
             tablelist = new List<TableInfo>();
             TitleList = new List<string>();
+
+            new DgvFilterPopup.DgvFilterManager(this.dataGridView1);
+            new DgvFilterPopup.DgvFilterManager(this.dataGridView2);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dataGridView1);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dataGridView2);
+
         }
         private bool check()
         {
@@ -87,11 +102,11 @@ namespace SAPINTGUI
                     {
                         continue;
                     }
-                    
+
 
                     if ((Boolean)row.Cells[0].Value == true)
                     {
-                        search = true;  
+                        search = true;
                         String FieldName = (String)row.Cells[1].Value;
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
@@ -115,7 +130,7 @@ namespace SAPINTGUI
                 {
                     dt = dtnew;
                 }
-                
+
 
                 //  dt.AcceptChanges();
             }
@@ -239,10 +254,10 @@ namespace SAPINTGUI
         {
 
             String sysName = _systemName.ToUpper().Trim();
-            DataTable dtMetaList = SAPFunction.DDIF_FIELDINFO_GET(sysName, _tableName);
-            DeleteRows(ref dtMetaList);
-            DeleteColumn(ref dtMetaList);
-            eventGetTableInfo(dtMetaList);
+            DtMetaList = SAPFunction.DDIF_FIELDINFO_GET(sysName, _tableName);
+            DeleteRows(ref DtMetaList);
+            DeleteColumn(ref DtMetaList);
+            eventGetTableInfo(this);
             ////在当前激活的工作表上存放数据
             //ws = Globals.Factory.GetVstoObject(Globals.ThisAddIn.Application.ActiveWorkbook.ActiveSheet);
             //ListObject ls = null;

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SAPINTGUI.DataBase
 {
-    public partial class FormDataBase : Form
+    public partial class FormDataBase : DockWindow
     {
         public FormDataBase()
         {
@@ -20,7 +20,7 @@ namespace SAPINTGUI.DataBase
         DataTable dt;
         private void btnExcute_Click(object sender, EventArgs e)
         {
-            String dbName = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
+            String dbName = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
             dt = new DataTable();
             SAPINTDB.netlib7 dbhelper = new SAPINTDB.netlib7(dbName);
 
@@ -32,7 +32,7 @@ namespace SAPINTGUI.DataBase
 
         private void btnUpdateDb_Click(object sender, EventArgs e)
         {
-            String dbName = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
+            String dbName = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
             SAPINTDB.netlib7 dbhelper = new SAPINTDB.netlib7(dbName);
             dbhelper.DataTableUpdate(dt, this.syntaxBoxControl1.Document.Text);
             dt.AcceptChanges();

@@ -27,23 +27,32 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.chxNotShow = new System.Windows.Forms.CheckBox();
             this.btnSaveToDb = new System.Windows.Forms.Button();
             this.readTableControl1 = new SAPINTGUI.ReadTableControl();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textboxLog = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(429, 696);
+            this.dataGridView1.Size = new System.Drawing.Size(415, 664);
             this.dataGridView1.TabIndex = 1;
             // 
             // splitContainer1
@@ -54,15 +63,26 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.chxNotShow);
             this.splitContainer1.Panel1.Controls.Add(this.btnSaveToDb);
             this.splitContainer1.Panel1.Controls.Add(this.readTableControl1);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
             this.splitContainer1.Size = new System.Drawing.Size(710, 696);
             this.splitContainer1.SplitterDistance = 277;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // chxNotShow
+            // 
+            this.chxNotShow.AutoSize = true;
+            this.chxNotShow.Location = new System.Drawing.Point(191, 57);
+            this.chxNotShow.Name = "chxNotShow";
+            this.chxNotShow.Size = new System.Drawing.Size(60, 16);
+            this.chxNotShow.TabIndex = 2;
+            this.chxNotShow.Text = "不显示";
+            this.chxNotShow.UseVisualStyleBackColor = true;
             // 
             // btnSaveToDb
             // 
@@ -83,6 +103,49 @@
             this.readTableControl1.Size = new System.Drawing.Size(277, 696);
             this.readTableControl1.TabIndex = 0;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(429, 696);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(421, 670);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "表:";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.textboxLog);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(421, 670);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "日志:";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textboxLog
+            // 
+            this.textboxLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textboxLog.Location = new System.Drawing.Point(3, 3);
+            this.textboxLog.Multiline = true;
+            this.textboxLog.Name = "textboxLog";
+            this.textboxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textboxLog.Size = new System.Drawing.Size(415, 664);
+            this.textboxLog.TabIndex = 0;
+            // 
             // FormReadTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -93,9 +156,14 @@
             this.Text = "读取SAP表";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -104,5 +172,10 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button btnSaveToDb;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox textboxLog;
+        private System.Windows.Forms.CheckBox chxNotShow;
     }
 }

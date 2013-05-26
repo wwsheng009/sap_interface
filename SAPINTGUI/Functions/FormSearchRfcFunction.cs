@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SAPINTGUI.Functions
 {
-    public partial class FormSearchRfcFunction : Form
+    public partial class FormSearchRfcFunction : ToolWindow
     {
 
         BindingSource bs = new BindingSource();
@@ -17,8 +17,8 @@ namespace SAPINTGUI.Functions
         public FormSearchRfcFunction()
         {
             InitializeComponent();
-            this.cbxSapClientList.DataSource = new ConfigFileTool.SAPGlobalSettings().getSAPClientList();
-            this.cbxSapClientList.Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient();
+            this.cbxSapClientList.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            this.cbxSapClientList.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace SAPINTGUI.Functions
                 this.dataGridView1.DataSource = bs;
                 this.dataGridView1.AutoResizeColumns();
 
-                this.bindingNavigator1.BindingSource = bs;
+                //this.bindingNavigator1.BindingSource = bs;
 
                 this.txtRfcFunctionName.DataBindings.Clear();
                 this.txtRfcFunctionText.DataBindings.Clear();

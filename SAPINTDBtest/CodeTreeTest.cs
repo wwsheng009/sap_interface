@@ -18,7 +18,7 @@ namespace SAPINTDBtest
             {
                 CodeTree tree = new CodeTree();
                 tree.Text = "Top Folder " + i.ToString();
-                var ree = db.SaveTreeNode(tree);
+                var ree = db.SaveTree(tree);
 
                 for (int xx = 0; xx < 10; xx++)
                 {
@@ -35,7 +35,7 @@ namespace SAPINTDBtest
 
                     tree.Text = tree.Text + " Sub Folder " + x.ToString();
                     tree.ParentId = ree.Id;
-                    var treei = db.SaveTreeNode(tree);
+                    var treei = db.SaveTree(tree);
 
                     for (int j = 0; j < 10; j++)
                     {
@@ -60,7 +60,7 @@ namespace SAPINTDBtest
             codetree.Text = "Code";
             codetree.Type = "Document";
 
-            db.SaveTreeNode(codetree);
+            db.SaveTree(codetree);
         }
         [TestMethod]
         public void UpdateCodeTreeTest()
@@ -69,9 +69,9 @@ namespace SAPINTDBtest
             CodeTree codetree = db.GetTree("f8b46c02-90b5-4561-8de3-3973a8cefa4b");
             Assert.AreEqual(codetree.Id, "f8b46c02-90b5-4561-8de3-3973a8cefa4b");
             codetree.Text = "xxxxxxxx";
-            db.SaveTreeNode(codetree);
+            db.SaveTree(codetree);
             codetree.ParentId = "﻿﻿982e36e6-4f22-472d-9daf-e361bcfc55a7";
-            db.SaveTreeNode(codetree);
+            db.SaveTree(codetree);
             //CodeTree codetree2 = new SAPINTDB.CodeManager.CodeTree();
             //codetree.Text = "Code";
             //codetree.Type = "Document";

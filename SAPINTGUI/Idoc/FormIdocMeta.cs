@@ -11,7 +11,7 @@ using SAPINT.Idocs.Meta;
 
 namespace SAPINTGUI.Idoc
 {
-    public partial class FormIdocMeta : Form
+    public partial class FormIdocMeta : DockWindow
     {
         private SAPINT.Idocs.Idoc idoc = new SAPINT.Idocs.Idoc();
         private SAPINT.Idocs.Idoc idocNew = null;

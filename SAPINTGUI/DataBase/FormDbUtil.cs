@@ -9,14 +9,14 @@ using System.Windows.Forms;
 
 namespace SAPINTGUI.DataBase
 {
-    public partial class FormDbUtil : Form
+    public partial class FormDbUtil : DockWindow
     {
         public FormDbUtil()
         {
             InitializeComponent();
-            this.cbxDbConnection.DataSource = new ConfigFileTool.SAPGlobalSettings().getDbConnectionList();
-            this.cbxDbConnection.Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
-
+            this.cbxDbConnection.DataSource = ConfigFileTool.SAPGlobalSettings.getDbConnectionList();
+            this.cbxDbConnection.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
+            new DgvFilterPopup.DgvFilterManager(dataGridView2);
         }
 
         private void button1_Click(object sender, EventArgs e)

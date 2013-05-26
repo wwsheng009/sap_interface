@@ -23,7 +23,7 @@ namespace SAPINTGUI
 
           //  SAPINT.SapConfig.SAPConfigFromFile.LoadSAPAllConfig();
             SAPINT.SapConfig.SAPConfigFromFile.LoadSAPClientConfig();
-            Application.Run(new FormSAPToolBox());
+            Application.Run(new FormMain());
         }
     }
 }

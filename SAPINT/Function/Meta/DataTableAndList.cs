@@ -61,43 +61,56 @@ namespace SAPINT.Function.Meta
                 {
                     List<Dictionary<String, String>> tablelist = null;
                     outlist.TableValueList.TryGetValue(fieldName, out tablelist);
-                    if (tablelist == null || tablelist.Count == 0)
+                    if (tablelist == null )
                     {
                         continue;
                     }
-                    DataTable dtNew = new DataTable();
-                    Dictionary<String, String> line = tablelist[0];
-                    foreach (var item in line)
+                    if (tablelist.Count == 0)
                     {
-                        DataColumn dc = new DataColumn(item.Key, Type.GetType("System.String"));
-                        dtNew.Columns.Add(dc);
-                    }
-                    foreach (Dictionary<String, String> item in tablelist)
-                    {
-                        DataRow newRow = dtNew.NewRow();
-                        foreach (var structure in item)
+                        if (tableValueList.Keys.Contains(fieldName))
                         {
-                            newRow[structure.Key] = structure.Value;
+                            var lc_dt = tableValueList[fieldName];
+                            lc_dt.Clear();
+                            tableValueList[fieldName] = lc_dt;
                         }
-                        dtNew.Rows.Add(newRow);
-                    }
-                    if (tableValueList.Keys.Contains(fieldName))
-                    {
-                        tableValueList[fieldName] = dtNew;
                     }
                     else
                     {
-                        tableValueList.Add(fieldName, dtNew);
+                        DataTable dtNew = new DataTable();
+                        Dictionary<String, String> line = tablelist[0];
+                        foreach (var item in line)
+                        {
+                            DataColumn dc = new DataColumn(item.Key, Type.GetType("System.String"));
+                            dtNew.Columns.Add(dc);
+                        }
+                        foreach (Dictionary<String, String> item in tablelist)
+                        {
+                            DataRow newRow = dtNew.NewRow();
+                            foreach (var structure in item)
+                            {
+                                newRow[structure.Key] = structure.Value;
+                            }
+                            dtNew.Rows.Add(newRow);
+                        }
+                        if (tableValueList.Keys.Contains(fieldName))
+                        {
+                            tableValueList[fieldName] = dtNew;
+                        }
+                        else
+                        {
+                            tableValueList.Add(fieldName, dtNew);
+                        }
                     }
                     
+                    
                 }
-                else if(!String.IsNullOrEmpty(dataTypeName))
+                else //if(!String.IsNullOrEmpty(dataTypeName))
                 {
                     String value = null ;
                     outlist.FieldValueList.TryGetValue(fieldName, out value);
                     if (value !=null)
                     {
-                        row[fieldName] = value;
+                        row[FuncFieldText.DefaultValue] = value;
                     }
                     
                 }

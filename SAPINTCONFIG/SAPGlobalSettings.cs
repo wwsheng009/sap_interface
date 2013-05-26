@@ -5,15 +5,16 @@ using System.Text;
 using System.Configuration;
 using System.Collections;
 
+
 namespace ConfigFileTool
 {
-    public class SAPGlobalSettings
+    public static class SAPGlobalSettings
     {
-        private SapDefaultSettingSection defaultSettingSection = null;
+        private static SapDefaultSettingSection defaultSettingSection = null;
         private static String defaultconfigfilepath = "D:\\sapint.config";
         public static Configuration config { get; private set; }
 
-        public List<String> SapClientList
+        public static List<String> SapClientList
         {
             get { return getSAPClientList(); }
 
@@ -23,7 +24,7 @@ namespace ConfigFileTool
 
             config = ConfigurationManager.OpenMappedExeConfiguration(new ExeConfigurationFileMap() { ExeConfigFilename = defaultconfigfilepath }, ConfigurationUserLevel.None);
         }
-        public string GetDefaultSapCient()
+        public static string GetDefaultSapCient()
         {
 
             defaultSettingSection = (SapDefaultSettingSection)config.GetSection("SAPDefaultSetting");
@@ -38,7 +39,7 @@ namespace ConfigFileTool
             }
 
         }
-        public string GetDefultSAPServer()
+        public static string GetDefultSAPServer()
         {
             defaultSettingSection = (SapDefaultSettingSection)config.GetSection("SAPDefaultSetting");
             // defaultSettingSection = (SapDefaultSettingSection)ConfigurationManager.GetSection("SAPDefaultSetting");
@@ -51,7 +52,7 @@ namespace ConfigFileTool
                 return "";
             }
         }
-        public string GetDefaultDbConnection()
+        public static string GetDefaultDbConnection()
         {
 
             defaultSettingSection = (SapDefaultSettingSection)config.GetSection("SAPDefaultSetting");
@@ -65,21 +66,28 @@ namespace ConfigFileTool
 
         }
 
-        public string GetTemplateDb()
+        public static string GetCodeTemplateDb()
+        {
+
+            XmlKeyValueSection globalSettingSection = (XmlKeyValueSection)config.GetSection("GlobalSetting");
+            return globalSettingSection.KeyValues["CodeTemplate"].Value;
+        }
+
+        public static string GetCodeManagerDb()
         {
 
             XmlKeyValueSection globalSettingSection = (XmlKeyValueSection)config.GetSection("GlobalSetting");
             //XmlKeyValueSection globalSettingSection = (XmlKeyValueSection)System.Configuration.ConfigurationManager.GetSection("GlobalSetting");
-            return globalSettingSection.KeyValues["DefaultTemplateDb"].Value;
+            return globalSettingSection.KeyValues["CodeManagerDb"].Value;
         }
-        public string GetReadTableFunction()
+        public static string GetReadTableFunction()
         {
             XmlKeyValueSection globalSettingSection = (XmlKeyValueSection)config.GetSection("GlobalSetting");
             //XmlKeyValueSection globalSettingSection = (XmlKeyValueSection)System.Configuration.ConfigurationManager.GetSection("GlobalSetting");
             return globalSettingSection.KeyValues["DefaultReadTableFunction"].Value;
         }
 
-        public List<String> getSAPClientList()
+        public static List<String> getSAPClientList()
         {
             List<String> clientList = new List<string>();
 
@@ -97,7 +105,7 @@ namespace ConfigFileTool
             return clientList;
         }
 
-        public List<String> getSAPServerList()
+        public static List<String> getSAPServerList()
         {
             List<String> serverList = new List<string>();
             ConfigFileTool.SapConfig.RfcServerCollection sapserver = SAPClientServerSetting.getServerSettings();
@@ -115,20 +123,41 @@ namespace ConfigFileTool
 
         }
 
-        public List<String> getDbConnectionList()
+        public static List<String> getDbConnectionList()
         {
+
             List<String> dbList = new List<string>();
-            foreach (ConnectionStringSettings item in System.Configuration.ConfigurationManager.ConnectionStrings)
+
+
+            //foreach (ConnectionStringSettings item in System.Configuration.ConfigurationManager.ConnectionStrings)
+            //{
+            //    dbList.Add(item.Name);
+            //}
+            //return dbList;
+
+            ConnectionStringSettingsCollection connections = getConnectionStrings();
+            IEnumerator enumerator = connections.GetEnumerator();
+            while (enumerator.MoveNext())
             {
-                dbList.Add(item.Name);
+                ConnectionStringSettings current = (ConnectionStringSettings)enumerator.Current;
+                if (current.Name.StartsWith("V_"))
+                {
+                    dbList.Add(current.Name);
+                }
+                
             }
             return dbList;
         }
 
-        public ConnectionStringSettingsCollection getConnectionStrings()
+        public static ConnectionStringSettingsCollection getConnectionStrings()
         {
             ConnectionStringsSection connections = (ConnectionStringsSection)config.GetSection("connectionStrings");
             return connections.ConnectionStrings;
+        }
+
+        internal static void reload()
+        {
+            config = ConfigurationManager.OpenMappedExeConfiguration(new ExeConfigurationFileMap() { ExeConfigFilename = defaultconfigfilepath }, ConfigurationUserLevel.None);
         }
     }
 }

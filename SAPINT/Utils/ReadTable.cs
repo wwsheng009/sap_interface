@@ -10,6 +10,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    public delegate void delegateMessage(String message);
     public class ReadTable
     {
         private string _Delimiter;
@@ -39,60 +40,9 @@
         private ArrayList options;
         private OnPackageProgress PackageProgress;
         private DataTable t;
-        public event OnIncomingPackage onIncomingPackage
-        {
-            add
-            {
-                OnIncomingPackage package2;
-                OnIncomingPackage incomingPackage = this.IncomingPackage;
-                do
-                {
-                    package2 = incomingPackage;
-                    OnIncomingPackage package3 = (OnIncomingPackage)Delegate.Combine(package2, value);
-                    incomingPackage = Interlocked.CompareExchange<OnIncomingPackage>(ref this.IncomingPackage, package3, package2);
-                }
-                while (incomingPackage != package2);
-            }
-            remove
-            {
-                OnIncomingPackage package2;
-                OnIncomingPackage incomingPackage = this.IncomingPackage;
-                do
-                {
-                    package2 = incomingPackage;
-                    OnIncomingPackage package3 = (OnIncomingPackage)Delegate.Remove(package2, value);
-                    incomingPackage = Interlocked.CompareExchange<OnIncomingPackage>(ref this.IncomingPackage, package3, package2);
-                }
-                while (incomingPackage != package2);
-            }
-        }
-        public event OnPackageProgress onPackageProgress
-        {
-            add
-            {
-                OnPackageProgress progress2;
-                OnPackageProgress packageProgress = this.PackageProgress;
-                do
-                {
-                    progress2 = packageProgress;
-                    OnPackageProgress progress3 = (OnPackageProgress)Delegate.Combine(progress2, value);
-                    packageProgress = Interlocked.CompareExchange<OnPackageProgress>(ref this.PackageProgress, progress3, progress2);
-                }
-                while (packageProgress != progress2);
-            }
-            remove
-            {
-                OnPackageProgress progress2;
-                OnPackageProgress packageProgress = this.PackageProgress;
-                do
-                {
-                    progress2 = packageProgress;
-                    OnPackageProgress progress3 = (OnPackageProgress)Delegate.Remove(progress2, value);
-                    packageProgress = Interlocked.CompareExchange<OnPackageProgress>(ref this.PackageProgress, progress3, progress2);
-                }
-                while (packageProgress != progress2);
-            }
-        }
+
+
+        public event delegateMessage eventMessage;
         //public ReadTable()
         //{
         //    this.fields = new ArrayList();
@@ -161,6 +111,7 @@
         }
         private void ExecuteRFC_READ_TABLE(ref IRfcFunction f)
         {
+            SendMessage("开始调用RFC_READ_TABLE");
             if (this.BackgroundExtraction)
             {
                 f["ACTIONID"].SetValue("D");
@@ -194,7 +145,9 @@
             }
             try
             {
+                SendMessage("Invoke开始");
                 f.Invoke(des);
+                SendMessage("Invoke结束");
             }
             catch (RfcAbapException e)
             {
@@ -206,6 +159,7 @@
             {
                 throw new SAPException(ee.Key + ee.Message);
             }
+            SendMessage("调用RFC_READ_TABLE结束!");
         }
         private void InitWhereClause(ref IRfcTable toptions)
         {
@@ -319,12 +273,20 @@
         }
         private void ProcessRetrievdData(ref DataTable t, IRfcFunction f)
         {
+            SendMessage("开始解析数据");
             //this.con.Log("Enter ProcessRetrievdData; LastPrimaryKey=" + this._LastPrimaryKey);
             string str = "";
             IRfcTable table = f.GetTable("FIELDS");
-            for (int i = 0; i < f.GetTable("DATA").RowCount; i++)
+            var lines = f.GetTable("DATA").RowCount;
+            for (int i = 0; i < lines; i++)
             {
+
                 string str2 = (string)f.GetTable("DATA")[i].GetValue(0);
+                var ii = str2.Length;
+                var iii = ii > 20 ? 20 : ii;
+
+                SendMessage(string.Format("行:{0} 内容:{1}", i, str2.Substring(0, iii)));
+
                 str2 = str2.PadRight(f.GetTable("DATA").Metadata.LineType[0].NucLength);
                 string[] strArray = null;
                 if (this.UsePrimaryKeyPackaging)
@@ -361,7 +323,7 @@
                             else if (strArray.Length > j)
                             {
                                 String value = strArray[j];
-                               // value = value.TrimStart(' ').TrimEnd(' ');//去除前导零。
+                                // value = value.TrimStart(' ').TrimEnd(' ');//去除前导零。
                                 value = value.TrimEnd(' ');
                                 row[table[j].GetValue(0).ToString()] = value;
                             }
@@ -373,15 +335,15 @@
                         {
                             if (this._Delimiter.Equals(""))
                             {
-                               //// Console.WriteLine(str2.Length);
-                               // Console.WriteLine("OFFSET:" + table[k]["OFFSET"].GetValue().ToString());
-                               // Console.WriteLine("LENGTH:" + table[k]["LENGTH"].GetValue().ToString());
+                                //// Console.WriteLine(str2.Length);
+                                // Console.WriteLine("OFFSET:" + table[k]["OFFSET"].GetValue().ToString());
+                                // Console.WriteLine("LENGTH:" + table[k]["LENGTH"].GetValue().ToString());
                                 String value = str2.Substring(Convert.ToInt32(table[k]["OFFSET"].GetValue().ToString()), Convert.ToInt32(table[k]["LENGTH"].GetValue().ToString()));
                                 value = value.TrimEnd(' ');
                                 //Console.WriteLine(value);
                                 String type = table[k].GetValue("TYPE").ToString();
                                 //Console.WriteLine("TYPE:" + type);
-                                
+
                                 row[table[k][0].GetValue().ToString()] = Converts.RfcValueToObject(value, type);
                             }
                             else if (strArray.Length > k)
@@ -412,6 +374,7 @@
             {
                 this.PackageProgress(this, t.Rows.Count);
             }
+            SendMessage("解析数据完成");
         }
 
         public ReadTableFieldCollection GetAllFieldsOfTable()
@@ -465,184 +428,184 @@
         }
         public void Run()
         {
-            IRfcFunction function;
-            IRfcTable table2;
-            this._LastPrimaryKey = "";
-            this._FetchedRows = 0;
-            if ((this._RowCount == 0) && (this._PackageSize > 0))
+            try
             {
-                this._RowCount = 0x11d260c0;
-            }
-            this.anzahlaufrufe = 0;
-            if (this._FunctionName.Equals(""))
-            {
-                bool isUnicode = this.des.Repository.UnicodeEnabled;
-                // if (this.des.Codepage.ToString().Equals(""))
-                // {
-                //this.des.Repository.UnicodeEnabled = true;
-                // }
+
+
+                SendMessage("Run开始");
+                IRfcFunction function;
+                IRfcTable table2;
+                this._LastPrimaryKey = "";
+                this._FetchedRows = 0;
+                if ((this._RowCount == 0) && (this._PackageSize > 0))
+                {
+                    this._RowCount = 0x11d260c0;
+                }
+                this.anzahlaufrufe = 0;
+                if (this._FunctionName.Equals(""))
+                {
+                    bool isUnicode = this.des.Repository.UnicodeEnabled;
+
+                    if (this._UsePrimaryKeyPackaging)
+                    {
+                        throw new SAPException(Messages.Donotuseprimaykeypackagingwithoutacustomfunctionmodule);
+                        //throw new Exception("Donot use primaykey packaging without a custom function module");
+                    }
+
+                    function = des.Repository.CreateFunction("RFC_READ_TABLE");
+                }
+                else
+                {
+                    try
+                    {
+                        SendMessage("读取函数元数据" + _FunctionName);
+                        function = this.des.Repository.CreateFunction(this._FunctionName);
+                        SendMessage("读取函数元数据完成" + _FunctionName);
+                    }
+                    catch (RfcAbapException ee)
+                    {
+                        throw new SAPException(ee.Key + ee.Message);
+                    }
+                    IRfcTable table3 = function.GetTable("OPTIONS");
+                    table2 = function.GetTable("FIELDS");
+                    IRfcTable table = function.GetTable("DATA");
+                }
                 if (this._UsePrimaryKeyPackaging)
                 {
-                    throw new SAPException(Messages.Donotuseprimaykeypackagingwithoutacustomfunctionmodule);
-                    //throw new Exception("Donot use primaykey packaging without a custom function module");
-                }
-                // function = new RFCFunction(this.con, "RFC_READ_TABLE");
-                function = des.Repository.CreateFunction("RFC_READ_TABLE");
-                //function.Exports.Add("QUERY_TABLE", RfcDataType.CHAR, this.con.IsUnicode ? 60 : 30);
-                //function.Exports.Add("DELIMITER", RfcDataType.CHAR, this.con.IsUnicode ? 2 : 1);
-                //function.Exports.Add("ROWSKIPS", RfcDataType.INT, 4);
-                //function.Exports.Add("ROWCOUNT", RfcDataType.INT, 4);
-                //function.Tables.Add("DATA").Columns.Add("WA", this.con.IsUnicode ? 0x400 : 0x200, RfcDataType.CHAR);
-                //table2 = function.Tables.Add("FIELDS");
-                //table2.Columns.Add("FIELDNAME", this.con.IsUnicode ? 60 : 30, RfcDataType.CHAR);
-                //table2.Columns.Add("OFFSET", this.con.IsUnicode ? 12 : 6, RfcDataType.NUM);
-                //table2.Columns.Add("LENGTH", this.con.IsUnicode ? 12 : 6, RfcDataType.NUM);
-                //table2.Columns.Add("TYPE", this.con.IsUnicode ? 2 : 1, RfcDataType.CHAR);
-                //table2.Columns.Add("FIELDTEXT", this.con.IsUnicode ? 120 : 60, RfcDataType.CHAR);
-                //function.Tables.Add("OPTIONS").Columns.Add("TEXT", this.con.IsUnicode ? 0x90 : 0x48, RfcDataType.CHAR);
-                //this.con.IsUnicode = isUnicode;
-            }
-            else
-            {
-                try
-                {
-                    function = this.des.Repository.CreateFunction(this._FunctionName);
-                }
-                catch (RfcAbapException ee)
-                {
-                    throw new SAPException(ee.Key + ee.Message);
-                }
-                IRfcTable table3 = function.GetTable("OPTIONS");
-                table2 = function.GetTable("FIELDS");
-                IRfcTable table = function.GetTable("DATA");
-            }
-            if (this._UsePrimaryKeyPackaging)
-            {
-                this._PrimaryKeys.Clear();
-                IRfcFunction function2 = des.Repository.CreateFunction("DDIF_FIELDINFO_GET");//.GenerateFunctionObjectForDDIF_FIELDINFO_GET(this.con.IsUnicode);
-                //function2.Connection = this.con;
-                function2["TABNAME"].SetValue(this.TableName);
-                function2.Invoke(des);
-                foreach (IRfcStructure structure in function2.GetTable("DFIES_TAB").ToList())
-                {
-                    if (structure["KEYFLAG"].GetValue().ToString().Equals("X"))
+                    this._PrimaryKeys.Clear();
+                    IRfcFunction function2 = des.Repository.CreateFunction("DDIF_FIELDINFO_GET");//.GenerateFunctionObjectForDDIF_FIELDINFO_GET(this.con.IsUnicode);
+                    //function2.Connection = this.con;
+                    function2["TABNAME"].SetValue(this.TableName);
+                    function2.Invoke(des);
+                    foreach (IRfcStructure structure in function2.GetTable("DFIES_TAB").ToList())
                     {
-                        ReadTableField newParameter = new ReadTableField(structure["FIELDNAME"].GetValue().ToString(), Convert.ToInt32(structure["OUTPUTLEN"].GetValue()), "C", "", 0);
-                        this._PrimaryKeys.Add(newParameter);
-                        // this.con.Log("Primary key Add " + newParameter);
+                        if (structure["KEYFLAG"].GetValue().ToString().Equals("X"))
+                        {
+                            ReadTableField newParameter = new ReadTableField(structure["FIELDNAME"].GetValue().ToString(), Convert.ToInt32(structure["OUTPUTLEN"].GetValue()), "C", "", 0);
+                            this._PrimaryKeys.Add(newParameter);
+                            // this.con.Log("Primary key Add " + newParameter);
+                        }
                     }
                 }
-            }
-            if (this.UsePrimaryKeyPackaging)
-            {
-                for (int j = 0; j < this._PrimaryKeys.Count; j++)
+                if (this.UsePrimaryKeyPackaging)
                 {
-                    // table2.AddRow()["FIELDNAME"] = this._PrimaryKeys[j].FieldName;
+                    for (int j = 0; j < this._PrimaryKeys.Count; j++)
+                    {
+                        // table2.AddRow()["FIELDNAME"] = this._PrimaryKeys[j].FieldName;
+                        table2 = function.GetTable("FIELDS");
+                        table2.Append();
+                        table2.CurrentRow["FIELDNAME"].SetValue(this._PrimaryKeys[j].FieldName);
+                    }
+                    if (this.fields.Count == 0)
+                    {
+                        this.GetAllFieldsOfTable();
+                        for (int k = 0; k < this._Fields.Count; k++)
+                        {
+                            this.AddField(this._Fields[k].FieldName);
+                        }
+                    }
+                }
+                for (int i = 0; i < this.fields.Count; i++)
+                {
                     table2 = function.GetTable("FIELDS");
                     table2.Append();
-                    table2.CurrentRow["FIELDNAME"].SetValue(this._PrimaryKeys[j].FieldName);
+                    table2.CurrentRow["FIELDNAME"].SetValue(this.fields[i].ToString());
                 }
-                if (this.fields.Count == 0)
+                function["QUERY_TABLE"].SetValue(this.TableName);
+                if ((this._PackageSize > 0) && ((this._RowCount > this._PackageSize) || (this._RowCount == 0)))
                 {
-                    this.GetAllFieldsOfTable();
-                    for (int k = 0; k < this._Fields.Count; k++)
-                    {
-                        this.AddField(this._Fields[k].FieldName);
-                    }
+                    function["ROWCOUNT"].SetValue(this._PackageSize);
+                    function["ROWSKIPS"].SetValue(0);
                 }
-            }
-            for (int i = 0; i < this.fields.Count; i++)
-            {
-                //table2.AddRow()["FIELDNAME"] = this.fields[i].ToString();
-                table2 = function.GetTable("FIELDS");
-                table2.Append();
-                table2.CurrentRow["FIELDNAME"].SetValue(this.fields[i].ToString());
-            }
-            function["QUERY_TABLE"].SetValue(this.TableName);
-            if ((this._PackageSize > 0) && ((this._RowCount > this._PackageSize) || (this._RowCount == 0)))
-            {
-                function["ROWCOUNT"].SetValue(this._PackageSize);
-                function["ROWSKIPS"].SetValue(0);
-            }
-            else
-            {
-                function["ROWCOUNT"].SetValue(this._RowCount);
-                function["ROWSKIPS"].SetValue(this._RowSkip);
-            }
-            if (this.OHSExtraction)
-            {
-                function["ROWCOUNT"].SetValue(0);
-                function["ROWSKIPS"].SetValue(0);
-                this.OHSLastPackageNr = 1;
-                function["REQUESTID"].SetValue(this.OHSRequestID);
-                function["PACKETID"].SetValue(this.OHSLastPackageNr);
-            }
-            this.ExecuteRFC_READ_TABLE(ref function);
-            this.fields.Clear();
-            this.t = new DataTable();
-            this.t.BeginInit();
-            table2 = function.GetTable("FIELDS");
-            if (this.UsePrimaryKeyPackaging)
-            {
-                this._Fields.Clear();
-                for (int m = this._PrimaryKeys.Count; m < table2.RowCount; m++)
+                else
                 {
-                    IRfcStructure structure4 = table2[m];
-                    this.t.Columns.Add(table2[m][0].GetValue().ToString().Trim(), Type.GetType("System.String"));
-                    this._Fields.Add(new ReadTableField(structure4["FIELDNAME"].GetValue().ToString(), Convert.ToInt32(structure4["LENGTH"].GetValue()), structure4["TYPE"].GetValue().ToString(), structure4["FIELDTEXT"].GetValue().ToString(), 0));
+                    function["ROWCOUNT"].SetValue(this._RowCount);
+                    function["ROWSKIPS"].SetValue(this._RowSkip);
                 }
-            }
-            else
-            {
-                this._Fields.Clear();
-                for (int n = 0; n < table2.RowCount; n++)
-                {
-                    IRfcStructure structure5 = table2[n];
-                    this.t.Columns.Add(table2[n][0].GetValue().ToString().Trim(), Type.GetType("System.String"));
-                    this._Fields.Add(new ReadTableField(structure5["FIELDNAME"].GetValue().ToString(), Convert.ToInt32(structure5["LENGTH"].GetValue()), structure5["TYPE"].GetValue().ToString(), structure5["FIELDTEXT"].GetValue().ToString(), 0));
-                }
-            }
-            this.t.EndInit();
-            this.ProcessRetrievdData(ref this.t, function);
-            bool flag2 = false;
-            if ((this._PackageSize > 0) && (this._FetchedRows < this._RowCount))
-            {
-                flag2 = true;
-            }
-            while (flag2)
-            {
                 if (this.OHSExtraction)
                 {
                     function["ROWCOUNT"].SetValue(0);
                     function["ROWSKIPS"].SetValue(0);
-                    this.OHSLastPackageNr++;
+                    this.OHSLastPackageNr = 1;
                     function["REQUESTID"].SetValue(this.OHSRequestID);
                     function["PACKETID"].SetValue(this.OHSLastPackageNr);
                 }
-                else
+
+                this.ExecuteRFC_READ_TABLE(ref function);
+                this.fields.Clear();
+                this.t = new DataTable();
+                SendMessage("初始化DATATABLE开始");
+                this.t.BeginInit();
+                table2 = function.GetTable("FIELDS");
+                if (this.UsePrimaryKeyPackaging)
                 {
-                    function["ROWCOUNT"].SetValue(this.PackageSize);
-                    function["ROWSKIPS"].SetValue(this._FetchedRows);
-                    if ((this.RowCount > 0) && ((this._FetchedRows + this.PackageSize) > this.RowCount))
+                    this._Fields.Clear();
+                    for (int m = this._PrimaryKeys.Count; m < table2.RowCount; m++)
                     {
-                        function["ROWCOUNT"].SetValue(this.RowCount - this._FetchedRows);
+                        IRfcStructure structure4 = table2[m];
+                        this.t.Columns.Add(table2[m][0].GetValue().ToString().Trim(), Type.GetType("System.String"));
+                        this._Fields.Add(new ReadTableField(structure4["FIELDNAME"].GetValue().ToString(), Convert.ToInt32(structure4["LENGTH"].GetValue()), structure4["TYPE"].GetValue().ToString(), structure4["FIELDTEXT"].GetValue().ToString(), 0));
                     }
                 }
-                function.GetTable("DATA").Clear();
-                this.ExecuteRFC_READ_TABLE(ref function);
+                else
+                {
+                    this._Fields.Clear();
+                    for (int n = 0; n < table2.RowCount; n++)
+                    {
+                        IRfcStructure structure5 = table2[n];
+                        this.t.Columns.Add(table2[n][0].GetValue().ToString().Trim(), Type.GetType("System.String"));
+                        this._Fields.Add(new ReadTableField(structure5["FIELDNAME"].GetValue().ToString(), Convert.ToInt32(structure5["LENGTH"].GetValue()), structure5["TYPE"].GetValue().ToString(), structure5["FIELDTEXT"].GetValue().ToString(), 0));
+                    }
+                }
+                this.t.EndInit();
+                SendMessage("初始化DATATABLE结束");
                 this.ProcessRetrievdData(ref this.t, function);
-                if ((this._FetchedRows >= this._RowCount) && (this._RowCount > 0))
-                {
-                    flag2 = false;
-                }
-                if (function.GetTable("DATA").RowCount < this.PackageSize)
-                {
-                    flag2 = false;
-                }
-                if (this.OHSExtraction && (function.GetTable("DATA").RowCount > 0))
+                bool flag2 = false;
+                if ((this._PackageSize > 0) && (this._FetchedRows < this._RowCount))
                 {
                     flag2 = true;
                 }
+                while (flag2)
+                {
+                    if (this.OHSExtraction)
+                    {
+                        function["ROWCOUNT"].SetValue(0);
+                        function["ROWSKIPS"].SetValue(0);
+                        this.OHSLastPackageNr++;
+                        function["REQUESTID"].SetValue(this.OHSRequestID);
+                        function["PACKETID"].SetValue(this.OHSLastPackageNr);
+                    }
+                    else
+                    {
+                        function["ROWCOUNT"].SetValue(this.PackageSize);
+                        function["ROWSKIPS"].SetValue(this._FetchedRows);
+                        if ((this.RowCount > 0) && ((this._FetchedRows + this.PackageSize) > this.RowCount))
+                        {
+                            function["ROWCOUNT"].SetValue(this.RowCount - this._FetchedRows);
+                        }
+                    }
+                    function.GetTable("DATA").Clear();
+                    this.ExecuteRFC_READ_TABLE(ref function);
+                    this.ProcessRetrievdData(ref this.t, function);
+                    if ((this._FetchedRows >= this._RowCount) && (this._RowCount > 0))
+                    {
+                        flag2 = false;
+                    }
+                    if (function.GetTable("DATA").RowCount < this.PackageSize)
+                    {
+                        flag2 = false;
+                    }
+                    if (this.OHSExtraction && (function.GetTable("DATA").RowCount > 0))
+                    {
+                        flag2 = true;
+                    }
+                }
+                SendMessage("Run结束");
+            }
+            catch (Exception e)
+            {
+                SendMessage(e.Message);
+               // throw e;
             }
             //function.Tables["DATA"].Dispose();
         }
@@ -778,6 +741,14 @@
                 this._WhereClause = value;
             }
         }
+        private void SendMessage(String message)
+        {
+            if (this.eventMessage != null)
+            {
+                this.eventMessage(message);
+            }
+        }
+
         public delegate void OnIncomingPackage(ReadTable Sender, DataTable PackageResult);
         public delegate void OnPackageProgress(ReadTable Sender, int FetchedRows);
     }

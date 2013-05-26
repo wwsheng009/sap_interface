@@ -6,22 +6,23 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SAPINT.Idocs;
 
 namespace SAPINTGUI.Idoc
 {
-    public partial class FormCopyIdoc : Form
+    public partial class FormCopyIdoc : DockWindow
     {
 
-        SAPINTDB.IdocDb idocdb = null;
+        IdocDb idocdb = null;
 
         public FormCopyIdoc()
         {
             InitializeComponent();
-            this.cbxDbConnection.DataSource = new ConfigFileTool.SAPGlobalSettings().getDbConnectionList();
-            this.cbxDbConnection.Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
+            this.cbxDbConnection.DataSource = ConfigFileTool.SAPGlobalSettings.getDbConnectionList();
+            this.cbxDbConnection.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
 
-            this.cbxSapSystem.DataSource = new ConfigFileTool.SAPGlobalSettings().getSAPClientList();
-            this.cbxSapSystem.Text = new ConfigFileTool.SAPGlobalSettings().GetDefultSAPServer();
+            this.cbxSapSystem.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            this.cbxSapSystem.Text = ConfigFileTool.SAPGlobalSettings.GetDefultSAPServer();
 
         }
 
@@ -29,7 +30,7 @@ namespace SAPINTGUI.Idoc
         {
             try
             {
-                idocdb = new SAPINTDB.IdocDb(this.cbxDbConnection.Text);
+                idocdb = new IdocDb(this.cbxDbConnection.Text);
                 idocdb.AppendTodb = checkboxAppend.Checked;
                 idocdb.CopyIdocFromSAP(this.txtIdocNumber.Text, this.cbxSapSystem.Text);
                 MessageBox.Show("保存成功！");
@@ -49,7 +50,7 @@ namespace SAPINTGUI.Idoc
             {
                 if (idocdb == null)
                 {
-                    idocdb = new SAPINTDB.IdocDb(this.cbxDbConnection.Text);
+                    idocdb = new IdocDb(this.cbxDbConnection.Text);
                 }
                 else
                 {

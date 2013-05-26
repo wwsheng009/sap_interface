@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SAPINTGUI.Idoc
 {
-    public partial class FormIdocUtil : Form
+    public partial class FormIdocUtil : DockWindow
     {
         public FormIdocUtil()
         {
@@ -19,7 +19,7 @@ namespace SAPINTGUI.Idoc
 
         private void btnReadIdocFromDb_Click(object sender, EventArgs e)
         {
-            String dbName = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
+            String dbName = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
             dt = new DataTable();
             SAPINTDB.netlib7 dbhelper = new SAPINTDB.netlib7(dbName);
 

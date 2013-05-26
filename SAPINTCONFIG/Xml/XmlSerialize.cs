@@ -221,7 +221,7 @@ namespace ConfigFileTool.Xml
                 // Create a TextReader to read the file. 
                 using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
                 {
-                    TextReader reader = new StreamReader(fs);
+                    TextReader reader = new StreamReader(fs, Encoding.Default);
                     // Declare an object variable of the type to be deserialized.
                     // Use the Deserialize method to restore the object's state.
                     obj = serializer.Deserialize(reader);

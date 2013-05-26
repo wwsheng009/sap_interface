@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SAPINT.Function.Json;
-namespace SAPINTGUI
+namespace SAPINTGUI.Functions
 {
-    public partial class FormFunctionMetaJson : Form
+    public partial class FormFunctionMetaJson : DockWindow
     {
         string _funcName = "";  //当前的函数名
         private string _systemName;//连接的SAP系统的配置名称

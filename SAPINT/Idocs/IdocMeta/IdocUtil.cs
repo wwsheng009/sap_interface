@@ -19,7 +19,7 @@ namespace SAPINT.Idocs.Meta
 
         public IdocUtil()
         {
-            SystemName = new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient();
+            SystemName = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
         }
         public IdocUtil(String psysName)
         {
@@ -41,7 +41,7 @@ namespace SAPINT.Idocs.Meta
             idocNumber = idocNumber.TrimStart('0');
             String criteria = idocNumber.PadLeft(16, '0');
             criteria = String.Format("DOCNUM = '{0}'", criteria);
-            String readTableFunction = new ConfigFileTool.SAPGlobalSettings().GetReadTableFunction();
+            String readTableFunction = ConfigFileTool.SAPGlobalSettings.GetReadTableFunction();
 
             idocReadItem = new Utils.ReadTable(SystemName);
             idocReadItem.TableName = "EDID4";

@@ -1,4 +1,4 @@
-using System;
+锘縰sing System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace SAPINT
     using System.Runtime.InteropServices;
     using System.Text;
     using System.Text.RegularExpressions;
-   // using System.Windows.Forms;
+    // using System.Windows.Forms;
     using System.Xml;
     internal class Converts
     {
@@ -1277,7 +1277,7 @@ namespace SAPINT
                     input = input.ToString().Replace("/", "");
                     if (input.ToString() != "" && input.ToString().Length != 8)
                     {
-                        throw new SAPException(input.ToString() + " 日期格式不正确");
+                        throw new SAPException(input.ToString() + " 锟斤拷锟节革拷式锟斤拷锟斤拷确");
                     }
                     break;
                 case RfcDataType.DECF16:
@@ -1336,7 +1336,7 @@ namespace SAPINT
                     input = input.ToString().Replace(":", "");
                     if (input.ToString() != "" && input.ToString().Length != 6)
                     {
-                        throw new SAPException("时间格式不正确！");
+                        throw new SAPException("时锟斤拷锟斤拷式锟斤拷锟斤拷确锟斤拷");
                     }
                     break;
                 case RfcDataType.TMINUTE:
@@ -1365,9 +1365,9 @@ namespace SAPINT
                 return null;
             }
             String value = rfcValue;
-            //不要尝试在这里支除空白，因为有的点值的确为空。
-           // value = value.TrimStart(' ').TrimEnd(' ');
-           // value.Trim();
+            //锟斤拷要锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷支锟斤拷锟秸白ｏ拷锟斤拷为锟叫的碉拷值锟斤拷确为锟秸★拷
+            // value = value.TrimStart(' ').TrimEnd(' ');
+            // value.Trim();
             Object o = value;
             int iout = 0;
             switch (rfcValueType)
@@ -1439,7 +1439,7 @@ namespace SAPINT
         public static object RfcToDoNetValue(Object output, RfcDataType type)
         {
             Object o = output;
-            if (o==null)
+            if (o == null)
             {
                 o = "";
                 output = "";
@@ -1453,7 +1453,7 @@ namespace SAPINT
                         o = 0;
                         break;
                     }
-                    o = int.Parse(output.ToString());
+                    o = double.Parse(output.ToString());
                     break;
                 case RfcDataType.BYTE:
                     if (o.ToString() == "")
@@ -1470,14 +1470,14 @@ namespace SAPINT
                 case RfcDataType.CLASS:
                     break;
                 case RfcDataType.DATE:
-                    if (o.ToString()=="00000000")
+                    if (o.ToString() == "00000000")
                     {
                         o = "";
                     }
                     else
                     {
-                      //  o = o.ToString().Replace("-","");
-                      //  o = o.ToString().Substring(0, 4) + "-" + o.ToString().Substring(4, 2) + "-" + o.ToString().Substring(6, 2);
+                        //  o = o.ToString().Replace("-","");
+                        //  o = o.ToString().Substring(0, 4) + "-" + o.ToString().Substring(4, 2) + "-" + o.ToString().Substring(6, 2);
                     }
                     break;
                 case RfcDataType.DECF16:
@@ -1531,7 +1531,7 @@ namespace SAPINT
                     o = int.Parse(output.ToString());
                     break;
                 case RfcDataType.NUM:
-                    
+
                     if (output == null)
                     {
                         o = 0;
@@ -1544,9 +1544,9 @@ namespace SAPINT
                     {
                         int.TryParse(output.ToString(), out iout);
                         o = iout;
-                        
+
                     }
-                    
+
                     break;
                 case RfcDataType.STRING:
                     break;
@@ -1641,7 +1641,8 @@ namespace SAPINT
         public static string LanguageSapToIso(string language)
         {
             string ISO = "EN";
-            switch(language) {
+            switch (language)
+            {
                 case "e":
                     ISO = "EN";
                     break;

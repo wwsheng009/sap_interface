@@ -11,7 +11,11 @@ using DapperExtensions.Sql;
 
 namespace SAPINTDB.CodeManager
 {
-
+    //这里使用了Dapper-Extensions ORM框架
+    //1.类CodeVersion对应数据库中的表CodeVersion
+    //2.类CodeIndex对应数据库表CodeIndex
+    //3.类CodeTree对应数据库表CodeTree
+    //4.类Code对应数据库表Code
     public class CodeVersion
     {
         public string Id { get; set; }
@@ -34,7 +38,7 @@ namespace SAPINTDB.CodeManager
     public class CodeIndex
     {
         public string Id { get; set; }
-        public string CodeId { get; set; }
+       // public string CodeId { get; set; }
         //public string Title { get; set; }
         public string Content { get; set; }
         //public string Version { get; set; }
@@ -46,7 +50,12 @@ namespace SAPINTDB.CodeManager
         }
     }
 
-
+    /// <summary>
+    /// Mapper类定义了字段映射关系。
+    /// Ignore()方法会通知框架忽略映射此字段到数据库表。
+    /// AutoMap()映射类字段到同名的数据库表字段。
+    /// 
+    /// </summary>
     public class CodeTreeMapper : ClassMapper<CodeTree>
     {
         public CodeTreeMapper()
@@ -80,7 +89,9 @@ namespace SAPINTDB.CodeManager
     }
 
     public enum CodeType { Document, Folder }
-
+    /// <summary>
+    /// 定义类和同名数据库表之间字段的映射关系。
+    /// </summary>
     public class CodeMapper : ClassMapper<Code>
     {
         public CodeMapper()

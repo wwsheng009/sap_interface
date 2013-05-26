@@ -10,8 +10,8 @@ namespace SAPINTDBtest
         [TestMethod]
         public void TestMethod1()
         {
-            SAPINTGUI.AbapCode.FormImportFile frm = new SAPINTGUI.AbapCode.FormImportFile();
-            frm.Show();
+            //SAPINTGUI.CodeManager.FormImportFile frm = new SAPINTGUI.CodeManager.FormImportFile();
+            //frm.Show();
         }
     }
 }

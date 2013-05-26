@@ -9,11 +9,12 @@ using System.Windows.Forms;
 using System.Threading;
 using SAPINT.Function;
 using SAPINTDB;
+using SAPINT.RFCTable;
 namespace SAPINTGUI
 {
     public delegate void SetPreviewResult(SAPINT.Function.FunctionCopyTable sender, DataTable dt);
 
-    public partial class FormCopyTable : Form
+    public partial class FormCopyTable : DockWindow
     {
         log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -128,24 +129,24 @@ namespace SAPINTGUI
                 if (item.Cells["dgvTableName"].Value != null)
                 {
                     String table = item.Cells["dgvTableName"].Value.ToString();
-                    String result = "";
-                    if (item.Cells["dgvResult"].Value != null)
-                    {
-                        result = item.Cells["dgvResult"].Value.ToString();
-                    }
-                    if (result == "Copied")
-                    {
-                        continue;
-                    }
+                    //String result = "";
+                    //if (item.Cells["dgvResult"].Value != null)
+                    //{
+                    //    result = item.Cells["dgvResult"].Value.ToString();
+                    //}
+                    //if (result == "Copied")
+                    //{
+                    //    continue;
+                    //}
                     if (!String.IsNullOrWhiteSpace(table))
                     {
                         SourceTableName = table;
                         TargetTableName = table;
                         try
                         {
-                            batchRun();
-                            //Thread thread = new Thread(batchRun);
-                            //thread.Start();
+                            //batchRun();
+                            Thread thread = new Thread(batchRun);
+                            thread.Start();
                         }
                         catch (Exception ee)
                         {
@@ -223,7 +224,6 @@ namespace SAPINTGUI
                     funcCopyTable = new SAPINT.Function.FunctionCopyTable();
                     funcCopyTable.eventCopied += new delegateCopyFinished(funcCopyTable_eventReadTableDone);
                 }
-                ;
                 funcCopyTable.SetCondition(getCondition());
                 funcCopyTable.RowCount = this.RowCount;
                 funcCopyTable.Delimiter = Delimeter;
@@ -411,5 +411,6 @@ namespace SAPINTGUI
         public string ImportDelimiter { get; set; }
 
         public bool IsBatchRunnig { get; set; }
+
     }
 }

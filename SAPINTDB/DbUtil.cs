@@ -7,12 +7,15 @@ using System.Text;
 
 namespace SAPINTDB
 {
+    /// <summary>
+    /// 主要读取数据库的架构信息，如视图，数据库表清单
+    /// </summary>
     public class DbUtil
     {
         private netlib7 db2 = null;
 
         public DbUtil() {
-            String defaultConnection = new ConfigFileTool.SAPGlobalSettings().GetDefaultDbConnection();
+            String defaultConnection = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
             db2 = new netlib7(defaultConnection);
             
         }
@@ -50,6 +53,11 @@ namespace SAPINTDB
             
             return dt;
         }
+        /// <summary>
+        /// 输入架构名称，返回架构清单。
+        /// </summary>
+        /// <param name="CollectionName"></param>
+        /// <returns></returns>
         public DataTable getCollection(String CollectionName)
         {
             DataTable dt = null;

@@ -120,8 +120,8 @@ namespace ExcelAddIn1
 
         private void btFuncMeta_Click(object sender, RibbonControlEventArgs e)
         {
-            SAPINTGUI.FormFunctionMetaEx formFunctionMetaEx = new SAPINTGUI.FormFunctionMetaEx();
-            formFunctionMetaEx.Show();
+           // SAPINTGUI.FormFunctionMetaEx formFunctionMetaEx = new SAPINTGUI.FormFunctionMetaEx();
+           // formFunctionMetaEx.Show();
             //FormFunctionMeta formFunctionMeta = new FormFunctionMeta();
             //formFunctionMeta.Show();
         }

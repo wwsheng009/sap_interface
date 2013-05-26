@@ -5,7 +5,6 @@ using System.Text;
 using System.Data;
 namespace SAPINT.Function.Meta
 {
-
     /// <summary>
     /// 描述RFC函数中的一个参数。
     /// </summary>

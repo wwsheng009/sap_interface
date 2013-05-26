@@ -20,10 +20,11 @@ namespace SAPINT.Controls
         protected override void InitLayout()
         {
             base.InitLayout();
-            Items.Clear();
-            var list = new ConfigFileTool.SAPGlobalSettings().SapClientList;
-            list.ForEach(x => Items.Add(x));
-            Text = new ConfigFileTool.SAPGlobalSettings().GetDefaultSapCient();
+            DataSource = null;
+            DataSource = ConfigFileTool.SAPGlobalSettings.SapClientList;
+            //var list = ConfigFileTool.SAPGlobalSettings.SapClientList;
+            //list.ForEach(x => Items.Add(x));
+            Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
 
         }
 

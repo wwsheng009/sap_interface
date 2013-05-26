@@ -12,15 +12,16 @@ using SAPINT.Function.Json;
 using SAPINT;
 using SAPINTGUI.Idoc;
 using System.Threading;
+using WeifenLuo.WinFormsUI.Docking;
+using SAPINTGUI.Functions;
 namespace SAPINTGUI
 {
-    public partial class FormSAPToolBox : Form
+    public partial class FormSAPToolBox : DockWindow
     {
         public FormSAPToolBox()
         {
             InitializeComponent();
             
-
 
         }
         private void button3_Click(object sender, EventArgs e)
@@ -138,31 +139,31 @@ namespace SAPINTGUI
 
         private void btnCodeEditor_Click(object sender, EventArgs e)
         {
-            AbapCode.FormCodeEditor frm = new AbapCode.FormCodeEditor();
+            CodeManager.FormCodeEditor frm = new CodeManager.FormCodeEditor();
             frm.Show();
         }
 
         private void btnCodeManager_Click(object sender, EventArgs e)
         {
-            AbapCode.FormCodeManager frm = new AbapCode.FormCodeManager();
+            CodeManager.FormCodeManager frm = new CodeManager.FormCodeManager();
             frm.Show();
         }
 
         private void btnImportFile_Click(object sender, EventArgs e)
         {
-            AbapCode.FormImportFile frm = new AbapCode.FormImportFile();
+            CodeManager.FormImportFile frm = new CodeManager.FormImportFile();
             frm.Show();
         }
 
         private void btnLoadSapProgram_Click(object sender, EventArgs e)
         {
-            AbapCode.FormImporSapProgram frm = new AbapCode.FormImporSapProgram();
+            CodeManager.FormImporSapProgram frm = new CodeManager.FormImporSapProgram();
             frm.Show();
         }
 
         private void btnCodeSearch_Click(object sender, EventArgs e)
         {
-            AbapCode.FormCodeSearch frm = new AbapCode.FormCodeSearch();
+            CodeManager.FormCodeSearch frm = new CodeManager.FormCodeSearch();
             frm.Show();
         }
     }

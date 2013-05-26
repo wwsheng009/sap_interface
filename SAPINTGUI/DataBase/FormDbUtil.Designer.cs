@@ -45,7 +45,7 @@
             // 
             // btnGetSchema
             // 
-            this.btnGetSchema.Location = new System.Drawing.Point(221, 11);
+            this.btnGetSchema.Location = new System.Drawing.Point(188, 9);
             this.btnGetSchema.Name = "btnGetSchema";
             this.btnGetSchema.Size = new System.Drawing.Size(106, 23);
             this.btnGetSchema.TabIndex = 0;
@@ -60,13 +60,13 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(266, 426);
+            this.dataGridView1.Size = new System.Drawing.Size(266, 441);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // btnGetCollection
             // 
-            this.btnGetCollection.Location = new System.Drawing.Point(560, 11);
+            this.btnGetCollection.Location = new System.Drawing.Point(479, 8);
             this.btnGetCollection.Name = "btnGetCollection";
             this.btnGetCollection.Size = new System.Drawing.Size(75, 23);
             this.btnGetCollection.TabIndex = 2;
@@ -76,7 +76,7 @@
             // 
             // txtCollectionName
             // 
-            this.txtCollectionName.Location = new System.Drawing.Point(381, 11);
+            this.txtCollectionName.Location = new System.Drawing.Point(300, 9);
             this.txtCollectionName.Name = "txtCollectionName";
             this.txtCollectionName.Size = new System.Drawing.Size(173, 21);
             this.txtCollectionName.TabIndex = 3;
@@ -88,7 +88,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(529, 426);
+            this.dataGridView2.Size = new System.Drawing.Size(529, 441);
             this.dataGridView2.TabIndex = 4;
             // 
             // cbxDbConnection
@@ -104,7 +104,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(13, 53);
+            this.splitContainer1.Location = new System.Drawing.Point(13, 38);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -114,7 +114,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView2);
-            this.splitContainer1.Size = new System.Drawing.Size(799, 426);
+            this.splitContainer1.Size = new System.Drawing.Size(799, 441);
             this.splitContainer1.SplitterDistance = 266;
             this.splitContainer1.TabIndex = 6;
             // 
@@ -129,7 +129,7 @@
             this.Controls.Add(this.btnGetCollection);
             this.Controls.Add(this.btnGetSchema);
             this.Name = "FormDbUtil";
-            this.Text = "FormDbUtil";
+            this.Text = "数据库工具";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
