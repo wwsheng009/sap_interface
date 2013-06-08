@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SAPINTDB", "SAPINTDB", "{D3FA4E6D-C21E-4010-9EA6-3ADDA06B6BEA}"
+	ProjectSection(SolutionItems) = preProject
+		SAPINTWCF\MvcApplication1\log4net.config = SAPINTWCF\MvcApplication1\log4net.config
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAPINTGUI", "SAPINTGUI\SAPINTGUI.csproj", "{781633CD-6E7B-40F1-8FAC-2BBB11C9F623}"
 EndProject
@@ -13,17 +16,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigFileTool", "SAPINTCON
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniServer", "SAPINTSERVER\MiniServer\MiniServer.csproj", "{1BCAE8C6-0B2F-4146-B21A-1C84CE13D2AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelSAPAddIn", "SAPINTExcelAddIn\ExcelSAPAddIn.csproj", "{EC08F825-6331-46A0-BF57-4BD35405370C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAPINTDBtest", "SAPINTDBtest\SAPINTDBtest.csproj", "{27A58C6D-A3BD-421D-A008-38EC727C5E3B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D7987ABC-1459-422C-BC98-1BB9667AF5A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{DC97CBF1-34E3-45EB-BDDD-49978EC0CDBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockSample", "D:\wangws_net\开源项目\dockpanelsuite-master\DockSample\DockSample.csproj", "{40793A27-478B-4357-B4C3-FC8943131F3D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApplication1", "SAPINTWCF\MvcApplication1\MvcApplication1.csproj", "{E1667E6B-AEAE-4A5E-97AE-AE129F720900}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Office", "Office", "{DE531879-4C23-4050-B53D-5515349BEC5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAddIn1", "SAPINTOFFICE\ExcelAddIn1\ExcelAddIn1.csproj", "{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,14 +78,6 @@ Global
 		{1BCAE8C6-0B2F-4146-B21A-1C84CE13D2AF}.Release|Any CPU.Build.0 = Release|x86
 		{1BCAE8C6-0B2F-4146-B21A-1C84CE13D2AF}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{1BCAE8C6-0B2F-4146-B21A-1C84CE13D2AF}.Release|x86.ActiveCfg = Release|x86
-		{EC08F825-6331-46A0-BF57-4BD35405370C}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{EC08F825-6331-46A0-BF57-4BD35405370C}.Debug|Any CPU.Build.0 = Debug|x86
-		{EC08F825-6331-46A0-BF57-4BD35405370C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{EC08F825-6331-46A0-BF57-4BD35405370C}.Debug|x86.ActiveCfg = Debug|x86
-		{EC08F825-6331-46A0-BF57-4BD35405370C}.Release|Any CPU.ActiveCfg = Release|x86
-		{EC08F825-6331-46A0-BF57-4BD35405370C}.Release|Any CPU.Build.0 = Release|x86
-		{EC08F825-6331-46A0-BF57-4BD35405370C}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{EC08F825-6331-46A0-BF57-4BD35405370C}.Release|x86.ActiveCfg = Release|x86
 		{27A58C6D-A3BD-421D-A008-38EC727C5E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{27A58C6D-A3BD-421D-A008-38EC727C5E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27A58C6D-A3BD-421D-A008-38EC727C5E3B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -92,16 +87,6 @@ Global
 		{27A58C6D-A3BD-421D-A008-38EC727C5E3B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{27A58C6D-A3BD-421D-A008-38EC727C5E3B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{27A58C6D-A3BD-421D-A008-38EC727C5E3B}.Release|x86.ActiveCfg = Release|Any CPU
-		{40793A27-478B-4357-B4C3-FC8943131F3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40793A27-478B-4357-B4C3-FC8943131F3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40793A27-478B-4357-B4C3-FC8943131F3D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{40793A27-478B-4357-B4C3-FC8943131F3D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{40793A27-478B-4357-B4C3-FC8943131F3D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{40793A27-478B-4357-B4C3-FC8943131F3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40793A27-478B-4357-B4C3-FC8943131F3D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40793A27-478B-4357-B4C3-FC8943131F3D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{40793A27-478B-4357-B4C3-FC8943131F3D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{40793A27-478B-4357-B4C3-FC8943131F3D}.Release|x86.ActiveCfg = Release|Any CPU
 		{E1667E6B-AEAE-4A5E-97AE-AE129F720900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E1667E6B-AEAE-4A5E-97AE-AE129F720900}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1667E6B-AEAE-4A5E-97AE-AE129F720900}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -112,6 +97,16 @@ Global
 		{E1667E6B-AEAE-4A5E-97AE-AE129F720900}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E1667E6B-AEAE-4A5E-97AE-AE129F720900}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E1667E6B-AEAE-4A5E-97AE-AE129F720900}.Release|x86.ActiveCfg = Release|Any CPU
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,5 +115,6 @@ Global
 		{D5B7F62F-F5B0-48A0-9ABD-0B1F698DD44B} = {D3FA4E6D-C21E-4010-9EA6-3ADDA06B6BEA}
 		{27A58C6D-A3BD-421D-A008-38EC727C5E3B} = {D7987ABC-1459-422C-BC98-1BB9667AF5A8}
 		{E1667E6B-AEAE-4A5E-97AE-AE129F720900} = {DC97CBF1-34E3-45EB-BDDD-49978EC0CDBD}
+		{8C5ABBE5-6FC9-4F70-93EA-8C325D03F1E8} = {DE531879-4C23-4050-B53D-5515349BEC5A}
 	EndGlobalSection
 EndGlobal

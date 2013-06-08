@@ -226,7 +226,7 @@ namespace SAPINT.Function
                                 var _table = new SapTable(sysName, funame + "_" + pMetadata.Name, tableMeta.LineType.Name);
                                 _table.DbConnectionString = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
                                 _table.NewTable = true;
-                                _table.saveDataTable(SAPFunction.RfcTableToDataTable(table));
+                                _table.SaveDataTable(SAPFunction.RfcTableToDataTable(table));
                                 // RfcTableToDb dbhelper = new RfcTableToDb(funame, d.Name, tble);
                                 //  dbhelper.saveTable();
                             }

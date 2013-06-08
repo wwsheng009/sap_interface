@@ -44,6 +44,8 @@ namespace SAPINTGUI
 
         void readTableControl1_EventGetTable(ReadTableControl sender, DataTable resultdt)
         {
+            
+
             if (resultdt == null)
             {
                 return;
@@ -51,13 +53,16 @@ namespace SAPINTGUI
             localdt = resultdt;
             this.SystemName = sender.SystemName;
             this.TableName = sender.TableName;
-            this.Text = "表：" + TableName;
+            
             if (this.dataGridView1.InvokeRequired)
             {
+                
                 this.Invoke(new EventGetSAPTable(readTableControl1_EventGetTable), new object[] { sender, resultdt });
             }
             else
             {
+                this.Text = "表：" + TableName;
+                this.dataGridView1.DataSource = null;
                 if (chxNotShow.Checked)
                 {
 
@@ -76,7 +81,7 @@ namespace SAPINTGUI
         {
             if (this.textboxLog.InvokeRequired)
             {
-                this.Invoke(new delegateMessage(readTableControl1_EventMessage), new object[] { message });
+                this.Invoke(new DelegateMessage(readTableControl1_EventMessage), new object[] { message });
             }
             else
             {
@@ -117,7 +122,7 @@ namespace SAPINTGUI
                     try
                     {
                         SapTable table = new SapTable(SystemName, TableName);
-                        if (table.saveDataTable(localdt))
+                        if (table.SaveDataTable(localdt))
                         {
                             MessageBox.Show("保存成功！！！");
                         }

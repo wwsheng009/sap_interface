@@ -106,6 +106,9 @@
     <Reference Include="Puzzle.SyntaxBox.NET4">
       <HintPath>..\lib\Puzzle.SyntaxBox.NET4.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>D:\wangws_net\开源项目\RestSharp-master\RestSharp-master\RestSharp\bin\Debug\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -113,6 +116,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\System.Data.SQLite\2010\bin\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -121,7 +125,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.8.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\wangws_net\开源项目\dockpanelsuite-master\WinFormsUI\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -180,11 +185,41 @@
     <Compile Include="CodeManager\FormImporSapProgram.Designer.cs">
       <DependentUpon>FormImporSapProgram.cs</DependentUpon>
     </Compile>
-    <Compile Include="DockWindow.cs">
+    <Compile Include="CodeManager\FormCodeManagerListView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DockWindow.Designer.cs">
+    <Compile Include="CodeManager\FormCodeManagerListView.Designer.cs">
+      <DependentUpon>FormCodeManagerListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Http\FormRestClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Http\FormRestClient.Designer.cs">
+      <DependentUpon>FormRestClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\DockWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\DockWindow.Designer.cs">
       <DependentUpon>DockWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\FormLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\FormLog.Designer.cs">
+      <DependentUpon>FormLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\FormLinqTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\FormLinqTable.Designer.cs">
+      <DependentUpon>FormLinqTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\FormSAPDataTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\FormSAPDataTable.Designer.cs">
+      <DependentUpon>FormSAPDataTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Table\FormTableField.cs">
       <SubType>Form</SubType>
@@ -192,11 +227,23 @@
     <Compile Include="Table\FormTableField.Designer.cs">
       <DependentUpon>FormTableField.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolWindow.cs">
+    <Compile Include="Table\FormTableRead.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolWindow.Designer.cs">
+    <Compile Include="Table\FormTableRead.Designer.cs">
+      <DependentUpon>FormTableRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\ToolWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\ToolWindow.Designer.cs">
       <DependentUpon>ToolWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\FormTableReadMeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\FormTableReadMeta.Designer.cs">
+      <DependentUpon>FormTableReadMeta.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\CDataGridViewUtils.cs" />
     <Compile Include="CodeManager\SAPTableField.cs">
@@ -205,17 +252,17 @@
     <Compile Include="CodeManager\SAPTableField.Designer.cs">
       <DependentUpon>SAPTableField.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataBase\FormDataBase.cs">
+    <Compile Include="DataBase\FormSmallSql.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DataBase\FormDataBase.Designer.cs">
-      <DependentUpon>FormDataBase.cs</DependentUpon>
+    <Compile Include="DataBase\FormSmallSql.Designer.cs">
+      <DependentUpon>FormSmallSql.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataBase\FormDbUtil.cs">
+    <Compile Include="DataBase\FormSchemas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DataBase\FormDbUtil.Designer.cs">
-      <DependentUpon>FormDbUtil.cs</DependentUpon>
+    <Compile Include="DataBase\FormSchemas.Designer.cs">
+      <DependentUpon>FormSchemas.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase\FormSaveDataTable.cs">
       <SubType>Form</SubType>
@@ -223,10 +270,10 @@
     <Compile Include="DataBase\FormSaveDataTable.Designer.cs">
       <DependentUpon>FormSaveDataTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSAPToolBox.cs">
+    <Compile Include="Main\FormSAPToolBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSAPToolBox.Designer.cs">
+    <Compile Include="Main\FormSAPToolBox.Designer.cs">
       <DependentUpon>FormSAPToolBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Functions\FormSearchRfcFunction.cs">
@@ -235,11 +282,11 @@
     <Compile Include="Functions\FormSearchRfcFunction.Designer.cs">
       <DependentUpon>FormSearchRfcFunction.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idoc\FormCopyIdoc.cs">
+    <Compile Include="Idoc\FormIdocCopy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Idoc\FormCopyIdoc.Designer.cs">
-      <DependentUpon>FormCopyIdoc.cs</DependentUpon>
+    <Compile Include="Idoc\FormIdocCopy.Designer.cs">
+      <DependentUpon>FormIdocCopy.cs</DependentUpon>
     </Compile>
     <Compile Include="Idoc\FormIdocMeta.cs">
       <SubType>Form</SubType>
@@ -275,11 +322,11 @@
     <Compile Include="Functions\FormFunctionMetaJson.Designer.cs">
       <DependentUpon>FormFunctionMetaJson.cs</DependentUpon>
     </Compile>
-    <Compile Include="CodeManager\FormGenerateTableClass.cs">
+    <Compile Include="CodeManager\FormGenerateSharpClass.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CodeManager\FormGenerateTableClass.Designer.cs">
-      <DependentUpon>FormGenerateTableClass.cs</DependentUpon>
+    <Compile Include="CodeManager\FormGenerateSharpClass.Designer.cs">
+      <DependentUpon>FormGenerateSharpClass.cs</DependentUpon>
     </Compile>
     <Compile Include="Table\FormGetTableMeta.cs">
       <SubType>Form</SubType>
@@ -287,10 +334,10 @@
     <Compile Include="Table\FormGetTableMeta.Designer.cs">
       <DependentUpon>FormGetTableMeta.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMain.cs">
+    <Compile Include="Main\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Main\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Table\FormReadTable.cs">
@@ -331,10 +378,10 @@
     <Compile Include="Table\ReadTableControl.Designer.cs">
       <DependentUpon>ReadTableControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SAPQueryControl.cs">
+    <Compile Include="Table\SAPQueryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SAPQueryControl.Designer.cs">
+    <Compile Include="Table\SAPQueryControl.Designer.cs">
       <DependentUpon>SAPQueryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Table\TableInfo.cs" />
@@ -378,27 +425,36 @@
       <DependentUpon>FormAbapCode2.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataBase\FormDataBase.resx">
-      <DependentUpon>FormDataBase.cs</DependentUpon>
+    <EmbeddedResource Include="CodeManager\FormCodeManagerListView.resx">
+      <DependentUpon>FormCodeManagerListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\FormSmallSql.resx">
+      <DependentUpon>FormSmallSql.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataBase\FormDbUtil.resx">
-      <DependentUpon>FormDbUtil.cs</DependentUpon>
+    <EmbeddedResource Include="DataBase\FormSchemas.resx">
+      <DependentUpon>FormSchemas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataBase\FormSaveDataTable.resx">
       <DependentUpon>FormSaveDataTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DockWindow.resx">
+    <EmbeddedResource Include="Http\FormRestClient.resx">
+      <DependentUpon>FormRestClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\DockWindow.resx">
       <DependentUpon>DockWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSAPToolBox.resx">
+    <EmbeddedResource Include="Main\FormLog.resx">
+      <DependentUpon>FormLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\FormSAPToolBox.resx">
       <DependentUpon>FormSAPToolBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Functions\FormSearchRfcFunction.resx">
       <DependentUpon>FormSearchRfcFunction.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Idoc\FormCopyIdoc.resx">
-      <DependentUpon>FormCopyIdoc.cs</DependentUpon>
+    <EmbeddedResource Include="Idoc\FormIdocCopy.resx">
+      <DependentUpon>FormIdocCopy.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Idoc\FormIdocMeta.resx">
@@ -414,18 +470,24 @@
     <EmbeddedResource Include="Functions\FormFunctionMetaJson.resx">
       <DependentUpon>FormFunctionMetaJson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CodeManager\FormGenerateTableClass.resx">
-      <DependentUpon>FormGenerateTableClass.cs</DependentUpon>
+    <EmbeddedResource Include="CodeManager\FormGenerateSharpClass.resx">
+      <DependentUpon>FormGenerateSharpClass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Table\FormGetTableMeta.resx">
       <DependentUpon>FormGetTableMeta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Main\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\FormLinqTable.resx">
+      <DependentUpon>FormLinqTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Table\FormReadTable.resx">
       <DependentUpon>FormReadTable.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\FormSAPDataTable.resx">
+      <DependentUpon>FormSAPDataTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Table\FormSAPQuery.resx">
       <DependentUpon>FormSAPQuery.cs</DependentUpon>
@@ -435,6 +497,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Table\FormTableInput.resx">
       <DependentUpon>FormTableInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\FormTableRead.resx">
+      <DependentUpon>FormTableRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\FormTableReadMeta.resx">
+      <DependentUpon>FormTableReadMeta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Table\GetTableMetaControl.resx">
       <DependentUpon>GetTableMetaControl.cs</DependentUpon>
@@ -456,10 +524,10 @@
       <DependentUpon>ReadTableControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SAPQueryControl.resx">
+    <EmbeddedResource Include="Table\SAPQueryControl.resx">
       <DependentUpon>SAPQueryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolWindow.resx">
+    <EmbeddedResource Include="Main\ToolWindow.resx">
       <DependentUpon>ToolWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -91,7 +91,7 @@ namespace SAPINTGUI.DataBase
             InitializeComponent();
             // SAPINT.SAPLogonConfigList.SystemNameList.ForEach(name => this.txtSapSystem.Items.Add(name));
             this.txtSapSystem.Text = _sapSystemName;
-            this.txtSapSystem.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            this.txtSapSystem.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();
             this.txtLocalDbConnection.DataSource = ConfigFileTool.SAPGlobalSettings.getDbConnectionList();
             this.txtLocalDbConnection.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
             this.textBoxLog.KeyDown += textBoxLog_KeyDown;
@@ -192,7 +192,7 @@ namespace SAPINTGUI.DataBase
         }
         private void saveTable()
         {
-            _table.saveDataTable(_dt);
+            _table.SaveDataTable(_dt);
         }
         private void btnSaveToDb_Click(object sender, EventArgs e)
         {

@@ -11,17 +11,41 @@ using SAPINTDB.CodeManager;
 using WeifenLuo.WinFormsUI.Docking;
 namespace SAPINTGUI.CodeManager
 {
-    delegate void deleGateSetNode();
+    public delegate void DeleGateSetNode();
 
     public partial class FormCodeManager : DockWindow
     {
         private Codedb db = new Codedb();
         private bool loaded = false;
 
-        public CodeTree SelectedTree { get; set; }
+        public CodeFolder SelectedFolder { get; set; }
+
+
+        private CodeFolder m_TempFolder = null;
+
+        public CodeFolder TempFolder
+        {
+            get { return this.m_TempFolder; }
+            set
+            {
+                this.m_TempFolder = value;
+                NotifyListener();
+            }
+        }
         public Code SelectedCode { get; set; }
         public Code TemplateCode { get; set; }
-        public Code AbapRunCode { get; set; }
+        public Code TempAbapRunCode { get; set; }
+
+        public event EventHandler EventCodeManagerChange = null;
+
+        private void NotifyListener()
+        {
+            if (EventCodeManagerChange != null)
+            {
+                EventCodeManagerChange(this, null);
+            }
+        }
+
 
         public FormCodeManager()
         {
@@ -38,6 +62,8 @@ namespace SAPINTGUI.CodeManager
 
 
             this.listBox1.SelectionMode = SelectionMode.MultiExtended;
+            listBox1.MultiColumn = true;
+
             this.listBox1.SelectedValueChanged += listBox1_SelectedValueChanged;
             this.listBox1.DoubleClick += listBox1_DoubleClick;
 
@@ -48,13 +74,47 @@ namespace SAPINTGUI.CodeManager
             this.listBox1.AllowDrop = true;
             this.treeView1.AllowDrop = true;
             this.listBox1.MouseDown += listBox1_MouseDown;
-
             this.listBox1.DragOver += listBox1_DragOver;
-
 
             this.treeView1.DragEnter += treeView1_DragEnter;
             this.treeView1.DragDrop += treeView1_DragDrop;
+            this.treeView1.MouseDown += treeView1_MouseDown;
+            this.treeView1.DragOver += treeView1_DragOver;
             this.Shown += FormCodeManager_Shown;
+
+
+            if (this.TempFolder == null)
+            {
+                var tempFolderId = "b3dc4971-935c-49fb-a061-c9e01956d41d";
+
+                TempFolder = db.GetFolder(tempFolderId);
+                if (TempFolder == null)
+                {
+                    TempFolder = db.SaveTree(new CodeFolder(tempFolderId, db.GetRootFolder().Id, "Temp", ""));
+                }
+            }
+        }
+
+        void treeView1_DragOver(object sender, DragEventArgs e)
+        {
+            //throw new NotImplementedException();
+            e.Effect = DragDropEffects.Move;
+        }
+
+        void treeView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (this.treeView1.SelectedNode != null)
+            {
+                if (ModifierKeys.HasFlag(Keys.Control))
+                {
+                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                    {
+                        this.treeView1.DoDragDrop(this.treeView1.SelectedNode, DragDropEffects.Move);
+                    }
+                }
+            }
+
+            //throw new NotImplementedException();
         }
 
         void FormCodeManager_Shown(object sender, EventArgs e)
@@ -68,7 +128,6 @@ namespace SAPINTGUI.CodeManager
             {
 
             }
-            //throw new NotImplementedException();
         }
 
         void listBox1_DragOver(object sender, DragEventArgs e)
@@ -89,50 +148,78 @@ namespace SAPINTGUI.CodeManager
                         this.listBox1.DoDragDrop(this.listBox1.SelectedItem, DragDropEffects.Move);
                     }
                 }
-
-
             }
-
-            //  throw new NotImplementedException();
         }
 
         void treeView1_DragDrop(object sender, DragEventArgs e)
         {
             TreeNode nodeToDropIn = this.treeView1.GetNodeAt(this.treeView1.PointToClient(new Point(e.X, e.Y)));
+            CodeFolder codeFolderToDropIn = null;
             if (nodeToDropIn == null)
             {
                 return;
             }
-
-            var data = e.Data.GetData(typeof(Code)) as Code;
-            if (data == null) { return; }
-            var codeTree = nodeToDropIn.Tag as CodeTree;
-            if (codeTree != null)
+            else
             {
-                data.TreeId = codeTree.Id;
-                db.SaveCode(data);
-                if (codeTree.CodeList == null)
-                {
-
-                    codeTree.CodeList = new List<Code>();
-                }
-                codeTree.CodeList.Add(data);
+                codeFolderToDropIn = nodeToDropIn.Tag as CodeFolder;
             }
-            //nodeToDropIn.Nodes.Add(data.ToString());
-            //this.listBox1.DataSource.Items.Remove(data);
-            var codelist = listBox1.DataSource as List<Code>;
-            if (codelist != null)
+            var formats = e.Data.GetFormats();
+            //if (sourceType == typeof(Code))
+            //{
+            var code = e.Data.GetData(typeof(Code)) as Code;
+            if (code == null)
+            { //return;
+            }
+            else
             {
-                if (codelist.Contains(data))
+                if (codeFolderToDropIn != null)
                 {
-                    codelist.Remove(data);
+                    code.TreeId = codeFolderToDropIn.Id;
+                    db.SaveCode(code);
+                    if (codeFolderToDropIn.CodeList == null)
+                    {
+
+                        codeFolderToDropIn.CodeList = new List<Code>();
+                    }
+                    codeFolderToDropIn.CodeList.Add(code);
+                }
+                var codelist = listBox1.DataSource as List<Code>;
+                if (codelist != null)
+                {
+                    if (codelist.Contains(code))
+                    {
+                        codelist.Remove(code);
+                    }
+                }
+                listBox1.DataSource = null;
+                listBox1.DataSource = codelist;
+                listBox1.DisplayMember = "Title";
+            }
+
+            var treeNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
+            if (treeNode == null)
+            {
+                //  return;
+            }
+            else
+            {
+                var folder = treeNode.Tag as CodeFolder;
+                if (codeFolderToDropIn != null && folder != null)
+                {
+                    folder.ParentId = codeFolderToDropIn.Id;
+                    folder = db.SaveTree(folder);
+
+                    var newTreeNode = this.treeView1.SelectedNode;
+                    newTreeNode.Tag = folder;
+                    newTreeNode.Parent.Nodes.Remove(newTreeNode);
+                    // this.treeView1.SelectedNode.Remove();
+                    nodeToDropIn.Nodes.Add(newTreeNode);
                 }
             }
-            listBox1.DataSource = null;
-            listBox1.DataSource = codelist;
-            listBox1.DisplayMember = "Title";
-            // listBox1.Refresh();
-            // throw new NotImplementedException();
+
+
+
+
         }
 
         void treeView1_DragEnter(object sender, DragEventArgs e)
@@ -221,10 +308,10 @@ namespace SAPINTGUI.CodeManager
             frm.Text = _selectCode.Title;
             if (!String.IsNullOrEmpty(_selectCode.TreeId))
             {
-                var codeTree = db.GetTree(_selectCode.TreeId);
+                var codeTree = db.GetFolder(_selectCode.TreeId);
                 if (codeTree == null)
                 {
-                    codeTree = SelectedTree;
+                    codeTree = SelectedFolder;
                 }
                 if (codeTree != null)
                 {
@@ -262,8 +349,12 @@ namespace SAPINTGUI.CodeManager
 
         void listBox1_DoubleClick(object sender, EventArgs e)
         {
+            if (listBox1.SelectedItems.Count == 0)
+            {
+                return;
+            }
             var _selectCode = listBox1.SelectedItem as Code;
-            var _codeTree = treeView1.SelectedNode.Tag as CodeTree;
+            var _codeFolder = treeView1.SelectedNode.Tag as CodeFolder;
             var list = listBox1.DataSource as List<Code>;
 
             if (_selectCode != null)
@@ -275,10 +366,10 @@ namespace SAPINTGUI.CodeManager
                     var frm = new FormCodeEditor();
                     frm.code = _selectCode;
                     frm.Text = _selectCode.Title;
-                    if (_codeTree != null)
+                    if (_codeFolder != null)
                     {
-                        frm.TreeId = _codeTree.Id;
-                        frm.TreeText = _codeTree.Text;
+                        frm.TreeId = _codeFolder.Id;
+                        frm.TreeText = _codeFolder.Text;
                     }
                     //frm.Show();
                     if (this.DockPanel != null)
@@ -295,10 +386,10 @@ namespace SAPINTGUI.CodeManager
             var newCode = db.GetCode(_selectCode.Id);
             if (newCode != null)
             {
-                this.txtStatus.Text = string.Empty;
+                this.toolStripStatusLabel1.Text = string.Empty;
                 if (newCode.Content.Length > 3 * 1024 * 1024)
                 {
-                    this.txtStatus.Text = "文件太大，无法显示";
+                    this.toolStripStatusLabel1.Text = "文件太大，无法显示";
                     // MessageBox.Show("文件太大，无法显示");
                     return;
                 }
@@ -331,14 +422,14 @@ namespace SAPINTGUI.CodeManager
             {
                 if (e.Node.Tag != null)
                 {
-                    var codetree = e.Node.Tag as CodeTree;
-                    this.SelectedTree = codetree;
+                    var codetree = e.Node.Tag as CodeFolder;
+                    this.SelectedFolder = codetree;
                     // codetree.Id;
                 }
 
                 //if (!e.Node.IsExpanded)
                 //{
-                var thread = new Thread(new ThreadStart(voidUpdateNode));
+                var thread = new Thread(new ThreadStart(UpdateNode));
                 thread.Start();
                 //updateTreeNode(e.Node);
                 //}
@@ -356,10 +447,10 @@ namespace SAPINTGUI.CodeManager
             {
                 this.SelectedCode = code;
 
-                this.txtStatus.Text = string.Empty;
+                this.toolStripStatusLabel1.Text = string.Empty;
                 if (code.Content.Length > 3 * 1024 * 1024)
                 {
-                    this.txtStatus.Text = "文件太大，无法显示";
+                    this.toolStripStatusLabel1.Text = "文件太大，无法显示";
                     // MessageBox.Show("文件太大，无法显示");
                     return;
                 }
@@ -375,69 +466,36 @@ namespace SAPINTGUI.CodeManager
             // throw new NotImplementedException();
         }
 
-        private void voidUpdateNode()
+        private void UpdateNode()
         {
             if (this.treeView1.InvokeRequired)
             {
                 // var node = this.treeView1.SelectedNode;
-                this.Invoke(new deleGateSetNode(updateTreeNode), new object[] { });
-
-                //if (node != null)
-                //{
-                //    updateTreeNode(treeView1.SelectedNode);
-                //}
-                //else
-                //{
-                //    return;
-                //}
-                //listBox1.DataSource = null;
-                //var codeTree = node.Tag as CodeTree;
-                //if (codeTree != null)
-                //{
-
-                //    this.listBox1.DataSource = codeTree.CodeList;
-                //    this.listBox1.DisplayMember = "Title";
-                //}
+                this.Invoke(new DeleGateSetNode(UpdateTreeNode), new object[] { });
 
             }
             else
             {
-                // var node = this.treeView1.SelectedNode;
-                //// this.Invoke(new deleGateSetNode(updateTreeNode), new object[] { node });
-                // if (node != null)
-                // {
-                updateTreeNode();
-                //}
-                //else
-                //{
-                //    return;
-                //}
-                //listBox1.DataSource = null;
-                //var codeTree = node.Tag as CodeTree;
-                //if (codeTree != null)
-                //{
+                UpdateTreeNode();
 
-                //    this.listBox1.DataSource = codeTree.CodeList;
-                //    this.listBox1.DisplayMember = "Title";
-                //}
             }
 
 
 
         }
-        private void updateTreeNode()
+        private void UpdateTreeNode()
         {
             var node = this.treeView1.SelectedNode;
             if (node != null)
             {
                 node.Nodes.Clear();
 
-                var codeTreeNode = node.Tag as CodeTree;
+                var codeTreeNode = node.Tag as CodeFolder;
                 //if (codeTreeNode.SubTreeList == null || codeTreeNode.SubTreeList.Count == 0)
                 //{
                 // this.txtStatus.Text = codeTreeNode.Id;
-                txtFolderId.Text = codeTreeNode.Id;
-                codeTreeNode = db.GetTree(codeTreeNode.Id);
+                toolStripStatusLabel2.Text = codeTreeNode.Id;
+                codeTreeNode = db.GetFolder(codeTreeNode.Id);
 
 
                 node.Tag = codeTreeNode;
@@ -487,7 +545,7 @@ namespace SAPINTGUI.CodeManager
                 }
 
                 listBox1.DataSource = null;
-                var codeTree = node.Tag as CodeTree;
+                var codeTree = node.Tag as CodeFolder;
                 if (codeTree != null)
                 {
 
@@ -504,7 +562,7 @@ namespace SAPINTGUI.CodeManager
                 {
                     if (!e.Node.IsExpanded)
                     {
-                        var thread = new Thread(new ThreadStart(voidUpdateNode));
+                        var thread = new Thread(new ThreadStart(UpdateNode));
                         thread.Start();
                     }
 
@@ -532,22 +590,22 @@ namespace SAPINTGUI.CodeManager
             // throw new NotImplementedException();
         }
 
-        private void addNewFolderToTheListViewNode(TreeNode node)
+        private void AddNewFolderToTheListViewNode(TreeNode node)
         {
             var treeNode = node;
-            CodeTree codeTree = null;
+            CodeFolder codeTree = null;
             if (treeNode != null)
             {
-                codeTree = treeNode.Tag as CodeTree;
+                codeTree = treeNode.Tag as CodeFolder;
             }
 
 
-            var folderName = getFolderName();
+            var folderName = GetFolderName();
             if (String.IsNullOrEmpty(folderName))
             {
                 return;
             }
-            var nodeTree = new CodeTree();
+            var nodeTree = new CodeFolder();
             nodeTree.Text = folderName;
             if (codeTree != null && !String.IsNullOrEmpty(codeTree.Id))
             {
@@ -572,22 +630,25 @@ namespace SAPINTGUI.CodeManager
 
 
         }
-        public bool AddNewCodeToSelectedCodeTree(Code code, bool show = false)
+        public bool AddNewCodeToTempFolder(Code code, bool show = false)
         {
-            if (SelectedTree == null)
+            if (TempFolder == null)
             {
-                MessageBox.Show("请选择一个文件夹");
+                MessageBox.Show("请选择一个临时文件夹");
                 return false;
             }
-            code.TreeId = SelectedTree.Id;
+            code.TreeId = this.TempFolder.Id;
             var newcode = db.SaveCode(code);
             if (newcode != null)
             {
-                if (SelectedTree.CodeList != null)
+                if (TempFolder.CodeList != null)
                 {
-                    SelectedTree.CodeList.Add(newcode);
-                    this.listBox1.DataSource = SelectedTree.CodeList;
-                    this.listBox1.DisplayMember = "Title";
+                    if (SelectedFolder.Id == TempFolder.Id)
+                    {
+                        TempFolder.CodeList.Add(newcode);
+                        this.listBox1.DataSource = SelectedFolder.CodeList;
+                        this.listBox1.DisplayMember = "Title";
+                    }
                 }
                 if (show == true)
                 {
@@ -600,7 +661,7 @@ namespace SAPINTGUI.CodeManager
                 return false;
             }
         }
-        private void addNewCodeToTheLisViewNode()
+        private void AddNewCodeToTheLisViewNode()
         {
 
             var node = this.treeView1.SelectedNode;
@@ -610,29 +671,29 @@ namespace SAPINTGUI.CodeManager
                 return;
             }
 
-            var codeTreeNode = node.Tag as CodeTree;
-            codeTreeNode = db.GetTree(codeTreeNode.Id);
+            var codeFolderNode = node.Tag as CodeFolder;
+            codeFolderNode = db.GetFolder(codeFolderNode.Id);
 
-            if (codeTreeNode == null)
+            if (codeFolderNode == null)
             {
-                MessageBox.Show("节点不是CodeTree");
+                MessageBox.Show("节点不是CodeFolder");
                 return;
             }
-            var fileName = getFileName();
+            var fileName = GetFileName();
             if (String.IsNullOrEmpty(fileName))
             {
                 return;
             }
             var code = new Code();
             code.Title = fileName;
-            code.TreeId = codeTreeNode.Id;
+            code.TreeId = codeFolderNode.Id;
             var newcode = db.SaveCode(code);
             if (newcode != null)
             {
-                if (codeTreeNode.CodeList != null)
+                if (codeFolderNode.CodeList != null)
                 {
-                    codeTreeNode.CodeList.Add(newcode);
-                    this.listBox1.DataSource = codeTreeNode.CodeList;
+                    codeFolderNode.CodeList.Add(newcode);
+                    this.listBox1.DataSource = codeFolderNode.CodeList;
                     this.listBox1.DisplayMember = "Title";
                 }
 
@@ -640,19 +701,19 @@ namespace SAPINTGUI.CodeManager
         }
         private void newFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            addNewFolderToTheListViewNode(this.treeView1.SelectedNode);
+            AddNewFolderToTheListViewNode(this.treeView1.SelectedNode);
         }
 
         private void newFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            addNewCodeToTheLisViewNode();
+            AddNewCodeToTheLisViewNode();
         }
-        private String getFileName()
+        private String GetFileName(String oldName = "")
         {
             var frm = new FormGetText();
             frm.StartPosition = FormStartPosition.Manual;
             frm.Location = new Point(Control.MousePosition.X, Control.MousePosition.Y);
-
+            frm.Result = oldName;
             frm.LableText = "文件名：";
             frm.Title = "输入文件名";
             frm.ShowDialog();
@@ -662,12 +723,12 @@ namespace SAPINTGUI.CodeManager
             return result;
 
         }
-        private String getFolderName()
+        private String GetFolderName(String oldName = "")
         {
             var frm = new FormGetText();
             frm.StartPosition = FormStartPosition.Manual;
             frm.Location = new Point(Control.MousePosition.X, Control.MousePosition.Y);
-
+            frm.Result = oldName;
 
             frm.LableText = "文件夹名：";
             frm.Title = "输入文件夹名";
@@ -687,13 +748,13 @@ namespace SAPINTGUI.CodeManager
                 MessageBox.Show("请选择文件夹");
                 return;
             }
-            var codeTreeNode = node.Tag as CodeTree;
+            var codeTreeNode = node.Tag as CodeFolder;
             if (codeTreeNode == null)
             {
                 MessageBox.Show("CodeTree 不正确");
                 return;
             }
-            codeTreeNode.Text = getFolderName();
+            codeTreeNode.Text = GetFolderName(codeTreeNode.Text);
             var newCodeNode = db.SaveTree(codeTreeNode);
             if (newCodeNode != null)
             {
@@ -733,43 +794,13 @@ namespace SAPINTGUI.CodeManager
             listBox1.DataSource = codelist;
             listBox1.DisplayMember = "Title";
 
-            var selectedNode = treeView1.SelectedNode.Tag as CodeTree;
+            var selectedNode = treeView1.SelectedNode.Tag as CodeFolder;
             if (selectedNode != null)
             {
                 selectedNode.CodeList = codelist;
 
             }
-            //for (int i = 0; i < selettedCodeList.Count; i++)
-            //{
-            //    //  var item = selettedCodeList[i] as Code;
-            //    db.DeleteCode(codelist[i]);
-            //}
 
-
-
-            //var selectedCode = listBox1.SelectedItem as Code;
-            //if (selectedCode != null)
-            //{
-            //    var DeleteOk = db.DeleteCode(selectedCode);
-            //    if (DeleteOk)
-            //    {
-            //        var codelist = listBox1.DataSource as List<Code>;
-
-            //        codelist.Remove(selectedCode);
-
-            //        //listBox1.Items.Remove(selectedCode);
-            //        listBox1.DataSource = null;
-            //        listBox1.DataSource = codelist;
-            //        listBox1.DisplayMember = "Title";
-
-            //        var selectedNode = treeView1.SelectedNode.Tag as CodeTree;
-            //        if (selectedNode != null)
-            //        {
-            //            selectedNode.CodeList.Remove(selectedCode);
-
-            //        }
-            //    }
-            //}
         }
 
         private void toolStripMenuItemImportFile_Click(object sender, EventArgs e)
@@ -780,7 +811,7 @@ namespace SAPINTGUI.CodeManager
                 MessageBox.Show("请先选择文件夹");
                 return;
             }
-            var codetreeNode = seletedNode.Tag as CodeTree;
+            var codetreeNode = seletedNode.Tag as CodeFolder;
             if (codetreeNode == null)
             {
                 MessageBox.Show("无效的节点");
@@ -800,7 +831,7 @@ namespace SAPINTGUI.CodeManager
                 MessageBox.Show("请先选择文件夹");
                 return;
             }
-            var codetreeNode = seletedNode.Tag as CodeTree;
+            var codetreeNode = seletedNode.Tag as CodeFolder;
             if (codetreeNode == null)
             {
                 MessageBox.Show("无效的节点");
@@ -817,13 +848,13 @@ namespace SAPINTGUI.CodeManager
             try
             {
                 var treeNode = treeView1.SelectedNode;
-                var codeTreeNode = treeNode.Tag as CodeTree;
+                var codeTreeNode = treeNode.Tag as CodeFolder;
                 if (codeTreeNode == null)
                 {
                     MessageBox.Show("请选择文件夹");
                     return;
                 }
-                if (db.DeleteTree(codeTreeNode))
+                if (db.DeleteFolder(codeTreeNode))
                 {
                     //  updateTreeNode(treeNode);
                 }
@@ -848,7 +879,7 @@ namespace SAPINTGUI.CodeManager
 
         private void ToolStripMenuItemAddTopFolder_Click_1(object sender, EventArgs e)
         {
-            addNewFolderToTheListViewNode(null);
+            AddNewFolderToTheListViewNode(null);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -869,6 +900,7 @@ namespace SAPINTGUI.CodeManager
                 var code = listBox1.SelectedItem as Code;
                 if (code != null)
                 {
+                    //var newName = GetFileName(code.Title);
                     var formName = new FormGetText();
                     formName.Title = "请输入代码名称";
                     formName.LableText = "代码名:";
@@ -890,15 +922,76 @@ namespace SAPINTGUI.CodeManager
                 }
             }
         }
-
+        public Code GetLatestCode(Code _code)
+        {
+            return db.GetCode(_code.Id);
+        }
         private void lockCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TemplateCode = SelectedCode;
+            NotifyListener();
         }
 
         private void SetRunCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbapRunCode = SelectedCode;
+            TempAbapRunCode = SelectedCode;
+            NotifyListener();
         }
+
+        private void SetTempFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TempFolder = SelectedFolder;
+
+        }
+
+        private void chFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NewCodeStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var fileName = GetFileName();
+                if (String.IsNullOrEmpty(fileName))
+                {
+                    return;
+                }
+                var code = new Code();
+                code.Title = fileName;
+                code.TreeId = this.SelectedFolder.Id;
+                var newcode = db.SaveCode(code);
+                if (newcode != null)
+                {
+                    SelectedFolder = db.GetFolder(SelectedFolder.Id);
+                    if (SelectedFolder.CodeList != null)
+                    {
+                        // SelectedFolder.CodeList.Add(newcode);
+                        this.listBox1.DataSource = SelectedFolder.CodeList;
+                        this.listBox1.DisplayMember = "Title";
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+            this.splitContainer1.Panel1Collapsed = !this.splitContainer1.Panel1Collapsed;
+        }
+
+        private void toolStripSplitButton2_ButtonClick(object sender, EventArgs e)
+        {
+            this.splitContainer1.Panel2Collapsed = !this.splitContainer1.Panel2Collapsed;
+        }
+
+
     }
 }

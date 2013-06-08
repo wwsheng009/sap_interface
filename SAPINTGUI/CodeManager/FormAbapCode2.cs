@@ -625,9 +625,9 @@ namespace SAPINTCODE
             {
                 var formManager = new FormCodeManager();
                 formManager.ShowDialog();
-                if (formManager.SelectedTree != null)
+                if (formManager.SelectedFolder != null)
                 {
-                    _abapCode.TreeId = formManager.SelectedTree.Id;
+                    _abapCode.TreeId = formManager.SelectedFolder.Id;
                 }
                 else
                 {
@@ -654,7 +654,7 @@ namespace SAPINTCODE
             _abapCode.Categery = "ABAP";
             var formManager = new FormCodeManager();
             formManager.ShowDialog();
-            _abapCode.TreeId = formManager.SelectedTree.Id;
+            _abapCode.TreeId = formManager.SelectedFolder.Id;
             textResultCode.Document.Text = "";
         }
         private void btnNewAbapCode_Click(object sender, EventArgs e)
@@ -684,7 +684,7 @@ namespace SAPINTCODE
             var frm = new FormCodeManager();
             frm.Text = "请选择文件夹";
             frm.ShowDialog();
-            result.TreeId = frm.SelectedTree.Id;
+            result.TreeId = frm.SelectedFolder.Id;
             result.Content = textResult.Document.Text;
             db.SaveCode(result);
             MessageBox.Show("结果保存成功： " + result.Title);

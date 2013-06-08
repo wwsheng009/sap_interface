@@ -15,14 +15,14 @@ namespace SAPINTGUI.CodeManager
     public partial class FormCodeEditor : DockWindow
     {
         private Code _code = null;
-        Codedb db = new Codedb();
+        private Codedb db = new Codedb();
 
         public Code code
         {
             set
             {
                 _code = value;
-                freshDisplay();
+                RefreshDisplay();
             }
             get
             {
@@ -35,10 +35,14 @@ namespace SAPINTGUI.CodeManager
         public FormCodeEditor()
         {
             InitializeComponent();
+
+
             if (_code == null)
             {
-                code = new Code();
+                _code = new Code();
+                _code.Title = "新建文档*";
             }
+            RefreshDisplay();
             this.txtTreeText.DoubleClick += txtTreeText_DoubleClick;
             DirectoryInfo directory = new DirectoryInfo("SyntaxFiles\\");
             FileInfo[] files = directory.GetFiles();
@@ -48,33 +52,61 @@ namespace SAPINTGUI.CodeManager
                 newName = newName.Replace(".Syn", "");
                 this.cbxCategory.Items.Add(newName);
             }
+            this.syntaxBoxControl1.Document.Change += Document_Change;
+            this.syntaxBoxControl1.Document.ModifiedChanged += Document_ModifiedChanged;
         }
 
-        private void freshDisplay()
+        void Document_ModifiedChanged(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+
+        void Document_Change(object sender, EventArgs e)
+        {
+            this.SatustoolStripLabel1.Text = "未保存*";
+            this.Text = this.Text + "*";
+            //throw new NotImplementedException();
+        }
+
+        private void RefreshDisplay()
         {
             try
             {
                 if (_code == null)
                 {
-                    this.txtVersion.Text = string.Empty;
+                    this.toolStripStatusLabel4.Text = string.Empty;
+                    this.toolStripStatusLabel5.Text = string.Empty;
+                    this.toolStripStatusLabel6.Text = string.Empty;
                     this.txtDesc.Text = string.Empty;
                     this.syntaxBoxControl1.Document.Text = string.Empty;
                     this.txtTitle.Text = string.Empty;
                     this.cbxCategory.Text = string.Empty;
-                    this.txtLastChangeTime.Text = string.Empty;
-                    this.txtCreateTime.Text = string.Empty;
-
                 }
                 else
                 {
-                    this.txtVersion.Text = _code.Version;
+                    this.toolStripStatusLabel6.Text = _code.Version;
+                    this.toolStripStatusLabel5.Text = _code.LastChangeTime.ToShortDateString() + " " + _code.LastChangeTime.ToShortTimeString();
+                    this.toolStripStatusLabel4.Text = _code.CreateTime.ToShortDateString() + " " + _code.CreateTime.ToShortTimeString();
                     this.txtDesc.Text = _code.Desc;
                     this.syntaxBoxControl1.Document.Text = _code.Content;
                     this.txtTitle.Text = _code.Title;
+                    if (!string.IsNullOrEmpty(_code.TreeId))
+                    {
+                        var codeFolder = db.GetFolder(_code.TreeId);
+                        this.txtTreeText.Text = codeFolder.Text;
+                        this.TreeId = codeFolder.Id;
+                    }
+                    if (String.IsNullOrEmpty(_code.Categery))
+                    {
+                        _code.Categery = "abap";
+                        
+                    }
                     this.cbxCategory.Text = _code.Categery;
-                    this.txtLastChangeTime.Text = _code.LastChangeTime.ToShortDateString() + " " + _code.LastChangeTime.ToShortTimeString();
-                    this.txtCreateTime.Text = _code.CreateTime.ToShortDateString() + " " + _code.CreateTime.ToShortTimeString();
-                    loadSynFile(this.cbxCategory.Text);
+                    loadSynFile(_code.Categery);
+                    this.Text = _code.Title;
+                    this.SatustoolStripLabel1.Text = "保存成功";
+                    
+                    
                 }
 
             }
@@ -93,29 +125,30 @@ namespace SAPINTGUI.CodeManager
         {
             FormCodeManager form = new FormCodeManager();
             form.ShowDialog();
-            this.TreeId = form.SelectedTree.Id;
-            this.txtTreeText.Text = form.SelectedTree.Text;
-
-            // throw new NotImplementedException();
+            this.TreeId = form.SelectedFolder.Id;
+            this.txtTreeText.Text = form.SelectedFolder.Text;
         }
 
-
-        private void btnSave_Click(object sender, EventArgs e)
+        private void SaveCode()
         {
             try
             {
                 _code.Title = this.txtTitle.Text;
                 _code.Content = this.syntaxBoxControl1.Document.Text;
-                if (!String.IsNullOrEmpty(TreeId))
+                if (String.IsNullOrEmpty(_code.TreeId))
                 {
-                    _code.TreeId = this.TreeId;
-                }
-                else
-                {
-                    var newTree = new CodeTree();
-                    newTree.Text = this.txtTreeText.Text;
-                    newTree = db.SaveTree(newTree);
-                    _code.TreeId = newTree.Id;
+                    if (!String.IsNullOrEmpty(this.TreeId))
+                    {
+
+                        _code.TreeId = this.TreeId;
+                    }
+                    else
+                    {
+                        var newFolder = new CodeFolder();
+                        newFolder.Text = this.txtTreeText.Text;
+                        newFolder = db.SaveTree(newFolder);
+                        _code.TreeId = newFolder.Id;
+                    }
                 }
 
                 _code.Categery = this.cbxCategory.Text;
@@ -123,12 +156,13 @@ namespace SAPINTGUI.CodeManager
 
                 if (db.SaveCode(_code) != null)
                 {
-                    MessageBox.Show("SAVE OK");
-                    freshDisplay();
+                    this.toolStripStatusLabel7.Text = "保存成功!";
+                    this.SatustoolStripLabel1.Text = this.toolStripStatusLabel7.Text;
+                    RefreshDisplay();
                 }
                 else
                 {
-                    MessageBox.Show("SAVE FAILED");
+                    MessageBox.Show("保存失败");
                 }
             }
             catch (Exception ex)
@@ -136,17 +170,20 @@ namespace SAPINTGUI.CodeManager
 
                 MessageBox.Show(ex.Message);
             }
-
-
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
+        private void NewCode()
         {
-            _code = new Code();
-            _code.Version = "1.0.0";
-            freshDisplay();
-
+            var _code_new = new Code();
+            _code_new.Version = "1.0.0";
+            _code_new.Title = "NewCode*";
+            var codeEditor = new FormCodeEditor();
+            if (this.DockPanel != null)
+            {
+                codeEditor.Show(this.DockPanel);
+            }
         }
+
 
         public string TreeId { get; set; }
         private string _treeText;
@@ -159,15 +196,15 @@ namespace SAPINTGUI.CodeManager
                 this.txtTreeText.Text = _treeText;
             }
         }
-
-        private void btnDeleteCode_Click(object sender, EventArgs e)
+        private void DeleteCode()
         {
             if (this.code != null)
             {
                 if (db.DeleteCode(code))
                 {
                     code = null;
-                    MessageBox.Show("删除成功");
+                    SatustoolStripLabel1.Text = "删除成功";
+                    //MessageBox.Show("删除成功");
                 }
                 else
                 {
@@ -207,6 +244,54 @@ namespace SAPINTGUI.CodeManager
             loadSynFile(text);
 
 
+        }
+
+
+        private void DeletetoolStripButton3_Click(object sender, EventArgs e)
+        {
+            DeleteCode();
+        }
+
+        private void syntaxBoxControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                SaveCode();
+            }
+            else if (e.Control && e.KeyCode == Keys.N)
+            {
+                NewCode();
+            }
+        }
+
+        private void CopytoolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (_code != null)
+            {
+                var _code_copy = new Code();
+                _code_copy = _code;
+                _code_copy.Id = "";
+                //_code_copy.TreeId = _code.TreeId;
+
+                var codeEditor = new FormCodeEditor();
+                codeEditor.code = _code_copy;
+                if (this.DockPanel != null)
+                {
+                    codeEditor.Show(this.DockPanel);
+                }
+            }
+
+
+        }
+
+        private void SaveToolStripButton_Click(object sender, EventArgs e)
+        {
+            SaveCode();
+        }
+
+        private void NewToolStripButton_Click(object sender, EventArgs e)
+        {
+            NewCode();
         }
     }
 }

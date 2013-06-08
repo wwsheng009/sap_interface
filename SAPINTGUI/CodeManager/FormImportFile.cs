@@ -143,7 +143,7 @@ namespace SAPINTGUI.CodeManager
             // this.dataGridView1.DataSource = dt;
         }
 
-        Dictionary<String, CodeTree> copyFolderList = new Dictionary<string, CodeTree>();
+        Dictionary<String, CodeFolder> copyFolderList = new Dictionary<string, CodeFolder>();
         List<Code> copyCodeList = new List<Code>();
 
         /// <summary>
@@ -151,10 +151,10 @@ namespace SAPINTGUI.CodeManager
         /// </summary>
         /// <param name="folderFullName"></param>
         /// <param name="parentTree"></param>
-        private void CopyAndImportLocalDirectory(DirectoryInfo folderFullName, CodeTree parentTree = null)
+        private void CopyAndImportLocalDirectory(DirectoryInfo folderFullName, CodeFolder parentTree = null)
         {
 
-            var codeTree = new CodeTree();
+            var codeTree = new CodeFolder();
             codeTree.Id = Guid.NewGuid().ToString();
             codeTree.Text = folderFullName.Name;
             if (parentTree != null)
@@ -201,7 +201,7 @@ namespace SAPINTGUI.CodeManager
                 if (copyCodeList.Count == 100)
                 {
                     db.SaveCodeList(copyCodeList);
-                    db.SaveTreeList(copyFolderList);
+                    db.SaveFolderList(copyFolderList);
                     copyCodeList.Clear();
                     copyFolderList.Clear();
                 }
@@ -409,7 +409,7 @@ namespace SAPINTGUI.CodeManager
 
             if (String.IsNullOrEmpty(this.TreeId))
             {
-                var codeTree = new CodeTree();
+                var codeTree = new CodeFolder();
                 codeTree.Text = this.txtFolder.Text;
                 if (String.IsNullOrEmpty(codeTree.Text))
                 {
@@ -703,14 +703,14 @@ namespace SAPINTGUI.CodeManager
             }
             else
             {
-                var tree = new CodeTree();
+                var tree = new CodeFolder();
                 tree.Id = this.TreeId;
                 CopyAndImportLocalDirectory(folderFullName, tree);
             }
 
 
             db.SaveCodeList(copyCodeList);
-            db.SaveTreeList(copyFolderList);
+            db.SaveFolderList(copyFolderList);
             MessageBox.Show("保存成功");
 
         }

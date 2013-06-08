@@ -29,6 +29,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PrecompileBeforePublish>false</PrecompileBeforePublish>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,6 +41,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -122,6 +128,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Demo01Controller.cs" />
+    <Compile Include="Controllers\Sap01Controller.cs" />
     <Compile Include="Controllers\Se37Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -185,7 +193,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="log4net.config" />
+    <None Include="Properties\PublishProfiles\sapweb.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\flyjsonp.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-easyui-1.2.6\demo\combobox_data.json" />
@@ -199,8 +210,6 @@
     <Content Include="Scripts\jquery-easyui-1.2.6\demo\treegrid_data3.json" />
     <Content Include="Scripts\jquery-easyui-1.2.6\demo\treegrid_subdata.json" />
     <Content Include="Scripts\jquery-easyui-1.2.6\demo\tree_data.json" />
-    <Content Include="Scripts\jquery-easyui-1.2.6\themes\default\images\Thumbs.db" />
-    <Content Include="Scripts\jquery-easyui-1.2.6\themes\gray\images\Thumbs.db" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-easyui-1.2.6\changelog.txt" />
     <Content Include="Scripts\jquery-easyui-1.2.6\demo\accordion.html" />
@@ -542,6 +551,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Se37\Index.cshtml" />
     <Content Include="Views\Shared\_SapLayout.cshtml" />
+    <Content Include="Views\Sap01\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -551,6 +561,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SAPINTCONFIG\ConfigFileTool.csproj">
+      <Project>{d1e3f270-7bcc-474f-b6b7-18f3031ff7e5}</Project>
+      <Name>ConfigFileTool</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\SAPINTDB\SAPINTDB.csproj">
       <Project>{d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b}</Project>
       <Name>SAPINTDB %28SAPINTDB\SAPINTDB%29</Name>
@@ -576,7 +590,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>33530</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:7939/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

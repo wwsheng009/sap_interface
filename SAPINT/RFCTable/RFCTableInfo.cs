@@ -39,13 +39,40 @@ namespace SAPINT.RFCTable
             Fields.ForEach(row =>
             {
                 row.DOTNETTYPE = RfcTypeConvertor.AbapInnerTypeToSystemType(row.INTTYPE).ToString();
+                Type e = Type.GetType(row.DOTNETTYPE);
                 row.DOTNETTYPE.Replace("System.", "");
                 //  row.DOTNETTYPE = RfcTypeConvertor.AbapInnerTypeToSystemType(row.INTTYPE).ToString();
-                Type e = Type.GetType(row.DOTNETTYPE);
+
                 row.DBTYPE = SAPINT.DbHelper.DbTypeConvertor.ToDbType(e).ToString();
                 row.SQLTYPE = SAPINT.DbHelper.DbTypeConvertor.ToSqlDbType(e).ToString();
 
             });
+        }
+        public void TransFormDataTypeForDt(DataTable dt)
+        {
+            foreach (DataRow row in dt.Rows)
+            {
+                if (fieldDt.Columns.Contains("DOTNETTYPE"))
+                {
+                    row["DOTNETTYPE"] = RfcTypeConvertor.AbapInnerTypeToSystemType(row["INTTYPE"].ToString()).ToString();
+                    Type e = Type.GetType(row["DOTNETTYPE"].ToString());
+                    row["DOTNETTYPE"] = row["DOTNETTYPE"].ToString().Replace("System.", "");
+                    if (fieldDt.Columns.Contains("DBTYPE"))
+                    {
+                        row["DBTYPE"] = SAPINT.DbHelper.DbTypeConvertor.ToDbType(e).ToString();
+                    }
+                    if (fieldDt.Columns.Contains("SQLTYPE"))
+                    {
+                        row["DBTYPE"] = SAPINT.DbHelper.DbTypeConvertor.ToDbType(e).ToString();
+                    }
+
+                }
+
+
+
+
+
+            }
         }
         public DataTable GetTableDefinitionDt(String pSystemName, String pTableName)
         {
@@ -53,7 +80,7 @@ namespace SAPINT.RFCTable
             try
             {
                 // DataTable dt = SAPINT.Function.SAPFunction.DDIF_FIELDINFO_GET(pSystemName, pTableName);
-                DataTable dt = getSAPTabledef(pSystemName, pTableName);
+                DataTable dt = GetSAPTableDef(pSystemName, pTableName);
                 if (dt == null)
                 {
                     throw new SAPException(String.Format("无法获取表结构{0}的定义", pTableName));
@@ -65,7 +92,7 @@ namespace SAPINT.RFCTable
                     dc.DefaultValue = false;
                     dt.Columns.Add(dc);
                     dc.SetOrdinal(0);
-
+                    TransFormDataTypeForDt(dt);
                 }
                 return dt;
             }
@@ -74,7 +101,7 @@ namespace SAPINT.RFCTable
                 throw new SAPException(exception.Message);
             }
         }
-        private static DataTable getSAPTabledef(String sysName, String TableName)
+        private static DataTable GetSAPTableDef(String sysName, String TableName)
         {
             try
             {
@@ -100,7 +127,7 @@ namespace SAPINT.RFCTable
                 throw new SAPException(ex.Message);
             }
         }
-        private static DataTable buildTable()
+        private static DataTable BuildDataTable()
         {
 
             DataTable dt = null;
@@ -128,6 +155,8 @@ namespace SAPINT.RFCTable
             new DataColumn("SCRTEXT_M",typeof(System.String)),// 中字段标签
             new DataColumn("SCRTEXT_L",typeof(System.String)),// 长字段标签
             new DataColumn("KEYFLAG",typeof(System.String)),// 标识表格的关键字段
+            new DataColumn("POSITION2",typeof(System.String)),// 格式化的POSITIOIN
+            new DataColumn("DOTNETTYPE",typeof(System.String)),// 格式化的POSITIOIN
                 });
 
 
@@ -137,7 +166,7 @@ namespace SAPINT.RFCTable
         {
             if (dtDFIES == null)
             {
-                dtDFIES = buildTable();
+                dtDFIES = BuildDataTable();
             }
             DataTable dt = dtDFIES.Copy();
             dt.Clear();
@@ -164,6 +193,8 @@ namespace SAPINT.RFCTable
                 dr["REFTABLE"] = row.GetValue("REFTABLE") ?? DBNull.Value;
                 dr["REFFIELD"] = row.GetValue("REFFIELD") ?? DBNull.Value;
                 dr["KEYFLAG"] = row.GetValue("KEYFLAG") ?? DBNull.Value;
+                // dr["DOTNETTYPE"] = RfcTypeConvertor.AbapInnerTypeToSystemType(dr["INTTYPE"].ToString()).ToString();
+                // dr["DOTNETTYPE"] = dr["DOTNETTYPE"].ToString().Replace("System.", "");
                 dt.Rows.Add(dr);
             }
             return dt;

@@ -10,7 +10,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public delegate void delegateMessage(String message);
+    public delegate void OnIncomingPackage(ReadTable Sender, DataTable PackageResult);
+    public delegate void OnPackageProgress(ReadTable Sender, int FetchedRows);
+    public delegate void DelegateMessage(String message);
     public class ReadTable
     {
         private string _Delimiter;
@@ -31,7 +33,7 @@
         private bool BackgroundExtraction;
         private string BackgroundRequestID;
         private string BufferLocation;
-        private RfcDestination des;
+        private RfcDestination _des;
         private ArrayList fields;//读入的字段列表
         private OnIncomingPackage IncomingPackage;
         private bool OHSExtraction;
@@ -42,7 +44,7 @@
         private DataTable t;
 
 
-        public event delegateMessage eventMessage;
+        public event DelegateMessage EventMessage;
         //public ReadTable()
         //{
         //    this.fields = new ArrayList();
@@ -70,7 +72,7 @@
             this.BackgroundRequestID = "";
             this.BufferLocation = "";
             this._LastPrimaryKey = "";
-            this.des = SAPDestination.GetDesByName(sysName);
+            this._des = SAPDestination.GetDesByName(sysName);
             //if (Connection.Codepage.Equals("8000"))
             //{
             //    this._Delimiter = "|";
@@ -111,7 +113,7 @@
         }
         private void ExecuteRFC_READ_TABLE(ref IRfcFunction f)
         {
-            SendMessage("开始调用RFC_READ_TABLE");
+            SendMessage(String.Format("开始调用{0}", f.Metadata.Name));
             if (this.BackgroundExtraction)
             {
                 f["ACTIONID"].SetValue("D");
@@ -146,7 +148,7 @@
             try
             {
                 SendMessage("Invoke开始");
-                f.Invoke(des);
+                f.Invoke(_des);
                 SendMessage("Invoke结束");
             }
             catch (RfcAbapException e)
@@ -159,7 +161,8 @@
             {
                 throw new SAPException(ee.Key + ee.Message);
             }
-            SendMessage("调用RFC_READ_TABLE结束!");
+  
+            SendMessage(String.Format("结束调用{0}", f.Metadata.Name));
         }
         private void InitWhereClause(ref IRfcTable toptions)
         {
@@ -384,12 +387,12 @@
             {
                 return null;
             }
-            IRfcFunction function = des.Repository.CreateFunction("DDIF_FIELDINFO_GET");
-            function["LANGU"].SetValue(Converts.languageIsotoSap(this.des.Language));
+            IRfcFunction function = _des.Repository.CreateFunction("DDIF_FIELDINFO_GET");
+            function["LANGU"].SetValue(Converts.languageIsotoSap(this._des.Language));
             function["TABNAME"].SetValue(this.TableName);
             try
             {
-                function.Invoke(des);
+                function.Invoke(_des);
                 for (int k = 0; k < function.GetTable("DFIES_TAB").RowCount; k++)
                 {
                     IRfcStructure structure = function.GetTable("DFIES_TAB")[k];
@@ -409,12 +412,12 @@
             {
                 return;
             }
-            IRfcFunction function = des.Repository.CreateFunction("DDIF_FIELDINFO_GET");
-            function["LANGU"].SetValue(Converts.languageIsotoSap(this.des.Language));
+            IRfcFunction function = _des.Repository.CreateFunction("DDIF_FIELDINFO_GET");
+            function["LANGU"].SetValue(Converts.languageIsotoSap(this._des.Language));
             function["TABNAME"].SetValue(this.TableName);
             try
             {
-                function.Invoke(des);
+                function.Invoke(_des);
                 for (int k = 0; k < function.GetTable("DFIES_TAB").RowCount; k++)
                 {
                     IRfcStructure structure = function.GetTable("DFIES_TAB")[k];
@@ -444,7 +447,7 @@
                 this.anzahlaufrufe = 0;
                 if (this._FunctionName.Equals(""))
                 {
-                    bool isUnicode = this.des.Repository.UnicodeEnabled;
+                    bool isUnicode = this._des.Repository.UnicodeEnabled;
 
                     if (this._UsePrimaryKeyPackaging)
                     {
@@ -452,14 +455,14 @@
                         //throw new Exception("Donot use primaykey packaging without a custom function module");
                     }
 
-                    function = des.Repository.CreateFunction("RFC_READ_TABLE");
+                    function = _des.Repository.CreateFunction("RFC_READ_TABLE");
                 }
                 else
                 {
                     try
                     {
                         SendMessage("读取函数元数据" + _FunctionName);
-                        function = this.des.Repository.CreateFunction(this._FunctionName);
+                        function = this._des.Repository.CreateFunction(this._FunctionName);
                         SendMessage("读取函数元数据完成" + _FunctionName);
                     }
                     catch (RfcAbapException ee)
@@ -473,10 +476,10 @@
                 if (this._UsePrimaryKeyPackaging)
                 {
                     this._PrimaryKeys.Clear();
-                    IRfcFunction function2 = des.Repository.CreateFunction("DDIF_FIELDINFO_GET");//.GenerateFunctionObjectForDDIF_FIELDINFO_GET(this.con.IsUnicode);
+                    IRfcFunction function2 = _des.Repository.CreateFunction("DDIF_FIELDINFO_GET");//.GenerateFunctionObjectForDDIF_FIELDINFO_GET(this.con.IsUnicode);
                     //function2.Connection = this.con;
                     function2["TABNAME"].SetValue(this.TableName);
-                    function2.Invoke(des);
+                    function2.Invoke(_des);
                     foreach (IRfcStructure structure in function2.GetTable("DFIES_TAB").ToList())
                     {
                         if (structure["KEYFLAG"].GetValue().ToString().Equals("X"))
@@ -605,7 +608,7 @@
             catch (Exception e)
             {
                 SendMessage(e.Message);
-               // throw e;
+                // throw e;
             }
             //function.Tables["DATA"].Dispose();
         }
@@ -617,11 +620,11 @@
         {
             get
             {
-                return this.des;
+                return this._des;
             }
             set
             {
-                this.des = value;
+                this._des = value;
             }
         }
         public string Delimiter
@@ -743,13 +746,11 @@
         }
         private void SendMessage(String message)
         {
-            if (this.eventMessage != null)
+            if (this.EventMessage != null)
             {
-                this.eventMessage(message);
+                this.EventMessage(message);
             }
         }
 
-        public delegate void OnIncomingPackage(ReadTable Sender, DataTable PackageResult);
-        public delegate void OnPackageProgress(ReadTable Sender, int FetchedRows);
     }
 }

@@ -87,6 +87,12 @@
     <Compile Include="Idocs\IdocDb.cs" />
     <Compile Include="Idocs\IdocMeta\IdocMeta.cs" />
     <Compile Include="Idocs\IdocMeta\IdocUtil.cs" />
+    <Compile Include="Linq\SAPColumnAttribute.cs" />
+    <Compile Include="Linq\SAPCryptoHelper.cs" />
+    <Compile Include="Linq\SAPDataContext.cs" />
+    <Compile Include="Linq\SAPExtensions.cs" />
+    <Compile Include="Linq\SAPTable.cs" />
+    <Compile Include="Linq\SAPTableAttribute.cs" />
     <Compile Include="RFCTable\SapTable.cs" />
     <Compile Include="Utils\BapiReturn.cs" />
     <Compile Include="BapiReturnCollection.cs" />
@@ -201,6 +207,7 @@
     <Compile Include="Utils\TransactionUpdateMode.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="log4net.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

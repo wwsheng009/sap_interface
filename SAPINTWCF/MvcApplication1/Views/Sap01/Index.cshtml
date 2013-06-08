@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>测试</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/flyjsonp.js"></script>
+    <script type="text/javascript">
+       
+        function find() {
+            var id = $('#key').val();
+            $.getJSON("../api/demo01/" + id,
+                function (data) {
+                    var str = data;
+                    $('#result').text(str);
+                })
+        };
+        function postsap() {
+            var url = "http://dev.breo.com.cn:8006/breo/server_test?sap-client=600" + "&jsoncallback=?";
+            //sap01();
+            $.getJSON(url,
+                function (json) {
+                    alert(json);
+                    var re = json;
+                    $('#result').html(json);
+                }).success(alert(json)).error(alert('xxx'));
+
+        }
+        function success_jsonpCallback() {
+           // alert('fail111111111');
+        }
+        function sap01() {
+            var url = "http://dev.breo.com.cn:8006/breo/server_test?sap-client=400" + "&jsoncallback=?";
+            $.ajax({
+                type: "get",
+                async: false,
+                url: url,
+                dataType: "jsonp",
+                jsonp: "callbackparam",//服务端用于接收callback调用的function名的参数
+                jsonpCallback: "success_jsonpCallback",//callback的function名称
+                success: function (json) {
+                    alert(json);
+                    //alert(json[0].name);
+                    $('#result').html(json);
+                },
+                error: function (jqXHR, textStatus, ex) {
+                    alert(textStatus + "," + ex + "," + jqXHR.responseText);
+                }
+            });
+
+        }
+        function sap02() {
+            FlyJSONP.init({ debug: true });
+            var url = "http://dev.breo.com.cn:8006/breo/server_test?sap-client=400" + "&jsoncallback=?";
+            FlyJSONP.post({
+                url: url,
+                parameters: {
+                    username: 'your-username',
+                    api_key: 'secret-api-key',
+                    title: 'FlyJSONP',
+                    description: 'Testing it out'
+                },
+                success: function (data) {
+                    alert(json);
+                    console.log(data);
+                },
+                error: function (errorMsg) {
+                    alert(errorMsg);
+                    console.log(errorMsg);
+                }
+            });
+        }
+        
+
+    </script>
+</head>
+<body>
+
+    <h2>Index</h2>
+    <form id="form01" action="~/api/demo01" method="post">
+        <input type="text" name="key" id="key" />
+        <input type="text" name="value" id="value" />
+        <input type="submit" />
+        <input type="button" value="Hello" onclick="find();" />
+    </form>
+
+    <form id="form02" method="post" action="http://dev.breo.com.cn:8006/breo/server_test?sap-client=600">
+        <input type="submit" />
+
+    </form>
+    <button onclick="sap01();">POST DATA TO SAP</button>
+    <button onclick="sap02();">POST DATA TO SAP 02</button>
+    <p id="result"></p>
+</body>
+</html>
+
+

@@ -393,7 +393,7 @@ namespace SAPINTGUI
                     try
                     {
                         SapTable table = new SapTable(SourceSystem, SourceTableName, "CHAR8000");
-                        table.saveDataTable(localDt);
+                        table.SaveDataTable(localDt);
                         MessageBox.Show("保存成功！！！");
                     }
                     catch (Exception exception)

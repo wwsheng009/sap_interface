@@ -16,7 +16,7 @@ namespace SAPINTDBtest
             db.BeginTransaction();
             for (int i = 0; i < 10; i++)
             {
-                CodeTree tree = new CodeTree();
+                CodeFolder tree = new CodeFolder();
                 tree.Text = "Top Folder " + i.ToString();
                 var ree = db.SaveTree(tree);
 
@@ -31,7 +31,7 @@ namespace SAPINTDBtest
 
                 for (int x = 0; x < 10; x++)
                 {
-                    tree = new CodeTree();
+                    tree = new CodeFolder();
 
                     tree.Text = tree.Text + " Sub Folder " + x.ToString();
                     tree.ParentId = ree.Id;
@@ -56,7 +56,7 @@ namespace SAPINTDBtest
         [TestMethod]
         public void SaveCodeTreeTest()
         {
-            SAPINTDB.CodeManager.CodeTree codetree = new SAPINTDB.CodeManager.CodeTree();
+            SAPINTDB.CodeManager.CodeFolder codetree = new SAPINTDB.CodeManager.CodeFolder();
             codetree.Text = "Code";
             codetree.Type = "Document";
 
@@ -66,7 +66,7 @@ namespace SAPINTDBtest
         public void UpdateCodeTreeTest()
         {
             //CodeTree 
-            CodeTree codetree = db.GetTree("f8b46c02-90b5-4561-8de3-3973a8cefa4b");
+            CodeFolder codetree = db.GetFolder("f8b46c02-90b5-4561-8de3-3973a8cefa4b");
             Assert.AreEqual(codetree.Id, "f8b46c02-90b5-4561-8de3-3973a8cefa4b");
             codetree.Text = "xxxxxxxx";
             db.SaveTree(codetree);
@@ -81,7 +81,7 @@ namespace SAPINTDBtest
         [TestMethod]
         public void GetCodeTreeTest()
         {
-            CodeTree codetree = db.GetTree("982e36e6-4f22-472d-9daf-e361bcfc55a7");
+            CodeFolder codetree = db.GetFolder("982e36e6-4f22-472d-9daf-e361bcfc55a7");
             Assert.AreEqual(codetree.SubTreeList.Count, 1);
             Assert.AreEqual(3, codetree.CodeList.Count);
         }
@@ -91,7 +91,7 @@ namespace SAPINTDBtest
             var list = db.GetTopLit();
             Assert.AreEqual(10, list.Count);
 
-            var list2 = db.GetTree(list[1].Id);
+            var list2 = db.GetFolder(list[1].Id);
             Assert.AreEqual(10,list2.SubTreeList.Count);
             Assert.AreEqual(10,list2.CodeList.Count);
         }

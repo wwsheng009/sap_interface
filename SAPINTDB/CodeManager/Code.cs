@@ -56,7 +56,7 @@ namespace SAPINTDB.CodeManager
     /// AutoMap()映射类字段到同名的数据库表字段。
     /// 
     /// </summary>
-    public class CodeTreeMapper : ClassMapper<CodeTree>
+    public class CodeTreeMapper : ClassMapper<CodeFolder>
     {
         public CodeTreeMapper()
         {
@@ -67,7 +67,7 @@ namespace SAPINTDB.CodeManager
     }
 
 
-    public class CodeTree
+    public class CodeFolder
     {
         public string Id { get; set; }
         public string ParentId { get; set; }
@@ -76,15 +76,22 @@ namespace SAPINTDB.CodeManager
         public String Type { get; set; }
 
         public List<Code> CodeList { get; set; }
-        public List<CodeTree> SubTreeList { get; set; }
+        public List<CodeFolder> SubTreeList { get; set; }
 
-        public CodeTree()
+        public CodeFolder()
         {
             Id = string.Empty;
             ParentId = string.Empty;
             Text = string.Empty;
 
             Type = string.Empty;
+        }
+        public CodeFolder(String p_id, String p_parentId, String p_Text, string p_Type)
+        {
+            Id = p_id;
+            ParentId = p_parentId;
+            Text = p_Text;
+            Type = p_Type;
         }
     }
 
@@ -143,13 +150,13 @@ namespace SAPINTDB.CodeManager
 
             if (row != null)
             {
-                datatrowToObject(row);
+                DatatrowToObject(row);
             }
 
 
         }
 
-        public Code datatrowToObject(DataRow row)
+        public Code DatatrowToObject(DataRow row)
         {
 
             if (row.Table.Columns.Contains("content"))
@@ -201,7 +208,7 @@ namespace SAPINTDB.CodeManager
             // codelist.Add(this);
         }
 
-        public void getNextVersion()
+        public void GetNewVersion()
         {
             if (string.IsNullOrWhiteSpace(this.Version))
             {

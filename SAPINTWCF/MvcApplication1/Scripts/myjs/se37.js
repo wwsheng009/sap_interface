@@ -524,6 +524,14 @@ var getRfclist = function () {
         success: function (json) {   //成功后执行的方法
             if (json != "") {
                 var data = eval('(' + json + ')');
+                if (data==undefined) {
+                    alert("O no~~");
+                    return
+                }
+                if (data.error!=undefined) {
+                    alert(data.error);
+                    return;
+                }
                 var layer = "<table>";
                 for (var i in data) {
                     layer += "<tr><td class='line'>" + data[i].FUNCNAME + "</td><td class='line'>" + data[i].STEXT + "</td></tr>";

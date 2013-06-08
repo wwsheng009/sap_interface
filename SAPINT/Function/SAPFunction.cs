@@ -379,12 +379,7 @@
                     var _table = new SapTable(sysName, "RFC_FUNCTIONS", "RFCFUNC");
                     _table.DbConnectionString = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
                     _table.NewTable = true;
-                    _table.saveDataTable(SAPFunction.RfcTableToDataTable(FUNCTIONS));
-                    // RfcTableToDb dbhelper = new RfcTableToDb("RFC_FUNCTIONS", "FUNCTIONS", FUNCTIONS);
-                    //  dbhelper.saveTable();
-                    //ThreadStart threadStart = new ThreadStart(dbhelper.saveTable);
-                    //Thread thread = new Thread(threadStart);
-                    //thread.Start();
+                    _table.SaveDataTable(SAPFunction.RfcTableToDataTable(FUNCTIONS));
                     return true;
                 }
                 else

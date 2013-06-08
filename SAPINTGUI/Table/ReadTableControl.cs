@@ -23,7 +23,7 @@ namespace SAPINTGUI
         List<TableInfo> tablelist;  //缓存列表
         private string _systemName;//连接的SAP系统的配置名称
         string filepath = @"C:\ReadTable.xml"; //配置文件的路径。
-        public event delegateMessage EventMessage;
+        public event DelegateMessage EventMessage;
         public String TableName
         {
             get
@@ -56,7 +56,7 @@ namespace SAPINTGUI
             rowNum.Text = "500";
             tablelist = new List<TableInfo>();
             this.cbx_systemlist.DataSource = null;
-            this.cbx_systemlist.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            this.cbx_systemlist.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();
             cbx_systemlist.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
             new DgvFilterPopup.DgvFilterManager(this.dataGridView1);
             new DgvFilterPopup.DgvFilterManager(this.dataGridView2);
@@ -126,7 +126,7 @@ namespace SAPINTGUI
             {
                 SendMessage("开始");
                 dt = new ReadTable(_systemName);
-                dt.eventMessage += dt_eventMessage;
+                dt.EventMessage += dt_eventMessage;
                 // dt.SetCustomFunctionName("Z_XTRACT_IS_TABLE");
                 dt.SetCustomFunctionName("Z_SAPINT_READ_TABLE2");
                 dt.TableName = _tableName;
@@ -192,10 +192,6 @@ namespace SAPINTGUI
             {
                 EventGetTable(this, ResultAsTable);
             }
-
-
-
-
 
         }
         void dt_eventMessage(string message)

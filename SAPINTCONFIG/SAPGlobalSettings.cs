@@ -16,7 +16,7 @@ namespace ConfigFileTool
 
         public static List<String> SapClientList
         {
-            get { return getSAPClientList(); }
+            get { return GetSAPClientList(); }
 
         }
         static SAPGlobalSettings()
@@ -87,7 +87,7 @@ namespace ConfigFileTool
             return globalSettingSection.KeyValues["DefaultReadTableFunction"].Value;
         }
 
-        public static List<String> getSAPClientList()
+        public static List<String> GetSAPClientList()
         {
             List<String> clientList = new List<string>();
 
@@ -105,7 +105,7 @@ namespace ConfigFileTool
             return clientList;
         }
 
-        public static List<String> getSAPServerList()
+        public static List<String> GetSAPServerList()
         {
             List<String> serverList = new List<string>();
             ConfigFileTool.SapConfig.RfcServerCollection sapserver = SAPClientServerSetting.getServerSettings();

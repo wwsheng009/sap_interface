@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormIdocMeta));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.cboxSystemList1 = new SAPINT.Controls.CboxSystemList();
             this.txtIdocNumber = new System.Windows.Forms.TextBox();
@@ -128,6 +132,7 @@
             this.label40 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtStatusVar4 = new System.Windows.Forms.TextBox();
@@ -136,9 +141,10 @@
             this.txtStatusVar1 = new System.Windows.Forms.TextBox();
             this.txtBoxSatus = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
-            this.txtCreationDate = new System.Windows.Forms.TextBox();
             this.txtCreateTime = new System.Windows.Forms.TextBox();
-            this.label45 = new System.Windows.Forms.Label();
+            this.txtCreationDate = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -155,7 +161,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(487, 12);
+            this.button1.Location = new System.Drawing.Point(437, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -167,21 +173,21 @@
             // 
             this.cboxSystemList1.DataSource = ((object)(resources.GetObject("cboxSystemList1.DataSource")));
             this.cboxSystemList1.FormattingEnabled = true;
-            this.cboxSystemList1.Location = new System.Drawing.Point(13, 14);
+            this.cboxSystemList1.Location = new System.Drawing.Point(76, 13);
             this.cboxSystemList1.Name = "cboxSystemList1";
-            this.cboxSystemList1.Size = new System.Drawing.Size(153, 20);
+            this.cboxSystemList1.Size = new System.Drawing.Size(109, 20);
             this.cboxSystemList1.TabIndex = 1;
             // 
             // txtIdocNumber
             // 
-            this.txtIdocNumber.Location = new System.Drawing.Point(213, 12);
+            this.txtIdocNumber.Location = new System.Drawing.Point(256, 12);
             this.txtIdocNumber.Name = "txtIdocNumber";
             this.txtIdocNumber.Size = new System.Drawing.Size(165, 21);
             this.txtIdocNumber.TabIndex = 2;
             // 
             // btnDecompile
             // 
-            this.btnDecompile.Location = new System.Drawing.Point(580, 12);
+            this.btnDecompile.Location = new System.Drawing.Point(518, 9);
             this.btnDecompile.Name = "btnDecompile";
             this.btnDecompile.Size = new System.Drawing.Size(75, 23);
             this.btnDecompile.TabIndex = 3;
@@ -191,25 +197,41 @@
             // 
             // dataGridView1
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(666, 371);
+            this.dataGridView1.Size = new System.Drawing.Size(666, 386);
             this.dataGridView1.TabIndex = 4;
             // 
             // treeViewForIdoc
             // 
-            this.treeViewForIdoc.Location = new System.Drawing.Point(13, 54);
+            this.treeViewForIdoc.Location = new System.Drawing.Point(13, 39);
             this.treeViewForIdoc.Name = "treeViewForIdoc";
-            this.treeViewForIdoc.Size = new System.Drawing.Size(194, 403);
+            this.treeViewForIdoc.Size = new System.Drawing.Size(194, 418);
             this.treeViewForIdoc.TabIndex = 5;
             this.treeViewForIdoc.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewForIdoc_AfterSelect);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(661, 11);
+            this.textBox1.Location = new System.Drawing.Point(599, 9);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -225,10 +247,10 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(213, 54);
+            this.tabControl1.Location = new System.Drawing.Point(213, 39);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(680, 403);
+            this.tabControl1.Size = new System.Drawing.Size(680, 418);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage1
@@ -237,7 +259,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(672, 377);
+            this.tabPage1.Size = new System.Drawing.Size(672, 392);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "IDOC数据";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1017,7 +1039,23 @@
             this.dgvStatusTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStatusTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvStatusTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStatusTable.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvStatusTable.Location = new System.Drawing.Point(3, 131);
             this.dgvStatusTable.Name = "dgvStatusTable";
             this.dgvStatusTable.RowTemplate.Height = 23;
@@ -1087,6 +1125,15 @@
             this.label38.TabIndex = 1;
             this.label38.Text = "描述";
             // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(202, 18);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(53, 12);
+            this.label45.TabIndex = 1;
+            this.label45.Text = "创建时间";
+            // 
             // label37
             // 
             this.label37.AutoSize = true;
@@ -1145,13 +1192,6 @@
             this.txtDescription.Size = new System.Drawing.Size(288, 21);
             this.txtDescription.TabIndex = 0;
             // 
-            // txtCreationDate
-            // 
-            this.txtCreationDate.Location = new System.Drawing.Point(82, 9);
-            this.txtCreationDate.Name = "txtCreationDate";
-            this.txtCreationDate.Size = new System.Drawing.Size(100, 21);
-            this.txtCreationDate.TabIndex = 0;
-            // 
             // txtCreateTime
             // 
             this.txtCreateTime.Location = new System.Drawing.Point(270, 9);
@@ -1159,20 +1199,38 @@
             this.txtCreateTime.Size = new System.Drawing.Size(100, 21);
             this.txtCreateTime.TabIndex = 0;
             // 
-            // label45
+            // txtCreationDate
             // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(202, 18);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(53, 12);
-            this.label45.TabIndex = 1;
-            this.label45.Text = "创建时间";
+            this.txtCreationDate.Location = new System.Drawing.Point(82, 9);
+            this.txtCreationDate.Name = "txtCreationDate";
+            this.txtCreationDate.Size = new System.Drawing.Size(100, 21);
+            this.txtCreationDate.TabIndex = 0;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(191, 17);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(59, 12);
+            this.label46.TabIndex = 8;
+            this.label46.Text = "IDOC编号:";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(12, 17);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(53, 12);
+            this.label47.TabIndex = 9;
+            this.label47.Text = "SAP系统:";
             // 
             // FormIdocMeta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(905, 469);
+            this.Controls.Add(this.label47);
+            this.Controls.Add(this.label46);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.treeViewForIdoc);
@@ -1318,5 +1376,7 @@
         private System.Windows.Forms.DataGridView dgvStatusTable;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox txtCreateTime;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label47;
     }
 }

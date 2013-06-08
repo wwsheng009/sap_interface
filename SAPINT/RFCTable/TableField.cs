@@ -128,6 +128,7 @@ namespace SAPINT.RFCTable
         public string DOTNETTYPE { get; set; }
         public string DBTYPE { get; set; }
         public string SQLTYPE { get; set; }
+        public string POSITION2 { get; set; }
     }
     /// <summary>
     /// SAP中结构DFIES的类型定义。这是在SAP字典里定义的。直接复制过来

@@ -19,13 +19,13 @@ namespace SAPINTDB.CodeManager
     /// </summary>
     public class Codedb
     {
-        public string dbname { get; set; }
-        private SAPINTDB.netlib7 vdb { get; set; }
+        private string m_dbname { get; set; }
+        private SAPINTDB.netlib7 m_vdb { get; set; }
         // public static List<Code> codelist = new List<Code>();
 
-        IDatabase Db = null;
-        IDbConnection connection = null;
-        SqlDialectBase dialect = null;
+        private IDatabase Db = null;
+        private IDbConnection connection = null;
+        private SqlDialectBase dialect = null;
 
 
         public Codedb()
@@ -35,17 +35,17 @@ namespace SAPINTDB.CodeManager
 
         private void InitDb()
         {
-            dbname = ConfigFileTool.SAPGlobalSettings.GetCodeManagerDb();
-            if (string.IsNullOrWhiteSpace(dbname))
+            m_dbname = ConfigFileTool.SAPGlobalSettings.GetCodeManagerDb();
+            if (string.IsNullOrWhiteSpace(m_dbname))
             {
                 throw new Exception("Can't get the dbName");
             }
-            vdb = new SAPINTDB.netlib7(dbname);
-            connection = vdb.CreateConnection();
+            m_vdb = new SAPINTDB.netlib7(m_dbname);
+            connection = m_vdb.CreateConnection();
 
 
 
-            switch (vdb.ProviderType)
+            switch (m_vdb.ProviderType)
             {
                 case netlib7.ProviderTypes.Oracle:
                     break;
@@ -80,9 +80,9 @@ namespace SAPINTDB.CodeManager
 
         private void checkSqlError()
         {
-            if (!String.IsNullOrWhiteSpace(vdb.ErrorMessage))
+            if (!String.IsNullOrWhiteSpace(m_vdb.ErrorMessage))
             {
-                throw new Exception(vdb.ErrorMessage);
+                throw new Exception(m_vdb.ErrorMessage);
             }
         }
 
@@ -103,7 +103,7 @@ namespace SAPINTDB.CodeManager
             String id = null;
 
             bool saveOk = false;
-            _code.getNextVersion();
+            _code.GetNewVersion();
 
             _code.LastChangeTime = DateTime.Now;
             if (String.IsNullOrWhiteSpace(_code.Id))
@@ -191,17 +191,17 @@ namespace SAPINTDB.CodeManager
         public DataTable SearchCodeToDataTable(string search)
         {
 
-            if (vdb.ProviderType == netlib7.ProviderTypes.SQLite)
+            if (m_vdb.ProviderType == netlib7.ProviderTypes.SQLite)
             {
                 string sql = String.Format("select title,snippet(codeindex,'<strong>', '</strong>', '...')result ,id,desc from codeindex where codeindex match '*{0}*'", search);
 
                 //sql = string.Format(" select V.[title],snippet(codeindex,'<strong>', '</strong>', '...') result ,I.[id],V.[codeid],V.[Desc],V.[version] from codeindex I inner join codeversion V on I.id = V.id where codeindex match '*{0}*' ", search);
                 sql = string.Format(" select V.[title],snippet(codeindex,'<strong>', '</strong>', '...') result ,V.[content],I.[id],V.[Desc],V.[version] from codeindex I inner join code V on I.id = V.id where codeindex match '*{0}*' ", search);
 
-                DataTable dt = vdb.DataTableFill(sql);
-                if (!String.IsNullOrWhiteSpace(vdb.ErrorMessage))
+                DataTable dt = m_vdb.DataTableFill(sql);
+                if (!String.IsNullOrWhiteSpace(m_vdb.ErrorMessage))
                 {
-                    throw new Exception(vdb.ErrorMessage);
+                    throw new Exception(m_vdb.ErrorMessage);
                 }
 
                 return dt;
@@ -216,7 +216,7 @@ namespace SAPINTDB.CodeManager
             }
         }
 
-        public bool SaveTreeList(Dictionary<string, CodeTree> CopyFolderList)
+        public bool SaveFolderList(Dictionary<string, CodeFolder> CopyFolderList)
         {
             Db.BeginTransaction();
             try
@@ -242,29 +242,29 @@ namespace SAPINTDB.CodeManager
         /// <summary>
         /// 保存一个树节点
         /// </summary>
-        /// <param name="treeNode"></param>
+        /// <param name="p_folder"></param>
         /// <returns></returns>
-        public CodeTree SaveTree(CodeTree treeNode)
+        public CodeFolder SaveTree(CodeFolder p_folder)
         {
 
-            if (String.IsNullOrEmpty(treeNode.Id))
+            if (String.IsNullOrEmpty(p_folder.Id))
             {
-                treeNode.Id = Guid.NewGuid().ToString();
-                var id = Db.Insert(treeNode);
-                treeNode.Id = id;
+                p_folder.Id = Guid.NewGuid().ToString();
+                var id = Db.Insert(p_folder);
+                p_folder.Id = id;
             }
             else
             {
-                var x = Db.Get<CodeTree>(treeNode.Id);
+                var x = Db.Get<CodeFolder>(p_folder.Id);
                 if (x == null)
                 {
-                    Db.Insert(treeNode);
+                    Db.Insert(p_folder);
                 }
                 else
                 {
-                    if (Db.Update(treeNode))
+                    if (Db.Update(p_folder))
                     {
-                        return treeNode;
+                        return p_folder;
                     }
                     else
                     {
@@ -273,7 +273,7 @@ namespace SAPINTDB.CodeManager
                 }
 
             }
-            return treeNode;
+            return p_folder;
 
         }
         /// <summary>
@@ -281,11 +281,11 @@ namespace SAPINTDB.CodeManager
         /// 同时读取它下面的一层节点，这会导致会有两层树节点。
         /// </summary>
         /// <returns></returns>
-        public List<CodeTree> GetTopLit()
+        public List<CodeFolder> GetTopLit()
         {
 
-            var pre = Predicates.Field<CodeTree>(f => f.ParentId, Operator.Eq, string.Empty, false);
-            var list = Db.GetList<CodeTree>(pre).ToList<CodeTree>();
+            var pre = Predicates.Field<CodeFolder>(f => f.ParentId, Operator.Eq, string.Empty, false);
+            var list = Db.GetList<CodeFolder>(pre).ToList<CodeFolder>();
 
             //如果文件很多，会有严重的性能问题。
             //var newList = new List<CodeTree>();
@@ -298,6 +298,17 @@ namespace SAPINTDB.CodeManager
             return list;
 
         }
+        public CodeFolder GetRootFolder()
+        {
+            var pre = Predicates.Field<CodeFolder>(f => f.ParentId, Operator.Eq, "", false);
+            var folder = Db.Get<CodeFolder>(pre);
+            if (String.IsNullOrEmpty(folder.Id))
+            {
+                return null;
+            }
+            return folder;
+
+        }
         /// <summary>
         /// 根据ID读取树节点
         /// 同时读取它的第一层子节点
@@ -305,17 +316,17 @@ namespace SAPINTDB.CodeManager
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public CodeTree GetTree(String id)
+        public CodeFolder GetFolder(String id)
         {
 
-            var tree = Db.Get<CodeTree>(id);
+            var tree = Db.Get<CodeFolder>(id);
             if (tree == null)
             {
-                throw new Exception("Id is not valid");
+                return null;
             }
 
-            var pre = Predicates.Field<CodeTree>(f => f.ParentId, Operator.Eq, id, false);
-            tree.SubTreeList = Db.GetList<CodeTree>(pre).ToList<CodeTree>();
+            var pre = Predicates.Field<CodeFolder>(f => f.ParentId, Operator.Eq, id, false);
+            tree.SubTreeList = Db.GetList<CodeFolder>(pre).ToList<CodeFolder>();
 
             var codpre = Predicates.Field<Code>(f => f.TreeId, Operator.Eq, id, false);
             tree.CodeList = Db.GetList<Code>(codpre).ToList<Code>();
@@ -324,13 +335,13 @@ namespace SAPINTDB.CodeManager
         public List<Code> SearchCode(string search)
         {
             var codeSearchResult = new List<Code>();
-            if (vdb.ProviderType == netlib7.ProviderTypes.SQLite)
+            if (m_vdb.ProviderType == netlib7.ProviderTypes.SQLite)
             {
                 string sql = String.Format("select snippet(codeindex,'<strong>', '</strong>', '...') from codeindex where codeindex match '*{0}*'", search);
-                DataTable dt = vdb.DataTableFill(sql);
-                if (!String.IsNullOrWhiteSpace(vdb.ErrorMessage))
+                DataTable dt = m_vdb.DataTableFill(sql);
+                if (!String.IsNullOrWhiteSpace(m_vdb.ErrorMessage))
                 {
-                    throw new Exception(vdb.ErrorMessage);
+                    throw new Exception(m_vdb.ErrorMessage);
                 }
 
                 if (dt.Rows.Count > 0)
@@ -425,14 +436,18 @@ namespace SAPINTDB.CodeManager
 
         }
 
+        /// <summary>
+        /// 为了更好的性能。
+        /// </summary>
+        /// <param name="removed"></param>
         public void DeleteCodeList2(List<Code> removed)
         {
             if (removed != null)
             {
 
-                DbConnection cn = vdb.CreateConnection();
+                DbConnection cn = m_vdb.CreateConnection();
                 cn.Open();
-                DbCommand cmd = vdb.CreateCommand(cn);
+                DbCommand cmd = m_vdb.CreateCommand(cn);
 
                 DbTransaction trans = cmd.Connection.BeginTransaction();// <-------------------
                 cmd.Transaction = trans;
@@ -469,33 +484,33 @@ namespace SAPINTDB.CodeManager
         /// 同时会删除子节点的所有文件夹
         /// 同时会删除所有文件夹下面的代码。
         /// </summary>
-        /// <param name="codeTreeNode"></param>
+        /// <param name="codeFolder"></param>
         /// <returns></returns>
-        public bool DeleteTree(CodeTree codeTreeNode)
+        public bool DeleteFolder(CodeFolder codeFolder)
         {
 
-            if (codeTreeNode == null)
+            if (codeFolder == null)
             {
                 return false;
             }
-            var id = codeTreeNode.Id;
+            var id = codeFolder.Id;
 
 
-            var tree = Db.Get<CodeTree>(id);
+            var tree = Db.Get<CodeFolder>(id);
             if (tree == null)
             {
                 throw new Exception("Id is not valid");
             }
-            _wholeTreeList.Clear();
+            _wholeFolderList.Clear();
             _wholeCodeList.Clear();
-            _wholeTreeList.Add(tree);
+            _wholeFolderList.Add(tree);
 
             Db.BeginTransaction();
-            getWholeCodeTree(tree.Id);
+            GetWholeCodeFolder(tree.Id);
             Db.Commit();
 
             Db.BeginTransaction();
-            foreach (var item in _wholeTreeList)
+            foreach (var item in _wholeFolderList)
             {
                 Db.Delete(item);
             }
@@ -509,27 +524,27 @@ namespace SAPINTDB.CodeManager
         /// <summary>
         /// 只作获取树节点使用
         /// </summary>
-        private List<CodeTree> _wholeTreeList = new List<CodeTree>();
+        private List<CodeFolder> _wholeFolderList = new List<CodeFolder>();
         private List<Code> _wholeCodeList = new List<Code>();
 
         /// <summary>
         /// 根据文件夹的ID,读取文件夹下面的所有的文件，跟文件夹。
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="codeTreeList"></param>
+        /// <param name="codeFoderList"></param>
         /// <param name="codeList"></param>
-        public void GetWholeCodeAndTreeList(string id, out List<CodeTree> codeTreeList, out List<Code> codeList)
+        public void GetWholeCodeAndFolderList(string id, out List<CodeFolder> codeFoderList, out List<Code> codeList)
         {
-            var tree = Db.Get<CodeTree>(id);
+            var tree = Db.Get<CodeFolder>(id);
             if (tree == null)
             {
                 throw new Exception("Id is not valid");
             }
 
-            _wholeTreeList.Clear();
+            _wholeFolderList.Clear();
             _wholeCodeList.Clear();
-            getWholeCodeTree(id);
-            codeTreeList = _wholeTreeList;
+            GetWholeCodeFolder(id);
+            codeFoderList = _wholeFolderList;
             codeList = _wholeCodeList;
         }
         /// <summary>
@@ -537,12 +552,12 @@ namespace SAPINTDB.CodeManager
         /// 这个方法是循环调用
         /// </summary>
         /// <param name="id"></param>
-        private void getWholeCodeTree(String id)
+        private void GetWholeCodeFolder(String id)
         {
             try
             {
-                var pre = Predicates.Field<CodeTree>(f => f.ParentId, Operator.Eq, id, false);
-                var subTreeList = Db.GetList<CodeTree>(pre).ToList<CodeTree>();
+                var pre = Predicates.Field<CodeFolder>(f => f.ParentId, Operator.Eq, id, false);
+                var subFolderList = Db.GetList<CodeFolder>(pre).ToList<CodeFolder>();
 
                 var codpre = Predicates.Field<Code>(f => f.TreeId, Operator.Eq, id, false);
                 var _codeList = Db.GetList<Code>(codpre).ToList<Code>();
@@ -551,17 +566,17 @@ namespace SAPINTDB.CodeManager
                 {
                     _codeList.AddRange(_codeList);
                 }
-                if (subTreeList != null && subTreeList.Count > 0)
+                if (subFolderList != null && subFolderList.Count > 0)
                 {
-                    _wholeTreeList.AddRange(subTreeList);
+                    _wholeFolderList.AddRange(subFolderList);
                     // Db.BeginTransaction();
-                    foreach (var item in subTreeList)
+                    foreach (var item in subFolderList)
                     {
                         if (item == null)
                         {
                             throw new Exception("item is null");
                         }
-                        getWholeCodeTree(item.Id);
+                        GetWholeCodeFolder(item.Id);
                     }
                     // Db.Commit();
                 }

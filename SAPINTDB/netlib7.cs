@@ -315,6 +315,7 @@ namespace SAPINTDB
         /// <returns></returns>
         public DbConnection CreateConnection(string providerName, string connectionString)
         {
+            
             DbProviderFactory pf = DbProviderFactories.GetFactory(providerName);
 
             DbConnection cn = pf.CreateConnection();
@@ -1090,7 +1091,7 @@ namespace SAPINTDB
                         case "Object": r = "sql_variant"; break;
                         case "SByte": r = "tinyint"; break;
                         case "Single": r = "real"; break;
-                        case "String": r = "varchar"; break;
+                        case "String": r = "nvarchar"; break;
                     }
                     break;
                 case ProviderTypes.Oracle:
@@ -1108,7 +1109,7 @@ namespace SAPINTDB
                         case "Object": r = "blob"; break;
                         case "SByte": r = "number(5)"; break;
                         case "Single": r = "number"; break;
-                        case "String": r = "varchar"; break;
+                        case "String": r = "nvarchar"; break;
                     }
                     break;
                 case ProviderTypes.MySql:
@@ -1126,7 +1127,7 @@ namespace SAPINTDB
                         case "Object": r = "blob"; break;
                         case "SByte": r = "tinyint"; break;
                         case "Single": r = "float"; break;
-                        case "String": r = "varchar"; break;
+                        case "String": r = "nvarchar"; break;
                     }
                     break;
                 case ProviderTypes.PostgreSQL:
@@ -1144,7 +1145,7 @@ namespace SAPINTDB
                         case "Object": r = "binary"; break;
                         case "SByte": r = "smallint"; break;
                         case "Single": r = "float"; break;
-                        case "String": r = "varchar"; break;
+                        case "String": r = "nvarchar"; break;
                     }
                     break;
                 case ProviderTypes.MsAccess:
@@ -1162,7 +1163,7 @@ namespace SAPINTDB
                         case "Object": r = "LongBinary"; break;
                         case "SByte": r = "Short"; break;
                         case "Single": r = "Single"; break;
-                        case "String": r = "VarChar"; break;
+                        case "String": r = "Text"; break;
                     }
                     break;
                 case ProviderTypes.OleDB:

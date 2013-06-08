@@ -17,7 +17,7 @@ namespace SAPINTGUI.Functions
         public FormSearchRfcFunction()
         {
             InitializeComponent();
-            this.cbxSapClientList.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            this.cbxSapClientList.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();
             this.cbxSapClientList.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
         }
 

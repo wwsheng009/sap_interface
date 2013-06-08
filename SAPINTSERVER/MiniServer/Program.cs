@@ -162,7 +162,7 @@ namespace MiniServer
                 string TableName = "T" + tControl["DOCNUM"].GetValue().ToString().Trim();
                 SapTable idoctable = new SapTable(client, TableName, "EDI_DD40");
                 DataTable dt = GetDataTableFromRfcTable(data);
-                idoctable.saveDataTable(dt);
+                idoctable.SaveDataTable(dt);
                 processSingleIdoc(tControl, data);
             }
             

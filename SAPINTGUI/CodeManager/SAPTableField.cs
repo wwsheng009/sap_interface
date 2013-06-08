@@ -54,7 +54,7 @@ namespace SAPINTCODE
             SAPINTGUI.CDataGridViewUtils.CopyPasteDataGridView(dataGridView1);
             new DgvFilterPopup.DgvFilterManager(dataGridView1);
 
-            this.cbx_systemlist.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            this.cbx_systemlist.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();
             this.cbx_systemlist.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
 
         }

@@ -23,7 +23,7 @@ namespace SAPINTGUI.Functions
             InitializeComponent();
             new DgvFilterPopup.DgvFilterManager(this.dgvDetail);
             new DgvFilterPopup.DgvFilterManager(this.dgvTableContent);
-            this.cbx_SystemList.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            this.cbx_SystemList.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();
             this.cbx_SystemList.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
 
             CDataGridViewUtils.CopyPasteDataGridView(this.dgvTableContent);
@@ -45,7 +45,7 @@ namespace SAPINTGUI.Functions
                 try
                 {
                     function = new SAPFunctionEx(_systemName, _funcName);
-                    
+
                     if (function.FunctionMeta == null)
                     {
                         MessageBox.Show("无法找到函数信息！！");
@@ -63,6 +63,7 @@ namespace SAPINTGUI.Functions
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
+            CleanAll();
             LoadFunctionMetaData();
         }
         private bool check()
@@ -80,6 +81,13 @@ namespace SAPINTGUI.Functions
                 return false;
             }
             return true;
+        }
+        private void CleanAll()
+        {
+            dgvImport.DataSource = null;
+            dgvExport.DataSource = null;
+            dgvChanging.DataSource = null;
+            dgvTables.DataSource = null;
         }
         private void ParseMetaData()
         {
@@ -152,6 +160,10 @@ namespace SAPINTGUI.Functions
         //填充结构或表数据
         private void InputSomethingIntoTable()
         {
+            if (selectedField==null)
+            {
+                return;
+            }
             if (String.IsNullOrEmpty(selectedField.Name))
             {
                 return;

@@ -179,7 +179,7 @@ namespace SAPINT.Idocs
                     idocTable = new SapTable(SystemName, "EDIDC");
                     idocTable.DbConnectionString = this.ConnectionName;
                     idocTable.AppendToDb = AppendTodb;
-                    idocTable.saveDataTable(idocHeader);
+                    idocTable.SaveDataTable(idocHeader);
                 }
 
 
@@ -188,7 +188,7 @@ namespace SAPINT.Idocs
                     idocTable = new SapTable(SystemName, "EDID4", "EDID4");
                     idocTable.DbConnectionString = this.ConnectionName;
                     idocTable.AppendToDb = AppendTodb;
-                    idocTable.saveDataTable(idocItem);
+                    idocTable.SaveDataTable(idocItem);
                 }
 
 
@@ -197,7 +197,7 @@ namespace SAPINT.Idocs
                     idocTable = new SapTable(SystemName, "EDIDS");
                     idocTable.DbConnectionString = this.ConnectionName;
                     idocTable.AppendToDb = AppendTodb;
-                    idocTable.saveDataTable(idocStatus);
+                    idocTable.SaveDataTable(idocStatus);
 
                 }
 

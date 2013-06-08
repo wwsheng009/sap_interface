@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using SAPINT.Function;
 using SAPINTDB.DbHelper;
 
@@ -10,7 +11,7 @@ namespace MvcApplication1.Controllers
 {
     public class Se37Controller : Controller
     {
-        string targetSystem = "BQS";
+        string targetSystem = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
 
         public ContentResult fun(string type, string funame)
         {
@@ -42,14 +43,28 @@ namespace MvcApplication1.Controllers
         //查询RFC函数列表
         public ContentResult getFuncList(string funcname)
         {
-            var output = SqliteReadTable.GetRFCList(targetSystem, funcname);
-            if (string.IsNullOrEmpty(output))
+            try
             {
-                SAPFunction.GetRFCfunctionListAndSaveToDb(targetSystem, funcname);
-                output = SqliteReadTable.GetRFCList(targetSystem, funcname);
+                var output = SqliteReadTable.GetRFCList(targetSystem, funcname);
+                if (string.IsNullOrEmpty(output))
+                {
+                    if (funcname.Length>=3)
+                    {
+                        SAPFunction.GetRFCfunctionListAndSaveToDb(targetSystem, funcname);
+                        output = SqliteReadTable.GetRFCList(targetSystem, funcname);
+                    }
+                   
+                }
+                // output = "{" + output + "}";
+                return Content(output, "text/html");
             }
-           // output = "{" + output + "}";
-            return Content(output, "text/html");
+            catch (Exception ex)
+            {
+                var message = JsonConvert.SerializeObject(ex.Message);
+                message = "{error:" + message + "}";
+                return Content(message, "text/html");
+            }
+
         }
 
 

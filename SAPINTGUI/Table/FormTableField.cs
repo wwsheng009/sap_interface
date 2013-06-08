@@ -23,9 +23,42 @@ namespace SAPINTGUI.Table
             SAPINTGUI.CDataGridViewUtils.CopyPasteDataGridView(dataGridView1);
             new DgvFilterPopup.DgvFilterManager(dataGridView1);
 
-            this.cbx_systemlist.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            this.cbx_systemlist.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();
             this.cbx_systemlist.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
-           
+
+
+            this.listBox1.DoubleClick += listBox1_DoubleClick;
+            this.listBox1.KeyDown += listBox1_KeyDown;
+        }
+
+        void listBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                try
+                {
+                    if (listBox1.SelectedItems.Count > 0)
+                    {
+                        for (int x = listBox1.SelectedIndices.Count - 1; x >= 0; x--)
+                        {
+                            int idx = listBox1.SelectedIndices[x];
+                            if (RemoveFieldsFromCache(this.listBox1.Items[idx] as string))
+                            {
+                                listBox1.Items.RemoveAt(idx);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            LoadFieldsFromCache(this.listBox1.SelectedItem as string);
         }
 
 
@@ -34,7 +67,7 @@ namespace SAPINTGUI.Table
         //private List<TableInfo> _tablelist;  //缓存表字段列表
         private DataTable fieldsDt = null;
         private List<RFCTableInfo> _rfcTableList = new List<RFCTableInfo>();
-        private RFCTableInfo _rfctable = null; //new RFCTableInfo();
+
         bool sortByPosition = false;
         public event DelegateTableField EventReadTableField = null;
 
@@ -81,41 +114,38 @@ namespace SAPINTGUI.Table
         /// <summary>
         /// 从SAP系统中加载表的定义信息。
         /// </summary>
-        private void GetTableDefinition()
+        private bool GetTableDefinition()
         {
             if (!check())
             {
-                return;
+                return false;
             }
             try
             {
-                _rfctable = new RFCTableInfo();
+                this.dataGridView1.DataSource = null;
+                var _rfctable = new RFCTableInfo();
                 fieldsDt = _rfctable.GetTableDefinitionDt(_systemName, _tableName);
                 this.dataGridView1.DataSource = fieldsDt;
                 this.Text = "表：" + _tableName;
-                // _rfctable.GetTableDefinition(_systemName, _tableName);
-                // _rfctable.TransformDataType();
-                //_rfctable.Fields.ForEach(row =>
-                //{
-                //    row.FIELDNAME = row.FIELDNAME.Replace("/", "_");
-                //});
-                // fieldList =  SAPINT.RFCTable.RFCTable.GetTableDefinition(cbxSystemList.Text,textBoxTableName.Text);
                 if (fieldsDt != null)
                 {
                     if (fieldsDt.Rows.Count > 0)
                     {
-                        
-                      //  MessageBox.Show("读取成功");
+                        this.toolStripStatusLabel1.Text = string.Format("{0} 读取成功", _tableName);
+                        return true;
                     }
                     else
                     {
-                      //  MessageBox.Show("无可用字段");
+                        this.toolStripStatusLabel1.Text = string.Format("{0} 无可用字", _tableName);
+                        return false;
                     }
 
                 }
                 else
                 {
+
                     MessageBox.Show("无法读取表信息");
+                    return false;
                 }
 
             }
@@ -124,6 +154,7 @@ namespace SAPINTGUI.Table
                 MessageBox.Show(exception.Message);
 
             }
+            return false;
         }
         /// <summary>
         ///读取表的所有字段列表 
@@ -133,43 +164,15 @@ namespace SAPINTGUI.Table
         private void btnReadSAPTable_Click(object sender, EventArgs e)
         {
 
-            GetTableDefinition();
-            //this.dataGridView1.DataSource = _rfctable.Fields;
+            if (GetTableDefinition())
+            {
+                UpdateDgvDisplay();
+                SaveFieldsToCache();
+            }
 
-            updateDgvDisplay();
-
-
-            //try
-            //{
-            //    ReadTable dt;
-            //    if (!check())
-            //    {
-            //        return;
-            //    }
-            //    dt = new ReadTable(_systemName.ToUpper().Trim());
-            //    dt.TableName = _tableName;
-            //    ReadTableFieldCollection fields = dt.GetAllFieldsOfTable();
-            //    if (fields == null || fields.Count == 0)
-            //    {
-            //        MessageBox.Show("所选数表没有字段");
-            //        return;
-            //    }
-            //    this.dataGridView1.Rows.Clear();
-            //    for (int i = 0; i < fields.Count; i++)
-            //    {
-            //        this.dataGridView1.Rows.Add(fields[i].Active, fields[i].FieldName, fields[i].FieldText, fields[i].CheckTable);
-
-            //    }
-            //    dataGridView1.AutoResizeColumns();
-            //}
-            //catch (Exception ee)
-            //{
-
-            //    MessageBox.Show(ee.Message);
-            //}
         }
 
-        private void updateDgvDisplay()
+        private void UpdateDgvDisplay()
         {
 
             // DgvFilterPopup.DgvFilterManager fm = new DgvFilterPopup.DgvFilterManager(this.dataGridView1);
@@ -194,7 +197,8 @@ namespace SAPINTGUI.Table
 
             if (dataGridView1.Columns.Contains("DOTNETTYPE"))
             {
-                this.dataGridView1.Columns.Remove("DOTNETTYPE");
+                //this.dataGridView1.Columns.Remove("DOTNETTYPE");
+                this.dataGridView1.Columns["DOTNETTYPE"].DisplayIndex = 5;
             }
             if (dataGridView1.Columns.Contains("DBTYPE"))
             {
@@ -216,86 +220,78 @@ namespace SAPINTGUI.Table
         private void btnSelect_Click(object sender, EventArgs e)
         {
             SAPINTGUI.CDataGridViewUtils.SelectRows(dataGridView1);
-
+            SaveFieldsToCache();
         }
 
         //保存当前的字段与条件到内存中。
-        bool SaveFieldsAndOptiontoMemory(string TableName)
+        private bool SaveFieldsToCache(string TableName = null, DataTable dt = null)
         {
-            // dt.Fields.Cast<ReadTableField>().ToList().ForEach(I=> info.Fields.Add(I));
-            //在当前激活的工作表上存放数据
             if (string.IsNullOrEmpty(TableName))
             {
+                this._tableName = this.txtTableName.Text.Trim().ToUpper();
+                TableName = this._tableName;
+                
+            }
+            if (string.IsNullOrEmpty(TableName))
+            {
+                MessageBox.Show("表名不能为空");
                 return false;
             }
 
-            //TableInfo info = new TableInfo();
-            //info.Name = _tableName;
-            //foreach (DataGridViewRow item in this.dataGridView1.Rows)
-            //{
-            //    if (item.Cells["FieldName"].Value != null)
-            //    {
-            //        info.Fields.Add(new ReadTableField
-            //        {
-            //            FieldName = item.Cells["FieldName"].Value == null ? "" : item.Cells["FieldName"].Value.ToString(),
-            //            FieldText = item.Cells["FieldText"].Value == null ? "" : item.Cells["FieldText"].Value.ToString(),
-            //            CheckTable = item.Cells["CheckTable"].Value == null ? "" : item.Cells["CheckTable"].Value.ToString(),
-            //            Active = item.Cells["Select"].Value == null ? false : (bool)item.Cells["Select"].Value
-            //        });
-            //    }
-
-            //}
-            ////dt.Options.Cast<string>().ToList().ForEach(I => info.Options.Add(I));
-            //TableInfo info1 = _tablelist.Find(X => X.Name == _tableName);
-            //if (info1 != null)
-            //{
-            //    _tablelist.Remove(info1);
-            //}
-            //_tablelist.Add(info);
-
+            if (dt == null)
+            {
+                dt = this.dataGridView1.DataSource as DataTable;
+            }
+            if (dt == null)
+            {
+                toolStripStatusLabel1.Text = "DataTable 为空值";
+                return false;
+            }
 
             RFCTableInfo info2 = _rfcTableList.Find(x => x.Name == TableName);
             if (info2 != null)
             {
                 _rfcTableList.Remove(info2);
             }
-            _rfctable.Fields = fieldsDt.ToList<TableField>() as List<TableField>;
-            // _rfctable.Fields.Sort(new PositionComparer());
+
+            var _rfctable = new RFCTableInfo();
+            _rfctable.Fields = dt.ToList<TableField>() as List<TableField>;
+            //_rfctable.TransformDataType();
             _rfctable.Name = TableName;
             _rfcTableList.Add(_rfctable);
 
+            int pos = 1;
+            foreach (var item in _rfcTableList)
+            {
+                foreach (var field in item.Fields)
+                {
+                    field.POSITION2 = string.Empty;
+                    if (field.Selected)
+                    {
+                        field.POSITION2 = pos.ToString().PadLeft(4, '0');
+                        pos++;
+                    }
+                }
+            }
+            if (!this.listBox1.Items.Contains(this._tableName))
+            {
+                this.listBox1.Items.Add(this._tableName);
+            }
+            this.toolStripStatusLabel1.Text = _tableName + "保存成功";
             return true;
         }
 
-        bool loadFieldsAndOptionFromMemory(string tableName)
+        private bool LoadFieldsFromCache(string tableName)
         {
-            //_tableName = tableName;
-            //tableName = tableName.ToUpper();
-            ////按照表名加载字段列表与条件列表
-            //TableInfo info = _tablelist.Find(x => x.Name == tableName);
-            //if (info != null)
-            //{
-            //    this.dataGridView1.Rows.Clear();
-
-            //    foreach (SAPINT.Utils.ReadTableField item in info.Fields)
-            //    {
-            //        this.dataGridView1.Rows.Add(item.Active, item.FieldName, item.FieldText, item.CheckTable);
-            //    }
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
-
             this.dataGridView1.DataSource = null;
-            RFCTableInfo info = _rfcTableList.Find(x => x.Name == tableName);
+            var info = new RFCTableInfo();
+            info = _rfcTableList.Find(x => x.Name == tableName);
             if (info != null)
             {
-                // IList<TableField> list = info.Fields as IList<TableField>;
                 this.dataGridView1.DataSource = info.Fields.ToDataTable<TableField>();
 
-                updateDgvDisplay();
+                UpdateDgvDisplay();
+                this.txtTableName.Text = tableName;
                 return true;
             }
             else
@@ -311,28 +307,27 @@ namespace SAPINTGUI.Table
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        private bool RemoveFieldsAndOptionFromMemory(string tableName)
+        private bool RemoveFieldsFromCache(string tableName = null)
         {
+            if (string.IsNullOrEmpty(tableName))
+            {
+                tableName = this._tableName;
+            }
             if (string.IsNullOrEmpty(tableName))
             {
                 return false;
             }
-            //_tableName = tableName;
-            //TableInfo info1 = _tablelist.Find(X => X.Name == _tableName);
-            //if (info1 != null)
-            //{
-            //    _tablelist.Remove(info1);
-            //}
 
             RFCTableInfo info = _rfcTableList.Find(x => x.Name == tableName);
             if (info != null)
             {
-
                 _rfcTableList.Remove(info);
+                this.toolStripStatusLabel1.Text = tableName + "删除成功";
                 return true;
             }
             else
             {
+                this.toolStripStatusLabel1.Text = tableName + "删除失败";
                 return false;
             }
         }
@@ -345,34 +340,21 @@ namespace SAPINTGUI.Table
         private void btnUnSelect_Click(object sender, EventArgs e)
         {
             SAPINTGUI.CDataGridViewUtils.UnSelectRows(dataGridView1);
-
+            SaveFieldsToCache();
         }
 
         private void Notify()
         {
-            if (EventReadTableField!=null)
+            if (EventReadTableField != null)
             {
                 EventReadTableField(this);
             }
         }
+
         private void btnCacheMe_Click(object sender, EventArgs e)
         {
 
-            this._tableName = this.txtTableName.Text.Trim().ToUpper();
-            if (String.IsNullOrEmpty(_tableName))
-            {
-                MessageBox.Show("表名不能为空");
-                return;
-            }
-            if (SaveFieldsAndOptiontoMemory(this._tableName) == true)
-            {
-                if (!this.listBox1.Items.Contains(this._tableName))
-                {
-                    this.listBox1.Items.Add(this._tableName);
-                }
-
-            }
-
+            SaveFieldsToCache();
 
         }
 
@@ -381,8 +363,8 @@ namespace SAPINTGUI.Table
             if (this.listBox1.SelectedItem != null)
             {
                 this._tableName = this.listBox1.SelectedItem as string;
-                this.txtTableName.Text = _tableName;
-                loadFieldsAndOptionFromMemory(_tableName);
+                
+                LoadFieldsFromCache(_tableName);
             }
 
 
@@ -393,8 +375,9 @@ namespace SAPINTGUI.Table
             if (this.listBox1.SelectedItem != null)
             {
                 this._tableName = this.listBox1.SelectedItem as string;
-                if (true == RemoveFieldsAndOptionFromMemory(_tableName))
+                if (true == RemoveFieldsFromCache(_tableName))
                 {
+                    this.dataGridView1.DataSource = null;
                     this.listBox1.Items.Remove(this.listBox1.SelectedItem);
                 }
 
@@ -410,45 +393,13 @@ namespace SAPINTGUI.Table
         private void btnSearch_Click(object sender, EventArgs e)
         {
             this.dataGridView1.SearchDataGridView();
-
-        }
-
-
-        private void btnSort_Click(object sender, EventArgs e)
-        {
-            if (_rfctable != null)
-            {
-                if (sortByPosition == true)
-                {
-                    //    _rfctable.Fields.Sort(new SelectedComparer());
-
-                }
-                //  this.dataGridView1.DataSource = null;
-                //   this.dataGridView1.DataSource = _rfctable.Fields;
-                if (sortByPosition == false)
-                {
-                    //  _rfctable.Fields.Sort(new PositionComparer());
-
-                }
-                sortByPosition = !sortByPosition;
-                //dataGridView1.Update();
-                dataGridView1.Refresh();
-                //dataGridView1.Parent.Update();
-                //MessageBox.Show("排序完成");
-
-            }
-
-
         }
 
         private void btnSearch2_Click(object sender, EventArgs e)
         {
-            //if (_rfctable != null && _rfctable.Fields.Count > 0)
-            //{
             FormSearchText2 form = new FormSearchText2();
             form.dt = this.dataGridView1.DataSource as DataTable;
             form.Show();
-            //}
 
         }
 

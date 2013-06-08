@@ -24,8 +24,12 @@
 
             netlib7 helper = new netlib7(constr);
 
-           // var sqlstr = String.Format("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='{0}'", "RFC_FUNCTIONS");
+            // var sqlstr = String.Format("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='{0}'", "RFC_FUNCTIONS");
             var sqlstr = String.Format("SELECT count(*) FROM 'RFC_FUNCTIONS'");
+            if (helper.ProviderType == netlib7.ProviderTypes.SqlServer)
+            {
+                sqlstr = String.Format("SELECT count(*) FROM RFC_FUNCTIONS");
+            }
             int isexist = Convert.ToInt32(helper.ExecScalar(sqlstr, null));
             if (isexist <= 0)
             {
@@ -41,6 +45,10 @@
             //}
             // SQLiteDBHelper helper = new SQLiteDBHelper(_dbFile);
             sqlstr = string.Format("select [FUNCNAME],[STEXT] from [RFC_FUNCTIONS] where funcname like '{0}' limit 10", fname);
+            if (helper.ProviderType == netlib7.ProviderTypes.SqlServer)
+            {
+                sqlstr = string.Format("select top 10 [FUNCNAME],[STEXT] from RFC_FUNCTIONS where FUNCNAME like '{0}%'", fname);
+            }
             DataTable dt = helper.DataTableFill(sqlstr);
             var output = JsonConvert.SerializeObject(dt);
             return output;
@@ -73,8 +81,12 @@
             // SQLiteDBHelper helper = new SQLiteDBHelper(_dbFile);
 
             //检查表是否存在
-           // var sqlstr = String.Format("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='{0}'", tableName);
+            // var sqlstr = String.Format("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='{0}'", tableName);
             var sqlstr = String.Format("SELECT count(*) FROM '{0}'", tableName);
+            if (helper.ProviderType == netlib7.ProviderTypes.SqlServer)
+            {
+                sqlstr = string.Format("SELECT count(*) FROM {0}",tableName);
+            }
             int isexist = Convert.ToInt32(helper.ExecScalar(sqlstr, null));
             if (isexist <= 0)
             {
@@ -84,18 +96,25 @@
             int total = Convert.ToInt32(helper.ExecScalar("select count(*) from " + tableName, null));
             int offset = (page - 1) * rows;
 
-
             if (offset != 0)
             {
                 //  If a comma is used instead of the OFFSET keyword, then the offset is the first number and the limit is the second number.
                 //   sqlstr = "select * from {0} limit {1}, {2}";
                 //  sqlstr = String.Format(sqlstr, tableName, offset,rows );
                 sqlstr = "select * from {0} limit {1} offset {2}";
+                if (helper.ProviderType == netlib7.ProviderTypes.SqlServer)
+                {
+                    sqlstr = "SELECT top {1} * FROM ( SELECT * , ROW_NUMBER() OVER (ORDER BY ID) AS RowNum FROM {0} ) AS dt WHERE dt.RowNum > {2}";
+                }
                 sqlstr = String.Format(sqlstr, tableName, rows, offset);
             }
             else
             {
                 sqlstr = "select * from {0} limit {1}";
+                if (helper.ProviderType == netlib7.ProviderTypes.SqlServer)
+                {
+                    sqlstr = "SELECT top {1} * FROM {0}";
+                }
                 sqlstr = String.Format(sqlstr, tableName, rows);
             }
             DataTable dt = helper.DataTableFill(sqlstr);

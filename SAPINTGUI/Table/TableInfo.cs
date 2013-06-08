@@ -16,6 +16,8 @@ namespace SAPINTGUI
         }
         //表名
         public string Name { get; set; }
+        public int RowCount { get; set; }
+        public string Delimiter { get; set; }
         //字段列表
         public List<SAPINT.Utils.ReadTableField> Fields { get; set; }
         //条件

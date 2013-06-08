@@ -40,32 +40,35 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemImportFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemImportFromSap = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.SetTempFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.NewCodeStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reNameCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEditCode = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDeleteCode = new System.Windows.Forms.ToolStripMenuItem();
-            this.SetTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.SetTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SetRunCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.syntaxDocument1 = new Alsing.SourceCode.SyntaxDocument(this.components);
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.syntaxBoxControl1 = new Alsing.Windows.Forms.SyntaxBoxControl();
             this.syntaxDocument2 = new Alsing.SourceCode.SyntaxDocument(this.components);
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtStatus = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new SAPINTGUI.TreeViewNF();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtFolderId = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.SetRunCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.progressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -80,6 +83,7 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -93,9 +97,11 @@
             this.toolStripMenuItemDeleteFolder,
             this.toolStripSeparator2,
             this.toolStripMenuItemImportFile,
-            this.toolStripMenuItemImportFromSap});
+            this.toolStripMenuItemImportFromSap,
+            this.toolStripSeparator4,
+            this.SetTempFolderToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 170);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 198);
             // 
             // newFolderToolStripMenuItem
             // 
@@ -108,7 +114,7 @@
             // 
             this.newFileToolStripMenuItem.Name = "newFileToolStripMenuItem";
             this.newFileToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.newFileToolStripMenuItem.Text = "新建文件";
+            this.newFileToolStripMenuItem.Text = "新建代码";
             this.newFileToolStripMenuItem.Click += new System.EventHandler(this.newFileToolStripMenuItem_Click);
             // 
             // ToolStripMenuItemAddTopFolder
@@ -156,6 +162,18 @@
             this.toolStripMenuItemImportFromSap.Text = "从SAP导入代码";
             this.toolStripMenuItemImportFromSap.Click += new System.EventHandler(this.toolStripMenuItemImportFromSap_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(157, 6);
+            // 
+            // SetTempFolderToolStripMenuItem
+            // 
+            this.SetTempFolderToolStripMenuItem.Name = "SetTempFolderToolStripMenuItem";
+            this.SetTempFolderToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.SetTempFolderToolStripMenuItem.Text = "设置临时文件夹";
+            this.SetTempFolderToolStripMenuItem.Click += new System.EventHandler(this.SetTempFolderToolStripMenuItem_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -167,17 +185,18 @@
             this.listBox1.AllowDrop = true;
             this.listBox1.ContextMenuStrip = this.contextMenuStrip2;
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listBox1.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 17;
+            this.listBox1.ItemHeight = 15;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(289, 627);
+            this.listBox1.Size = new System.Drawing.Size(220, 385);
             this.listBox1.TabIndex = 1;
             // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NewCodeStripMenuItem1,
             this.reNameCodeToolStripMenuItem,
             this.toolStripMenuItemEditCode,
             this.toolStripMenuItemDeleteCode,
@@ -187,6 +206,13 @@
             this.SetRunCodeToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(173, 164);
+            // 
+            // NewCodeStripMenuItem1
+            // 
+            this.NewCodeStripMenuItem1.Name = "NewCodeStripMenuItem1";
+            this.NewCodeStripMenuItem1.Size = new System.Drawing.Size(172, 22);
+            this.NewCodeStripMenuItem1.Text = "新建代码";
+            this.NewCodeStripMenuItem1.Click += new System.EventHandler(this.NewCodeStripMenuItem1_Click);
             // 
             // reNameCodeToolStripMenuItem
             // 
@@ -209,6 +235,18 @@
             this.toolStripMenuItemDeleteCode.Text = "删除代码";
             this.toolStripMenuItemDeleteCode.Click += new System.EventHandler(this.toolStripMenuItemDeleteCode_Click);
             // 
+            // chFolderToolStripMenuItem
+            // 
+            this.chFolderToolStripMenuItem.Name = "chFolderToolStripMenuItem";
+            this.chFolderToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.chFolderToolStripMenuItem.Text = "修改文件夹";
+            this.chFolderToolStripMenuItem.Click += new System.EventHandler(this.chFolderToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(169, 6);
+            // 
             // SetTemplateToolStripMenuItem
             // 
             this.SetTemplateToolStripMenuItem.Name = "SetTemplateToolStripMenuItem";
@@ -216,11 +254,12 @@
             this.SetTemplateToolStripMenuItem.Text = "设定为模板";
             this.SetTemplateToolStripMenuItem.Click += new System.EventHandler(this.lockCodeToolStripMenuItem_Click);
             // 
-            // chFolderToolStripMenuItem
+            // SetRunCodeToolStripMenuItem
             // 
-            this.chFolderToolStripMenuItem.Name = "chFolderToolStripMenuItem";
-            this.chFolderToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.chFolderToolStripMenuItem.Text = "修改文件夹";
+            this.SetRunCodeToolStripMenuItem.Name = "SetRunCodeToolStripMenuItem";
+            this.SetRunCodeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.SetRunCodeToolStripMenuItem.Text = "设定为待运行代码";
+            this.SetRunCodeToolStripMenuItem.Click += new System.EventHandler(this.SetRunCodeToolStripMenuItem_Click);
             // 
             // syntaxDocument1
             // 
@@ -236,7 +275,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(494, 310);
+            this.webBrowser1.Size = new System.Drawing.Size(378, 189);
             this.webBrowser1.TabIndex = 3;
             // 
             // splitContainer1
@@ -253,8 +292,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
-            this.splitContainer1.Size = new System.Drawing.Size(494, 627);
-            this.splitContainer1.SplitterDistance = 313;
+            this.splitContainer1.Size = new System.Drawing.Size(378, 385);
+            this.splitContainer1.SplitterDistance = 192;
             this.splitContainer1.TabIndex = 4;
             // 
             // syntaxBoxControl1
@@ -278,7 +317,7 @@
             this.syntaxBoxControl1.LockCursorUpdate = false;
             this.syntaxBoxControl1.Name = "syntaxBoxControl1";
             this.syntaxBoxControl1.ShowScopeIndicator = false;
-            this.syntaxBoxControl1.Size = new System.Drawing.Size(494, 313);
+            this.syntaxBoxControl1.Size = new System.Drawing.Size(378, 192);
             this.syntaxBoxControl1.SmoothScroll = false;
             this.syntaxBoxControl1.SplitviewH = -4;
             this.syntaxBoxControl1.SplitviewV = -4;
@@ -295,33 +334,6 @@
             this.syntaxDocument2.Modified = false;
             this.syntaxDocument2.UndoStep = 0;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(564, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(52, 19);
-            this.button2.TabIndex = 22;
-            this.button2.Text = "▲";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(620, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(52, 19);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "▼";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Location = new System.Drawing.Point(51, 2);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(271, 21);
-            this.txtStatus.TabIndex = 23;
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -335,8 +347,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listBox1);
-            this.splitContainer2.Size = new System.Drawing.Size(558, 627);
-            this.splitContainer2.SplitterDistance = 265;
+            this.splitContainer2.Size = new System.Drawing.Size(426, 385);
+            this.splitContainer2.SplitterDistance = 202;
             this.splitContainer2.TabIndex = 24;
             // 
             // treeView1
@@ -344,14 +356,14 @@
             this.treeView1.AllowDrop = true;
             this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.treeView1.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.ItemHeight = 25;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(265, 627);
+            this.treeView1.Size = new System.Drawing.Size(202, 385);
             this.treeView1.TabIndex = 0;
             // 
             // splitContainer3
@@ -359,7 +371,7 @@
             this.splitContainer3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer3.Location = new System.Drawing.Point(2, 27);
+            this.splitContainer3.Location = new System.Drawing.Point(0, 3);
             this.splitContainer3.Name = "splitContainer3";
             // 
             // splitContainer3.Panel1
@@ -369,76 +381,82 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer1);
-            this.splitContainer3.Size = new System.Drawing.Size(1056, 627);
-            this.splitContainer3.SplitterDistance = 558;
+            this.splitContainer3.Size = new System.Drawing.Size(808, 385);
+            this.splitContainer3.SplitterDistance = 426;
             this.splitContainer3.TabIndex = 25;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel3,
+            this.progressBar1,
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel4,
+            this.toolStripStatusLabel2,
+            this.toolStripSplitButton1,
+            this.toolStripSplitButton2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 392);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(808, 22);
+            this.statusStrip1.TabIndex = 32;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(59, 17);
+            this.toolStripStatusLabel3.Text = "加载进度:";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(328, 0);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(90, 23);
-            this.progressBar1.TabIndex = 26;
+            this.progressBar1.Size = new System.Drawing.Size(100, 16);
             // 
-            // progressBar2
+            // toolStripStatusLabel1
             // 
-            this.progressBar2.Location = new System.Drawing.Point(424, 0);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(100, 23);
-            this.progressBar2.TabIndex = 27;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(32, 17);
+            this.toolStripStatusLabel1.Text = "状态";
             // 
-            // label1
+            // toolStripStatusLabel4
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "状态";
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(96, 17);
+            this.toolStripStatusLabel4.Text = "选中的文件夹ID:";
             // 
-            // txtFolderId
+            // toolStripStatusLabel2
             // 
-            this.txtFolderId.Location = new System.Drawing.Point(744, 2);
-            this.txtFolderId.Name = "txtFolderId";
-            this.txtFolderId.Size = new System.Drawing.Size(216, 21);
-            this.txtFolderId.TabIndex = 30;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(93, 17);
+            this.toolStripStatusLabel2.Text = "选中的文件夹ID";
             // 
-            // label2
+            // toolStripSplitButton1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(685, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 31;
-            this.label2.Text = "文件夹ID";
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 20);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            this.toolStripSplitButton1.ButtonClick += new System.EventHandler(this.toolStripSplitButton1_ButtonClick);
             // 
-            // SetRunCodeToolStripMenuItem
+            // toolStripSplitButton2
             // 
-            this.SetRunCodeToolStripMenuItem.Name = "SetRunCodeToolStripMenuItem";
-            this.SetRunCodeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.SetRunCodeToolStripMenuItem.Text = "设定为待运行代码";
-            this.SetRunCodeToolStripMenuItem.Click += new System.EventHandler(this.SetRunCodeToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
+            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(32, 20);
+            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
+            this.toolStripSplitButton2.ButtonClick += new System.EventHandler(this.toolStripSplitButton2_ButtonClick);
             // 
             // FormCodeManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 666);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtFolderId);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.progressBar2);
-            this.Controls.Add(this.progressBar1);
+            this.ClientSize = new System.Drawing.Size(808, 414);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer3);
-            this.Controls.Add(this.txtStatus);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "FormCodeManager";
             this.Text = "代码管理";
             this.contextMenuStrip1.ResumeLayout(false);
@@ -455,6 +473,8 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -481,22 +501,25 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAddTopFolder;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private Alsing.Windows.Forms.SyntaxBoxControl syntaxBoxControl1;
         private Alsing.SourceCode.SyntaxDocument syntaxDocument2;
-        private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.ProgressBar progressBar2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem chFolderToolStripMenuItem;
-        private System.Windows.Forms.TextBox txtFolderId;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem reNameCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SetTemplateToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem SetRunCodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem SetTempFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem NewCodeStripMenuItem1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar progressBar1;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
     }
 }

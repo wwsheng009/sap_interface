@@ -22,7 +22,7 @@ namespace SAPINTGUI.CodeManager
         public FormImporSapProgram()
         {
             InitializeComponent();
-            this.cboxSystemList1.DataSource = ConfigFileTool.SAPGlobalSettings.getSAPClientList();
+            this.cboxSystemList1.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();
             this.cboxSystemList1.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
             Alsing.SourceCode.SyntaxDefinition sl = new Alsing.SourceCode.SyntaxDefinitionLoader().Load("SyntaxFiles\\abap.syn");
 
@@ -363,7 +363,7 @@ START-OF-SELECTION.
 
                 if (String.IsNullOrEmpty(this.TreeId))
                 {
-                    var codeTree = new CodeTree();
+                    var codeTree = new CodeFolder();
                     codeTree.Text = cboxSystemList1.Text + txtSapProgram.Text;
                     if (String.IsNullOrEmpty(codeTree.Text))
                     {

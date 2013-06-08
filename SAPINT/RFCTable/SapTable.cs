@@ -77,7 +77,7 @@ namespace SAPINT.RFCTable
             notSAPTable = true;
         }
         /// <summary>
-        /// 初始化，需要sap系统名与表名，只有表名时，将它也作为结构名。
+        /// 初始化，需要sap系统名与表名，表名与结构名一致。
         /// </summary>
         /// <param name="psysName"></param>
         /// <param name="pTableName"></param>
@@ -86,7 +86,7 @@ namespace SAPINT.RFCTable
             SystemName = psysName;
             TableName = pTableName.Trim().ToUpper();
             StructureName = pTableName.Trim().ToUpper();
-           // prepareFieldsFromSapSystem();
+            // prepareFieldsFromSapSystem();
         }
         /// <summary>
         /// 使用结构名来初始化，适用于，表名与结构定义不一致的情况。
@@ -99,7 +99,7 @@ namespace SAPINT.RFCTable
             SystemName = psysName;
             TableName = pTableName.Trim().ToUpper();
             StructureName = pStructureName.Trim().ToUpper();
-           // prepareFieldsFromSapSystem();
+            // prepareFieldsFromSapSystem();
         }
 
         private void sendMessage(String message)
@@ -141,18 +141,27 @@ namespace SAPINT.RFCTable
         /// </summary>
         private void prepareFieldsFromSapSystem()
         {
-            if (String.IsNullOrWhiteSpace(SystemName))
+            try
             {
-                throw new SAPException("SAP系统不能为空");
+                if (String.IsNullOrWhiteSpace(SystemName))
+                {
+                    throw new SAPException("SAP系统不能为空");
+                }
+                if (String.IsNullOrWhiteSpace(StructureName))
+                {
+                    throw new SAPException("结构定义不能为空");
+                }
+                sendMessage("开始从SAP系统获取结构定义" + "系统名:" + SystemName + "结构定义:" + StructureName);
+                rfcTableInfo.GetTableDefinition(SystemName, StructureName);
+                sendMessage("获取表定义完成");
+                rfcTableInfo.TransformDataType();
             }
-            if (String.IsNullOrWhiteSpace(StructureName))
+            catch (Exception ex)
             {
-                throw new SAPException("结构定义不能为空");
+
+                sendMessage(ex.Message);
             }
-            sendMessage("开始从SAP系统获取结构定义" + "系统名:" + SystemName + "结构定义:" + StructureName);
-            rfcTableInfo.GetTableDefinition(SystemName, StructureName);
-            sendMessage("获取表定义完成");
-            rfcTableInfo.TransformDataType();
+
         }
 
         /// <summary>
@@ -175,7 +184,7 @@ namespace SAPINT.RFCTable
                     {
                         if (item != null)
                         {
-                            insertStr.AppendFormat("'{0}',", item.FIELDNAME);
+                            insertStr.AppendFormat("{0},", item.FIELDNAME);
                         }
 
                     }
@@ -273,7 +282,7 @@ namespace SAPINT.RFCTable
             {
                 str = new StringBuilder("CREATE TABLE");
                 str.AppendFormat(" {0}", this.TableName);
-                str.Append("(id autoincrement primary key,SAPSYS VARCHAR(20),");
+                str.Append("(id autoincrement primary key,SAPSYS NVARCHAR(20),");
                 // var sqlstr = @"CREATE TABLE Test3(id integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,N
 
                 foreach (var item in rfcTableInfo.Fields)
@@ -282,19 +291,19 @@ namespace SAPINT.RFCTable
                     {
                         if (db2.DbDataType(item.DOTNETTYPE) == "STRING")
                         {
-                            if (item.OUTPUTLEN > 255)
+                            if (item.LENG > 255)
                             {
-                                str.AppendFormat("'{0}' {1},", item.FIELDNAME, "MEMO");
+                                str.AppendFormat("{0} {1},", item.FIELDNAME, "MEMO");
                             }
                             else
                             {
-                                str.AppendFormat("'{0}' {1}({2}),", item.FIELDNAME, "VARCHAR", item.OUTPUTLEN);
+                                str.AppendFormat("{0} {1}({2}),", item.FIELDNAME, db2.DbDataType(item.DOTNETTYPE), item.OUTPUTLEN * 2 + item.DECIMALS);
                             }
 
                         }
                         else
                         {
-                            str.AppendFormat("'{0}' {1},", item.FIELDNAME, "VARCHAR");
+                            str.AppendFormat("{0} {1},", item.FIELDNAME, "MEMO");
                         }
 
                     }
@@ -304,20 +313,20 @@ namespace SAPINT.RFCTable
                         {
                             // str.AppendFormat("'{0}' {1}({2}),", item.FIELDNAME, db2.DbDataType(item.DOTNETTYPE), item.OUTPUTLEN);
 
-                            if (item.OUTPUTLEN > 255)
+                            if (item.LENG > 255)
                             {
-                                str.AppendFormat("'{0}' {1},", item.FIELDNAME, "MEMO");
+                                str.AppendFormat("{0} {1},", item.FIELDNAME, "MEMO");
                             }
                             else
                             {
-                                str.AppendFormat("'{0}' {1}({2}),", item.FIELDNAME, "VARCHAR", item.OUTPUTLEN);
+                                str.AppendFormat("{0} {1}({2}),", item.FIELDNAME, db2.DbDataType(item.DOTNETTYPE), item.OUTPUTLEN * 2 + item.DECIMALS);
                             }
 
                         }
                         else
                         {
                             // str.AppendFormat("'{0}' {1},", item.FIELDNAME, db2.DbDataType(item.DOTNETTYPE));
-                            str.AppendFormat("'{0}' {1},", item.FIELDNAME, "VARCHAR");
+                            str.AppendFormat("{0} {1},", item.FIELDNAME, "MEMO");
                         }
                     }
 
@@ -332,7 +341,7 @@ namespace SAPINT.RFCTable
             {
                 str = new StringBuilder("CREATE TABLE IF NOT EXISTS");
                 str.AppendFormat(" {0} ", this.TableName);
-                str.Append("(idd int(11) NOT NULL AUTO_INCREMENT, SAPSYS varchar(20),");
+                str.Append("(idd int(11) NOT NULL AUTO_INCREMENT, SAPSYS nvarchar(20),");
 
                 // var sqlstr = @"CREATE TABLE Test3(id integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,N
 
@@ -344,12 +353,12 @@ namespace SAPINT.RFCTable
                     }
                     if (item.KEYFLAG.Equals("X"))
                     {
-                        str.AppendFormat(" {0} {1}({2}) NOT NULL, ", item.FIELDNAME, item.SQLTYPE, item.OUTPUTLEN);
+                        str.AppendFormat(" {0} {1}({2}) NOT NULL, ", item.FIELDNAME, item.SQLTYPE, item.OUTPUTLEN + item.DECIMALS);
                         //  str.AppendFormat("KEY {0} ({0})", item.FIELDNAME);
                     }
                     else
                     {
-                        str.AppendFormat(" {0} {1}({2}) , ", item.FIELDNAME, item.SQLTYPE, item.OUTPUTLEN);
+                        str.AppendFormat(" {0} {1}({2}) , ", item.FIELDNAME, item.SQLTYPE, item.OUTPUTLEN + item.DECIMALS);
                     }
                     //  Console.WriteLine(item.FIELDNAME);
                 }
@@ -361,18 +370,18 @@ namespace SAPINT.RFCTable
             {
                 str = new StringBuilder("CREATE TABLE");
                 str.AppendFormat(" {0}", this.TableName);
-                str.Append("(idd integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, SAPSYS varchar(20),");
+                str.Append("(idd integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, SAPSYS nvarchar(20),");
                 // var sqlstr = @"CREATE TABLE Test3(id integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,N
 
                 foreach (var item in rfcTableInfo.Fields)
                 {
                     if (item.KEYFLAG.Equals("X"))
                     {
-                        str.AppendFormat(" {0} {1} , ", item.FIELDNAME, item.SQLTYPE, item.OUTPUTLEN);
+                        str.AppendFormat(" {0} {1} , ", item.FIELDNAME, item.SQLTYPE, item.OUTPUTLEN + item.DECIMALS);
                     }
                     else
                     {
-                        str.AppendFormat(" {0} {1} , ", item.FIELDNAME, item.SQLTYPE, item.OUTPUTLEN);
+                        str.AppendFormat(" {0} {1} , ", item.FIELDNAME, item.SQLTYPE, item.OUTPUTLEN + item.DECIMALS);
                     }
 
                 }
@@ -383,16 +392,16 @@ namespace SAPINT.RFCTable
             {
                 str = new StringBuilder("CREATE TABLE");
                 str.AppendFormat(" {0}", this.TableName);
-                str.Append("(id int identity(1,1) primary key, SAPSYS varchar(20),");
+                str.Append("(id int identity(1,1) primary key, SAPSYS nvarchar(20),");
                 // var sqlstr = @"CREATE TABLE Test3(id integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,N
 
                 foreach (var item in rfcTableInfo.Fields)
                 {
                     if (item.KEYFLAG.Equals("X"))
                     {
-                        if (db2.DbDataType(item.DOTNETTYPE) == "varchar")
+                        if (db2.DbDataType(item.DOTNETTYPE) == "nvarchar")
                         {
-                            str.AppendFormat("{0} {1}({2}),", item.FIELDNAME, "VARCHAR", item.OUTPUTLEN);
+                            str.AppendFormat("{0} {1}({2}),", item.FIELDNAME, "nvarchar", item.OUTPUTLEN + item.DECIMALS);
 
                         }
                         else
@@ -403,9 +412,9 @@ namespace SAPINT.RFCTable
                     }
                     else
                     {
-                        if (db2.DbDataType(item.DOTNETTYPE) == "varchar")
+                        if (db2.DbDataType(item.DOTNETTYPE) == "nvarchar")
                         {
-                            str.AppendFormat("{0} {1}({2}),", item.FIELDNAME, "VARCHAR", item.OUTPUTLEN);
+                            str.AppendFormat("{0} {1}({2}),", item.FIELDNAME, "nvarchar", item.OUTPUTLEN + item.DECIMALS);
                         }
                         else
                         {
@@ -514,7 +523,7 @@ namespace SAPINT.RFCTable
                         continue;
                     }
                     cmd.Parameters[0].Value = SystemName;
-                    for (int i = 0; i < rfcTableInfo.Fields.Count + 1; i++)
+                    for (int i = 0; i < rfcTableInfo.Fields.Count; i++)
                     {
                         cmd.Parameters[i + 1].Value = dtToSaved.Rows[x][i];
 
@@ -566,11 +575,14 @@ namespace SAPINT.RFCTable
 
                 sendMessage("开始事务");
                 DbTransaction trans = cmd.Connection.BeginTransaction();// <-------------------
+
+                //  var debugstr = string.Empty;
                 cmd.Transaction = trans;
                 try
                 {
                     for (int x = 0; x < dtToSaved.Rows.Count; x++)
                     {
+                        //   Console.WriteLine(x.ToString());
                         if (dtToSaved.Rows[x] == null)
                         {
                             continue;
@@ -578,11 +590,17 @@ namespace SAPINT.RFCTable
                         cmd.Parameters[0].Value = SystemName;
                         for (int i = 0; i < rfcTableInfo.Fields.Count; i++)
                         {
+                            //  log.InfoFormat("字段{0},定义长度{1},值{2},实际长度{3}", rfcTableInfo.Fields[i].FIELDNAME, rfcTableInfo.Fields[i].OUTPUTLEN, dtToSaved.Rows[x][i], dtToSaved.Rows[x][i].ToString().Length);
 
                             cmd.Parameters[i + 1].Value = dtToSaved.Rows[x][i];
 
+
+
                         }
+
+                        log.InfoFormat("Command Text {0}", cmd.CommandText);
                         cmd.ExecuteNonQuery();
+
                     }
                     trans.Commit(); // <-------------------
                     cmd.Connection.Close();
@@ -650,56 +668,80 @@ namespace SAPINT.RFCTable
             // rfcTableInfo.Fields.AddRange(FieldList);
         }
 
-        public void CreateNewTable()
+        public bool CreateNewTable()
         {
-
             sendMessage("创建新的数据库表");
             DbCommand cmd = db2.CreateCommand();
             cmd.Connection = db2.CreateConnection();
             cmd.Connection.Open();
-
-            if (db2.ProviderType == netlib7.ProviderTypes.OleDB)
+            try
             {
-                if (!checkTableIsExist())
+
+
+                if (db2.ProviderType == netlib7.ProviderTypes.OleDB)
                 {
-                    cmd.CommandText = "DROP TABLE " + this.TableName;
+                    try
+                    {
+                       // if (!checkTableIsExist())
+                       // {
+                            cmd.CommandText = "DROP TABLE " + this.TableName;
+                            cmd.ExecuteNonQuery();
+                            sendMessage("删除数据库表" + this.TableName);
+                      //  }
+
+                        
+                    }
+                    catch (Exception)
+                    {
+
+                        // throw;
+                    }
+                    cmd.CommandText = buidCreateTableString();
+                    cmd.ExecuteNonQuery();
+
+
+                }
+                else if (db2.ProviderType == netlib7.ProviderTypes.SqlServer)
+                {
+
+                    cmd.CommandText = String.Format(
+                    @"IF  EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME= '{0}')
+                     DROP TABLE {0}", this.TableName);
                     cmd.ExecuteNonQuery();
                     sendMessage("删除数据库表" + this.TableName);
+
+                    cmd.CommandText = buidCreateTableString();
+                    cmd.ExecuteNonQuery();
+
+                }
+                else
+                {
+                    cmd.Connection = db2.CreateConnection();
+                    cmd.Connection.Open();
+
+                    cmd.CommandText = "drop table if exists " + this.TableName;
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = buidCreateTableString();
+                    cmd.ExecuteNonQuery();
+                    sendMessage("删除数据库表" + this.TableName);
+
                 }
 
-                cmd.CommandText = buidCreateTableString();
-                cmd.ExecuteNonQuery();
-
-
+                cmd.Connection.Close();
+                cmd.Connection.Dispose();
+                cmd.Dispose();
+                return true;
             }
-            else if (db2.ProviderType == netlib7.ProviderTypes.SqlServer)
+            catch (Exception ex)
             {
-
-                cmd.CommandText = String.Format(
-                @"IF  EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME= '{0}')
-                     DROP TABLE {0}", this.TableName);
-                cmd.ExecuteNonQuery();
-                sendMessage("删除数据库表" + this.TableName);
-
-                cmd.CommandText = buidCreateTableString();
-                cmd.ExecuteNonQuery();
-            }
-            else
-            {
-                cmd.Connection = db2.CreateConnection();
-                cmd.Connection.Open();
-
-                cmd.CommandText = "drop table if exists " + this.TableName;
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = buidCreateTableString();
-                cmd.ExecuteNonQuery();
-                sendMessage("删除数据库表" + this.TableName);
+                cmd.Connection.Close();
+                cmd.Connection.Dispose();
+                cmd.Dispose();
+                sendMessage(ex.Message);
+                return false;
             }
 
-            cmd.Connection.Close();
-            cmd.Connection.Dispose();
-            cmd.Dispose();
         }
         private bool checkTableIsExist()
         {
@@ -731,6 +773,10 @@ namespace SAPINT.RFCTable
             }
             Object result = this.db2.ExecScalar(sql);
             ErrorMessage = db2.ErrorMessage;
+            if (!String.IsNullOrEmpty(ErrorMessage))
+            {
+                sendMessage(ErrorMessage);
+            }
             if (result != null)
             {
                 i = int.Parse(result.ToString());
@@ -780,7 +826,7 @@ namespace SAPINT.RFCTable
 
         }
         //把一个DATATABLE保存到数据库
-        public bool saveDataTable(DataTable dt)
+        public bool SaveDataTable(DataTable dt)
         {
             sendMessage("数据保存开始==========================>");
             setDataTable(dt);
@@ -802,16 +848,21 @@ namespace SAPINT.RFCTable
             db2 = new netlib7(DbConnectionString);
             db2.LogEvents = true;
 
+            bool isCreated = false;
             if (!_appendToDb || _newTable)
             {
-                CreateNewTable();
+                isCreated = CreateNewTable();
             }
             else if (!checkTableIsExist())
             {
-                CreateNewTable();
+                isCreated = CreateNewTable();
 
             }
 
+            if (!isCreated)
+            {
+                return false;
+            }
             try
             {
                 InserDataTableTodb();
@@ -831,9 +882,9 @@ namespace SAPINT.RFCTable
             catch (Exception exception)
             {
                 ErrorMessage = exception.Data + exception.StackTrace + exception.Message;
-                log.Error(ErrorMessage);
-                throw;
-                // return false;
+                // log.Error(ErrorMessage);
+                sendMessage(exception.Message);
+                return false;
             }
         }
     }
