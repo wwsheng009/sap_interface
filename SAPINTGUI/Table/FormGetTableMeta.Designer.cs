@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI
+﻿namespace SAPINT.Gui
 {
     partial class FormGetTableMeta
     {
@@ -25,7 +25,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.getTableMetaControl1 = new SAPINTGUI.GetTableMetaControl();
+            this.getTableMetaControl1 = new SAPINT.Gui.GetTableMetaControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -89,7 +89,7 @@
 
         }
         #endregion
-        private SAPINTGUI.GetTableMetaControl getTableMetaControl1;
+        private SAPINT.Gui.GetTableMetaControl getTableMetaControl1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dataGridView1;
     }

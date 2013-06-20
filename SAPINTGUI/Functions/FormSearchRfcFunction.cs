@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SAPINTGUI.Functions
+namespace SAPINT.Gui.Functions
 {
     public partial class FormSearchRfcFunction : ToolWindow
     {

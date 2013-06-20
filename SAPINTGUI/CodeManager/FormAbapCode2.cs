@@ -11,8 +11,8 @@ using System.IO;
 using NVelocity;
 using NVelocity.App;
 using SAPINTDB.CodeManager;
-using SAPINTGUI.CodeManager;
-using SAPINTGUI;
+using SAPINT.Gui.CodeManager;
+using SAPINT.Gui;
 
 namespace SAPINTCODE
 {

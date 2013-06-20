@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using SAPINT.RFCTable;
 using SAPINTDB;
 
-namespace SAPINTGUI.DataBase
+namespace SAPINT.Gui.DataBase
 {
     public partial class FormSaveDataTable : DockWindow
     {

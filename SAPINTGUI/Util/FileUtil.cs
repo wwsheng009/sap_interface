@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace SAPINTGUI.Util
+namespace SAPINT.Gui.Util
 {
     public class FileUtil
     {

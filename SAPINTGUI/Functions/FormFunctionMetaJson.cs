@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SAPINT.Function.Json;
-namespace SAPINTGUI.Functions
+namespace SAPINT.Gui.Functions
 {
     public partial class FormFunctionMetaJson : DockWindow
     {

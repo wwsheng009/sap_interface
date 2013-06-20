@@ -26,17 +26,25 @@ namespace ConfigFileTool
         }
         public static string GetDefaultSapCient()
         {
-
-            defaultSettingSection = (SapDefaultSettingSection)config.GetSection("SAPDefaultSetting");
-            // defaultSettingSection = (SapDefaultSettingSection)ConfigurationManager.GetSection("SAPDefaultSetting");
-            if (defaultSettingSection != null)
+            try
             {
-                return defaultSettingSection.DefaultSapClient;
+                defaultSettingSection = (SapDefaultSettingSection)config.GetSection("SAPDefaultSetting");
+                // defaultSettingSection = (SapDefaultSettingSection)ConfigurationManager.GetSection("SAPDefaultSetting");
+                if (defaultSettingSection != null)
+                {
+                    return defaultSettingSection.DefaultSapClient;
+                }
+                else
+                {
+                    return "";
+                }
             }
-            else
+            catch (Exception)
             {
-                return "";
+                
+                throw;
             }
+            
 
         }
         public static string GetDefultSAPServer()

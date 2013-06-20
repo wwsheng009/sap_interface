@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SAPINTGUI;
+using SAPINT.Gui;
 
 namespace SAPINTDBtest
 {

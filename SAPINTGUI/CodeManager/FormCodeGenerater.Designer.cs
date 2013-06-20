@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI.CodeManager
+﻿namespace SAPINT.Gui.CodeManager
 {
     partial class FormCodeGenerater
     {

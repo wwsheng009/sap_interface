@@ -11,16 +11,26 @@ using SAPINT.RFCTable;
 using WeifenLuo.WinFormsUI.Docking;
 using SAPINT.Utils;
 
-namespace SAPINTGUI.Table
+namespace SAPINT.Gui.Table
 {
     public delegate void DelegateTableField(FormTableField FormtableField);
     public partial class FormTableField : DockWindow
     {
+        string m_TableName = "";  //当前的表名
+        private string m_SystemName;//连接的SAP系统的配置名称
+        //private List<TableInfo> _tablelist;  //缓存表字段列表
+        private DataTable m_FieldsDt = null;
+        private List<RFCTableInfo> m_RfcTableList = new List<RFCTableInfo>();
+
+        private bool m_SortByPosition = false;
+        public event DelegateTableField EventReadTableField = null;
+
         public FormTableField()
         {
             InitializeComponent();
             //_tablelist = new List<TableInfo>();
-            SAPINTGUI.CDataGridViewUtils.CopyPasteDataGridView(dataGridView1);
+            SAPINT.Gui.CDataGridViewUtils.CopyPasteDataGridView(dataGridView1);
+            
             new DgvFilterPopup.DgvFilterManager(dataGridView1);
 
             this.cbx_systemlist.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();
@@ -30,79 +40,38 @@ namespace SAPINTGUI.Table
             this.listBox1.DoubleClick += listBox1_DoubleClick;
             this.listBox1.KeyDown += listBox1_KeyDown;
         }
-
-        void listBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                try
-                {
-                    if (listBox1.SelectedItems.Count > 0)
-                    {
-                        for (int x = listBox1.SelectedIndices.Count - 1; x >= 0; x--)
-                        {
-                            int idx = listBox1.SelectedIndices[x];
-                            if (RemoveFieldsFromCache(this.listBox1.Items[idx] as string))
-                            {
-                                listBox1.Items.RemoveAt(idx);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
-        void listBox1_DoubleClick(object sender, EventArgs e)
-        {
-            LoadFieldsFromCache(this.listBox1.SelectedItem as string);
-        }
-
-
-        string _tableName = "";  //当前的表名
-        private string _systemName;//连接的SAP系统的配置名称
-        //private List<TableInfo> _tablelist;  //缓存表字段列表
-        private DataTable fieldsDt = null;
-        private List<RFCTableInfo> _rfcTableList = new List<RFCTableInfo>();
-
-        bool sortByPosition = false;
-        public event DelegateTableField EventReadTableField = null;
-
         public List<RFCTableInfo> TableList
         {
             get
             {
-                return this._rfcTableList;
+                return this.m_RfcTableList;
             }
         }
         public string SystemName
         {
             private set
             {
-                this._systemName = value;
+                this.m_SystemName = value;
             }
             get
             {
-                return this._systemName;
+                return this.m_SystemName;
             }
         }
 
 
         private bool check()
         {
-            this._systemName = this.cbx_systemlist.Text.ToUpper().Trim();
+            this.m_SystemName = this.cbx_systemlist.Text.ToUpper().Trim();
 
-            if (string.IsNullOrEmpty(_systemName))
+            if (string.IsNullOrEmpty(m_SystemName))
             {
                 MessageBox.Show("请选择系统");
                 return false;
             }
 
-            this._tableName = this.txtTableName.Text.Trim().ToUpper();
-            if (string.IsNullOrEmpty(this._tableName))
+            this.m_TableName = this.txtTableName.Text.Trim().ToUpper();
+            if (string.IsNullOrEmpty(this.m_TableName))
             {
                 MessageBox.Show("请指定表名");
                 return false;
@@ -124,19 +93,19 @@ namespace SAPINTGUI.Table
             {
                 this.dataGridView1.DataSource = null;
                 var _rfctable = new RFCTableInfo();
-                fieldsDt = _rfctable.GetTableDefinitionDt(_systemName, _tableName);
-                this.dataGridView1.DataSource = fieldsDt;
-                this.Text = "表：" + _tableName;
-                if (fieldsDt != null)
+                m_FieldsDt = _rfctable.GetTableDefinitionDt(m_SystemName, m_TableName);
+                this.dataGridView1.DataSource = m_FieldsDt;
+                this.Text = "表：" + m_TableName;
+                if (m_FieldsDt != null)
                 {
-                    if (fieldsDt.Rows.Count > 0)
+                    if (m_FieldsDt.Rows.Count > 0)
                     {
-                        this.toolStripStatusLabel1.Text = string.Format("{0} 读取成功", _tableName);
+                        this.toolStripStatusLabel1.Text = string.Format("{0} 读取成功", m_TableName);
                         return true;
                     }
                     else
                     {
-                        this.toolStripStatusLabel1.Text = string.Format("{0} 无可用字", _tableName);
+                        this.toolStripStatusLabel1.Text = string.Format("{0} 无可用字", m_TableName);
                         return false;
                     }
 
@@ -219,7 +188,7 @@ namespace SAPINTGUI.Table
         /// <param name="e"></param>
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            SAPINTGUI.CDataGridViewUtils.SelectRows(dataGridView1);
+            SAPINT.Gui.CDataGridViewUtils.SelectRows(dataGridView1);
             SaveFieldsToCache();
         }
 
@@ -228,8 +197,8 @@ namespace SAPINTGUI.Table
         {
             if (string.IsNullOrEmpty(TableName))
             {
-                this._tableName = this.txtTableName.Text.Trim().ToUpper();
-                TableName = this._tableName;
+                this.m_TableName = this.txtTableName.Text.Trim().ToUpper();
+                TableName = this.m_TableName;
                 
             }
             if (string.IsNullOrEmpty(TableName))
@@ -248,20 +217,20 @@ namespace SAPINTGUI.Table
                 return false;
             }
 
-            RFCTableInfo info2 = _rfcTableList.Find(x => x.Name == TableName);
+            RFCTableInfo info2 = m_RfcTableList.Find(x => x.Name == TableName);
             if (info2 != null)
             {
-                _rfcTableList.Remove(info2);
+                m_RfcTableList.Remove(info2);
             }
 
             var _rfctable = new RFCTableInfo();
             _rfctable.Fields = dt.ToList<TableField>() as List<TableField>;
             //_rfctable.TransformDataType();
             _rfctable.Name = TableName;
-            _rfcTableList.Add(_rfctable);
+            m_RfcTableList.Add(_rfctable);
 
             int pos = 1;
-            foreach (var item in _rfcTableList)
+            foreach (var item in m_RfcTableList)
             {
                 foreach (var field in item.Fields)
                 {
@@ -273,11 +242,11 @@ namespace SAPINTGUI.Table
                     }
                 }
             }
-            if (!this.listBox1.Items.Contains(this._tableName))
+            if (!this.listBox1.Items.Contains(this.m_TableName))
             {
-                this.listBox1.Items.Add(this._tableName);
+                this.listBox1.Items.Add(this.m_TableName);
             }
-            this.toolStripStatusLabel1.Text = _tableName + "保存成功";
+            this.toolStripStatusLabel1.Text = m_TableName + "保存成功";
             return true;
         }
 
@@ -285,7 +254,7 @@ namespace SAPINTGUI.Table
         {
             this.dataGridView1.DataSource = null;
             var info = new RFCTableInfo();
-            info = _rfcTableList.Find(x => x.Name == tableName);
+            info = m_RfcTableList.Find(x => x.Name == tableName);
             if (info != null)
             {
                 this.dataGridView1.DataSource = info.Fields.ToDataTable<TableField>();
@@ -311,17 +280,17 @@ namespace SAPINTGUI.Table
         {
             if (string.IsNullOrEmpty(tableName))
             {
-                tableName = this._tableName;
+                tableName = this.m_TableName;
             }
             if (string.IsNullOrEmpty(tableName))
             {
                 return false;
             }
 
-            RFCTableInfo info = _rfcTableList.Find(x => x.Name == tableName);
+            RFCTableInfo info = m_RfcTableList.Find(x => x.Name == tableName);
             if (info != null)
             {
-                _rfcTableList.Remove(info);
+                m_RfcTableList.Remove(info);
                 this.toolStripStatusLabel1.Text = tableName + "删除成功";
                 return true;
             }
@@ -339,7 +308,7 @@ namespace SAPINTGUI.Table
         /// <param name="e"></param>
         private void btnUnSelect_Click(object sender, EventArgs e)
         {
-            SAPINTGUI.CDataGridViewUtils.UnSelectRows(dataGridView1);
+            SAPINT.Gui.CDataGridViewUtils.UnSelectRows(dataGridView1);
             SaveFieldsToCache();
         }
 
@@ -362,9 +331,9 @@ namespace SAPINTGUI.Table
         {
             if (this.listBox1.SelectedItem != null)
             {
-                this._tableName = this.listBox1.SelectedItem as string;
+                this.m_TableName = this.listBox1.SelectedItem as string;
                 
-                LoadFieldsFromCache(_tableName);
+                LoadFieldsFromCache(m_TableName);
             }
 
 
@@ -374,8 +343,8 @@ namespace SAPINTGUI.Table
         {
             if (this.listBox1.SelectedItem != null)
             {
-                this._tableName = this.listBox1.SelectedItem as string;
-                if (true == RemoveFieldsFromCache(_tableName))
+                this.m_TableName = this.listBox1.SelectedItem as string;
+                if (true == RemoveFieldsFromCache(m_TableName))
                 {
                     this.dataGridView1.DataSource = null;
                     this.listBox1.Items.Remove(this.listBox1.SelectedItem);
@@ -404,5 +373,34 @@ namespace SAPINTGUI.Table
         }
 
 
+        void listBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                try
+                {
+                    if (listBox1.SelectedItems.Count > 0)
+                    {
+                        for (int x = listBox1.SelectedIndices.Count - 1; x >= 0; x--)
+                        {
+                            int idx = listBox1.SelectedIndices[x];
+                            if (RemoveFieldsFromCache(this.listBox1.Items[idx] as string))
+                            {
+                                listBox1.Items.RemoveAt(idx);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            LoadFieldsFromCache(this.listBox1.SelectedItem as string);
+        }
     }
 }

@@ -545,7 +545,7 @@
             if (SegmentName.Length < 3)
             {
                 //  throw new ERPException(string.Format(Messages.Segment_0_notvalidforthisIdoc, SegmentName));
-                throw new Exception(string.Format("{0}not valid for this Idoc", SegmentName));
+                throw new Exception(string.Format("{0} not valid for this Idoc", SegmentName));
             }
             IdocSegment segment = null;
             segment = (IdocSegment)this.StoredSegments[SegmentName];

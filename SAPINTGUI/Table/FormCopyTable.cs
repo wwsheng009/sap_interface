@@ -10,7 +10,7 @@ using System.Threading;
 using SAPINT.Function;
 using SAPINTDB;
 using SAPINT.RFCTable;
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public delegate void SetPreviewResult(SAPINT.Function.FunctionCopyTable sender, DataTable dt);
 

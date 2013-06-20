@@ -6,63 +6,9 @@ using SAP.Middleware.Connector;
 using System.Collections;
 using System.Data;
 
+
 namespace SAPINT.Idocs.Meta
 {
-    public struct EDI_IAPI12
-    {
-        public System.String SEGMENTTYP { get; set; } // 段类型（30 字符格式）
-        public System.String FIELDNAME { get; set; } // 字段名
-        public System.Int32 INTLEN { get; set; } // 以字节计的内部长度
-        public System.Int32 EXTLEN { get; set; } // 输出长度
-        public System.Int32 FIELD_POS { get; set; } // 字段的位置号码
-        public System.Int32 BYTE_FIRST { get; set; } // 第一个字节的位置
-        public System.Int32 BYTE_LAST { get; set; } // 最后一个字节的位置
-        public System.String ROLLNAME { get; set; } // 数据元素 (语义域)
-        public System.String DOMNAME { get; set; } // 定义域名
-        public System.String DATATYPE { get; set; } // ABAP/4 字典: 屏幕绘制器的屏幕数据类型
-        public System.String DESCRP { get; set; } // 对象的简短说明
-        public System.String ISOCODE { get; set; } // IDoc 开发：字段中的 ISO 代码标识
-        public System.String VALUETAB { get; set; } // IDoc 段字段的值表
-    }
-
-    public struct EDI_IAPI11
-    {
-        public System.Int32 NR { get; set; } // IDoc 类型中段的序列号
-        public System.String SEGMENTTYP { get; set; } // 段类型（30 字符格式）
-        public System.String SEGMENTDEF { get; set; } // IDoc 开发：段定义
-        public System.String QUALIFIER { get; set; } // 标记：IDoc 中限定的段
-        public System.Int32 SEGLEN { get; set; } // 一个字段的长度(位置的数目)
-        public System.String PARSEG { get; set; } // 段类型（30 字符格式）
-        public System.Int32 PARPNO { get; set; } // 父代段的序列号
-        public System.String PARFLG { get; set; } // 父段标记：段是段组的开始
-        public System.String MUSTFL { get; set; } // 标记：强制条目
-        public System.Int32 OCCMIN { get; set; } // 序列中段的最小数目
-        public System.Double OCCMAX { get; set; } // 序列中最大段数目
-        public System.Int32 HLEVEL { get; set; } // IDoc 类型段的层次水平
-        public System.String DESCRP { get; set; } // 对象的简短说明
-        public System.String GRP_MUSTFL { get; set; } // 组标记：强制
-        public System.Int32 GRP_OCCMIN { get; set; } // 序列中最小组号
-        public System.Double GRP_OCCMAX { get; set; } // 序列中最大组号
-        public System.String REFSEGTYP { get; set; } // 段类型（30 字符格式）
-    }
-
-    public struct EDI_IAPI14
-    {
-        public System.String STRNAME { get; set; } // 内部结构的名称
-        public System.String FIELDNAME { get; set; } // 字段名
-        public System.String FLDVALUE_L { get; set; } // 下限值 / 单一值
-        public System.String FLDVALUE_H { get; set; } // 上限值
-        public System.String DESCRP { get; set; } // 说明简要文字
-    }
-
-    public struct EDI_IAPI17
-    {
-        public System.String MESTYP { get; set; } // 消息类型
-        public System.String DESCRP { get; set; } // 对象的简短说明
-        public System.String IDOCTYP { get; set; } // 基本类型
-        public System.String CIMTYP { get; set; } // 分机号
-        public System.String RELEASED { get; set; } // 消息类型分配有效的版本
-    }
 
     /// <summary>
     /// 使用SAP服务器来解析一个IDOC。
@@ -72,6 +18,8 @@ namespace SAPINT.Idocs.Meta
 
         private Idoc idoc = null;
         private String sysName;
+        private String idocType;
+        private String cimType;
 
         private List<EDI_IAPI12> _FIELDS = null;
         private List<EDI_IAPI14> _FVALUES = null;
@@ -101,21 +49,38 @@ namespace SAPINT.Idocs.Meta
         {
             return IdocAsFlatList;
         }
-
-        public IdocMeta(String psystemName, Idoc pidoc)
+        public IdocMeta(String p_SystemName)
         {
-            this.sysName = psystemName;
-            this.idoc = pidoc;
-
+            this.sysName = p_SystemName;
             _FIELDS = new List<EDI_IAPI12>();
             _FVALUES = new List<EDI_IAPI14>();
             _MESSAGES = new List<EDI_IAPI17>();
             _SEGMENTS = new List<EDI_IAPI11>();
             IdocAsFlatList = new List<Dictionary<string, string>>();
+        }
+        public IdocMeta(String p_SystemName, Idoc pidoc)
+            : this(p_SystemName)
+        {
+
+            this.idoc = pidoc;
+            this.idocType = pidoc.IDOCTYP;
+            this.cimType = pidoc.CIMTYP;
+
 
         }
-        
-        private void deCompileSegment(IdocSegment segment)
+        public IdocMeta(String p_SystemName, String idocType, String cimType)
+            : this(p_SystemName)
+        {
+
+            this.idocType = idocType;
+            this.cimType = cimType;
+        }
+
+        /// <summary>
+        /// 节点可能有子节点，所以需要递归解析
+        /// </summary>
+        /// <param name="segment"></param>
+        private void DecompileSegment(IdocSegment segment)
         {
 
             string type = null;
@@ -164,17 +129,22 @@ namespace SAPINT.Idocs.Meta
             {
                 for (int i = 0; i < segment.ChildSegments.Count; i++)
                 {
-                    deCompileSegment(segment.ChildSegments[i]);
+                    DecompileSegment(segment.ChildSegments[i]);
                 }
             }
-
-
         }
 
-        public Idoc GetNewIdoc()
+        public Idoc DecompileIdoc(Idoc pIdoc)
         {
-           // this.idoc = poldIdoc;
-            getIdocTypeDefinition();
+            this.idoc = pIdoc;
+            this.cimType = pIdoc.CIMTYP;
+            this.idocType = pIdoc.IDOCTYP;
+            //在这里进行缓存，不要每次都更新IDOC的类型定义。
+            if (this.cimType != pIdoc.CIMTYP || this.idocType != pIdoc.IDOCTYP || _SEGMENTS.Count == 0)
+            {
+                GetIdocTypeDefinition();
+            }
+
 
             if (idoc == null)
             {
@@ -183,7 +153,7 @@ namespace SAPINT.Idocs.Meta
             for (int i = 0; i < idoc.Segments.Count; i++)
             {
                 IdocSegment segment = idoc.Segments[i];
-                deCompileSegment(segment);
+                DecompileSegment(segment);
             }
             return idoc;
         }
@@ -191,23 +161,23 @@ namespace SAPINT.Idocs.Meta
         /// <summary>
         /// 根据IDOC的IDOC类型，到SAP系统里查找它对应的类型定义
         /// </summary>
-        private void getIdocTypeDefinition()
+        private void GetIdocTypeDefinition()
         {
-            if (idoc==null)
+            if (idoc == null)
             {
                 throw new SAPException("IDOC是空值。");
             }
             if (idoc != null)
             {
-                if (String.IsNullOrWhiteSpace(idoc.IDOCTYP))
+                if (String.IsNullOrWhiteSpace(this.idocType))
                 {
                     throw new SAPException("空白的IDOC类型");
                 }
                 RfcDestination destination = SAPDestination.GetDesByName(sysName);
 
                 IRfcFunction function = destination.Repository.CreateFunction("IDOCTYPE_READ_COMPLETE");
-                function.SetValue("PI_IDOCTYP", idoc.IDOCTYP);
-                function.SetValue("PI_CIMTYP", idoc.CIMTYP);
+                function.SetValue("PI_IDOCTYP", this.idocType);
+                function.SetValue("PI_CIMTYP", this.cimType);
                 function.Invoke(destination);
                 IRfcTable rfctable_PT_FIELDS = function.GetTable("PT_FIELDS");
 
@@ -238,11 +208,11 @@ namespace SAPINT.Idocs.Meta
                 for (int i = 0; i < rfctable_PT_FVALUES.RowCount; i++)
                 {
                     _EDI_IAPI14 = new EDI_IAPI14();
-                    _EDI_IAPI14.STRNAME = rfctable_PT_FVALUES[i].GetString("STRNAME"); // 内部结构的名称
-                    _EDI_IAPI14.FIELDNAME = rfctable_PT_FVALUES[i].GetString("FIELDNAME"); // 字段名
+                    _EDI_IAPI14.STRNAME = rfctable_PT_FVALUES[i].GetString("STRNAME");       // 内部结构的名称
+                    _EDI_IAPI14.FIELDNAME = rfctable_PT_FVALUES[i].GetString("FIELDNAME");   // 字段名
                     _EDI_IAPI14.FLDVALUE_L = rfctable_PT_FVALUES[i].GetString("FLDVALUE_L"); // 下限值 / 单一值
                     _EDI_IAPI14.FLDVALUE_H = rfctable_PT_FVALUES[i].GetString("FLDVALUE_H"); // 上限值
-                    _EDI_IAPI14.DESCRP = rfctable_PT_FVALUES[i].GetString("DESCRP"); // 说明简要文字
+                    _EDI_IAPI14.DESCRP = rfctable_PT_FVALUES[i].GetString("DESCRP");         // 说明简要文字
                     _FVALUES.Add(_EDI_IAPI14);
                 }
 
@@ -252,10 +222,10 @@ namespace SAPINT.Idocs.Meta
                 for (int i = 0; i < rfctable_PT_MESSAGES.RowCount; i++)
                 {
                     _EDI_IAPI17 = new EDI_IAPI17();
-                    _EDI_IAPI17.MESTYP = rfctable_PT_MESSAGES[i].GetString("MESTYP"); // 消息类型
-                    _EDI_IAPI17.DESCRP = rfctable_PT_MESSAGES[i].GetString("DESCRP"); // 对象的简短说明
-                    _EDI_IAPI17.IDOCTYP = rfctable_PT_MESSAGES[i].GetString("IDOCTYP"); // 基本类型
-                    _EDI_IAPI17.CIMTYP = rfctable_PT_MESSAGES[i].GetString("CIMTYP"); // 分机号
+                    _EDI_IAPI17.MESTYP = rfctable_PT_MESSAGES[i].GetString("MESTYP");     // 消息类型
+                    _EDI_IAPI17.DESCRP = rfctable_PT_MESSAGES[i].GetString("DESCRP");     // 对象的简短说明
+                    _EDI_IAPI17.IDOCTYP = rfctable_PT_MESSAGES[i].GetString("IDOCTYP");   // 基本类型
+                    _EDI_IAPI17.CIMTYP = rfctable_PT_MESSAGES[i].GetString("CIMTYP");     // 扩展类型
                     _EDI_IAPI17.RELEASED = rfctable_PT_MESSAGES[i].GetString("RELEASED"); // 消息类型分配有效的版本
                     _MESSAGES.Add(_EDI_IAPI17);
                 }

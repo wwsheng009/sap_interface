@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using SAPINT.Utils;
 
-namespace SAPINTGUI.Table
+namespace SAPINT.Gui.Table
 {
     public delegate void DelegateReadSAPTable(FormTableRead sender, DataTable resultdt);
     public partial class FormTableRead : ToolWindow

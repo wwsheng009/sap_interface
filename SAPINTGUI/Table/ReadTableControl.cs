@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 using System.IO;
 using SAPINT;
 using System.Threading;
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public delegate void EventGetSAPTable(ReadTableControl sender, DataTable resultdt);
     public partial class ReadTableControl : UserControl

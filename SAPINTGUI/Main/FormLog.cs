@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SAPINTGUI.Main
+namespace SAPINT.Gui.Main
 {
     public partial class FormLog : ToolWindow
     {

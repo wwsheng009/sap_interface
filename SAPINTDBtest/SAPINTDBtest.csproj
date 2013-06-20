@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SAPINTDBtest</RootNamespace>
     <AssemblyName>SAPINTDBtest</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,9 +63,9 @@
       <Project>{d5b7f62f-f5b0-48a0-9abd-0b1f698dd44b}</Project>
       <Name>SAPINTDB %28SAPINTDB\SAPINTDB%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SAPINTGUI\SAPINTGUI.csproj">
+    <ProjectReference Include="..\SAPINTGUI\SAPINT.Gui.csproj">
       <Project>{781633cd-6e7b-40f1-8fac-2bbb11c9f623}</Project>
-      <Name>SAPINTGUI</Name>
+      <Name>SAPINT.Gui</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

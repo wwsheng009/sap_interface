@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SAPINT.Function;
 
-namespace SAPINTGUI.Table
+namespace SAPINT.Gui.Table
 {
     public delegate void DelegateTableReadMeta(FormTableReadMeta dataTableInfo);
 

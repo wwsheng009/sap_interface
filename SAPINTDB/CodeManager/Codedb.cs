@@ -300,8 +300,8 @@ namespace SAPINTDB.CodeManager
         }
         public CodeFolder GetRootFolder()
         {
-            var pre = Predicates.Field<CodeFolder>(f => f.ParentId, Operator.Eq, "", false);
-            var folder = Db.Get<CodeFolder>(pre);
+            var pre = Predicates.Field<CodeFolder>(f => f.ParentId, Operator.Eq, string.Empty, false);
+            var folder = Db.GetList<CodeFolder>(pre).ToList<CodeFolder>().First();
             if (String.IsNullOrEmpty(folder.Id))
             {
                 return null;

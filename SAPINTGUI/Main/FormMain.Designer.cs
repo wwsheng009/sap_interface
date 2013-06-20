@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI
+﻿namespace SAPINT.Gui
 {
     partial class FormMain
     {
@@ -92,14 +92,15 @@
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.test1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBar = new System.Windows.Forms.ToolStrip();
             this.toolBarButtonNew = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonOpen = new System.Windows.Forms.ToolStripButton();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.restToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.test1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.IdocCreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.SuspendLayout();
@@ -382,7 +383,8 @@
             this.idocToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.IdocCopyToolStripMenuItem,
             this.IdocMetaToolStripMenuItem,
-            this.IdocUtilToolStripMenuItem});
+            this.IdocUtilToolStripMenuItem,
+            this.IdocCreateToolStripMenuItem});
             this.idocToolStripMenuItem.Name = "idocToolStripMenuItem";
             this.idocToolStripMenuItem.Size = new System.Drawing.Size(46, 21);
             this.idocToolStripMenuItem.Text = "Idoc";
@@ -390,21 +392,21 @@
             // IdocCopyToolStripMenuItem
             // 
             this.IdocCopyToolStripMenuItem.Name = "IdocCopyToolStripMenuItem";
-            this.IdocCopyToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.IdocCopyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.IdocCopyToolStripMenuItem.Text = "&Copy";
             this.IdocCopyToolStripMenuItem.Click += new System.EventHandler(this.IdocCopyToolStripMenuItem_Click);
             // 
             // IdocMetaToolStripMenuItem
             // 
             this.IdocMetaToolStripMenuItem.Name = "IdocMetaToolStripMenuItem";
-            this.IdocMetaToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.IdocMetaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.IdocMetaToolStripMenuItem.Text = "&Meta";
             this.IdocMetaToolStripMenuItem.Click += new System.EventHandler(this.IdocMetaToolStripMenuItem_Click);
             // 
             // IdocUtilToolStripMenuItem
             // 
             this.IdocUtilToolStripMenuItem.Name = "IdocUtilToolStripMenuItem";
-            this.IdocUtilToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.IdocUtilToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.IdocUtilToolStripMenuItem.Text = "&Util";
             this.IdocUtilToolStripMenuItem.Click += new System.EventHandler(this.IdocUtilToolStripMenuItem_Click);
             // 
@@ -495,6 +497,21 @@
             this.newWindowToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.newWindowToolStripMenuItem.Text = "&New Window";
             this.newWindowToolStripMenuItem.Click += new System.EventHandler(this.newWindowToolStripMenuItem_Click);
+            // 
+            // restToolStripMenuItem
+            // 
+            this.restToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.test1ToolStripMenuItem});
+            this.restToolStripMenuItem.Name = "restToolStripMenuItem";
+            this.restToolStripMenuItem.Size = new System.Drawing.Size(45, 21);
+            this.restToolStripMenuItem.Text = "Rest";
+            // 
+            // test1ToolStripMenuItem
+            // 
+            this.test1ToolStripMenuItem.Name = "test1ToolStripMenuItem";
+            this.test1ToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.test1ToolStripMenuItem.Text = "Test1";
+            this.test1ToolStripMenuItem.Click += new System.EventHandler(this.test1ToolStripMenuItem_Click);
             // 
             // toolBar
             // 
@@ -594,20 +611,12 @@
             this.dockPanel.Skin = dockPanelSkin2;
             this.dockPanel.TabIndex = 20;
             // 
-            // restToolStripMenuItem
+            // IdocCreateToolStripMenuItem
             // 
-            this.restToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.test1ToolStripMenuItem});
-            this.restToolStripMenuItem.Name = "restToolStripMenuItem";
-            this.restToolStripMenuItem.Size = new System.Drawing.Size(45, 21);
-            this.restToolStripMenuItem.Text = "Rest";
-            // 
-            // test1ToolStripMenuItem
-            // 
-            this.test1ToolStripMenuItem.Name = "test1ToolStripMenuItem";
-            this.test1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.test1ToolStripMenuItem.Text = "Test1";
-            this.test1ToolStripMenuItem.Click += new System.EventHandler(this.test1ToolStripMenuItem_Click);
+            this.IdocCreateToolStripMenuItem.Name = "IdocCreateToolStripMenuItem";
+            this.IdocCreateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.IdocCreateToolStripMenuItem.Text = "Create";
+            this.IdocCreateToolStripMenuItem.Click += new System.EventHandler(this.IdocCreateToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -690,5 +699,6 @@
         private System.Windows.Forms.ToolStripMenuItem fieldsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem test1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem IdocCreateToolStripMenuItem;
     }
 }

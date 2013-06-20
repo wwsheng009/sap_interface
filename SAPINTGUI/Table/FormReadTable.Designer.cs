@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI
+﻿namespace SAPINT.Gui
 {
     partial class FormReadTable
     {
@@ -29,7 +29,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.chxNotShow = new System.Windows.Forms.CheckBox();
             this.btnSaveToDb = new System.Windows.Forms.Button();
-            this.readTableControl1 = new SAPINTGUI.ReadTableControl();
+            this.readTableControl1 = new SAPINT.Gui.ReadTableControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();

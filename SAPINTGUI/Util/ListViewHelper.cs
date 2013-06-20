@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public enum ListViewExtendedStyles
     {

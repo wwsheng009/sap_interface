@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI.CodeManager
+﻿namespace SAPINT.Gui.CodeManager
 {
     partial class FormCodeManager
     {
@@ -59,7 +59,7 @@
             this.syntaxBoxControl1 = new Alsing.Windows.Forms.SyntaxBoxControl();
             this.syntaxDocument2 = new Alsing.SourceCode.SyntaxDocument(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new SAPINTGUI.TreeViewNF();
+            this.treeView1 = new SAPINT.Gui.TreeViewNF();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();

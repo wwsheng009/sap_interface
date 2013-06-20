@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI
+﻿namespace SAPINT.Gui
 {
     partial class GetTableMetaControl
     {

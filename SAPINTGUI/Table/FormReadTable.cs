@@ -12,7 +12,7 @@ using SAPINT.Utils;
 using SAPINT.RFCTable;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public partial class FormReadTable : DockWindow
     {
@@ -106,7 +106,7 @@ namespace SAPINTGUI
         }
         private void ShowSaveDataTableDialog()
         {
-            SAPINTGUI.DataBase.FormSaveDataTable formSaveDt = new DataBase.FormSaveDataTable();
+            SAPINT.Gui.DataBase.FormSaveDataTable formSaveDt = new DataBase.FormSaveDataTable();
             formSaveDt.Dt = localdt;
             formSaveDt.SapSystemName = SystemName;
             formSaveDt.SapTableName = TableName;

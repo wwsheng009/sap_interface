@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI.Table
+﻿namespace SAPINT.Gui.Table
 {
     partial class FormTableRead
     {
@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbx_systemlist = new System.Windows.Forms.ComboBox();
             this.txtDelimiter = new System.Windows.Forms.ComboBox();
             this.btnUnSelect = new System.Windows.Forms.Button();
@@ -52,19 +56,19 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FieldCondtionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.BackupFieldInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RestoreFieldsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.FieldInfoSaveAs_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadFiledInfoFromFile_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label4 = new System.Windows.Forms.Label();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnAddFieldsToCache = new System.Windows.Forms.Button();
             this.缓存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CacheFieldsConToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadFieldsFromCache_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveFieldsConFromCache_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label4 = new System.Windows.Forms.Label();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnAddFieldsToCache = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,7 +90,6 @@
             // txtDelimiter
             // 
             this.txtDelimiter.FormattingEnabled = true;
-            
             this.txtDelimiter.Location = new System.Drawing.Point(130, 76);
             this.txtDelimiter.Name = "txtDelimiter";
             this.txtDelimiter.Size = new System.Drawing.Size(36, 20);
@@ -126,12 +129,28 @@
             // 
             // dataGridView1
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Select,
             this.FieldName,
             this.FieldText,
             this.CheckTable});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -184,9 +203,25 @@
             // 
             // dataGridView2
             // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Option});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
@@ -304,11 +339,6 @@
             this.FieldCondtionToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.FieldCondtionToolStripMenuItem.Text = "备份";
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(157, 6);
-            // 
             // BackupFieldInfoToolStripMenuItem
             // 
             this.BackupFieldInfoToolStripMenuItem.Name = "BackupFieldInfoToolStripMenuItem";
@@ -323,6 +353,11 @@
             this.RestoreFieldsToolStripMenuItem.Text = "从本地文件恢复";
             this.RestoreFieldsToolStripMenuItem.Click += new System.EventHandler(this.RestoreFieldsToolStripMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(157, 6);
+            // 
             // FieldInfoSaveAs_MenuItem
             // 
             this.FieldInfoSaveAs_MenuItem.Name = "FieldInfoSaveAs_MenuItem";
@@ -336,6 +371,34 @@
             this.LoadFiledInfoFromFile_MenuItem.Size = new System.Drawing.Size(160, 22);
             this.LoadFiledInfoFromFile_MenuItem.Text = "加载文件";
             this.LoadFiledInfoFromFile_MenuItem.Click += new System.EventHandler(this.LoadFiledInfoFromFile_MenuItem_Click);
+            // 
+            // 缓存ToolStripMenuItem
+            // 
+            this.缓存ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CacheFieldsConToolStripMenuItem,
+            this.LoadFieldsFromCache_MenuItem,
+            this.RemoveFieldsConFromCache_MenuItem});
+            this.缓存ToolStripMenuItem.Name = "缓存ToolStripMenuItem";
+            this.缓存ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.缓存ToolStripMenuItem.Text = "缓存";
+            // 
+            // CacheFieldsConToolStripMenuItem
+            // 
+            this.CacheFieldsConToolStripMenuItem.Name = "CacheFieldsConToolStripMenuItem";
+            this.CacheFieldsConToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.CacheFieldsConToolStripMenuItem.Text = "加入缓存";
+            // 
+            // LoadFieldsFromCache_MenuItem
+            // 
+            this.LoadFieldsFromCache_MenuItem.Name = "LoadFieldsFromCache_MenuItem";
+            this.LoadFieldsFromCache_MenuItem.Size = new System.Drawing.Size(148, 22);
+            this.LoadFieldsFromCache_MenuItem.Text = "从缓存中加载";
+            // 
+            // RemoveFieldsConFromCache_MenuItem
+            // 
+            this.RemoveFieldsConFromCache_MenuItem.Name = "RemoveFieldsConFromCache_MenuItem";
+            this.RemoveFieldsConFromCache_MenuItem.Size = new System.Drawing.Size(148, 22);
+            this.RemoveFieldsConFromCache_MenuItem.Text = "从缓存中删除";
             // 
             // label4
             // 
@@ -360,34 +423,6 @@
             this.btnAddFieldsToCache.UseVisualStyleBackColor = true;
             this.btnAddFieldsToCache.Click += new System.EventHandler(this.btnAddFieldsToCache_Click);
             // 
-            // 缓存ToolStripMenuItem
-            // 
-            this.缓存ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CacheFieldsConToolStripMenuItem,
-            this.LoadFieldsFromCache_MenuItem,
-            this.RemoveFieldsConFromCache_MenuItem});
-            this.缓存ToolStripMenuItem.Name = "缓存ToolStripMenuItem";
-            this.缓存ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.缓存ToolStripMenuItem.Text = "缓存";
-            // 
-            // CacheFieldsConToolStripMenuItem
-            // 
-            this.CacheFieldsConToolStripMenuItem.Name = "CacheFieldsConToolStripMenuItem";
-            this.CacheFieldsConToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.CacheFieldsConToolStripMenuItem.Text = "加入缓存";
-            // 
-            // LoadFieldsFromCache_MenuItem
-            // 
-            this.LoadFieldsFromCache_MenuItem.Name = "LoadFieldsFromCache_MenuItem";
-            this.LoadFieldsFromCache_MenuItem.Size = new System.Drawing.Size(152, 22);
-            this.LoadFieldsFromCache_MenuItem.Text = "从缓存中加载";
-            // 
-            // RemoveFieldsConFromCache_MenuItem
-            // 
-            this.RemoveFieldsConFromCache_MenuItem.Name = "RemoveFieldsConFromCache_MenuItem";
-            this.RemoveFieldsConFromCache_MenuItem.Size = new System.Drawing.Size(152, 22);
-            this.RemoveFieldsConFromCache_MenuItem.Text = "从缓存中删除";
-            // 
             // FormTableRead
             // 
             this.AcceptButton = this.btRun;
@@ -410,10 +445,25 @@
             this.Controls.Add(this.rowNum);
             this.Controls.Add(this.btRun);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormTableRead";
             this.Text = "读取SAP表内容";
+            this.Controls.SetChildIndex(this.menuStrip1, 0);
+            this.Controls.SetChildIndex(this.btRun, 0);
+            this.Controls.SetChildIndex(this.rowNum, 0);
+            this.Controls.SetChildIndex(this.txtTableName, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.loadFields, 0);
+            this.Controls.SetChildIndex(this.btnSelect, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.splitContainer1, 0);
+            this.Controls.SetChildIndex(this.btnUnSelect, 0);
+            this.Controls.SetChildIndex(this.txtDelimiter, 0);
+            this.Controls.SetChildIndex(this.cbx_systemlist, 0);
+            this.Controls.SetChildIndex(this.listBox1, 0);
+            this.Controls.SetChildIndex(this.btnAddFieldsToCache, 0);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();

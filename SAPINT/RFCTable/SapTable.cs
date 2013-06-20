@@ -849,17 +849,20 @@ namespace SAPINT.RFCTable
             db2.LogEvents = true;
 
             bool isCreated = false;
+            bool isExist = checkTableIsExist();
+
             if (!_appendToDb || _newTable)
             {
                 isCreated = CreateNewTable();
             }
-            else if (!checkTableIsExist())
+            
+            else if (!isExist)
             {
                 isCreated = CreateNewTable();
 
             }
 
-            if (!isCreated)
+            if (!isCreated && !isExist)
             {
                 return false;
             }

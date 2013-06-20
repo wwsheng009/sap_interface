@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using SAPINTDB;
 using SAPINTDB.CodeManager;
 
-namespace SAPINTGUI.CodeManager
+namespace SAPINT.Gui.CodeManager
 {
     public delegate void deletegateSetProcessBar(int total, int value, String folder, String file);
 
@@ -174,7 +174,7 @@ namespace SAPINTGUI.CodeManager
                     continue;
                 }
 
-                if (!SAPINTGUI.Util.FileUtil.IsTextFile(item.FullName))
+                if (!SAPINT.Gui.Util.FileUtil.IsTextFile(item.FullName))
                 {
                     continue;
                 }
@@ -259,7 +259,7 @@ namespace SAPINTGUI.CodeManager
             {
                 return;
             }
-            if (!SAPINTGUI.Util.FileUtil.IsTextFile(file.FullName))
+            if (!SAPINT.Gui.Util.FileUtil.IsTextFile(file.FullName))
             {
                 return;
             }
@@ -744,7 +744,7 @@ namespace SAPINTGUI.CodeManager
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            this.TotalFileCount = SAPINTGUI.Util.FileUtil.GetFilesCount(path);
+            this.TotalFileCount = SAPINT.Gui.Util.FileUtil.GetFilesCount(path);
             this.txtFilesCount.Text = TotalFileCount.ToString();
             this.progressBar1.Value = 0;
             this.progressBar1.Maximum = TotalFileCount ;

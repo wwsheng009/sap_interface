@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using NVelocity.App;
 using NVelocity;
 using System.Reflection;
-using SAPINTGUI;
+using SAPINT.Gui;
 
 namespace SAPINTCODE
 {
@@ -23,7 +23,7 @@ namespace SAPINTCODE
         public FormGenerateTableClass()
         {
             InitializeComponent();
-            SAPINTGUI.CDataGridViewUtils.CopyPasteDataGridView(dgvFieldList);
+            SAPINT.Gui.CDataGridViewUtils.CopyPasteDataGridView(dgvFieldList);
 
             this.cbxSystemList.DataSource = SAPINT.SAPLogonConfigList.SystemNameList;
             this.textBoxTemplate.Document.Text =
@@ -130,12 +130,12 @@ namespace SAPINTCODE
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            SAPINTGUI.CDataGridViewUtils.SelectRows(dgvFieldList);
+            SAPINT.Gui.CDataGridViewUtils.SelectRows(dgvFieldList);
         }
 
         private void btnCancle_Click(object sender, EventArgs e)
         {
-            SAPINTGUI.CDataGridViewUtils.UnSelectRows(dgvFieldList);
+            SAPINT.Gui.CDataGridViewUtils.UnSelectRows(dgvFieldList);
         }
 
         private void button1_Click(object sender, EventArgs e)

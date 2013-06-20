@@ -10,12 +10,12 @@ using SAPINT.Function.Meta;
 using SAPINT.Function;
 using SAPINT.Function.Json;
 using SAPINT;
-using SAPINTGUI.Idoc;
+using SAPINT.Gui.Idocs;
 using System.Threading;
 using WeifenLuo.WinFormsUI.Docking;
-using SAPINTGUI.Functions;
-using SAPINTGUI.Table;
-namespace SAPINTGUI
+using SAPINT.Gui.Functions;
+using SAPINT.Gui.Table;
+namespace SAPINT.Gui
 {
     public partial class FormSAPToolBox : DockWindow
     {
@@ -88,7 +88,7 @@ namespace SAPINTGUI
 
         private void btnDataBase_Click(object sender, EventArgs e)
         {
-            SAPINTGUI.DataBase.FormSmallSql formdb = new DataBase.FormSmallSql();
+            SAPINT.Gui.DataBase.FormSmallSql formdb = new DataBase.FormSmallSql();
             formdb.Show();
         }
 
@@ -110,19 +110,19 @@ namespace SAPINTGUI
 
         private void btnIdocMeta_Click(object sender, EventArgs e)
         {
-            Idoc.FormIdocMeta formidocmeta = new FormIdocMeta();
+            Idocs.FormIdocMeta formidocmeta = new FormIdocMeta();
             formidocmeta.Show();
         }
 
         private void btnSaveDb_Click(object sender, EventArgs e)
         {
-            SAPINTGUI.DataBase.FormSaveDataTable formSaveDt = new SAPINTGUI.DataBase.FormSaveDataTable();
+            SAPINT.Gui.DataBase.FormSaveDataTable formSaveDt = new SAPINT.Gui.DataBase.FormSaveDataTable();
             formSaveDt.Show();
         }
 
         private void btnDbUtil_Click(object sender, EventArgs e)
         {
-            SAPINTGUI.DataBase.FormSchemas formUtil = new DataBase.FormSchemas();
+            SAPINT.Gui.DataBase.FormSchemas formUtil = new DataBase.FormSchemas();
             formUtil.Show();
         }
 

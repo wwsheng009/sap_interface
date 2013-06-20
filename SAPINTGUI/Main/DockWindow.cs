@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public partial class DockWindow : DockContent
     {

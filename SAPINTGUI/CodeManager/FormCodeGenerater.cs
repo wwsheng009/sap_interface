@@ -11,11 +11,11 @@ using NVelocity;
 using NVelocity.App;
 using SAPINT.RFCTable;
 using SAPINTDB.CodeManager;
-using SAPINTGUI.Table;
+using SAPINT.Gui.Table;
 using WeifenLuo.WinFormsUI.Docking;
 
 
-namespace SAPINTGUI.CodeManager
+namespace SAPINT.Gui.CodeManager
 {
     public partial class FormCodeGenerater : DockWindow
     {

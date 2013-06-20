@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI.DataBase
+﻿namespace SAPINT.Gui.DataBase
 {
     partial class FormSmallSql
     {

@@ -10,7 +10,7 @@ using SAPINT.Queries;
 //using Microsoft.Office.Tools.Excel;
 using SAPINT;
 using SAPINT.Queries.QueryHelper;
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public delegate void QueryExcuteDone(DataTable resultDataTable);
     public partial class SAPQueryControl : UserControl

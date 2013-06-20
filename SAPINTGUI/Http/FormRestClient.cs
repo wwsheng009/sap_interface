@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RestSharp;
 
-namespace SAPINTGUI.Http
+namespace SAPINT.Gui.Http
 {
     public partial class FormRestClient : DockWindow
     {
@@ -65,6 +65,29 @@ namespace SAPINTGUI.Http
             this.cbxCharSet.Text = "UTF-8";
 
             this.radioBtnGET.Checked = true;
+            dgvFormFieldsReq.CellDoubleClick += dgvFormFieldsReq_CellDoubleClick;
+        }
+
+        void dgvFormFieldsReq_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+            {
+                var content = dgvFormFieldsReq[e.ColumnIndex, e.RowIndex].Value;
+
+                FormRestFormContent frm = new FormRestFormContent();
+                frm.Content = content.ToString();
+                frm.ShowDialog();
+
+                var content_new = frm.Content;
+                if (content_new != null)
+                {
+                    dgvFormFieldsReq[e.ColumnIndex, e.RowIndex].Value = content_new;
+                }
+
+            }
+
+            //
+            //throw new NotImplementedException();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -108,7 +131,7 @@ namespace SAPINTGUI.Http
         private void Run2()
         {
 
-            
+
         }
         private void Run()
         {
@@ -168,11 +191,11 @@ namespace SAPINTGUI.Http
             {
                 request.AddParameter("Accept", m_HeaderType + ";charset=" + m_Charset, ParameterType.HttpHeader);
                 //request.AddHeader("Content-Type", m_HeaderType + ";charset=" + m_Charset);
-                
+
             }
 
             var client = new RestClient(m_Uri);
-            
+
             var response = client.Execute(request);
             var content = response.Content; // raw content as string
             m_bodyRes = response.Content;

@@ -1,4 +1,4 @@
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     partial class ToolWindow
     {
@@ -33,7 +33,6 @@ namespace SAPINTGUI
             this.option1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.option2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.option3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,21 +63,11 @@ namespace SAPINTGUI
             this.option3ToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.option3ToolStripMenuItem.Text = "Option&3";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(22, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // ToolWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 246);
-            this.Controls.Add(this.button1);
             this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft) 
             | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
             | WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
@@ -99,6 +88,5 @@ namespace SAPINTGUI
         private System.Windows.Forms.ToolStripMenuItem option1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem option2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem option3ToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
     }
 }

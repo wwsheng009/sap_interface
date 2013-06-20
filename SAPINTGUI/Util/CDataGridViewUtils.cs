@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data;
 using System.Text.RegularExpressions;
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public static class CDataGridViewUtils
     {

@@ -9,7 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using SAPINTDB.CodeManager;
 using WeifenLuo.WinFormsUI.Docking;
-namespace SAPINTGUI.CodeManager
+namespace SAPINT.Gui.CodeManager
 {
    // public delegate void DeleGateSetNode();
 

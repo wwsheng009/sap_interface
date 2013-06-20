@@ -22,5 +22,15 @@ namespace SAPINT.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;User Id=rooot;database=test")]
+        public string testConnectionString {
+            get {
+                return ((string)(this["testConnectionString"]));
+            }
+        }
     }
 }

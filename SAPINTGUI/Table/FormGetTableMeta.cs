@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DgvFilterPopup;
 using WeifenLuo.WinFormsUI.Docking;
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public partial class FormGetTableMeta : DockWindow
     {

@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 using System.IO;
 using SAPINT;
 using SAPINT.Function;
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public delegate void DelegateGetTableInfo(GetTableMetaControl dataTableInfo);
     /// <summary>

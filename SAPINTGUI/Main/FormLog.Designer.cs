@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI.Main
+﻿namespace SAPINT.Gui.Main
 {
     partial class FormLog
     {

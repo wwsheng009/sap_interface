@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI
+﻿namespace SAPINT.Gui
 {
     partial class FormSAPQuery
     {
@@ -26,7 +26,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.sapQueryControl1 = new SAPINTGUI.SAPQueryControl();
+            this.sapQueryControl1 = new SAPINT.Gui.SAPQueryControl();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();

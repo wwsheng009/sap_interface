@@ -10,7 +10,7 @@ using SAPINT;
 using SAPINT.Function;
 using SAPINT.Function.Meta;
 
-namespace SAPINTGUI.Functions
+namespace SAPINT.Gui.Functions
 {
     public partial class FormFunctionMetaEx : DockWindow
     {
@@ -259,7 +259,7 @@ namespace SAPINTGUI.Functions
                 var dt = dgvTableContent.DataSource as DataTable;
                 if (dt != null)
                 {
-                    SAPINTGUI.DataBase.FormSaveDataTable formSaveDt = new DataBase.FormSaveDataTable();
+                    SAPINT.Gui.DataBase.FormSaveDataTable formSaveDt = new DataBase.FormSaveDataTable();
                     formSaveDt.Dt = dt;
                     formSaveDt.SapSystemName = this._systemName;
                     formSaveDt.SapTableName = selectedField.Name;

@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI.Table
+﻿namespace SAPINT.Gui.Table
 {
     partial class FormTableReadMeta
     {

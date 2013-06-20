@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public partial class FormSearchText : Form
     {

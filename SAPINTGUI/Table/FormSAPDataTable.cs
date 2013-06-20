@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DgvFilterPopup;
 using SAPINT.RFCTable;
 
-namespace SAPINTGUI.Table
+namespace SAPINT.Gui.Table
 {
     public partial class FormSAPDataTable : DockWindow
     {
@@ -50,7 +50,7 @@ namespace SAPINTGUI.Table
 
         private void ShowSaveDataTableDialog()
         {
-            SAPINTGUI.DataBase.FormSaveDataTable formSaveDt = new DataBase.FormSaveDataTable();
+            SAPINT.Gui.DataBase.FormSaveDataTable formSaveDt = new DataBase.FormSaveDataTable();
             formSaveDt.Dt = localdt;
             formSaveDt.SapSystemName = SystemName;
             formSaveDt.SapTableName = TableName;

@@ -54,7 +54,13 @@ namespace SAPINT.Idocs
             this.ConnectionName = pConnectionName;
             logicDb = new netlib7(ConnectionName);
         }
-        public Idoc readIdoc(string pIdocNumber, String SystemName)
+        /// <summary>
+        /// 从本地数据读取IDOC数据，并解析成IDOC对象。
+        /// </summary>
+        /// <param name="pIdocNumber">IDOC编号</param>
+        /// <param name="SystemName">此处的SAP系统名称用于本地数据库检索</param>
+        /// <returns></returns>
+        public Idoc ReadIdoc(string pIdocNumber, String SystemName)
         {
             try
             {
@@ -84,7 +90,7 @@ namespace SAPINT.Idocs
                 if (idocHeader != null && idocItem != null)
                 {
                     SAPINT.Idocs.Meta.IdocUtil idocUtil = new SAPINT.Idocs.Meta.IdocUtil();
-                    SAPINT.Idocs.Idoc idoc = idocUtil.processSingleIdocFromDataTable(idocHeader, idocItem);
+                    SAPINT.Idocs.Idoc idoc = idocUtil.ProcessSingleIdocFromDataTable(idocHeader, idocItem);
                     return idoc;
                 }
                 else
@@ -100,7 +106,11 @@ namespace SAPINT.Idocs
             }
 
         }
-
+        /// <summary>
+        /// 根据IDOC编号把IDOC复制到本地。
+        /// </summary>
+        /// <param name="idocNumber">IDOC编号</param>
+        /// <param name="SystemName">远程SAP系统名称</param>
         public void CopyIdocFromSAP(String idocNumber, String SystemName)
         {
             try

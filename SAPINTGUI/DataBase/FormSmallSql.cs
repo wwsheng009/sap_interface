@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SAPINTGUI.DataBase
+namespace SAPINT.Gui.DataBase
 {
     public partial class FormSmallSql : DockWindow
     {

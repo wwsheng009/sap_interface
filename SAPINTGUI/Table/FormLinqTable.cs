@@ -11,7 +11,7 @@ using SAPINT.Linq;
 using SAPINT;
 using System.IO;
 
-namespace SAPINTGUI.Table
+namespace SAPINT.Gui.Table
 {
     public partial class FormLinqTable : Form
     {

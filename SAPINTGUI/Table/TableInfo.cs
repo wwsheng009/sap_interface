@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     /// <summary>
     /// 保存上运行过程中的字段与条件

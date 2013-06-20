@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI.Http
+﻿namespace SAPINT.Gui.Http
 {
     partial class FormRestClient
     {

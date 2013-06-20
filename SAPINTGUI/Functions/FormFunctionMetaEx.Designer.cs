@@ -1,4 +1,4 @@
-﻿namespace SAPINTGUI.Functions
+﻿namespace SAPINT.Gui.Functions
 {
     partial class FormFunctionMetaEx
     {

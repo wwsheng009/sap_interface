@@ -32,7 +32,7 @@ namespace SAPINT.Idocs.Meta
         /// </summary>
         /// <param name="idocNumber"></param>
         /// <returns></returns>
-        public Idoc getIodcFromSapDataBase(String idocNumber)
+        public Idoc GetIodcFromSapDataBase(String idocNumber)
         {
             SAPINT.Utils.ReadTable idocReadItem = null;
             SAPINT.Utils.ReadTable idocReadHeader = null;
@@ -86,7 +86,7 @@ namespace SAPINT.Idocs.Meta
                 throw new SAPException(String.Format("无法找到IDOC{0}抬头定义", idocNumber));
             }
 
-            Idoc idoc = processSingleIdocFromDataTable(dtIdocHeder, dtIdocItem);
+            Idoc idoc = ProcessSingleIdocFromDataTable(dtIdocHeder, dtIdocItem);
 
             return idoc;
 
@@ -98,7 +98,7 @@ namespace SAPINT.Idocs.Meta
         /// <param name="dtHeader"></param>
         /// <param name="dtItem"></param>
         /// <returns></returns>
-        public Idoc processSingleIdocFromDataTable(DataTable dtHeader, DataTable dtItem)
+        public Idoc ProcessSingleIdocFromDataTable(DataTable dtHeader, DataTable dtItem)
         {
             if (dtHeader==null || dtItem == null)
             {

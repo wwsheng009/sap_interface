@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using SAPINTDB;
 using SAPINTDB.CodeManager;
 
-namespace SAPINTGUI.CodeManager
+namespace SAPINT.Gui.CodeManager
 {
     public partial class FormImporSapProgram : DockWindow
     {

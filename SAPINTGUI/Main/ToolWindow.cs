@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public partial class ToolWindow : DockContent
     {

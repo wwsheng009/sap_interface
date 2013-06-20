@@ -8,8 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using SAPINT.Utils;
 using SAPINT.RFCTable;
-using SAPINTGUI;
-using SAPINTGUI.Util;
+using SAPINT.Gui;
+using SAPINT.Gui.Util;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace SAPINTCODE
@@ -51,7 +51,7 @@ namespace SAPINTCODE
             InitializeComponent();
 
             //_tablelist = new List<TableInfo>();
-            SAPINTGUI.CDataGridViewUtils.CopyPasteDataGridView(dataGridView1);
+            SAPINT.Gui.CDataGridViewUtils.CopyPasteDataGridView(dataGridView1);
             new DgvFilterPopup.DgvFilterManager(dataGridView1);
 
             this.cbx_systemlist.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();
@@ -217,7 +217,7 @@ namespace SAPINTCODE
         /// <param name="e"></param>
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            SAPINTGUI.CDataGridViewUtils.SelectRows(dataGridView1);
+            SAPINT.Gui.CDataGridViewUtils.SelectRows(dataGridView1);
             
         }
 
@@ -346,7 +346,7 @@ namespace SAPINTCODE
         /// <param name="e"></param>
         private void btnUnSelect_Click(object sender, EventArgs e)
         {
-            SAPINTGUI.CDataGridViewUtils.UnSelectRows(dataGridView1);
+            SAPINT.Gui.CDataGridViewUtils.UnSelectRows(dataGridView1);
            
         }
 

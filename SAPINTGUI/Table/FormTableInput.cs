@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SAPINT.Function.Meta;
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public partial class FormTableInput : Form
     {

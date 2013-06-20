@@ -9,22 +9,22 @@ using System.Text;
 using System.Windows.Forms;
 using SAPINT.Utils;
 using SAPINTCODE;
-using SAPINTGUI.CodeManager;
-using SAPINTGUI.DataBase;
-using SAPINTGUI.Functions;
-using SAPINTGUI.Http;
-using SAPINTGUI.Idoc;
-using SAPINTGUI.Main;
-using SAPINTGUI.Table;
+using SAPINT.Gui.CodeManager;
+using SAPINT.Gui.DataBase;
+using SAPINT.Gui.Functions;
+using SAPINT.Gui.Http;
+using SAPINT.Gui.Idocs;
+using SAPINT.Gui.Main;
+using SAPINT.Gui.Table;
 using WeifenLuo.WinFormsUI.Docking;
-namespace SAPINTGUI
+namespace SAPINT.Gui
 {
     public partial class FormMain : Form
     {
         private bool m_bSaveLayout = true;
         private DeserializeDockContent m_deserializeDockContent;
         private FormSAPToolBox m_formSAPToolBox = null;
-        
+
         //*
         private FormFunctionMetaEx m_formFunctionMetaEx = null;
         private FormFunctionMetaJson m_formFunctionMetaJson = null;
@@ -36,7 +36,7 @@ namespace SAPINTGUI
         private FormCodeManager m_FormCodeManager = null;
         private FormCodeManagerListView m_FormCodeManagerListView = null;
         private FormCodeGenerater m_FormCodeGenerater = null;
-        
+
         //*
         private FormSmallSql m_FormSmallSql = null;
         private FormSchemas m_FormSchemas = null;
@@ -48,13 +48,14 @@ namespace SAPINTGUI
         private FormTableRead m_FormTableRead = null;
         private FormTableReadMeta m_FormTableReadMeta = null;
         private FormSAPDataTable m_FormSAPDataTable = null;
-        
+
         //*
         private FormIdocCopy m_FormIdocCopy = null;
         private FormIdocMeta m_FormIdocMeta = null;
         private FormIdocUtil m_FormIdocUtil = null;
-        
-        
+        private FormIdocCreate m_FormIdocCreate = null;
+
+
         private FormLog m_FormLog = null;
 
 
@@ -390,7 +391,7 @@ namespace SAPINTGUI
             if (m_FormCodeGenerater == null)
             {
                 m_FormCodeGenerater = new FormCodeGenerater();
-   
+
             }
             if (m_FormCodeGenerater.IsDisposed)
             {
@@ -591,6 +592,12 @@ namespace SAPINTGUI
         {
             FormRestClient form = new FormRestClient();
             form.Show(dockPanel);
+        }
+
+        private void IdocCreateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_FormIdocCreate = new FormIdocCreate();
+            m_FormIdocCreate.Show(dockPanel);
         }
 
 
