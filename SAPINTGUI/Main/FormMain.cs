@@ -600,6 +600,12 @@ namespace SAPINT.Gui
             m_FormIdocCreate.Show(dockPanel);
         }
 
+        private void md5ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var m_FormMd5Caculator = new FormMd5Caculator();
+            m_FormMd5Caculator.Show(dockPanel);
+        }
+
 
 
 

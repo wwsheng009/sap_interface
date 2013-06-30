@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SAPINT.Gui</RootNamespace>
     <AssemblyName>SAPINTGUI</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -91,13 +91,6 @@
     <StartupObject>SAPINT.Gui.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\wangws_net\开源项目\autofac\Autofac.3.0.2\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Configuration">
-      <HintPath>D:\wangws_net\开源项目\autofac\Autofac.3.0.2\Autofac.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="DgvFilterPopup">
       <HintPath>..\lib\DgvFilterPopup.dll</HintPath>
     </Reference>
@@ -126,6 +119,7 @@
       <HintPath>C:\Program Files (x86)\System.Data.SQLite\2010\bin\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -140,22 +134,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AboutForm.Designer.cs">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ApplicationSettings.cs" />
-    <Compile Include="BasicEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BasicEditor.Designer.cs">
-      <DependentUpon>BasicEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BasicEditors.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="CodeManager\FormAbapDoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,25 +194,11 @@
     <Compile Include="CodeManager\FormCodeManagerListView.Designer.cs">
       <DependentUpon>FormCodeManagerListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\NewFileCommand.cs" />
-    <Compile Include="Commands\OpenFileCommand.cs" />
-    <Compile Include="Commands\OpenRecentFileCommand.cs" />
-    <Compile Include="Commands\SaveFileAsCommand.cs" />
-    <Compile Include="Commands\SaveFileCommand.cs" />
-    <Compile Include="Commands\SaveResultsAsDataSetCommand.cs" />
-    <Compile Include="Commands\ShowAboutCommand.cs" />
-    <Compile Include="Commands\ShowOptionsFormCommand.cs" />
-    <Compile Include="CopyForm.cs">
+    <Compile Include="Http\FormMd5Caculator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CopyForm.Designer.cs">
-      <DependentUpon>CopyForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ErrorForm.Designer.cs">
-      <DependentUpon>ErrorForm.cs</DependentUpon>
+    <Compile Include="Http\FormMd5Caculator.Designer.cs">
+      <DependentUpon>FormMd5Caculator.cs</DependentUpon>
     </Compile>
     <Compile Include="Http\FormRestClient.cs">
       <SubType>Form</SubType>
@@ -248,6 +212,7 @@
     <Compile Include="Http\FormRestFormContent.Designer.cs">
       <DependentUpon>FormRestFormContent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Http\HttpClient.cs" />
     <Compile Include="Idocs\FormIdocCreate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,130 +231,10 @@
     <Compile Include="Main\FormLog.Designer.cs">
       <DependentUpon>FormLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Main\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="masterDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>masterDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="NewFileForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NewFileForm.Designer.cs">
-      <DependentUpon>NewFileForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OptionsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OptionsForm.Designer.cs">
-      <DependentUpon>OptionsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlugIns\ConnectionStringsManager\Commands\EditConnectionsFormCommand.cs" />
-    <Compile Include="PlugIns\ConnectionStringsManager\ConnectionStringBuilderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlugIns\ConnectionStringsManager\ConnectionStringBuilderForm.Designer.cs">
-      <DependentUpon>ConnectionStringBuilderForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlugIns\ConnectionStringsManager\ConnectionStringsManagerLoader.cs" />
-    <Compile Include="PlugIns\ConnectionStringsManager\DbConnectionsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlugIns\ConnectionStringsManager\DbConnectionsForm.Designer.cs">
-      <DependentUpon>DbConnectionsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlugIns\ConnectionStringsManager\GenericConnectionStringBuilder.cs" />
-    <Compile Include="PlugIns\CoreApplicationPlugIn.cs" />
-    <Compile Include="PlugIns\CoreMiniSqlQueryConfiguration.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\CopyTableNameCommand.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\GenerateDeleteStatementCommand.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\GenerateInsertStatementCommand.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\GenerateSelectCountStatementCommand.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\GenerateSelectStatementCommand.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\GenerateStatementCommandBase.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\GenerateUpdateStatementCommand.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\LocateFkReferenceColumnCommand.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\ShowDatabaseInspectorCommand.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\ShowFindObjectFormCommand.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\Commands\TruncateTableCommand.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\DatabaseInspectorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlugIns\DatabaseInspector\DatabaseInspectorForm.Designer.cs">
-      <DependentUpon>DatabaseInspectorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlugIns\DatabaseInspector\DatabaseInspectorLoader.cs" />
-    <Compile Include="PlugIns\DatabaseInspector\FindObjectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlugIns\DatabaseInspector\FindObjectForm.Designer.cs">
-      <DependentUpon>FindObjectForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlugIns\SearchTools\Commands\FindNextStringCommand.cs" />
-    <Compile Include="PlugIns\SearchTools\Commands\ReplaceStringCommand.cs" />
-    <Compile Include="PlugIns\SearchTools\Commands\ShowFindTextFormCommand.cs" />
-    <Compile Include="PlugIns\SearchTools\Commands\ShowGoToLineFormCommand.cs" />
-    <Compile Include="PlugIns\SearchTools\FindReplaceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlugIns\SearchTools\FindReplaceForm.designer.cs">
-      <DependentUpon>FindReplaceForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlugIns\SearchTools\GoToLineForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlugIns\SearchTools\GoToLineForm.designer.cs">
-      <DependentUpon>GoToLineForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlugIns\SearchTools\SearchToolsCommon.cs" />
-    <Compile Include="PlugIns\SearchTools\SearchToolsLoader.cs" />
-    <Compile Include="PlugIns\TemplateViewer\Commands\NewQueryByTemplateCommand.cs" />
-    <Compile Include="PlugIns\TemplateViewer\Commands\RunTemplateCommand.cs" />
-    <Compile Include="PlugIns\TemplateViewer\ITemplateEditor.cs" />
-    <Compile Include="PlugIns\TemplateViewer\TemplateData.cs" />
-    <Compile Include="PlugIns\TemplateViewer\TemplateEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlugIns\TemplateViewer\TemplateEditorForm.Designer.cs">
-      <DependentUpon>TemplateEditorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlugIns\TemplateViewer\TemplateHost.cs" />
-    <Compile Include="PlugIns\TemplateViewer\TemplateModel.cs" />
-    <Compile Include="PlugIns\TemplateViewer\TemplateResources.Designer.cs">
-      <DependentUpon>TemplateResources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="PlugIns\TemplateViewer\TemplateResult.cs" />
-    <Compile Include="PlugIns\TemplateViewer\TemplateViewerLoader.cs" />
-    <Compile Include="PlugIns\TemplateViewer\TemplateViewForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlugIns\TemplateViewer\TemplateViewForm.Designer.cs">
-      <DependentUpon>TemplateViewForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlugIns\TextGenerator\Commands\RunTextGeneratorCommand.cs" />
-    <Compile Include="PlugIns\TextGenerator\TextGeneratorLoader.cs" />
-    <Compile Include="PlugIns\TextGenerator\TextGeneratorService.cs" />
-    <Compile Include="PlugIns\ViewTable\Commands\ViewTableFormCommand.cs" />
-    <Compile Include="PlugIns\ViewTable\Commands\ViewTableFromInspectorCommand.cs" />
-    <Compile Include="PlugIns\ViewTable\ViewTableForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlugIns\ViewTable\ViewTableForm.Designer.cs">
-      <DependentUpon>ViewTableForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlugIns\ViewTable\ViewTableLoader.cs" />
-    <Compile Include="QueryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="QueryForm.Designer.cs">
-      <DependentUpon>QueryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Table\FormLinqTable.cs">
       <SubType>Form</SubType>
@@ -574,13 +419,6 @@
     <Compile Include="Util\FormSearchText2.Designer.cs">
       <DependentUpon>FormSearchText2.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AboutForm.resx">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BasicEditor.resx">
-      <DependentUpon>BasicEditor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CodeManager\FormAbapDoc.resx">
       <DependentUpon>FormAbapDoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -617,9 +455,6 @@
     <EmbeddedResource Include="CodeManager\FormCodeManagerListView.resx">
       <DependentUpon>FormCodeManagerListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CopyForm.resx">
-      <DependentUpon>CopyForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DataBase\FormSmallSql.resx">
       <DependentUpon>FormSmallSql.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -630,9 +465,8 @@
     <EmbeddedResource Include="DataBase\FormSaveDataTable.resx">
       <DependentUpon>FormSaveDataTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ErrorForm.resx">
-      <DependentUpon>ErrorForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Http\FormMd5Caculator.resx">
+      <DependentUpon>FormMd5Caculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Http\FormRestClient.resx">
       <DependentUpon>FormRestClient.cs</DependentUpon>
@@ -666,57 +500,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idocs\FormIdocUtil.resx">
       <DependentUpon>FormIdocUtil.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Main\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewFileForm.resx">
-      <DependentUpon>NewFileForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsForm.resx">
-      <DependentUpon>OptionsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlugIns\ConnectionStringsManager\ConnectionStringBuilderForm.resx">
-      <DependentUpon>ConnectionStringBuilderForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlugIns\ConnectionStringsManager\DbConnectionsForm.resx">
-      <DependentUpon>DbConnectionsForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlugIns\DatabaseInspector\DatabaseInspectorForm.resx">
-      <DependentUpon>DatabaseInspectorForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlugIns\DatabaseInspector\FindObjectForm.resx">
-      <DependentUpon>FindObjectForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlugIns\SearchTools\FindReplaceForm.resx">
-      <DependentUpon>FindReplaceForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlugIns\SearchTools\GoToLineForm.resx">
-      <DependentUpon>GoToLineForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlugIns\TemplateViewer\TemplateEditorForm.resx">
-      <DependentUpon>TemplateEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlugIns\TemplateViewer\TemplateResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>TemplateResources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlugIns\TemplateViewer\TemplateViewForm.resx">
-      <DependentUpon>TemplateViewForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlugIns\ViewTable\ViewTableForm.resx">
-      <DependentUpon>ViewTableForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="QueryForm.resx">
-      <DependentUpon>QueryForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Table\FormCopyTable.resx">
       <DependentUpon>FormCopyTable.cs</DependentUpon>
@@ -794,7 +577,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="PlugIns\TemplateViewer\TemplateHelp.rtf" />
     <None Include="Resources\sql-mode.xshd" />
     <None Include="SyntaxFiles\6502.syn" />
     <None Include="SyntaxFiles\abap.syn">
@@ -867,9 +649,9 @@
     <None Include="SyntaxFiles\XML.syn" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SAPINT.Core\SAPINT.Core.csproj">
+    <ProjectReference Include="..\MiniSqlQuery.Core\MiniSqlQuery.Core.csproj">
       <Project>{47161d43-6d98-45be-9b83-25ce3fff4eac}</Project>
-      <Name>SAPINT.Core</Name>
+      <Name>MiniSqlQuery.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\SAPINTCONFIG\ConfigFileTool.csproj">
       <Project>{D1E3F270-7BCC-474F-B6B7-18F3031FF7E5}</Project>
@@ -895,7 +677,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cloud.ico" />
-    <Content Include="PlugIns\ViewTable\table.ico" />
     <None Include="Resources\ReadMe.htm" />
     <None Include="Resources\license-minisqlquery.txt" />
   </ItemGroup>

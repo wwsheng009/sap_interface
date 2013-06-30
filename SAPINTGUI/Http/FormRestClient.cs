@@ -66,6 +66,10 @@ namespace SAPINT.Gui.Http
 
             this.radioBtnGET.Checked = true;
             dgvFormFieldsReq.CellDoubleClick += dgvFormFieldsReq_CellDoubleClick;
+
+            CDataGridViewUtils.CopyPasteDataGridView(this.dgvFormFieldsReq);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dgvHeadersReq);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dgvHeadersRes);
         }
 
         void dgvFormFieldsReq_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -140,6 +144,7 @@ namespace SAPINT.Gui.Http
             m_HeaderType = this.cbxAcceptType.Text;
             m_Charset = this.cbxCharSet.Text;
 
+            txtBodyRes.Text = string.Empty;
 
             RestRequest request = new RestRequest();
             if (radioBtnDELETE.Checked)

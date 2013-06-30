@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{47161D43-6D98-45BE-9B83-25CE3FFF4EAC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MiniSqlQuery.Core</RootNamespace>
+    <AssemblyName>MiniSqlQuery.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>D:\wangws_net\开源项目\autofac\Autofac.3.0.2\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>D:\wangws_net\开源项目\autofac\Autofac.3.0.2\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="NVelocity">
+      <HintPath>D:\wangws_net\开源项目\NVelocity\CastleNVelocity-1.1.1\net40\NVelocity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>D:\wangws_net\开源项目\dockpanelsuite-master\WinFormsUI\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationServices.cs" />
+    <Compile Include="BasicTextFindService.cs" />
+    <Compile Include="BatchProgressEventArgs.cs" />
+    <Compile Include="CommandControlBuilder.cs" />
+    <Compile Include="CommandManager.cs" />
+    <Compile Include="Commands\CancelTaskCommand.cs" />
+    <Compile Include="Commands\CloseActiveWindowCommand.cs" />
+    <Compile Include="Commands\CloseAllWindowsCommand.cs" />
+    <Compile Include="Commands\CloseDatabaseConnectionCommand.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\ConvertTextToLowerCaseCommand.cs" />
+    <Compile Include="Commands\ConvertTextToTitleCaseCommand.cs" />
+    <Compile Include="Commands\ConvertTextToUpperCaseCommand.cs" />
+    <Compile Include="Commands\CopyQueryEditorFileNameCommand.cs" />
+    <Compile Include="Commands\DisplayDbModelDependenciesCommand.cs" />
+    <Compile Include="Commands\EmailAuthorCommand.cs" />
+    <Compile Include="Commands\ExecuteTaskCommand.cs" />
+    <Compile Include="Commands\ExitApplicationCommand.cs" />
+    <Compile Include="Commands\GenerateCommandCodeCommand.cs" />
+    <Compile Include="Commands\InsertGuidCommand.cs" />
+    <Compile Include="Commands\NewQueryFormCommand.cs" />
+    <Compile Include="Commands\OpenConnectionFileCommand.cs" />
+    <Compile Include="Commands\PasteAroundSelectionCommand.cs" />
+    <Compile Include="Commands\PrintCommand.cs" />
+    <Compile Include="Commands\RefreshDatabaseConnectionCommand.cs" />
+    <Compile Include="Commands\SetLeftPasteAroundSelectionCommand.cs" />
+    <Compile Include="Commands\SetRightPasteAroundSelectionCommand.cs" />
+    <Compile Include="Commands\ShowDiscussionsWebPageCommand.cs" />
+    <Compile Include="Commands\ShowHelpCommand.cs" />
+    <Compile Include="Commands\ShowUrlCommand.cs" />
+    <Compile Include="Commands\ShowWebPageCommand.cs" />
+    <Compile Include="ConnectionDefinition.cs" />
+    <Compile Include="Controls\BatchQuerySelectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BatchQuerySelectControl.Designer.cs">
+      <DependentUpon>BatchQuerySelectControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExceptionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ExceptionControl.Designer.cs">
+      <DependentUpon>ExceptionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PluginListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PluginListControl.Designer.cs">
+      <DependentUpon>PluginListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseMetaDataService.cs" />
+    <Compile Include="DBConnectionDefinition.cs" />
+    <Compile Include="DBConnectionDefinitionList.cs" />
+    <Compile Include="DbModel\DbModelColumn.cs" />
+    <Compile Include="DbModel\DbModelConstraint.cs" />
+    <Compile Include="DbModel\DbModelDependencyWalker.cs" />
+    <Compile Include="DbModel\DbModelForeignKeyReference.cs" />
+    <Compile Include="DbModel\DbModelInstance.cs" />
+    <Compile Include="DbModel\DbModelObjectBase.cs" />
+    <Compile Include="DbModel\DbModelTable.cs" />
+    <Compile Include="DbModel\DbModelType.cs" />
+    <Compile Include="DbModel\DbModelView.cs" />
+    <Compile Include="DbModel\GenericSchemaService.cs" />
+    <Compile Include="DbModel\ISqlWriter.cs" />
+    <Compile Include="DbModel\OleDbSchemaService.cs" />
+    <Compile Include="DbModel\SqlCeSchemaService.cs" />
+    <Compile Include="DbModel\SqlClientSchemaService.cs" />
+    <Compile Include="DbModel\SqlWriter.cs" />
+    <Compile Include="FileEditorDescriptor.cs" />
+    <Compile Include="FileEditorResolverService.cs" />
+    <Compile Include="FindReplaceTextRequest.cs" />
+    <Compile Include="Forms\BatchQuerySelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BatchQuerySelectForm.Designer.cs">
+      <DependentUpon>BatchQuerySelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IApplicationServices.cs" />
+    <Compile Include="IApplicationSettings.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="IConfigurationObject.cs" />
+    <Compile Include="IDatabaseInspector.cs" />
+    <Compile Include="IDatabaseSchemaService.cs" />
+    <Compile Include="IDbModelNamedObject.cs" />
+    <Compile Include="IEditor.cs" />
+    <Compile Include="IFileEditorResolver.cs" />
+    <Compile Include="IFindReplaceProvider.cs" />
+    <Compile Include="IFindReplaceWindow.cs" />
+    <Compile Include="IHostWindow.cs" />
+    <Compile Include="ImageResource.Designer.cs">
+      <DependentUpon>ImageResource.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="IMostRecentFilesService.cs" />
+    <Compile Include="INamedObject.cs" />
+    <Compile Include="INavigatableDocument.cs" />
+    <Compile Include="IPerformTask.cs" />
+    <Compile Include="IPlugIn.cs" />
+    <Compile Include="IPrintableContent.cs" />
+    <Compile Include="IQueryBatchProvider.cs" />
+    <Compile Include="IQueryEditor.cs" />
+    <Compile Include="ISupportCursorOffset.cs" />
+    <Compile Include="ITextFindService.cs" />
+    <Compile Include="IViewTable.cs" />
+    <Compile Include="MostRecentFilesChangedEventArgs.cs" />
+    <Compile Include="MostRecentFilesService.cs" />
+    <Compile Include="NotifyPropertyChangedBase.cs" />
+    <Compile Include="ObjectTypes.cs" />
+    <Compile Include="PlugInComparer.cs" />
+    <Compile Include="PluginLoaderBase.cs" />
+    <Compile Include="PlugInUtility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Query.cs" />
+    <Compile Include="QueryBatch.cs" />
+    <Compile Include="QueryRunner.cs" />
+    <Compile Include="SqlQueryRunner.cs" />
+    <Compile Include="StringWriterWithEncoding.cs" />
+    <Compile Include="SystemMessage.cs" />
+    <Compile Include="SystemMessageEventArgs.cs" />
+    <Compile Include="Template\NVelocityWrapper.cs" />
+    <Compile Include="Template\TemplateException.cs" />
+    <Compile Include="Template\TextFormatter.cs" />
+    <Compile Include="Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DefaultConnectionDefinitionFile.xml" />
+    <Content Include="Images\accept.png" />
+    <Content Include="Images\App.ico" />
+    <Content Include="Images\ApplicationIcon.png" />
+    <Content Include="Images\around_text.png" />
+    <Content Include="Images\cancel.png" />
+    <Content Include="Images\cog.png" />
+    <Content Include="Images\column_row_version.png" />
+    <Content Include="Images\cross.png" />
+    <Content Include="Images\database.png" />
+    <Content Include="Images\database_add.png" />
+    <Content Include="Images\database_delete.png" />
+    <Content Include="Images\database_edit.ico" />
+    <Content Include="Images\database_edit.png" />
+    <Content Include="Images\database_error.png" />
+    <Content Include="Images\database_refresh.png" />
+    <Content Include="Images\disconnect.ico" />
+    <Content Include="Images\disconnect.png" />
+    <Content Include="Images\disk.png" />
+    <Content Include="Images\disk_multiple.png" />
+    <Content Include="Images\email.png" />
+    <Content Include="Images\email_go.png" />
+    <Content Include="Images\find.png" />
+    <Content Include="Images\folder_page.png" />
+    <Content Include="Images\key_go.png" />
+    <Content Include="Images\lightning.png" />
+    <Content Include="Images\page.png" />
+    <Content Include="Images\page_white.png" />
+    <Content Include="Images\plugin.png" />
+    <Content Include="Images\plugin_go.png" />
+    <Content Include="Images\plugin_link.png" />
+    <Content Include="Images\script.png" />
+    <Content Include="Images\script_code.png" />
+    <Content Include="Images\table.png" />
+    <Content Include="Images\table_delete.png" />
+    <Content Include="Images\table_go.png" />
+    <Content Include="Images\table_save.png" />
+    <None Include="Images\wrench_orange.png" />
+    <None Include="Images\wrench.png" />
+    <None Include="Images\world_link.png" />
+    <None Include="Images\view_multiple.png" />
+    <None Include="Images\view.png" />
+    <None Include="Images\tick.png" />
+    <None Include="Images\table_sort.png" />
+    <None Include="Images\table_row_insert.png" />
+    <None Include="Images\table_row_delete.png" />
+    <None Include="Images\table_relationship.png" />
+    <None Include="Images\table_refresh.png" />
+    <None Include="Images\table_multiple.png" />
+    <None Include="Images\table_link.png" />
+    <None Include="Images\table_lightning.png" />
+    <None Include="Images\table_key.png" />
+    <None Include="Images\table_gear.png" />
+    <None Include="Images\table_error.png" />
+    <None Include="Images\table_edit.png" />
+    <None Include="Images\table_add.png" />
+    <None Include="Images\stop.png" />
+    <None Include="Images\server_error.png" />
+    <None Include="Images\server_edit.png" />
+    <None Include="Images\server_delete.png" />
+    <None Include="Images\server_database.png" />
+    <None Include="Images\server_connect.png" />
+    <None Include="Images\server_add.png" />
+    <None Include="Images\server.png" />
+    <None Include="Images\printer.png" />
+    <None Include="Images\page_white_csharp.png" />
+    <None Include="Images\key_go_disabled.png" />
+    <None Include="Images\key_disabled.png" />
+    <None Include="Images\key.png" />
+    <None Include="Images\information.png" />
+    <None Include="Images\house.png" />
+    <None Include="Images\help.png" />
+    <None Include="Images\folder_bug.png" />
+    <None Include="Images\feed.png" />
+    <None Include="Images\exclamation.png" />
+    <None Include="Images\error.png" />
+    <None Include="Images\comments.png" />
+    <None Include="Images\column.png" />
+    <None Include="Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\BatchQuerySelectControl.resx">
+      <DependentUpon>BatchQuerySelectControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ExceptionControl.resx">
+      <DependentUpon>ExceptionControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PluginListControl.resx">
+      <DependentUpon>PluginListControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BatchQuerySelectForm.resx">
+      <DependentUpon>BatchQuerySelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageResource.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

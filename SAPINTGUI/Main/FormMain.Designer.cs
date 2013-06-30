@@ -81,6 +81,7 @@
             this.IdocCopyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IdocMetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IdocUtilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.IdocCreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +101,7 @@
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.IdocCreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.md5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.SuspendLayout();
@@ -392,23 +393,30 @@
             // IdocCopyToolStripMenuItem
             // 
             this.IdocCopyToolStripMenuItem.Name = "IdocCopyToolStripMenuItem";
-            this.IdocCopyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.IdocCopyToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.IdocCopyToolStripMenuItem.Text = "&Copy";
             this.IdocCopyToolStripMenuItem.Click += new System.EventHandler(this.IdocCopyToolStripMenuItem_Click);
             // 
             // IdocMetaToolStripMenuItem
             // 
             this.IdocMetaToolStripMenuItem.Name = "IdocMetaToolStripMenuItem";
-            this.IdocMetaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.IdocMetaToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.IdocMetaToolStripMenuItem.Text = "&Meta";
             this.IdocMetaToolStripMenuItem.Click += new System.EventHandler(this.IdocMetaToolStripMenuItem_Click);
             // 
             // IdocUtilToolStripMenuItem
             // 
             this.IdocUtilToolStripMenuItem.Name = "IdocUtilToolStripMenuItem";
-            this.IdocUtilToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.IdocUtilToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.IdocUtilToolStripMenuItem.Text = "&Util";
             this.IdocUtilToolStripMenuItem.Click += new System.EventHandler(this.IdocUtilToolStripMenuItem_Click);
+            // 
+            // IdocCreateToolStripMenuItem
+            // 
+            this.IdocCreateToolStripMenuItem.Name = "IdocCreateToolStripMenuItem";
+            this.IdocCreateToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.IdocCreateToolStripMenuItem.Text = "Create";
+            this.IdocCreateToolStripMenuItem.Click += new System.EventHandler(this.IdocCreateToolStripMenuItem_Click);
             // 
             // toolToolStripMenuItem
             // 
@@ -501,7 +509,8 @@
             // restToolStripMenuItem
             // 
             this.restToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.test1ToolStripMenuItem});
+            this.test1ToolStripMenuItem,
+            this.md5ToolStripMenuItem});
             this.restToolStripMenuItem.Name = "restToolStripMenuItem";
             this.restToolStripMenuItem.Size = new System.Drawing.Size(45, 21);
             this.restToolStripMenuItem.Text = "Rest";
@@ -509,8 +518,8 @@
             // test1ToolStripMenuItem
             // 
             this.test1ToolStripMenuItem.Name = "test1ToolStripMenuItem";
-            this.test1ToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.test1ToolStripMenuItem.Text = "Test1";
+            this.test1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.test1ToolStripMenuItem.Text = "REST Client";
             this.test1ToolStripMenuItem.Click += new System.EventHandler(this.test1ToolStripMenuItem_Click);
             // 
             // toolBar
@@ -611,12 +620,12 @@
             this.dockPanel.Skin = dockPanelSkin2;
             this.dockPanel.TabIndex = 20;
             // 
-            // IdocCreateToolStripMenuItem
+            // md5ToolStripMenuItem
             // 
-            this.IdocCreateToolStripMenuItem.Name = "IdocCreateToolStripMenuItem";
-            this.IdocCreateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.IdocCreateToolStripMenuItem.Text = "Create";
-            this.IdocCreateToolStripMenuItem.Click += new System.EventHandler(this.IdocCreateToolStripMenuItem_Click);
+            this.md5ToolStripMenuItem.Name = "md5ToolStripMenuItem";
+            this.md5ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.md5ToolStripMenuItem.Text = "Md5";
+            this.md5ToolStripMenuItem.Click += new System.EventHandler(this.md5ToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -700,5 +709,6 @@
         private System.Windows.Forms.ToolStripMenuItem restToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem test1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem IdocCreateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem md5ToolStripMenuItem;
     }
 }
