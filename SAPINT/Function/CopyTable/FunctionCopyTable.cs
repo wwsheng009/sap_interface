@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using SAP.Middleware.Connector;
 using System.Data;
-namespace SAPINT.Function
+namespace SAPINT.Table
 {
-    public delegate void delegateCopyFinished(FunctionCopyTable sender, DataTable result);
-    public delegate void delegateImporeTableFinished(FunctionCopyTable sender);
+    public delegate void DelegateCopyFinished(FunctionCopyTable sender, DataTable result);
+    public delegate void DelegateImporeTableFinished(FunctionCopyTable sender);
 
     public class FunctionCopyTable
     {
@@ -19,7 +19,7 @@ namespace SAPINT.Function
 
         private List<String> conditions = null;
 
-        public event delegateCopyFinished eventCopied;
+        public event DelegateCopyFinished eventCopied;
 
         public FunctionCopyTable(String soureSystem, String pSourceTable)
         {

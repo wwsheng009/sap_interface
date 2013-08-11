@@ -770,7 +770,7 @@ namespace SAPINT.Gui.CodeManager
                 MessageBox.Show("无效的节点");
                 return;
             }
-            var frm = new FormImporSapProgram();
+            var frm = new FormImportSapProgram();
             frm.TreeId = codetreeNode.Id;
             frm.TreePath = seletedNode.FullPath;
             frm.Show();

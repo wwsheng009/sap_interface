@@ -16,9 +16,9 @@ namespace SAPINT.Function.Meta
             // FieldTypeList = new Dictionary<string, string>();
             //扁平的参数，与它的值
             FieldValueList = new Dictionary<string, string>();
-            //所有的结构与结构值列表。
+            //分类是结构的数据。
             StructureValueList = new Dictionary<string, Dictionary<string, string>>();
-            //
+            //分类是表的数据。
             TableValueList = new Dictionary<string, List<Dictionary<string, string>>>();
         }
         //public Dictionary<String, String> FieldTypeList

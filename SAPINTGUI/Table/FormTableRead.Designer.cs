@@ -309,6 +309,8 @@
             // 
             // listBox1
             // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
             this.listBox1.Location = new System.Drawing.Point(190, 28);
@@ -448,22 +450,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormTableRead";
             this.Text = "读取SAP表内容";
-            this.Controls.SetChildIndex(this.menuStrip1, 0);
-            this.Controls.SetChildIndex(this.btRun, 0);
-            this.Controls.SetChildIndex(this.rowNum, 0);
-            this.Controls.SetChildIndex(this.txtTableName, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.label4, 0);
-            this.Controls.SetChildIndex(this.loadFields, 0);
-            this.Controls.SetChildIndex(this.btnSelect, 0);
-            this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.splitContainer1, 0);
-            this.Controls.SetChildIndex(this.btnUnSelect, 0);
-            this.Controls.SetChildIndex(this.txtDelimiter, 0);
-            this.Controls.SetChildIndex(this.cbx_systemlist, 0);
-            this.Controls.SetChildIndex(this.listBox1, 0);
-            this.Controls.SetChildIndex(this.btnAddFieldsToCache, 0);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();

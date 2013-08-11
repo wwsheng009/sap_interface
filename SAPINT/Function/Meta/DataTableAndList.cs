@@ -18,10 +18,10 @@ namespace SAPINT.Function.Meta
   
             foreach (DataRow row in dataTable.Rows)
             {
-                String dataType = row[FuncFieldText.DataType].ToString();
-                String dataTypeName = row[FuncFieldText.DataTypeName].ToString();
-                String fieldName = row[FuncFieldText.Name].ToString();
-                String defaultValue = row[FuncFieldText.DefaultValue].ToString();
+                String dataType = row[FuncFieldText.DATATYPE].ToString();
+                String dataTypeName = row[FuncFieldText.DATATYPENAME].ToString();
+                String fieldName = row[FuncFieldText.NAME].ToString();
+                String defaultValue = row[FuncFieldText.DEFAULTVALUE].ToString();
 
                 //如果参数的类型是结构，按结构的类型返回值。
                 if (dataType == SAPDataType.STRUCTURE.ToString())
@@ -110,7 +110,7 @@ namespace SAPINT.Function.Meta
                     outlist.FieldValueList.TryGetValue(fieldName, out value);
                     if (value !=null)
                     {
-                        row[FuncFieldText.DefaultValue] = value;
+                        row[FuncFieldText.DEFAULTVALUE] = value;
                     }
                     
                 }
@@ -122,9 +122,9 @@ namespace SAPINT.Function.Meta
           //  MetaValueList inputList = new MetaValueList();
             foreach (DataRow row in dataTable.Rows)
             {
-                String dataType = row[FuncFieldText.DataType].ToString();
-                String fieldName = row[FuncFieldText.Name].ToString();
-                String defaultValue = row[FuncFieldText.DefaultValue].ToString();
+                String dataType = row[FuncFieldText.DATATYPE].ToString();
+                String fieldName = row[FuncFieldText.NAME].ToString();
+                String defaultValue = row[FuncFieldText.DEFAULTVALUE].ToString();
               //  inputList.FieldTypeList.Add(fieldName, dataType);
                 if (dataType == SAPDataType.STRUCTURE.ToString())
                 {

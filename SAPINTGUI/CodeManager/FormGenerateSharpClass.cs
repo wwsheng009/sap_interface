@@ -16,7 +16,7 @@ namespace SAPINTCODE
 
     public partial class FormGenerateTableClass : DockWindow
     {
-        SAPINT.RFCTable.RFCTableInfo rfctable = new SAPINT.RFCTable.RFCTableInfo();
+        SAPINT.RFCTable.SAPTableInfo rfctable = new SAPINT.RFCTable.SAPTableInfo();
 
         // List<SAPINT.RFCTable.TableField> fieldList = new List<SAPINT.RFCTable.TableField>();
 
@@ -96,7 +96,7 @@ namespace SAPINTCODE
                 // fieldList =  SAPINT.RFCTable.RFCTable.GetTableDefinition(cbxSystemList.Text,textBoxTableName.Text);
                 if (rfctable != null)
                 {
-                    if (rfctable.FieldCount > 0)
+                    if (rfctable.FieldsCount > 0)
                     {
                         MessageBox.Show("读取成功");
                     }

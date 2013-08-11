@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using SAP.Middleware.Connector;
 using System.Data;
+using SAPINT.Function;
 
-namespace SAPINT.Function
+namespace SAPINT.Table
 {
     public delegate void delegateReadTableDone(FunctionReadTable sender, DataTable result);
     public class FunctionReadTable
@@ -37,7 +38,7 @@ namespace SAPINT.Function
                 FIELDS = null;
                 destination = SAPDestination.GetDesByName(psourceSystemName);
                 //string _funame = "Z_SAPINT_READ_TABLE";
-                IRfcFunction FunctionReadTable = destination.Repository.CreateFunction("Z_SAPINT_READ_TABLE2");
+                IRfcFunction FunctionReadTable = destination.Repository.CreateFunction("ZVI_RFC_READ_TABLE");
                 FunctionReadTable.SetValue("QUERY_TABLE", ptableName);
                 FunctionReadTable.SetValue("ROWCOUNT", RowCount);
                 FunctionReadTable.SetValue("DELIMITER", Delimiter);

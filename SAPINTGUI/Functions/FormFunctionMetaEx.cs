@@ -27,7 +27,12 @@ namespace SAPINT.Gui.Functions
             this.cbx_SystemList.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
 
             CDataGridViewUtils.CopyPasteDataGridView(this.dgvTableContent);
-
+            CDataGridViewUtils.CopyPasteDataGridView(this.dgvImport);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dgvExport);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dgvChanging);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dgvException);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dgvTables);
+            CDataGridViewUtils.CopyPasteDataGridView(this.dgvDetail);
         }
 
         /// <summary>
@@ -45,15 +50,24 @@ namespace SAPINT.Gui.Functions
                 try
                 {
                     function = new SAPFunctionEx(_systemName, _funcName);
-
                     if (function.FunctionMeta == null)
                     {
                         MessageBox.Show("无法找到函数信息！！");
                         return;
                     }
-                    ParseMetaData();
-                    this.button2.Enabled = true;
-                    this.Text = "RFC函数:" + _funcName;
+                    ParseMetaData(function);
+                    if (function.Is_rfc == true)
+                    {
+                        this.button2.Enabled = true;
+                        this.button2.Text = "RFC函数，可执行";
+                    }
+                    else
+                    {
+                        this.button2.Text = "非RFC函数，不可执行";
+                        this.button2.Enabled = false;
+                    }
+
+                    this.Text = "函数:" + _funcName;
                 }
                 catch (Exception ee)
                 {
@@ -88,13 +102,15 @@ namespace SAPINT.Gui.Functions
             dgvExport.DataSource = null;
             dgvChanging.DataSource = null;
             dgvTables.DataSource = null;
+            dgvException.DataSource = null;
         }
-        private void ParseMetaData()
+        private void ParseMetaData(SAPFunctionEx function)
         {
             dgvImport.DataSource = function.FunctionMeta.Import;
             dgvExport.DataSource = function.FunctionMeta.Export;
             dgvChanging.DataSource = function.FunctionMeta.Changing;
             dgvTables.DataSource = function.FunctionMeta.Tables;
+            dgvException.DataSource = function.FunctionMeta.Exception;
 
             dgvImport.AutoResizeColumns();
             dgvExport.AutoResizeColumns();
@@ -115,10 +131,10 @@ namespace SAPINT.Gui.Functions
             {
                 return;
             }
-            String name = dgv.Rows[e.RowIndex].Cells[FuncFieldText.Name].Value.ToString();
-            String dataType = dgv.Rows[e.RowIndex].Cells[FuncFieldText.DataType].Value.ToString();
-            String dataTypeName = dgv.Rows[e.RowIndex].Cells[FuncFieldText.DataTypeName].Value.ToString();
-            String defaultValue = dgv.Rows[e.RowIndex].Cells[FuncFieldText.DefaultValue].Value.ToString();
+            String name = dgv.Rows[e.RowIndex].Cells[FuncFieldText.NAME].Value.ToString();
+            String dataType = dgv.Rows[e.RowIndex].Cells[FuncFieldText.DATATYPE].Value.ToString();
+            String dataTypeName = dgv.Rows[e.RowIndex].Cells[FuncFieldText.DATATYPENAME].Value.ToString();
+            String defaultValue = dgv.Rows[e.RowIndex].Cells[FuncFieldText.DEFAULTVALUE].Value.ToString();
             selectedField = new FunctionField(name, dataType, dataTypeName, defaultValue);
             if (String.IsNullOrEmpty(selectedField.Name))
             {
@@ -127,18 +143,26 @@ namespace SAPINT.Gui.Functions
             }
             if (dataType == SAPDataType.STRUCTURE.ToString() || dataType == SAPDataType.TABLE.ToString())
             {
-                DataTable dt = function.FunctionMeta.StructureDetail[dataTypeName];
-                dgvDetail.DataSource = dt;
-                dgvDetail.AutoResizeColumns();
-                if (function.TableValueList.Keys.Contains(selectedField.Name))
+                if (!function.FunctionMeta.StructureDetail.Keys.Contains(dataTypeName))
                 {
-                    DataTable dtResult = function.TableValueList[selectedField.Name];
-                    if (dtResult != null)
+                    return;
+                }
+                else
+                {
+                    DataTable dt = function.FunctionMeta.StructureDetail[dataTypeName];
+                    dgvDetail.DataSource = dt;
+                    dgvDetail.AutoResizeColumns();
+                    if (function.TableValueList.Keys.Contains(selectedField.Name))
                     {
-                        dgvTableContent.DataSource = dtResult;
-                        dgvTableContent.AutoResizeColumns();
+                        DataTable dtResult = function.TableValueList[selectedField.Name];
+                        if (dtResult != null)
+                        {
+                            dgvTableContent.DataSource = dtResult;
+                            dgvTableContent.AutoResizeColumns();
+                        }
                     }
                 }
+
             }
         }
         private void dgvExport_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -160,7 +184,7 @@ namespace SAPINT.Gui.Functions
         //填充结构或表数据
         private void InputSomethingIntoTable()
         {
-            if (selectedField==null)
+            if (selectedField == null)
             {
                 return;
             }
@@ -208,18 +232,61 @@ namespace SAPINT.Gui.Functions
             //根据返回的结果处理控件
             foreach (var item in function.TableValueList)
             {
-                if (item.Value.Rows.Count >= 0)
+                //if (item.Value.Rows.Count > 0)
+                //{
+                foreach (DataGridViewRow row in dgvTables.Rows)
                 {
-                    foreach (DataGridViewRow row in dgvTables.Rows)
+                    if (row.Cells[FuncFieldText.NAME].Value.ToString() == item.Key)
                     {
-                        if (row.Cells[FuncFieldText.Name].Value.ToString() == item.Key)
+                        if (item.Value.Rows.Count > 0)
                         {
-                            row.Cells[FuncFieldText.DataTypeName].Style.BackColor = Color.Green;
-                            row.Cells[FuncFieldText.DefaultValue].Value = "一共有" + item.Value.Rows.Count + "行数据";
-                            break;
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Style.BackColor = Color.Green;
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Value = "一共有" + item.Value.Rows.Count + "行数据";
                         }
+                        else
+                        {
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Style.BackColor = Color.Transparent;
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Value = string.Empty;
+                        }
+                        break;
                     }
                 }
+
+                foreach (DataGridViewRow row in this.dgvExport.Rows)
+                {
+                    if (row.Cells[FuncFieldText.NAME].Value.ToString() == item.Key)
+                    {
+                        if (item.Value.Rows.Count > 0)
+                        {
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Style.BackColor = Color.Green;
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Value = "一共有" + item.Value.Rows.Count + "行数据";
+                        }
+                        else
+                        {
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Style.BackColor = Color.Transparent;
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Value = string.Empty;
+                        }
+                        break;
+                    }
+                }
+                foreach (DataGridViewRow row in this.dgvChanging.Rows)
+                {
+                    if (row.Cells[FuncFieldText.NAME].Value.ToString() == item.Key)
+                    {
+                        if (item.Value.Rows.Count > 0)
+                        {
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Style.BackColor = Color.Green;
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Value = "一共有" + item.Value.Rows.Count + "行数据";
+                        }
+                        else
+                        {
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Style.BackColor = Color.Transparent;
+                            row.Cells[FuncFieldText.DEFAULTVALUE].Value = string.Empty;
+                        }
+                        break;
+                    }
+                }
+                //}
             }
         }
         /// <summary>
@@ -268,6 +335,11 @@ namespace SAPINT.Gui.Functions
                     formSaveDt.Show();
                 }
             }
+
+        }
+
+        private void btnDisplay1_Click(object sender, EventArgs e)
+        {
 
         }
 

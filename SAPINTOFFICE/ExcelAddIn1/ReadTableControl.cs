@@ -85,7 +85,7 @@ namespace ExcelAddIn1
             try
             {
                 dt = new ReadTable(_systemName.ToUpper().Trim());
-                dt.SetCustomFunctionName("Z_SAPINT_READ_TABLE2");
+                dt.SetCustomFunctionName("ZVI_RFC_READ_TABLE");
                 dt.TableName = _tableName;
                 //  dt.Fields.Clear();
                 // dt.Options.Clear();

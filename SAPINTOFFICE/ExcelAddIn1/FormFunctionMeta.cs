@@ -20,7 +20,7 @@ namespace ExcelAddIn1
 
         private string _systemName;//连接的SAP系统的配置名称
 
-        RfcFunctionMetaAsDataTable _metaList = null;
+        FunctionMetaAsDataTable _metaList = null;
         Worksheet ws = null;
         Microsoft.Office.Interop.Excel.Range range = null;
 
@@ -49,7 +49,7 @@ namespace ExcelAddIn1
                 try
                 {
 
-                    _metaList = SAPFunctionMeta.GetFuncMetaAsDataTable(_systemName, _funcName);
+                    _metaList = SAPFunctionMeta.GetRfcFuncMetaAsDataTable(_systemName, _funcName);
 
                     if (_metaList == null)
                     {
@@ -222,7 +222,7 @@ namespace ExcelAddIn1
                 if (row["DataType"].ToString() == "STRUCTURE")
                 {
                     String structurName = row["DataTypeName"].ToString();
-                    String Documentation = row[FuncFieldText.Documentation].ToString();
+                    String Documentation = row[FuncFieldText.DOCUMENTATION].ToString();
                     if (_parsedStructure.Contains(structurName))
                     {
                         return;
@@ -268,7 +268,7 @@ namespace ExcelAddIn1
                 else if (row["DataType"].ToString() == "TABLE")
                 {
                     String tableName = row["DataTypeName"].ToString();
-                    String Documentation = row[FuncFieldText.Documentation].ToString();
+                    String Documentation = row[FuncFieldText.DOCUMENTATION].ToString();
                     if (_parsedTable.Contains(tableName))
                     {
                         return;
@@ -335,14 +335,14 @@ namespace ExcelAddIn1
             {
                 ws.Cells.set_Item(rowOffset + i, colOffset, i + 1);
 
-                String FieldName = dt.Rows[i][FuncFieldText.Name].ToString();
-                String DataType = dt.Rows[i][FuncFieldText.DataType].ToString();
-                String DataTypeName = dt.Rows[i][FuncFieldText.DataTypeName].ToString();
-                String Length = dt.Rows[i][FuncFieldText.Length].ToString();
-                String Decimals = dt.Rows[i][FuncFieldText.Decimals].ToString();
-                String DefaultValue = dt.Rows[i][FuncFieldText.DefaultValue].ToString();
-                String Optional = dt.Rows[i][FuncFieldText.Optional].ToString();
-                String Documentation = dt.Rows[i][FuncFieldText.Documentation].ToString();
+                String FieldName = dt.Rows[i][FuncFieldText.NAME].ToString();
+                String DataType = dt.Rows[i][FuncFieldText.DATATYPE].ToString();
+                String DataTypeName = dt.Rows[i][FuncFieldText.DATATYPENAME].ToString();
+                String Length = dt.Rows[i][FuncFieldText.LENGTH].ToString();
+                String Decimals = dt.Rows[i][FuncFieldText.DECIMALS].ToString();
+                String DefaultValue = dt.Rows[i][FuncFieldText.DEFAULTVALUE].ToString();
+                String Optional = dt.Rows[i][FuncFieldText.OPTIONAL].ToString();
+                String Documentation = dt.Rows[i][FuncFieldText.DOCUMENTATION].ToString();
 
                 if (DataType.Trim().ToUpper() == SAPDataType.STRUCTURE.ToString())
                 {
@@ -400,14 +400,14 @@ namespace ExcelAddIn1
             {
                 ws.Cells.set_Item(rowOffset + i, colOffset, i + 1);
 
-                String FieldName = dt.Rows[i][FuncFieldText.Name].ToString();
-                String DataType = dt.Rows[i][FuncFieldText.DataType].ToString();
+                String FieldName = dt.Rows[i][FuncFieldText.NAME].ToString();
+                String DataType = dt.Rows[i][FuncFieldText.DATATYPE].ToString();
                 // String DataTypeName = dt.Rows[i][FuncFieldText.DataTypeName].ToString();
-                String Length = dt.Rows[i][FuncFieldText.Length].ToString();
-                String Decimals = dt.Rows[i][FuncFieldText.Decimals].ToString();
+                String Length = dt.Rows[i][FuncFieldText.LENGTH].ToString();
+                String Decimals = dt.Rows[i][FuncFieldText.DECIMALS].ToString();
                 // String DefaultValue = dt.Rows[i][FuncFieldText.DefaultValue].ToString();
                 // String Optional = dt.Rows[i][FuncFieldText.Optional].ToString();
-                String Documentation = dt.Rows[i][FuncFieldText.Documentation].ToString();
+                String Documentation = dt.Rows[i][FuncFieldText.DOCUMENTATION].ToString();
 
                 ws.Cells.set_Item(rowOffset + i, colOffset + 1, FieldName);
                 ws.Cells.set_Item(rowOffset + i, colOffset + 2, DataType);
@@ -487,7 +487,7 @@ namespace ExcelAddIn1
                     String functionName = item["FunctionName"].ToString().Trim();
                     if (!String.IsNullOrWhiteSpace(systemName) && !String.IsNullOrWhiteSpace(functionName))
                     {
-                        _metaList = SAPFunctionMeta.GetFuncMetaAsDataTable(systemName, functionName);
+                        _metaList = SAPFunctionMeta.GetRfcFuncMetaAsDataTable(systemName, functionName);
                         this._funcName = functionName;
                         ParseMetaDataToExcel();
                     }

@@ -10,89 +10,171 @@ using SAP.Middleware.Connector;
 namespace SAPINT.RFCTable
 {
     /// <summary>
+    /// 从SAP系统中读取一个表的定义。
     /// 封装一个SAP表的定义
     /// </summary>
-    public class RFCTableInfo
+    public class SAPTableInfo
     {
-        public String Name { get; set; }
-        public int FieldCount { get; private set; }
+        public String SystemName { get; set; }
+        public String name { get; set; }
+        public int FieldsCount { get; private set; }
+
         public List<TableField> Fields { get; set; }
+
+        public DataTable FieldsDt { get; private set; }
+
         log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private DataTable fieldDt = null;
-
-        private static DataTable dtDFIES = null;
 
 
-        public RFCTableInfo()
+        private static DataTable dtDefinition = null;
+
+
+        public SAPTableInfo()
         {
 
         }
-        public RFCTableInfo(String systemName, String tableName)
+        public SAPTableInfo(String pSystemName, String pTableName,String pTypeName="")
         {
-            GetTableDefinition(systemName, tableName);
+            name = pTableName;
+            SystemName = pSystemName;
+
+            GetTableDefinition(pSystemName, pTableName, pTypeName);
         }
+
         /// <summary>
-        /// 转换SAP类型对应的系统类型。
+        /// 读取表的定义
+        /// </summary>
+        /// <param name="pSystemName"></param>
+        /// <param name="pTableName"></param>
+        public void GetTableDefinition(String pSystemName, String pTableName, String pTypeName = "")
+        {
+            if (string.IsNullOrEmpty(pTypeName))
+            {
+                pTypeName = pTableName;
+            }
+            try
+            {
+                var dt = GetTableDefinitionDt(pSystemName, pTypeName);
+                FieldsDt = dt;
+                var list = dt.ToList<TableField>() as List<TableField>;
+                Fields = list;
+                FieldsCount = list.Count;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// 把SAP类型转换成对应的NET类型。
         /// </summary>
         public void TransformDataType()
         {
+            if (Fields == null)
+            {
+                return;
+            }
             Fields.ForEach(row =>
             {
                 row.DOTNETTYPE = RfcTypeConvertor.AbapInnerTypeToSystemType(row.INTTYPE).ToString();
                 Type e = Type.GetType(row.DOTNETTYPE);
                 row.DOTNETTYPE.Replace("System.", "");
-                //  row.DOTNETTYPE = RfcTypeConvertor.AbapInnerTypeToSystemType(row.INTTYPE).ToString();
-
+                if (row.DOTNETTYPE.Contains("Int"))
+                {
+                    row.DOTNETTYPE = "int";
+                }
                 row.DBTYPE = SAPINT.DbHelper.DbTypeConvertor.ToDbType(e).ToString();
                 row.SQLTYPE = SAPINT.DbHelper.DbTypeConvertor.ToSqlDbType(e).ToString();
 
             });
         }
-        public void TransFormDataTypeForDt(DataTable dt)
+        /// <summary>
+        /// 转换SAP类型为NET类型。
+        /// </summary>
+        /// <param name="dt"></param>
+        private static void _TransFormDataTypeForDt(DataTable dt)
         {
+            bool has_inttype_column = false;
+            bool has_dotnettype_column = false;
+            bool has_dbtype_column = false;
+            bool has_sqltype_column = false;
+
+            if (dt.Columns.Contains("INTTYPE"))
+            {
+                has_inttype_column = true;
+            }
+            if (dt.Columns.Contains("DOTNETTYPE"))
+            {
+                has_dotnettype_column = true;
+            }
+            if (dt.Columns.Contains("DBTYPE"))
+            {
+                has_dbtype_column = true;
+            }
+            if (dt.Columns.Contains("SQLTYPE"))
+            {
+                has_sqltype_column = true;
+            }
+
             foreach (DataRow row in dt.Rows)
             {
-                if (fieldDt.Columns.Contains("DOTNETTYPE"))
+                if (has_inttype_column && has_dotnettype_column)
                 {
+
+
                     row["DOTNETTYPE"] = RfcTypeConvertor.AbapInnerTypeToSystemType(row["INTTYPE"].ToString()).ToString();
                     Type e = Type.GetType(row["DOTNETTYPE"].ToString());
+
                     row["DOTNETTYPE"] = row["DOTNETTYPE"].ToString().Replace("System.", "");
-                    if (fieldDt.Columns.Contains("DBTYPE"))
+                    if (row["DOTNETTYPE"].ToString().Contains("Int"))
+                    {
+                        row["DOTNETTYPE"] = "int";
+                    }
+                    
+
+                    if (has_dbtype_column)
                     {
                         row["DBTYPE"] = SAPINT.DbHelper.DbTypeConvertor.ToDbType(e).ToString();
                     }
-                    if (fieldDt.Columns.Contains("SQLTYPE"))
+                    if (has_sqltype_column)
                     {
-                        row["DBTYPE"] = SAPINT.DbHelper.DbTypeConvertor.ToDbType(e).ToString();
+                        row["SQLTYPE"] = SAPINT.DbHelper.DbTypeConvertor.ToSqlDbType(e).ToString();
                     }
 
                 }
-
-
-
-
-
             }
         }
-        public DataTable GetTableDefinitionDt(String pSystemName, String pTableName)
+        /// <summary>
+        /// 返回表或结构的字段定义
+        /// </summary>
+        /// <param name="pSystemName">SAP系统</param>
+        /// <param name="pTableName">表或结构名</param>
+        /// <returns></returns>
+        public static DataTable GetTableDefinitionDt(String pSystemName, String pTableName, String pTypeName = "")
         {
-            Name = pTableName.Trim().ToUpper();
+            if (string.IsNullOrEmpty(pTypeName))
+            {
+                pTypeName = pTableName;
+            }
             try
             {
                 // DataTable dt = SAPINT.Function.SAPFunction.DDIF_FIELDINFO_GET(pSystemName, pTableName);
-                DataTable dt = GetSAPTableDef(pSystemName, pTableName);
+                DataTable dt = _GetSAPTableDef(pSystemName, pTypeName);
                 if (dt == null)
                 {
                     throw new SAPException(String.Format("无法获取表结构{0}的定义", pTableName));
                 }
                 else
                 {
-                    fieldDt = dt;
+
                     DataColumn dc = new DataColumn("Selected", typeof(bool));
                     dc.DefaultValue = false;
                     dt.Columns.Add(dc);
                     dc.SetOrdinal(0);
-                    TransFormDataTypeForDt(dt);
+                    _TransFormDataTypeForDt(dt);
                 }
                 return dt;
             }
@@ -101,16 +183,22 @@ namespace SAPINT.RFCTable
                 throw new SAPException(exception.Message);
             }
         }
-        private static DataTable GetSAPTableDef(String sysName, String TableName)
+        /// <summary>
+        /// 返回表或结构的定义细节。
+        /// </summary>
+        /// <param name="p_sysName">SAP系统</param>
+        /// <param name="p_TableName">表或结构</param>
+        /// <returns>结构定义</returns>
+        private static DataTable _GetSAPTableDef(String p_sysName, String p_TableName)
         {
             try
             {
-                RfcDestination destination = SAPDestination.GetDesByName(sysName);
+                RfcDestination destination = SAPDestination.GetDesByName(p_sysName);
                 IRfcFunction RFC_FUNCTION_SEARCH = destination.Repository.CreateFunction("DDIF_FIELDINFO_GET");
-                RFC_FUNCTION_SEARCH.SetValue("TABNAME", TableName);
+                RFC_FUNCTION_SEARCH.SetValue("TABNAME", p_TableName);
                 RFC_FUNCTION_SEARCH.Invoke(destination);
                 IRfcTable DFIES_TAB = RFC_FUNCTION_SEARCH.GetTable("DFIES_TAB");
-                DataTable dt = GET_DFIES_TABLE(DFIES_TAB);
+                DataTable dt = _Convert_rfctable_to_dt(DFIES_TAB);
                 return dt;
             }
             catch (RfcAbapException abapException)
@@ -127,12 +215,16 @@ namespace SAPINT.RFCTable
                 throw new SAPException(ex.Message);
             }
         }
-        private static DataTable BuildDataTable()
+        /// <summary>
+        /// 构造一个用于显示数据的DT定义。
+        /// </summary>
+        /// <returns></returns>
+        private static DataTable _BuildDataTable()
         {
 
-            DataTable dt = null;
-            dt = new DataTable("DFIES");
-            dt.Columns.AddRange(new DataColumn[]{
+            DataTable _dt = null;
+            _dt = new DataTable("DFIES");
+            _dt.Columns.AddRange(new DataColumn[]{
             //new DataColumn("Index",typeof(int)),
            // new DataColumn("Select",typeof(bool)),
             new DataColumn("TABNAME",typeof(System.String)),// 表名
@@ -160,19 +252,24 @@ namespace SAPINT.RFCTable
                 });
 
 
-            return dt;
+            return _dt;
         }
-        private static DataTable GET_DFIES_TABLE(IRfcTable rfcTable)
+        /// <summary>
+        /// 把RFC表转换成DT格式
+        /// </summary>
+        /// <param name="rfcTable"></param>
+        /// <returns></returns>
+        private static DataTable _Convert_rfctable_to_dt(IRfcTable rfcTable)
         {
-            if (dtDFIES == null)
+            if (dtDefinition == null)
             {
-                dtDFIES = BuildDataTable();
+                dtDefinition = _BuildDataTable();
             }
-            DataTable dt = dtDFIES.Copy();
-            dt.Clear();
+            DataTable _dt = dtDefinition.Copy();
+            _dt.Clear();
             foreach (IRfcStructure row in rfcTable)
             {
-                DataRow dr = dt.NewRow();
+                DataRow dr = _dt.NewRow();
                 dr["TABNAME"] = row.GetValue("TABNAME") ?? DBNull.Value;
                 dr["FIELDNAME"] = row.GetValue("FIELDNAME") ?? DBNull.Value;
                 dr["POSITION"] = row.GetValue("POSITION") ?? DBNull.Value;
@@ -195,97 +292,10 @@ namespace SAPINT.RFCTable
                 dr["KEYFLAG"] = row.GetValue("KEYFLAG") ?? DBNull.Value;
                 // dr["DOTNETTYPE"] = RfcTypeConvertor.AbapInnerTypeToSystemType(dr["INTTYPE"].ToString()).ToString();
                 // dr["DOTNETTYPE"] = dr["DOTNETTYPE"].ToString().Replace("System.", "");
-                dt.Rows.Add(dr);
+                _dt.Rows.Add(dr);
             }
-            return dt;
+            return _dt;
         }
-        /// <summary>
-        /// 读取表的定义
-        /// </summary>
-        /// <param name="pSystemName"></param>
-        /// <param name="pTableName"></param>
-        public void GetTableDefinition(String pSystemName, String pTableName)
-        {
-            try
-            {
-                var dt = this.GetTableDefinitionDt(pSystemName, pTableName);
-                var list = dt.ToList<TableField>() as List<TableField>;
-                Fields = list;
-                FieldCount = list.Count;
-            }
-            catch (Exception)
-            {
 
-                throw;
-            }
-
-
-            //Name = pTableName.Trim().ToUpper();
-            //try
-            //{
-            //    DataTable dt = SAPINT.Function.SAPFunction.DDIF_FIELDINFO_GET(pSystemName, pTableName);
-            //    this.list<TableField>(dt);
-            //    if (dt == null)
-            //    {
-            //        throw new SAPException(String.Format("无法获取表结构{0}的定义", pTableName));
-            //    }
-
-            //    Fields = new List<TableField>();
-            //    PropertyInfo[] properties = Type.GetType("SAPINT.RFCTable.TableField").GetProperties();
-
-            //    //Type type = Type.GetType("SAPINTCODE.TableField");
-
-
-            //    foreach (DataRow datarow in dt.Rows)
-            //    {
-            //        //st.AppendLine("DataRow:" + datarow.ToString());
-            //        TableField tablerow = new TableField();
-            //        for (int i = 0; i < properties.Length; i++)
-            //        {
-            //            if (dt.Columns.Contains(properties[i].Name))
-            //            {
-
-            //                Type DataRowType = datarow[properties[i].Name].GetType();
-            //                Type SystemType = properties[i].PropertyType;
-            //                if (!DataRowType.Equals(SystemType))
-            //                {
-            //                    // log.Debug("RFC类型转换成系统类型出错！！\n\r");
-            //                    // log.Debug("Field: " + properties[i].Name);
-            //                    // log.Debug(" SystemType:" + properties[i].PropertyType);
-            //                    //  log.Debug(" DataRowType:" + datarow[properties[i].Name].GetType());
-            //                    //  log.Debug(" DataRowValue:" + datarow[properties[i].Name]);
-
-            //                }
-            //                else
-            //                {
-            //                    Object o = datarow[properties[i].Name];
-            //                    properties[i].SetValue(tablerow, datarow[properties[i].Name], null);
-            //                }
-            //                //Type t2 = properties[i].GetType();
-            //                if (!DataRowType.Name.Equals("DBNull"))
-            //                {
-            //                    // log.Error( "字段"+ properties[i].Name + "数据类型为DBNull！");
-            //                }
-
-            //            }
-            //        }
-            //        //if (!String.IsNullOrWhiteSpace(st.ToString()))
-            //        //{
-            //        //    throw new SAPException(st.ToString());
-            //        //}
-
-            //        //  tablerow.DOTNETTYPE = RfcTypeConvertor.AbapInnerTypeToSystemType(tablerow.INTTYPE).ToString();
-            //        Fields.Add(tablerow);
-
-            //    }
-
-            //    FieldCount = Fields.Count;
-            //}
-            //catch (Exception exception)
-            //{
-            //    throw new SAPException(exception.Message);
-            //}
-
-        }
     }
 }

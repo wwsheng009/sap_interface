@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 namespace SAPINT.Function.Meta
 {
+    /// <summary>
+    /// 表示结构中的一个字段
+    /// </summary>
     public class StructureField
     {
  

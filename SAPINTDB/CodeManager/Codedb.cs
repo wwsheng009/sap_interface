@@ -215,7 +215,38 @@ namespace SAPINTDB.CodeManager
 
             }
         }
+        public List<Code> SearchCode(string search)
+        {
+            var codeSearchResult = new List<Code>();
+            //if (m_vdb.ProviderType == netlib7.ProviderTypes.SQLite)
+            //{
+            //    string sql = String.Format("select snippet(codeindex,'<strong>', '</strong>', '...') from codeindex where codeindex match '*{0}*'", search);
+            //    DataTable dt = m_vdb.DataTableFill(sql);
+            //    if (!String.IsNullOrWhiteSpace(m_vdb.ErrorMessage))
+            //    {
+            //        throw new Exception(m_vdb.ErrorMessage);
+            //    }
 
+            //    if (dt.Rows.Count > 0)
+            //    {
+            //        codeSearchResult.Clear();
+            //    }
+            //    foreach (DataRow item in dt.Rows)
+            //    {
+            //        codeSearchResult.Add(new Code(item));
+            //    }
+            //    return codeSearchResult;
+            //}
+
+            //else
+            //{
+            var predicate = Predicates.Field<Code>(f => f.Content, Operator.Like, search, false);
+            codeSearchResult = Db.GetList<Code>(predicate).ToList<Code>();
+            return codeSearchResult;
+            // throw new Exception("Only Support sqlite search");
+
+            //}
+        }
         public bool SaveFolderList(Dictionary<string, CodeFolder> CopyFolderList)
         {
             Db.BeginTransaction();
@@ -301,12 +332,19 @@ namespace SAPINTDB.CodeManager
         public CodeFolder GetRootFolder()
         {
             var pre = Predicates.Field<CodeFolder>(f => f.ParentId, Operator.Eq, string.Empty, false);
-            var folder = Db.GetList<CodeFolder>(pre).ToList<CodeFolder>().First();
-            if (String.IsNullOrEmpty(folder.Id))
+            var list = Db.GetList<CodeFolder>(pre).ToList<CodeFolder>();
+            if (list.Count > 0)
             {
-                return null;
+                var folder = list.First();
+                if (String.IsNullOrEmpty(folder.Id))
+                {
+                    return null;
+                }
+                return folder;
             }
-            return folder;
+
+            return null;
+
 
         }
         /// <summary>
@@ -332,38 +370,7 @@ namespace SAPINTDB.CodeManager
             tree.CodeList = Db.GetList<Code>(codpre).ToList<Code>();
             return tree;
         }
-        public List<Code> SearchCode(string search)
-        {
-            var codeSearchResult = new List<Code>();
-            if (m_vdb.ProviderType == netlib7.ProviderTypes.SQLite)
-            {
-                string sql = String.Format("select snippet(codeindex,'<strong>', '</strong>', '...') from codeindex where codeindex match '*{0}*'", search);
-                DataTable dt = m_vdb.DataTableFill(sql);
-                if (!String.IsNullOrWhiteSpace(m_vdb.ErrorMessage))
-                {
-                    throw new Exception(m_vdb.ErrorMessage);
-                }
 
-                if (dt.Rows.Count > 0)
-                {
-                    codeSearchResult.Clear();
-                }
-                foreach (DataRow item in dt.Rows)
-                {
-                    codeSearchResult.Add(new Code(item));
-                }
-                return codeSearchResult;
-            }
-
-            else
-            {
-                var predicate = Predicates.Field<Code>(f => f.Content, Operator.Like, search, true);
-                return codeSearchResult = Db.GetList<Code>(predicate).ToList<Code>();
-
-                // throw new Exception("Only Support sqlite search");
-
-            }
-        }
 
 
         public void SaveIndex(Code code)

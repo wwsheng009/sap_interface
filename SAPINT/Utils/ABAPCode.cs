@@ -41,7 +41,7 @@
             }
         }
 
-        public List<CTRDIR> SearchProgram(String searchTerm)
+        public List<CTRDIR> SearchProgram(String searchTerm, String objecType, String devClass, bool reportOnly = true)
         {
             //if (String.IsNullOrEmpty(searchTerm))
             //{
@@ -53,10 +53,18 @@
             try
             {
                 var destination = SAPDestination.GetDesByName(_sysName);
-                IRfcFunction function = destination.Repository.CreateFunction("Z_SAPINT_READ_PROGRAM");
-                function.SetValue("PROGRAMNAME", searchTerm);
-                // function.SetValue("I_OBJECT", objecType);
-                // function.SetValue("I_DEVCLASS", devClass);
+                IRfcFunction function = destination.Repository.CreateFunction("ZVI_RFC_READ_PROGRAM");
+                function.SetValue("I_PROG", searchTerm);
+                function.SetValue("I_OBJECT", objecType);
+                function.SetValue("I_DEVCLASS", devClass);
+                if (true == reportOnly)
+                {
+                    function.SetValue("I_NOT_LIMIT", 'X');
+                }
+                else
+                {
+                    function.SetValue("I_NOT_LIMIT", ' ');
+                }
                 function.Invoke(destination);
                 // IRfcTable source = function.GetTable("ET_PROGRAM");
                 // IRfcTable programlist = function.GetTable("ET_TADIR");
@@ -103,7 +111,30 @@
                     _TRDIR_LIST.Add(_TRDIR);
 
                 }
+                List<CD010SINF> _D010SINF_LIST = new List<CD010SINF>();
 
+                IRfcTable rfctable_D010SINF = function.GetTable("ET_D010SINF");
+
+                // C${rfctable.Name} _C${rfctable.Name};
+                for (int i = 0; i < rfctable_D010SINF.RowCount; i++)
+                {
+                    var _D010SINF = new CD010SINF();
+                    _D010SINF.prog = rfctable_D010SINF[i].GetString("PROG"); // 程序
+                    _D010SINF.clas = rfctable_D010SINF[i].GetString("CLAS"); // 类别
+                    _D010SINF.subc = rfctable_D010SINF[i].GetString("SUBC"); // 程序类型
+                    _D010SINF.appl = rfctable_D010SINF[i].GetString("APPL"); // 应用
+                    _D010SINF.cdat = rfctable_D010SINF[i].GetString("CDAT"); // 创建日期
+                    _D010SINF.vern = rfctable_D010SINF[i].GetString("VERN"); // 
+                    _D010SINF.rmand = rfctable_D010SINF[i].GetString("RMAND"); // 
+                    _D010SINF.rload = rfctable_D010SINF[i].GetString("RLOAD"); // 
+                    _D010SINF.unam = rfctable_D010SINF[i].GetString("UNAM"); // 
+                    _D010SINF.udat = rfctable_D010SINF[i].GetString("UDAT"); // 更改日期
+                    _D010SINF.utime = rfctable_D010SINF[i].GetString("UTIME"); // 
+                    _D010SINF.datalg = rfctable_D010SINF[i].GetInt("DATALG"); // 长度
+                    _D010SINF.varcl = rfctable_D010SINF[i].GetString("VARCL"); // 
+                    _D010SINF_LIST.Add(_D010SINF);
+
+                }
                 //for (int i = 0; i < source.RowCount; i++)
                 //{
                 //    source.CurrentIndex = i;
@@ -127,6 +158,73 @@
                 throw;
             }
         }
+
+        public List<CD010SINF> SearchProgram(String searchTerm, String classType, String devClass)
+        {
+            //if (String.IsNullOrEmpty(searchTerm))
+            //{
+            //    throw new SAPException(String.Format("{0} 不能为空",searchTerm));
+            //}
+            //SourceCode = new List<string>();
+            //ProgramList = new List<string>();
+
+            try
+            {
+                var destination = SAPDestination.GetDesByName(_sysName);
+                IRfcFunction function = destination.Repository.CreateFunction("ZVI_RFC_READ_PROGRAM");
+                function.SetValue("I_PROG", searchTerm);
+                function.SetValue("I_CLASS", classType);
+                function.SetValue("I_DEVCLASS", devClass);
+                function.Invoke(destination);
+                
+                List<CD010SINF> _D010SINF_LIST = new List<CD010SINF>();
+
+                IRfcTable rfctable_D010SINF = function.GetTable("ET_D010SINF");
+
+                // C${rfctable.Name} _C${rfctable.Name};
+                for (int i = 0; i < rfctable_D010SINF.RowCount; i++)
+                {
+                    var _D010SINF = new CD010SINF();
+                    _D010SINF.prog = rfctable_D010SINF[i].GetString("PROG"); // 程序
+                    _D010SINF.clas = rfctable_D010SINF[i].GetString("CLAS"); // 类别
+                    _D010SINF.subc = rfctable_D010SINF[i].GetString("SUBC"); // 程序类型
+                    _D010SINF.appl = rfctable_D010SINF[i].GetString("APPL"); // 应用
+                    _D010SINF.cdat = rfctable_D010SINF[i].GetString("CDAT"); // 创建日期
+                    _D010SINF.vern = rfctable_D010SINF[i].GetString("VERN"); // 
+                    _D010SINF.rmand = rfctable_D010SINF[i].GetString("RMAND"); // 
+                    _D010SINF.rload = rfctable_D010SINF[i].GetString("RLOAD"); // 
+                    _D010SINF.unam = rfctable_D010SINF[i].GetString("UNAM"); // 
+                    _D010SINF.udat = rfctable_D010SINF[i].GetString("UDAT"); // 更改日期
+                    _D010SINF.utime = rfctable_D010SINF[i].GetString("UTIME"); // 
+                    _D010SINF.datalg = rfctable_D010SINF[i].GetInt("DATALG"); // 长度
+                    _D010SINF.varcl = rfctable_D010SINF[i].GetString("VARCL"); // 
+                    _D010SINF_LIST.Add(_D010SINF);
+
+                }
+                //for (int i = 0; i < source.RowCount; i++)
+                //{
+                //    source.CurrentIndex = i;
+                //    SourceCode.Add(source.GetString("ZEILE"));
+                //}
+
+                //for (int i = 0; i < programlist.RowCount; i++)
+                //{
+                //    programlist.CurrentIndex = i;
+                //    ProgramList.Add(programlist.GetString("OBJ_NAME"));
+                //}
+                return _D010SINF_LIST;
+            }
+            catch (RfcAbapException abapException)
+            {
+                throw new SAPException(abapException.Key + abapException.Message);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public List<String> GetSourceCode(String program)
         {
             if (String.IsNullOrEmpty(program))
@@ -137,8 +235,8 @@
             {
 
                 var destination = SAPDestination.GetDesByName(_sysName);
-                IRfcFunction function = destination.Repository.CreateFunction("Z_SAPINT_READ_PROGRAM");
-                function.SetValue("PROGRAMNAME", program);
+                IRfcFunction function = destination.Repository.CreateFunction("ZVI_RFC_READ_PROGRAM");
+                function.SetValue("I_PROG", program);
                 //function.SetValue("I_OBJECT", objectType);
                 function.Invoke(destination);
                 IRfcTable programlist = function.GetTable("ET_TRDIR");
@@ -208,10 +306,10 @@
                 else
                 {
 
-                    bool hasFunction = SAPFunction.CheckFunction(_sysName, "ZRFC_ABAP_INSTALL_AND_RUN");
+                    bool hasFunction = SAPFunction.CheckFunction(_sysName, "ZVI_RFC_ABAP_INSTALL_AND_RUN");
                     if (hasFunction)
                     {
-                        function = _des.Repository.CreateFunction("ZRFC_ABAP_INSTALL_AND_RUN");
+                        function = _des.Repository.CreateFunction("ZVI_RFC_ABAP_INSTALL_AND_RUN");
                     }
                     //else
                     //{

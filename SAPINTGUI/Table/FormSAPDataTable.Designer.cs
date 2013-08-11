@@ -32,6 +32,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.SaveTabletoolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ExportToExceltoolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -39,7 +40,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SaveTabletoolStripButton1});
+            this.SaveTabletoolStripButton1,
+            this.ExportToExceltoolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(284, 25);
@@ -66,6 +68,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(284, 237);
             this.dataGridView1.TabIndex = 1;
             // 
+            // ExportToExceltoolStripButton1
+            // 
+            this.ExportToExceltoolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ExportToExceltoolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("ExportToExceltoolStripButton1.Image")));
+            this.ExportToExceltoolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExportToExceltoolStripButton1.Name = "ExportToExceltoolStripButton1";
+            this.ExportToExceltoolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.ExportToExceltoolStripButton1.Text = "导出到Excel";
+            this.ExportToExceltoolStripButton1.Click += new System.EventHandler(this.ExportToExceltoolStripButton1_Click);
+            // 
             // FormSAPDataTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -88,5 +100,6 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton SaveTabletoolStripButton1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripButton ExportToExceltoolStripButton1;
     }
 }

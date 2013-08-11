@@ -161,7 +161,7 @@
             {
                 throw new SAPException(ee.Key + ee.Message);
             }
-  
+
             SendMessage(String.Format("结束调用{0}", f.Metadata.Name));
         }
         private void InitWhereClause(ref IRfcTable toptions)
@@ -607,8 +607,15 @@
             }
             catch (Exception e)
             {
-                SendMessage(e.Message);
-                // throw e;
+                if (this.EventMessage != null)
+                {
+                    this.EventMessage(e.Message);
+                }
+                else
+                {
+                    throw;
+                }
+
             }
             //function.Tables["DATA"].Dispose();
         }
@@ -749,6 +756,10 @@
             if (this.EventMessage != null)
             {
                 this.EventMessage(message);
+            }
+            else
+            {
+                //  throw new SAPException(message);
             }
         }
 

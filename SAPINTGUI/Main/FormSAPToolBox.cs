@@ -158,7 +158,7 @@ namespace SAPINT.Gui
 
         private void btnLoadSapProgram_Click(object sender, EventArgs e)
         {
-            CodeManager.FormImporSapProgram frm = new CodeManager.FormImporSapProgram();
+            CodeManager.FormImportSapProgram frm = new CodeManager.FormImportSapProgram();
             frm.Show();
         }
 

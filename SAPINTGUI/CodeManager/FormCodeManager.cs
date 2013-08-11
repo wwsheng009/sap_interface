@@ -62,7 +62,7 @@ namespace SAPINT.Gui.CodeManager
 
 
             this.listBox1.SelectionMode = SelectionMode.MultiExtended;
-            listBox1.MultiColumn = true;
+
 
             this.listBox1.SelectedValueChanged += listBox1_SelectedValueChanged;
             this.listBox1.DoubleClick += listBox1_DoubleClick;
@@ -88,10 +88,15 @@ namespace SAPINT.Gui.CodeManager
                 var tempFolderId = "b3dc4971-935c-49fb-a061-c9e01956d41d";
 
                 TempFolder = db.GetFolder(tempFolderId);
-                if (TempFolder == null)
+                var v_root = db.GetRootFolder();
+                if (v_root != null)
                 {
-                    TempFolder = db.SaveTree(new CodeFolder(tempFolderId, db.GetRootFolder().Id, "Temp", ""));
+                    if (TempFolder == null && !string.IsNullOrEmpty(v_root.Id))
+                    {
+                        TempFolder = db.SaveTree(new CodeFolder(tempFolderId, db.GetRootFolder().Id, "Temp", ""));
+                    }
                 }
+
             }
         }
 
@@ -837,7 +842,7 @@ namespace SAPINT.Gui.CodeManager
                 MessageBox.Show("无效的节点");
                 return;
             }
-            var frm = new FormImporSapProgram();
+            var frm = new FormImportSapProgram();
             frm.TreeId = codetreeNode.Id;
             frm.TreePath = seletedNode.FullPath;
             frm.Show();
@@ -848,13 +853,13 @@ namespace SAPINT.Gui.CodeManager
             try
             {
                 var treeNode = treeView1.SelectedNode;
-                var codeTreeNode = treeNode.Tag as CodeFolder;
-                if (codeTreeNode == null)
+                var codeFolder = treeNode.Tag as CodeFolder;
+                if (codeFolder == null)
                 {
                     MessageBox.Show("请选择文件夹");
                     return;
                 }
-                if (db.DeleteFolder(codeTreeNode))
+                if (db.DeleteFolder(codeFolder))
                 {
                     //  updateTreeNode(treeNode);
                 }

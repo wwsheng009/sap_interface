@@ -89,5 +89,27 @@ namespace SAPINT.Gui.Table
         {
             ShowSaveDataTableDialog();
         }
+
+        private void ExportToExceltoolStripButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (localdt != null)
+                {
+                    SAPINT.Gui.Util.ClosedExcelGui.SaveDt2Excel(localdt,TableName);
+
+                }
+                else
+                {
+                    MessageBox.Show("无效的数据!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
     }
 }

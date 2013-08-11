@@ -56,6 +56,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExcelPackage">
+      <HintPath>C:\Users\wangweisheng\Downloads\ExcelPackageBinary\ExcelPackage.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\lib\log4net.dll</HintPath>
       <Private>True</Private>
@@ -87,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Function\SAPFunction2.cs" />
     <Compile Include="Idocs\IdocDb.cs" />
     <Compile Include="Idocs\IdocMeta\EDI_IAPI12.cs" />
     <Compile Include="Idocs\IdocMeta\IdocMeta.cs" />
@@ -117,14 +121,14 @@
     <Compile Include="Controls\FormAddConfig.Designer.cs">
       <DependentUpon>FormAddConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="RFCTable\CopyTable\FunctionImportTable.cs" />
-    <Compile Include="RFCTable\CopyTable\FunctionReadTable.cs" />
+    <Compile Include="Function\CopyTable\FunctionImportTable.cs" />
+    <Compile Include="Function\CopyTable\FunctionReadTable.cs" />
     <Compile Include="RFCTable\RFCTableInfo.cs" />
     <Compile Include="RFCTable\TableField.cs" />
     <Compile Include="RfcTypeConvertor.cs" />
     <Compile Include="SapConfig\BackupDestinationConfiguration.cs" />
     <Compile Include="Connect\SAPDestination.cs" />
-    <Compile Include="RFCTable\CopyTable\FunctionCopyTable.cs" />
+    <Compile Include="Function\CopyTable\FunctionCopyTable.cs" />
     <Compile Include="Function\Json\SAPFunctionJson.cs" />
     <Compile Include="Function\Json\SAPFunctionJson2.cs" />
     <Compile Include="Function\Meta\DataTableAndList.cs" />
@@ -138,7 +142,7 @@
     <Compile Include="Function\Json\RfcOutputListJson.cs" />
     <Compile Include="Function\Meta\RfcFunctionMetaAsList.cs" />
     <Compile Include="Function\Meta\SAPFunctionEx.cs" />
-    <Compile Include="Function\Meta\SAPFunctionMeta.cs" />
+    <Compile Include="Function\Meta\SAPRfcFunctionMeta.cs" />
     <Compile Include="Function\Meta\StructureField.cs" />
     <Compile Include="Idocs\Idoc.cs" />
     <Compile Include="Idocs\IdocSegment.cs" />

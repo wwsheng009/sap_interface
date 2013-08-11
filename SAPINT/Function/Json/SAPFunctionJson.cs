@@ -8,7 +8,7 @@ using SAPINT.DbHelper;
 using SAPINT.Function.Meta;
 using SAPINT.RFCTable;
 
-namespace SAPINT.Function
+namespace SAPINT.Function.Json
 {
     /// <summary>
     /// 专门处理与Json格式相关的数据

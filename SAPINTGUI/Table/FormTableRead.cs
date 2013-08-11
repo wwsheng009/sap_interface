@@ -264,7 +264,7 @@ namespace SAPINT.Gui.Table
                 m_dt = new ReadTable(m_systemName);
                 m_dt.EventMessage += dt_eventMessage;
                 // dt.SetCustomFunctionName("Z_XTRACT_IS_TABLE");
-                m_dt.SetCustomFunctionName("Z_SAPINT_READ_TABLE2");
+                m_dt.SetCustomFunctionName("ZVI_RFC_READ_TABLE");
                 m_dt.TableName = m_tableName;
                 m_dt.Delimiter = m_delimiter;
                 //  dt.Fields.Clear();

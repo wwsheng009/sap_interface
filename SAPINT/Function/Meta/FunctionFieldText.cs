@@ -9,15 +9,15 @@ namespace SAPINT.Function.Meta
     /// </summary>
     public class FuncFieldText
     {
-       public const String Name = "Name";
-       public const String DataType = "DataType";
-       public const String DataTypeName = "DataTypeName";
-       public const String Length = "Length";
-       public const String Decimals = "Decimals";
-       public const String DefaultValue = "DefaultValue";
-       public const String Optional = "Optional";
-       public const String Documentation = "Documentation";
-       public const String Value = "Value";
+       public const String NAME = "Name";
+       public const String DATATYPE = "DataType";
+       public const String DATATYPENAME = "DataTypeName";
+       public const String LENGTH = "Length";
+       public const String DECIMALS = "Decimals";
+       public const String DEFAULTVALUE = "DefaultValue";
+       public const String OPTIONAL = "Optional";
+       public const String DOCUMENTATION = "Documentation";
+       public const String VALUE = "Value";
         //FuncFieldText.Name 
         //FuncFieldText.DataType 
         //FuncFieldText.DataTypeName 

@@ -10,9 +10,12 @@ using System.Threading;
 using SAPINT.Function;
 using SAPINTDB;
 using SAPINT.RFCTable;
+using SAPINT.Table;
+
+
 namespace SAPINT.Gui
 {
-    public delegate void SetPreviewResult(SAPINT.Function.FunctionCopyTable sender, DataTable dt);
+    public delegate void SetPreviewResult(FunctionCopyTable sender, DataTable dt);
 
     public partial class FormCopyTable : DockWindow
     {
@@ -28,7 +31,7 @@ namespace SAPINT.Gui
         private DataTable localDt = null;
         List<String> conditionList = null;
 
-        SAPINT.Function.FunctionCopyTable funcCopyTable;
+        FunctionCopyTable funcCopyTable;
 
         private bool check()
         {
@@ -221,8 +224,8 @@ namespace SAPINT.Gui
 
                 if (funcCopyTable == null)
                 {
-                    funcCopyTable = new SAPINT.Function.FunctionCopyTable();
-                    funcCopyTable.eventCopied += new delegateCopyFinished(funcCopyTable_eventReadTableDone);
+                    funcCopyTable = new FunctionCopyTable();
+                    funcCopyTable.eventCopied += new DelegateCopyFinished(funcCopyTable_eventReadTableDone);
                 }
                 funcCopyTable.SetCondition(getCondition());
                 funcCopyTable.RowCount = this.RowCount;
@@ -291,7 +294,7 @@ namespace SAPINT.Gui
 
         }
 
-        void funcCopyTable_eventReadTableDone(SAPINT.Function.FunctionCopyTable sender, DataTable result)
+        void funcCopyTable_eventReadTableDone(SAPINT.Table.FunctionCopyTable sender, DataTable result)
         {
             setResult(sender, result);
             setLog(sender, null);

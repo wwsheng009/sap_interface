@@ -61,7 +61,7 @@ namespace SAPINT.RFCTable
 
         } //是否创建一个新表。
         //数据库表的结构定义，从SAP系统获取。
-        private SAPINT.RFCTable.RFCTableInfo rfcTableInfo = new SAPINT.RFCTable.RFCTableInfo();
+        private SAPINT.RFCTable.SAPTableInfo rfcTableInfo = new SAPINT.RFCTable.SAPTableInfo();
         //数据库帮助类
         SAPINTDB.netlib7 db2 = null;
         //是否已经把结构定义中的特别字符替换

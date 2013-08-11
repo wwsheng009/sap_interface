@@ -13,7 +13,7 @@ namespace SAPINT.Function.Meta
         /// <summary>
         /// RFC函数的元信息
         /// </summary>
-        private RfcFunctionMetaAsDataTable _funcMeta = null;
+        private FunctionMetaAsDataTable _funcMeta = null;
         /// <summary>
         /// 根据结构名动态生成的DataTable;
         /// </summary>
@@ -26,6 +26,8 @@ namespace SAPINT.Function.Meta
         /// 调用RFC函数后，保存输出的所有的参数的值
         /// </summary>
         MetaValueList _outputList = null;
+
+        public bool Is_rfc { get { return _funcMeta.Is_RFC; } }
 
         public SAPFunctionEx(String sapSystemName, String functionName)
         {
@@ -60,6 +62,10 @@ namespace SAPINT.Function.Meta
             {
                 throw new SAPException("函数的元数据为空");
             }
+            if (_funcMeta.Is_RFC == false)
+            {
+                throw new SAPException("非RFC函数，不能远程运行！");
+            }
             HandleInput();
             SAPFunction.InvokeFunction(_sysTemName, _functionName, _inputList, out _outputList);
             HandleOutput();
@@ -69,7 +75,7 @@ namespace SAPINT.Function.Meta
         /// </summary>
         private void HandleInput()
         {
-            
+
             _inputList = new MetaValueList();
             DataTableAndList.DataTableToList(_funcMeta.Import, _tableValueList, ref _inputList);
             DataTableAndList.DataTableToList(_funcMeta.Export, _tableValueList, ref _inputList);
@@ -84,7 +90,7 @@ namespace SAPINT.Function.Meta
             DataTableAndList.ListToDataTable(_outputList, _funcMeta.Tables, ref _tableValueList);
         }
 
-    
+
         public Dictionary<String, DataTable> TableValueList
         {
             get
@@ -92,7 +98,7 @@ namespace SAPINT.Function.Meta
                 return _tableValueList;
             }
         }
-        public RfcFunctionMetaAsDataTable FunctionMeta
+        public FunctionMetaAsDataTable FunctionMeta
         {
             get
             {

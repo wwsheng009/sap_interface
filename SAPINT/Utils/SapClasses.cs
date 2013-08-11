@@ -37,5 +37,20 @@ namespace SAPINT.Utils
         public String ldbname { get; set; } // LDB name
         public String uccheck { get; set; } // Flag, if unicode check was performed
     }
-
+    public class CD010SINF
+    {
+        public String prog { get; set; } // ABAP 程序名
+        public String clas { get; set; } // 程序类别
+        public String subc { get; set; } //   程序类型
+        public String appl { get; set; } // 应用程序
+        public String cdat { get; set; } // 创建日期
+        public String vern { get; set; } // 版本号
+        public String rmand { get; set; } // 集团
+        public String rload { get; set; } // 主语言
+        public String unam { get; set; } // 最后修改人
+        public String udat { get; set; } // 更改日期
+        public String utime { get; set; } // 字典: 最后修改时间
+        public Int32 datalg { get; set; } // ABAP/4： 程序组件的长度
+        public String varcl { get; set; } // 区分大小写
+    }
 }

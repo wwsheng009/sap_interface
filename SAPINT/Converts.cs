@@ -1438,143 +1438,154 @@ namespace SAPINT
         }
         public static object RfcToDoNetValue(Object output, RfcDataType type)
         {
-            Object o = output;
-            if (o == null)
+            try
             {
-                o = "";
-                output = "";
+
+
+                Object o = output;
+                if (o == null)
+                {
+                    o = "";
+                    output = "";
+                }
+                int iout = 0;
+                switch (type)
+                {
+                    case RfcDataType.BCD:
+                        if (o.ToString() == "")
+                        {
+                            o = 0;
+                            break;
+                        }
+                        o = double.Parse(output.ToString());
+                        break;
+                    case RfcDataType.BYTE:
+                        if (o.ToString() == "")
+                        {
+                            o = 0;
+                            break;
+                        }
+                        //o = byte.Parse(o.ToString());
+
+                        break;
+                    case RfcDataType.CDAY:
+                        break;
+                    case RfcDataType.CHAR:
+                        break;
+                    case RfcDataType.CLASS:
+                        break;
+                    case RfcDataType.DATE:
+                        if (o.ToString() == "00000000")
+                        {
+                            o = "";
+                        }
+                        else
+                        {
+                            //  o = o.ToString().Replace("-","");
+                            //  o = o.ToString().Substring(0, 4) + "-" + o.ToString().Substring(4, 2) + "-" + o.ToString().Substring(6, 2);
+                        }
+                        break;
+                    case RfcDataType.DECF16:
+                        break;
+                    case RfcDataType.DECF34:
+                        break;
+                    case RfcDataType.DTDAY:
+                        break;
+                    case RfcDataType.DTMONTH:
+                        break;
+                    case RfcDataType.DTWEEK:
+                        break;
+                    case RfcDataType.FLOAT:
+                        if (o.ToString() == "")
+                        {
+                            o = 0;
+                            break;
+                        }
+                        o = float.Parse(output.ToString());
+                        break;
+                    case RfcDataType.INT1:
+                        if (o.ToString() == "")
+                        {
+                            o = 0;
+                            break;
+                        }
+                        o = int.Parse(output.ToString());
+                        break;
+                    case RfcDataType.INT2:
+                        if (o.ToString() == "")
+                        {
+                            o = 0;
+                            break;
+                        }
+                        o = int.Parse(output.ToString());
+                        break;
+                    case RfcDataType.INT4:
+                        if (o.ToString() == "")
+                        {
+                            o = 0;
+                            break;
+                        }
+                        o = int.Parse(output.ToString());
+                        break;
+                    case RfcDataType.INT8:
+                        if (o.ToString() == "")
+                        {
+                            o = 0;
+                            break;
+                        }
+                        o = int.Parse(output.ToString());
+                        break;
+                    case RfcDataType.NUM:
+
+                        if (output == null)
+                        {
+                            o = 0;
+                        }
+                        if (o.ToString().Trim() == "0")
+                        {
+                            o = 0;
+                        }
+                        else
+                        {
+                            int.TryParse(output.ToString(), out iout);
+                            o = iout;
+
+                        }
+
+                        break;
+                    case RfcDataType.STRING:
+                        break;
+                    case RfcDataType.STRUCTURE:
+                        break;
+                    case RfcDataType.TABLE:
+                        break;
+                    case RfcDataType.TIME:
+                        //o = o.ToString().Substring(0, 2) + ":" + o.ToString().Substring(2, 2) + ":" + o.ToString().Substring(4, 2);
+                        break;
+                    case RfcDataType.TMINUTE:
+                        break;
+                    case RfcDataType.TSECOND:
+                        break;
+                    case RfcDataType.UNKNOWN:
+                        break;
+                    case RfcDataType.UTCLONG:
+                        break;
+                    case RfcDataType.UTCMINUTE:
+                        break;
+                    case RfcDataType.UTCSECOND:
+                        break;
+                    case RfcDataType.XSTRING:
+                        break;
+                    default:
+                        break;
+                }
+                return o;
             }
-            int iout = 0;
-            switch (type)
+            catch (Exception ex)
             {
-                case RfcDataType.BCD:
-                    if (o.ToString() == "")
-                    {
-                        o = 0;
-                        break;
-                    }
-                    o = double.Parse(output.ToString());
-                    break;
-                case RfcDataType.BYTE:
-                    if (o.ToString() == "")
-                    {
-                        o = 0;
-                        break;
-                    }
-                    o = int.Parse(output.ToString());
-                    break;
-                case RfcDataType.CDAY:
-                    break;
-                case RfcDataType.CHAR:
-                    break;
-                case RfcDataType.CLASS:
-                    break;
-                case RfcDataType.DATE:
-                    if (o.ToString() == "00000000")
-                    {
-                        o = "";
-                    }
-                    else
-                    {
-                        //  o = o.ToString().Replace("-","");
-                        //  o = o.ToString().Substring(0, 4) + "-" + o.ToString().Substring(4, 2) + "-" + o.ToString().Substring(6, 2);
-                    }
-                    break;
-                case RfcDataType.DECF16:
-                    break;
-                case RfcDataType.DECF34:
-                    break;
-                case RfcDataType.DTDAY:
-                    break;
-                case RfcDataType.DTMONTH:
-                    break;
-                case RfcDataType.DTWEEK:
-                    break;
-                case RfcDataType.FLOAT:
-                    if (o.ToString() == "")
-                    {
-                        o = 0;
-                        break;
-                    }
-                    o = float.Parse(output.ToString());
-                    break;
-                case RfcDataType.INT1:
-                    if (o.ToString() == "")
-                    {
-                        o = 0;
-                        break;
-                    }
-                    o = int.Parse(output.ToString());
-                    break;
-                case RfcDataType.INT2:
-                    if (o.ToString() == "")
-                    {
-                        o = 0;
-                        break;
-                    }
-                    o = int.Parse(output.ToString());
-                    break;
-                case RfcDataType.INT4:
-                    if (o.ToString() == "")
-                    {
-                        o = 0;
-                        break;
-                    }
-                    o = int.Parse(output.ToString());
-                    break;
-                case RfcDataType.INT8:
-                    if (o.ToString() == "")
-                    {
-                        o = 0;
-                        break;
-                    }
-                    o = int.Parse(output.ToString());
-                    break;
-                case RfcDataType.NUM:
 
-                    if (output == null)
-                    {
-                        o = 0;
-                    }
-                    if (o.ToString().Trim() == "0")
-                    {
-                        o = 0;
-                    }
-                    else
-                    {
-                        int.TryParse(output.ToString(), out iout);
-                        o = iout;
-
-                    }
-
-                    break;
-                case RfcDataType.STRING:
-                    break;
-                case RfcDataType.STRUCTURE:
-                    break;
-                case RfcDataType.TABLE:
-                    break;
-                case RfcDataType.TIME:
-                    //o = o.ToString().Substring(0, 2) + ":" + o.ToString().Substring(2, 2) + ":" + o.ToString().Substring(4, 2);
-                    break;
-                case RfcDataType.TMINUTE:
-                    break;
-                case RfcDataType.TSECOND:
-                    break;
-                case RfcDataType.UNKNOWN:
-                    break;
-                case RfcDataType.UTCLONG:
-                    break;
-                case RfcDataType.UTCMINUTE:
-                    break;
-                case RfcDataType.UTCSECOND:
-                    break;
-                case RfcDataType.XSTRING:
-                    break;
-                default:
-                    break;
+                throw ex;
             }
-            return o;
         }
         internal static object XmlToScalarValue(string value, RfcDataType rfcType)
         {

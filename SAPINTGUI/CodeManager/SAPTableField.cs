@@ -23,11 +23,11 @@ namespace SAPINTCODE
         private string _systemName;//连接的SAP系统的配置名称
         //private List<TableInfo> _tablelist;  //缓存表字段列表
         private DataTable fieldsDt = null;
-        private List<RFCTableInfo> _rfcTableList = new List<RFCTableInfo>();
-        RFCTableInfo _rfctable = null; //new RFCTableInfo();
+        private List<SAPTableInfo> _rfcTableList = new List<SAPTableInfo>();
+        SAPTableInfo _rfctable = null; //new RFCTableInfo();
         bool sortByPosition = false;
 
-        public List<RFCTableInfo> TableList
+        public List<SAPTableInfo> TableList
         {
             get
             {
@@ -93,8 +93,8 @@ namespace SAPINTCODE
             }
             try
             {
-                _rfctable = new RFCTableInfo();
-                fieldsDt = _rfctable.GetTableDefinitionDt(_systemName, _tableName);
+                //_rfctable = new RFCTableInfo();
+                fieldsDt = SAPTableInfo.GetTableDefinitionDt(_systemName, _tableName);
                 this.dataGridView1.DataSource = fieldsDt;
                 // _rfctable.GetTableDefinition(_systemName, _tableName);
                 // _rfctable.TransformDataType();
@@ -256,14 +256,14 @@ namespace SAPINTCODE
             //_tablelist.Add(info);
 
 
-            RFCTableInfo info2 = _rfcTableList.Find(x => x.Name == TableName);
+            SAPTableInfo info2 = _rfcTableList.Find(x => x.name == TableName);
             if (info2 != null)
             {
                 _rfcTableList.Remove(info2);
             }
             _rfctable.Fields = fieldsDt.ToList<TableField>() as List<TableField>;
             // _rfctable.Fields.Sort(new PositionComparer());
-            _rfctable.Name = TableName;
+            _rfctable.name = TableName;
             _rfcTableList.Add(_rfctable);
 
             return true;
@@ -291,7 +291,7 @@ namespace SAPINTCODE
             //}
 
             this.dataGridView1.DataSource = null;
-            RFCTableInfo info = _rfcTableList.Find(x => x.Name == tableName);
+            SAPTableInfo info = _rfcTableList.Find(x => x.name == tableName);
             if (info != null)
             {
                 // IList<TableField> list = info.Fields as IList<TableField>;
@@ -326,7 +326,7 @@ namespace SAPINTCODE
             //    _tablelist.Remove(info1);
             //}
 
-            RFCTableInfo info = _rfcTableList.Find(x => x.Name == tableName);
+            SAPTableInfo info = _rfcTableList.Find(x => x.name == tableName);
             if (info != null)
             {
 

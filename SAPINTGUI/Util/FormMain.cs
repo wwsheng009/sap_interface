@@ -496,7 +496,7 @@ namespace SAPINT.Gui
 
         private void importSAPPRGToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormImporSapProgram m_FormImporSapProgram = new FormImporSapProgram();
+            FormImportSapProgram m_FormImporSapProgram = new FormImportSapProgram();
             m_FormImporSapProgram.Show(dockPanel);
         }
 

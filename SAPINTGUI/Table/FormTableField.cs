@@ -20,7 +20,7 @@ namespace SAPINT.Gui.Table
         private string m_SystemName;//连接的SAP系统的配置名称
         //private List<TableInfo> _tablelist;  //缓存表字段列表
         private DataTable m_FieldsDt = null;
-        private List<RFCTableInfo> m_RfcTableList = new List<RFCTableInfo>();
+        private List<SAPTableInfo> m_RfcTableList = new List<SAPTableInfo>();
 
         private bool m_SortByPosition = false;
         public event DelegateTableField EventReadTableField = null;
@@ -40,7 +40,7 @@ namespace SAPINT.Gui.Table
             this.listBox1.DoubleClick += listBox1_DoubleClick;
             this.listBox1.KeyDown += listBox1_KeyDown;
         }
-        public List<RFCTableInfo> TableList
+        public List<SAPTableInfo> TableList
         {
             get
             {
@@ -70,10 +70,12 @@ namespace SAPINT.Gui.Table
                 return false;
             }
 
-            this.m_TableName = this.txtTableName.Text.Trim().ToUpper();
-            if (string.IsNullOrEmpty(this.m_TableName))
+            this.m_TableName = this.txtTableName.Text.Trim();
+            this.m_TypeName = this.txtTypeName.Text.Trim().ToUpper();
+
+            if (string.IsNullOrEmpty(this.m_TableName) && string.IsNullOrEmpty(this.m_TypeName))
             {
-                MessageBox.Show("请指定表名");
+                MessageBox.Show("请指定表名或类型！");
                 return false;
             }
 
@@ -92,8 +94,8 @@ namespace SAPINT.Gui.Table
             try
             {
                 this.dataGridView1.DataSource = null;
-                var _rfctable = new RFCTableInfo();
-                m_FieldsDt = _rfctable.GetTableDefinitionDt(m_SystemName, m_TableName);
+               // var _rfctable = new RFCTableInfo();
+                m_FieldsDt = SAPTableInfo.GetTableDefinitionDt(m_SystemName, m_TableName,m_TypeName);
                 this.dataGridView1.DataSource = m_FieldsDt;
                 this.Text = "表：" + m_TableName;
                 if (m_FieldsDt != null)
@@ -193,40 +195,40 @@ namespace SAPINT.Gui.Table
         }
 
         //保存当前的字段与条件到内存中。
-        private bool SaveFieldsToCache(string TableName = null, DataTable dt = null)
+        private bool SaveFieldsToCache(string pTableName = null, DataTable pDt = null)
         {
-            if (string.IsNullOrEmpty(TableName))
+            if (string.IsNullOrEmpty(pTableName))
             {
-                this.m_TableName = this.txtTableName.Text.Trim().ToUpper();
-                TableName = this.m_TableName;
+                this.m_TableName = this.txtTableName.Text.Trim();
+                pTableName = this.m_TableName;
                 
             }
-            if (string.IsNullOrEmpty(TableName))
+            if (string.IsNullOrEmpty(pTableName))
             {
                 MessageBox.Show("表名不能为空");
                 return false;
             }
 
-            if (dt == null)
+            if (pDt == null)
             {
-                dt = this.dataGridView1.DataSource as DataTable;
+                pDt = this.dataGridView1.DataSource as DataTable;
             }
-            if (dt == null)
+            if (pDt == null)
             {
                 toolStripStatusLabel1.Text = "DataTable 为空值";
                 return false;
             }
 
-            RFCTableInfo info2 = m_RfcTableList.Find(x => x.Name == TableName);
+            SAPTableInfo info2 = m_RfcTableList.Find(x => x.name == pTableName);
             if (info2 != null)
             {
                 m_RfcTableList.Remove(info2);
             }
 
-            var _rfctable = new RFCTableInfo();
-            _rfctable.Fields = dt.ToList<TableField>() as List<TableField>;
+            var _rfctable = new SAPTableInfo();
+            _rfctable.Fields = pDt.ToList<TableField>() as List<TableField>;
             //_rfctable.TransformDataType();
-            _rfctable.Name = TableName;
+            _rfctable.name = pTableName;
             m_RfcTableList.Add(_rfctable);
 
             int pos = 1;
@@ -250,17 +252,17 @@ namespace SAPINT.Gui.Table
             return true;
         }
 
-        private bool LoadFieldsFromCache(string tableName)
+        private bool LoadFieldsFromCache(string pTableName)
         {
             this.dataGridView1.DataSource = null;
-            var info = new RFCTableInfo();
-            info = m_RfcTableList.Find(x => x.Name == tableName);
+            var info = new SAPTableInfo();
+            info = m_RfcTableList.Find(x => x.name == pTableName);
             if (info != null)
             {
                 this.dataGridView1.DataSource = info.Fields.ToDataTable<TableField>();
 
                 UpdateDgvDisplay();
-                this.txtTableName.Text = tableName;
+                this.txtTableName.Text = pTableName;
                 return true;
             }
             else
@@ -287,7 +289,7 @@ namespace SAPINT.Gui.Table
                 return false;
             }
 
-            RFCTableInfo info = m_RfcTableList.Find(x => x.Name == tableName);
+            SAPTableInfo info = m_RfcTableList.Find(x => x.name == tableName);
             if (info != null)
             {
                 m_RfcTableList.Remove(info);
@@ -402,5 +404,7 @@ namespace SAPINT.Gui.Table
         {
             LoadFieldsFromCache(this.listBox1.SelectedItem as string);
         }
+
+        public string m_TypeName { get; set; }
     }
 }

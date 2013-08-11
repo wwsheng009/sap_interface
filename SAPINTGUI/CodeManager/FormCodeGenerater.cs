@@ -21,7 +21,7 @@ namespace SAPINT.Gui.CodeManager
     {
         private FormCodeManager m_FormCodeManager = null;
         private FormTableField m_FormTableField = null;
-        private List<RFCTableInfo> m_tableList = null;
+        private List<SAPTableInfo> m_tableList = null;
        // private Code _Code = null;
         public FormCodeGenerater()
         {

@@ -14,7 +14,7 @@ using SAPINTDB.CodeManager;
 
 namespace SAPINT.Gui.CodeManager
 {
-    public delegate void deletegateSetProcessBar(int total, int value, String folder, String file);
+    
 
     public partial class FormImportFile : DockWindow
     {

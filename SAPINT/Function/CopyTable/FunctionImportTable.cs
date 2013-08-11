@@ -5,7 +5,7 @@ using System.Text;
 using SAP.Middleware.Connector;
 using System.Data;
 
-namespace SAPINT.Function
+namespace SAPINT.Table
 {
    // public delegate void delegateImportTableFinished(FunctionImportTable sender, DataTable result);
     public delegate void delegateImporeTableDone(FunctionImportTable sender);
@@ -48,7 +48,7 @@ namespace SAPINT.Function
                 }
                 else
                 {
-                    FunctionImportTable = targetDestination.Repository.CreateFunction("Z_SAPINT_IMPORT_TABLE");
+                    FunctionImportTable = targetDestination.Repository.CreateFunction("ZVI_RFC_IMPORT_TABLE");
                 }
 
                 IRfcTable DATA2 = FunctionImportTable.GetTable("DATA");

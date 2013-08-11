@@ -9,6 +9,13 @@ namespace SAPINT.Function.Json
 {
     public class SAPFunctionJson2
     {
+        /// <summary>
+        /// 使用JSON调用RFC函数。
+        /// </summary>
+        /// <param name="sysName"></param>
+        /// <param name="funame"></param>
+        /// <param name="jsondata"></param>
+        /// <returns></returns>
         public static string InvokeFunctionFromJson(string sysName, string funame, string jsondata)
         {
             MetaValueList list = null;
