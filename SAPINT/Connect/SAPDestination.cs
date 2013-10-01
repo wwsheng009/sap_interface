@@ -57,9 +57,15 @@
 
             try
             {
+
                 des.Ping();
             }
-            catch (Exception)
+            catch (RfcBaseException ex)
+            {
+                throw new SAPException(ex.Message);
+            }
+
+            catch (Exception E)
             {
                 throw new Exception("无法连接SAP系统");
                 //return null;

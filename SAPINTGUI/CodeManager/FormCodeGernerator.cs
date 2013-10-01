@@ -17,17 +17,16 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace SAPINT.Gui.CodeManager
 {
-    public partial class FormCodeGenerater : DockWindow
+    public partial class FormCodeGernerator : DockWindow
     {
         private FormCodeManager m_FormCodeManager = null;
         private FormTableField m_FormTableField = null;
         private List<SAPTableInfo> m_tableList = null;
-       // private Code _Code = null;
-        public FormCodeGenerater()
+        // private Code _Code = null;
+        public FormCodeGernerator()
         {
             InitializeComponent();
             this.Text = "代码生成器";
-            this.toolStrip1.Visible = false;
 
             dockPanel1.DocumentStyle = DocumentStyle.DockingWindow;
             m_FormTableField = new FormTableField();
@@ -101,40 +100,50 @@ namespace SAPINT.Gui.CodeManager
             }
             m_FormTableField.Show(dockPanel1, DockState.DockLeft);
         }
+        private Boolean checkBeforeGernerate()
+        {
+            if (this.m_FormTableField == null)
+            {
+                MessageBox.Show("没有选中的字段");
+                return false;
+            }
+            if (this.m_FormCodeManager == null)
+            {
+                MessageBox.Show("没有打开的模板");
+                return false;
+            }
+            if (this.m_FormTableField.TableList == null)
+            {
+                MessageBox.Show("没有选中的字段");
+                return false;
+            }
+            if (this.m_FormTableField.TableList.Count == 0)
+            {
+                MessageBox.Show("没有选中的字段");
+                return false;
+            }
+            if (this.m_FormCodeManager.TempFolder == null)
+            {
+                MessageBox.Show("请先选中一个文件夹");
+                return false;
+            }
+            if (this.m_FormCodeManager.TemplateCode == null)
+            {
+                MessageBox.Show("请先锁定模板");
+                return false;
+            }
+            return true;
+
+        }
         private void GenerateCode()
         {
+            if (checkBeforeGernerate() == false)
+            {
+                return;
+            }
             try
             {
-                if (this.m_FormTableField == null)
-                {
-                    MessageBox.Show("没有选中的字段");
-                    return;
-                }
-                if (this.m_FormCodeManager == null)
-                {
-                    MessageBox.Show("没有打开的模板");
-                    return;
-                }
-                if (this.m_FormTableField.TableList == null)
-                {
-                    MessageBox.Show("没有选中的字段");
-                    return;
-                }
-                if (this.m_FormTableField.TableList.Count == 0)
-                {
-                    MessageBox.Show("没有选中的字段");
-                    return;
-                }
-                if (this.m_FormCodeManager.TempFolder == null)
-                {
-                    MessageBox.Show("请先选中一个文件夹");
-                    return;
-                }
-                if (this.m_FormCodeManager.TemplateCode == null)
-                {
-                    MessageBox.Show("请先锁定模板");
-                    return;
-                }
+
 
                 VelocityEngine ve = new VelocityEngine();
                 ve.Init();
@@ -153,7 +162,7 @@ namespace SAPINT.Gui.CodeManager
 
                 var _newCode = new Code();
                 _newCode.Content = result;
-                _newCode.Categery = _Code.Categery;
+                _newCode.Category = _Code.Category;
                 _newCode.Title = m_FormCodeManager.TemplateCode.Title + "_NEW*";
                 m_FormCodeManager.AddNewCodeToTempFolder(_newCode, true);
                 // newCode.TreeId = m_FormCodeManager.SelectedTree.Id;
@@ -163,10 +172,7 @@ namespace SAPINT.Gui.CodeManager
                 MessageBox.Show(ee.Message);
             }
         }
-        private void generateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GenerateCode();
-        }
+
 
         private void excuteAbapToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -231,6 +237,25 @@ namespace SAPINT.Gui.CodeManager
             }
 
             return result;
+        }
+
+        private void aLVGerneratorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //if (checkBeforeGernerate() == false)
+            //{
+            //    return;
+            //}
+
+            FormAlvGernerator alvGernerator = new FormAlvGernerator();
+            alvGernerator.setTableList(this.m_FormTableField.TableList);
+            alvGernerator.setFormCodeManager(this.m_FormCodeManager);
+            alvGernerator.Show();
+
+        }
+
+        private void directGerneratorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GenerateCode();
         }
     }
 }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAbapCode2));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
@@ -122,7 +124,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnExcuteCode);
             this.splitContainer1.Panel2.Controls.Add(this.btnGenerateCode);
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer1.Size = new System.Drawing.Size(1059, 717);
+            this.splitContainer1.Size = new System.Drawing.Size(1059, 587);
             this.splitContainer1.SplitterDistance = 327;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 4;
@@ -150,8 +152,8 @@
             this.splitContainer4.Panel2.Controls.Add(this.btnNewTemplate);
             this.splitContainer4.Panel2.Controls.Add(this.userDataGridView);
             this.splitContainer4.Panel2.Controls.Add(this.label1);
-            this.splitContainer4.Size = new System.Drawing.Size(323, 713);
-            this.splitContainer4.SplitterDistance = 355;
+            this.splitContainer4.Size = new System.Drawing.Size(323, 583);
+            this.splitContainer4.SplitterDistance = 290;
             this.splitContainer4.TabIndex = 2;
             // 
             // sapTableField1
@@ -159,7 +161,7 @@
             this.sapTableField1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sapTableField1.Location = new System.Drawing.Point(0, 0);
             this.sapTableField1.Name = "sapTableField1";
-            this.sapTableField1.Size = new System.Drawing.Size(323, 355);
+            this.sapTableField1.Size = new System.Drawing.Size(323, 290);
             this.sapTableField1.TabIndex = 0;
             // 
             // label4
@@ -244,11 +246,27 @@
             this.userDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.userDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.userDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.userDataGridView.Location = new System.Drawing.Point(3, 74);
             this.userDataGridView.Name = "userDataGridView";
             this.userDataGridView.RowTemplate.Height = 23;
-            this.userDataGridView.Size = new System.Drawing.Size(317, 282);
+            this.userDataGridView.Size = new System.Drawing.Size(317, 217);
             this.userDataGridView.TabIndex = 1;
             this.userDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDataGridView_CellMouseClick);
             this.userDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDataGridView_CellMouseDoubleClick);
@@ -277,7 +295,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textAbapCodeTitle.Location = new System.Drawing.Point(480, 5);
             this.textAbapCodeTitle.Name = "textAbapCodeTitle";
-            this.textAbapCodeTitle.Size = new System.Drawing.Size(216, 21);
+            this.textAbapCodeTitle.Size = new System.Drawing.Size(214, 21);
             this.textAbapCodeTitle.TabIndex = 19;
             // 
             // btnNewAbapCode
@@ -339,8 +357,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.textResult);
-            this.splitContainer3.Size = new System.Drawing.Size(698, 686);
-            this.splitContainer3.SplitterDistance = 526;
+            this.splitContainer3.Size = new System.Drawing.Size(696, 556);
+            this.splitContainer3.SplitterDistance = 426;
             this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 11;
             // 
@@ -359,8 +377,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.textResultCode);
-            this.splitContainer2.Size = new System.Drawing.Size(698, 526);
-            this.splitContainer2.SplitterDistance = 374;
+            this.splitContainer2.Size = new System.Drawing.Size(696, 426);
+            this.splitContainer2.SplitterDistance = 372;
             this.splitContainer2.TabIndex = 8;
             // 
             // textTemplate
@@ -384,7 +402,7 @@
             this.textTemplate.LockCursorUpdate = false;
             this.textTemplate.Name = "textTemplate";
             this.textTemplate.ShowScopeIndicator = false;
-            this.textTemplate.Size = new System.Drawing.Size(370, 522);
+            this.textTemplate.Size = new System.Drawing.Size(368, 422);
             this.textTemplate.SmoothScroll = false;
             this.textTemplate.SplitviewH = -4;
             this.textTemplate.SplitviewV = -4;
@@ -422,7 +440,7 @@
             this.textResultCode.LockCursorUpdate = false;
             this.textResultCode.Name = "textResultCode";
             this.textResultCode.ShowScopeIndicator = false;
-            this.textResultCode.Size = new System.Drawing.Size(316, 522);
+            this.textResultCode.Size = new System.Drawing.Size(316, 422);
             this.textResultCode.SmoothScroll = false;
             this.textResultCode.SplitviewH = -4;
             this.textResultCode.SplitviewV = -4;
@@ -459,7 +477,7 @@
             this.textResult.LockCursorUpdate = false;
             this.textResult.Name = "textResult";
             this.textResult.ShowScopeIndicator = false;
-            this.textResult.Size = new System.Drawing.Size(694, 151);
+            this.textResult.Size = new System.Drawing.Size(692, 121);
             this.textResult.SmoothScroll = false;
             this.textResult.SplitviewH = -4;
             this.textResult.SplitviewV = -4;
@@ -677,7 +695,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1059, 742);
+            this.ClientSize = new System.Drawing.Size(1059, 612);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button5);

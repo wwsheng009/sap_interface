@@ -651,7 +651,7 @@ namespace SAPINTCODE
         private void CreateNewAbapCode()
         {
             _abapCode = new Code();
-            _abapCode.Categery = "ABAP";
+            _abapCode.Category = "ABAP";
             var formManager = new FormCodeManager();
             formManager.ShowDialog();
             _abapCode.TreeId = formManager.SelectedFolder.Id;

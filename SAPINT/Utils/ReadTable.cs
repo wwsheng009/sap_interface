@@ -9,6 +9,7 @@
     using SAP.Middleware.Connector;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
 
     public delegate void OnIncomingPackage(ReadTable Sender, DataTable PackageResult);
     public delegate void OnPackageProgress(ReadTable Sender, int FetchedRows);
@@ -310,7 +311,9 @@
                     DataRow row = t.NewRow();
                     if (!this._Delimiter.Equals(""))
                     {
-                        strArray = str2.Split(this._Delimiter.ToCharArray());
+                        //strArray = str2.Split(this._Delimiter.ToCharArray());
+                        strArray = Regex.Split(str2, this._Delimiter, RegexOptions.IgnoreCase);
+
                     }
                     if (this._UsePrimaryKeyPackaging)
                     {

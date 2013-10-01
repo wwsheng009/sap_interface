@@ -41,10 +41,10 @@ namespace ConfigFileTool
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-            
+
 
         }
         public static string GetDefultSAPServer()
@@ -76,12 +76,15 @@ namespace ConfigFileTool
 
         public static string GetCodeTemplateDb()
         {
-
             XmlKeyValueSection globalSettingSection = (XmlKeyValueSection)config.GetSection("GlobalSetting");
             return globalSettingSection.KeyValues["CodeTemplate"].Value;
         }
-
-        public static string GetCodeManagerDb()
+        public static string GetSettingsFromDb()
+        {
+            XmlKeyValueSection globalSettingSection = (XmlKeyValueSection)config.GetSection("GlobalSetting");
+            return globalSettingSection.KeyValues["SettingDb"].Value;
+        }
+        public static string GetDefaultCodeManagerDb()
         {
 
             XmlKeyValueSection globalSettingSection = (XmlKeyValueSection)config.GetSection("GlobalSetting");
@@ -131,11 +134,19 @@ namespace ConfigFileTool
 
         }
 
-        public static List<String> getDbConnectionList()
+        public static List<String> GetManagerDbList()
+        {
+            return GetDbConnectionList("CMD_");
+        }
+        public static List<String> GetDbConnectionList(string filter = "")
         {
 
             List<String> dbList = new List<string>();
 
+            if (string.IsNullOrEmpty(filter))
+            {
+                filter = "V_";
+            }
 
             //foreach (ConnectionStringSettings item in System.Configuration.ConfigurationManager.ConnectionStrings)
             //{
@@ -143,21 +154,24 @@ namespace ConfigFileTool
             //}
             //return dbList;
 
-            ConnectionStringSettingsCollection connections = getConnectionStrings();
+            ConnectionStringSettingsCollection connections = GetConnectionStrings();
             IEnumerator enumerator = connections.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 ConnectionStringSettings current = (ConnectionStringSettings)enumerator.Current;
-                if (current.Name.StartsWith("V_"))
+                if (current.Name.StartsWith(filter))
                 {
                     dbList.Add(current.Name);
                 }
-                
+
             }
             return dbList;
         }
 
-        public static ConnectionStringSettingsCollection getConnectionStrings()
+
+
+
+        public static ConnectionStringSettingsCollection GetConnectionStrings()
         {
             ConnectionStringsSection connections = (ConnectionStringsSection)config.GetSection("connectionStrings");
             return connections.ConnectionStrings;

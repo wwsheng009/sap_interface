@@ -37,15 +37,16 @@
             this.txtSapSystem = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtLocalDbConnection = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labelRowsCount = new System.Windows.Forms.Label();
             this.btnSaveToDb = new System.Windows.Forms.Button();
             this.radioBtNew = new System.Windows.Forms.RadioButton();
             this.radioBtAppend = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.txtLocalTableName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.labelRowsCount = new System.Windows.Forms.Label();
             this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.btnSave2Excel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -116,6 +117,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnSave2Excel);
             this.groupBox2.Controls.Add(this.txtLocalDbConnection);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.labelRowsCount);
@@ -140,9 +142,27 @@
             this.txtLocalDbConnection.Size = new System.Drawing.Size(152, 20);
             this.txtLocalDbConnection.TabIndex = 9;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 147);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 12);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "行数目:";
+            // 
+            // labelRowsCount
+            // 
+            this.labelRowsCount.AutoSize = true;
+            this.labelRowsCount.Location = new System.Drawing.Point(65, 147);
+            this.labelRowsCount.Name = "labelRowsCount";
+            this.labelRowsCount.Size = new System.Drawing.Size(29, 12);
+            this.labelRowsCount.TabIndex = 10;
+            this.labelRowsCount.Text = "数目";
+            // 
             // btnSaveToDb
             // 
-            this.btnSaveToDb.Location = new System.Drawing.Point(68, 110);
+            this.btnSaveToDb.Location = new System.Drawing.Point(6, 110);
             this.btnSaveToDb.Name = "btnSaveToDb";
             this.btnSaveToDb.Size = new System.Drawing.Size(92, 23);
             this.btnSaveToDb.TabIndex = 7;
@@ -197,24 +217,6 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "数据库";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 147);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 12);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "行数目:";
-            // 
-            // labelRowsCount
-            // 
-            this.labelRowsCount.AutoSize = true;
-            this.labelRowsCount.Location = new System.Drawing.Point(65, 147);
-            this.labelRowsCount.Name = "labelRowsCount";
-            this.labelRowsCount.Size = new System.Drawing.Size(29, 12);
-            this.labelRowsCount.TabIndex = 10;
-            this.labelRowsCount.Text = "数目";
-            // 
             // textBoxLog
             // 
             this.textBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -226,6 +228,16 @@
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxLog.Size = new System.Drawing.Size(266, 303);
             this.textBoxLog.TabIndex = 11;
+            // 
+            // btnSave2Excel
+            // 
+            this.btnSave2Excel.Location = new System.Drawing.Point(123, 110);
+            this.btnSave2Excel.Name = "btnSave2Excel";
+            this.btnSave2Excel.Size = new System.Drawing.Size(79, 23);
+            this.btnSave2Excel.TabIndex = 11;
+            this.btnSave2Excel.Text = "保存到EXCEL";
+            this.btnSave2Excel.UseVisualStyleBackColor = true;
+            this.btnSave2Excel.Click += new System.EventHandler(this.btnSave2Excel_Click);
             // 
             // FormSaveDataTable
             // 
@@ -266,5 +278,6 @@
         private System.Windows.Forms.ComboBox txtSapSystem;
         private System.Windows.Forms.ComboBox txtLocalDbConnection;
         private System.Windows.Forms.TextBox textBoxLog;
+        private System.Windows.Forms.Button btnSave2Excel;
     }
 }

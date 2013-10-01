@@ -35,7 +35,7 @@ namespace SAPINT.Gui
         //*
         private FormCodeManager m_FormCodeManager = null;
         private FormCodeManagerListView m_FormCodeManagerListView = null;
-        private FormCodeGenerater m_FormCodeGenerater = null;
+        private FormCodeGernerator m_FormCodeGenerater = null;
 
         //*
         private FormSmallSql m_FormSmallSql = null;
@@ -390,12 +390,12 @@ namespace SAPINT.Gui
 
             if (m_FormCodeGenerater == null)
             {
-                m_FormCodeGenerater = new FormCodeGenerater();
+                m_FormCodeGenerater = new FormCodeGernerator();
 
             }
             if (m_FormCodeGenerater.IsDisposed)
             {
-                m_FormCodeGenerater = new FormCodeGenerater();
+                m_FormCodeGenerater = new FormCodeGernerator();
 
             }
             m_FormCodeGenerater.Show(dockPanel);

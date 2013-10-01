@@ -131,7 +131,7 @@ namespace SAPINT.RFCTable
             }
             else
             {
-                prepareFieldsFromSapSystem();
+                PrepareFieldsFromSapSystem();
                 HandleTableFields();
             }
 
@@ -139,7 +139,7 @@ namespace SAPINT.RFCTable
         /// <summary>
         /// 准备工作，获取结构定义。
         /// </summary>
-        private void prepareFieldsFromSapSystem()
+        private void PrepareFieldsFromSapSystem()
         {
             try
             {
@@ -158,7 +158,6 @@ namespace SAPINT.RFCTable
             }
             catch (Exception ex)
             {
-
                 sendMessage(ex.Message);
             }
 
@@ -170,8 +169,13 @@ namespace SAPINT.RFCTable
         /// <returns></returns>
         private string buildInsertIntoString()
         {
+
             try
             {
+                if (rfcTableInfo.Fields == null)
+                {
+                    throw new SAPException("Table is Not Availble");
+                }
                 StringBuilder insertStr;
                 if (db2.ProviderType == netlib7.ProviderTypes.OleDB)
                 {
@@ -499,23 +503,26 @@ namespace SAPINT.RFCTable
         /// <param name="dtToSaved"></param>
         private bool InsertDataToOleDb()
         {
-            DbCommand cmd = db2.CreateCommand();
-            cmd.Connection = db2.CreateConnection();
-            cmd.Connection.Open();
-
-            cmd.CommandText = buildInsertIntoString();
-
-            cmd.Parameters.Add(cmd.CreateParameter());//for the SAPSYS field
-            foreach (var item in rfcTableInfo.Fields)
-            {
-                cmd.Parameters.Add(cmd.CreateParameter());
-            }
-
-            DbTransaction trans = cmd.Connection.BeginTransaction();// <-------------------
-            cmd.Transaction = trans;
+            DbCommand cmd = null;
+            DbTransaction trans = null;
 
             try
             {
+                cmd = db2.CreateCommand();
+                cmd.Connection = db2.CreateConnection();
+                cmd.Connection.Open();
+
+                cmd.CommandText = buildInsertIntoString();
+
+                cmd.Parameters.Add(cmd.CreateParameter());//for the SAPSYS field
+                foreach (var item in rfcTableInfo.Fields)
+                {
+                    cmd.Parameters.Add(cmd.CreateParameter());
+                }
+
+                trans = cmd.Connection.BeginTransaction();// <-------------------
+                cmd.Transaction = trans;
+
                 for (int x = 0; x < dtToSaved.Rows.Count; x++)
                 {
                     if (dtToSaved.Rows[x] == null)
@@ -647,6 +654,10 @@ namespace SAPINT.RFCTable
         {
             sendMessage("替换rfcTableInfo字段名称中的'/'为'_'");
 
+            if (rfcTableInfo.Fields == null)
+            {
+                throw new SAPException(String.Format("SAP Tabel{0} Not valid ", this.TableName));
+            }
             rfcTableInfo.Fields.ForEach(row =>
             {
                 row.DOTNETTYPE = row.DOTNETTYPE.Replace("System.", "");
@@ -682,14 +693,14 @@ namespace SAPINT.RFCTable
                 {
                     try
                     {
-                       // if (!checkTableIsExist())
-                       // {
-                            cmd.CommandText = "DROP TABLE " + this.TableName;
-                            cmd.ExecuteNonQuery();
-                            sendMessage("删除数据库表" + this.TableName);
-                      //  }
+                        // if (!checkTableIsExist())
+                        // {
+                        cmd.CommandText = "DROP TABLE " + this.TableName;
+                        cmd.ExecuteNonQuery();
+                        sendMessage("删除数据库表" + this.TableName);
+                        //  }
 
-                        
+
                     }
                     catch (Exception)
                     {
@@ -817,20 +828,38 @@ namespace SAPINT.RFCTable
         }
         public void setDataTable(DataTable dt)
         {
-            dtToSaved = dt;
-            if (dtToSaved == null)
+            try
             {
-                throw new SAPException("DataTable为NULL");
+                dtToSaved = dt;
+                if (dtToSaved == null)
+                {
+                    throw new SAPException("DataTable为NULL");
+                }
+                prepareFieldsFromDataTable();
             }
-            prepareFieldsFromDataTable();
+            catch (Exception)
+            {
+
+                throw;
+            }
+
 
         }
         //把一个DATATABLE保存到数据库
         public bool SaveDataTable(DataTable dt)
         {
             sendMessage("数据保存开始==========================>");
-            setDataTable(dt);
-
+            try
+            {
+                setDataTable(dt);
+            }
+            catch (Exception exception)
+            {
+                ErrorMessage = exception.Data + exception.StackTrace + exception.Message;
+                // log.Error(ErrorMessage);
+                sendMessage(exception.Message);
+                return false;
+            }
             //  String defaultDb = null;
             if (String.IsNullOrWhiteSpace(DbConnectionString))
             {
@@ -848,26 +877,29 @@ namespace SAPINT.RFCTable
             db2 = new netlib7(DbConnectionString);
             db2.LogEvents = true;
 
-            bool isCreated = false;
-            bool isExist = checkTableIsExist();
 
-            if (!_appendToDb || _newTable)
-            {
-                isCreated = CreateNewTable();
-            }
-            
-            else if (!isExist)
-            {
-                isCreated = CreateNewTable();
-
-            }
-
-            if (!isCreated && !isExist)
-            {
-                return false;
-            }
             try
             {
+
+                bool isCreated = false;
+                bool isExist = checkTableIsExist();
+
+                if (!_appendToDb || _newTable)
+                {
+                    isCreated = CreateNewTable();
+                }
+
+                else if (!isExist)
+                {
+                    isCreated = CreateNewTable();
+
+                }
+
+                if (!isCreated && !isExist)
+                {
+                    return false;
+                }
+
                 InserDataTableTodb();
                 sendMessage("数据结束开始==========================>");
                 this.ErrorMessage = db2.ErrorMessage;

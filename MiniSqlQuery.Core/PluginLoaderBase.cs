@@ -41,6 +41,27 @@ namespace MiniSqlQuery.Core
 			RequestedLoadOrder = requestedLoadOrder;
 		}
 
+        /// <summary>
+        /// 	Called when the plugins are loading during application startup. 
+        /// 	Stores the reference to <paramref name = "services" />.
+        /// </summary>
+        /// <param name = "services">The application services intance.</param>
+        public void LoadPlugIn(IApplicationServices services)
+        {
+            Services = services;
+        }
+
+        /// <summary>
+        /// 	Called as the application is shutting down.
+        /// </summary>
+        /// <remarks>
+        /// 	In most cases there is probably no need to do anything here, all controls etc created
+        /// 	will be disposed of implicitly. It would only be unmanaged references created explicitly
+        /// 	by the plugin that would need removal or cleanup.
+        /// </remarks>
+        public virtual void UnloadPlugIn()
+        {
+        }
 		/// <summary>
 		/// 	Gets a brief description of the plugin.
 		/// </summary>
@@ -72,26 +93,6 @@ namespace MiniSqlQuery.Core
 		/// </summary>
 		public abstract void InitializePlugIn();
 
-		/// <summary>
-		/// 	Called when the plugins are loading during application startup. 
-		/// 	Stores the reference to <paramref name = "services" />.
-		/// </summary>
-		/// <param name = "services">The application services intance.</param>
-		public void LoadPlugIn(IApplicationServices services)
-		{
-			Services = services;
-		}
 
-		/// <summary>
-		/// 	Called as the application is shutting down.
-		/// </summary>
-		/// <remarks>
-		/// 	In most cases there is probably no need to do anything here, all controls etc created
-		/// 	will be disposed of implicitly. It would only be unmanaged references created explicitly
-		/// 	by the plugin that would need removal or cleanup.
-		/// </remarks>
-		public virtual void UnloadPlugIn()
-		{
-		}
 	}
 }

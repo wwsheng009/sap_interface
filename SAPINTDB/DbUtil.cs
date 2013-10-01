@@ -30,14 +30,10 @@ namespace SAPINTDB
             try
             {
                 DbConnection cn = db2.CreateConnection();
-                
-
                 cn.Open();
                 try
                 {
-
                     dt = cn.GetSchema();
-
                 }
                 catch
                 {
@@ -45,7 +41,7 @@ namespace SAPINTDB
                 }
                 cn.Close();
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 throw;
                // throw new Exception(exception.Message);

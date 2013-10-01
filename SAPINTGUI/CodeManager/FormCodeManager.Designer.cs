@@ -59,6 +59,7 @@
             this.syntaxBoxControl1 = new Alsing.Windows.Forms.SyntaxBoxControl();
             this.syntaxDocument2 = new Alsing.SourceCode.SyntaxDocument(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.cbxDbSources = new System.Windows.Forms.ComboBox();
             this.treeView1 = new SAPINT.Gui.TreeViewNF();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -342,6 +343,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.cbxDbSources);
             this.splitContainer2.Panel1.Controls.Add(this.treeView1);
             // 
             // splitContainer2.Panel2
@@ -351,19 +353,32 @@
             this.splitContainer2.SplitterDistance = 202;
             this.splitContainer2.TabIndex = 24;
             // 
+            // cbxDbSources
+            // 
+            this.cbxDbSources.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxDbSources.FormattingEnabled = true;
+            this.cbxDbSources.Location = new System.Drawing.Point(3, 3);
+            this.cbxDbSources.Name = "cbxDbSources";
+            this.cbxDbSources.Size = new System.Drawing.Size(196, 20);
+            this.cbxDbSources.TabIndex = 1;
+            // 
             // treeView1
             // 
             this.treeView1.AllowDrop = true;
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.ItemHeight = 25;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Location = new System.Drawing.Point(0, 29);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(202, 385);
+            this.treeView1.Size = new System.Drawing.Size(202, 356);
             this.treeView1.TabIndex = 0;
             // 
             // splitContainer3
@@ -521,5 +536,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
+        private System.Windows.Forms.ComboBox cbxDbSources;
     }
 }

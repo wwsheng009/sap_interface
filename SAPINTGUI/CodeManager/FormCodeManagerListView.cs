@@ -11,7 +11,7 @@ using SAPINTDB.CodeManager;
 using WeifenLuo.WinFormsUI.Docking;
 namespace SAPINT.Gui.CodeManager
 {
-   // public delegate void DeleGateSetNode();
+    // public delegate void DeleGateSetNode();
 
     public partial class FormCodeManagerListView : DockWindow
     {
@@ -60,7 +60,7 @@ namespace SAPINT.Gui.CodeManager
             //drag and drop
             //this.listBox1.AllowDrop = true;
             this.treeView1.AllowDrop = true;
-           // this.listBox1.MouseDown += listBox1_MouseDown;
+            // this.listBox1.MouseDown += listBox1_MouseDown;
 
             //this.listBox1.DragOver += listBox1_DragOver;
 
@@ -74,8 +74,8 @@ namespace SAPINT.Gui.CodeManager
         {
             if (this.DockPanel != null)
             {
-              //  this.splitContainer3.Panel2Collapsed = true;
-              //  this.listBox1.SelectedIndexChanged -= listBox1_SelectedValueChanged;
+                //  this.splitContainer3.Panel2Collapsed = true;
+                //  this.listBox1.SelectedIndexChanged -= listBox1_SelectedValueChanged;
             }
             else
             {
@@ -142,7 +142,7 @@ namespace SAPINT.Gui.CodeManager
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = codelist;
             //dataGridView1.DisplayMember = "Title";
-            
+
         }
 
         void treeView1_DragEnter(object sender, DragEventArgs e)
@@ -390,21 +390,25 @@ namespace SAPINT.Gui.CodeManager
             if (this.treeView1.InvokeRequired)
             {
                 // var node = this.treeView1.SelectedNode;
-                this.Invoke(new DeleGateSetNode(updateTreeNode), new object[] { });  
+                this.Invoke(new DeleGateSetNode(updateTreeNode), new object[] { null });
 
             }
             else
             {
                 updateTreeNode();
-                
+
             }
 
 
 
         }
-        private void updateTreeNode()
+        private void updateTreeNode(TreeNode node = null)
         {
-            var node = this.treeView1.SelectedNode;
+            if (node == null)
+            {
+                node = this.treeView1.SelectedNode;
+            }
+
             if (node != null)
             {
                 node.Nodes.Clear();
@@ -470,8 +474,8 @@ namespace SAPINT.Gui.CodeManager
 
                     this.dataGridView1.DataSource = codeTree.CodeList;
                     bs.DataSource = codeTree.CodeList;
-                    
-                   // this.listBox1.DisplayMember = "Title";
+
+                    // this.listBox1.DisplayMember = "Title";
                 }
             }
         }
@@ -572,7 +576,7 @@ namespace SAPINT.Gui.CodeManager
                     {
                         TempFolder.CodeList.Add(newcode);
                         this.dataGridView1.DataSource = SelectedFolder.CodeList;
-                       // this.listBox1.DisplayMember = "Title";
+                        // this.listBox1.DisplayMember = "Title";
                     }
                 }
                 if (show == true)
@@ -619,7 +623,7 @@ namespace SAPINT.Gui.CodeManager
                 {
                     codeFolderNode.CodeList.Add(newcode);
                     this.dataGridView1.DataSource = codeFolderNode.CodeList;
-                  //  this.listBox1.DisplayMember = "Title";
+                    //  this.listBox1.DisplayMember = "Title";
                 }
 
             }
@@ -690,12 +694,12 @@ namespace SAPINT.Gui.CodeManager
 
         private void toolStripMenuItemEditCode_Click(object sender, EventArgs e)
         {
-            if (bs.Current!=null)
+            if (bs.Current != null)
             {
                 var code = bs.Current as Code;
-                if (code!=null)
+                if (code != null)
                 {
-                    
+
                 }
             }
             //var selectItem = dataGridView1.SelectedRows[0].Cells["id"].ToolTipTex
@@ -733,7 +737,7 @@ namespace SAPINT.Gui.CodeManager
             //    selectedNode.CodeList = codelist;
 
             //}
-            
+
         }
 
         private void toolStripMenuItemImportFile_Click(object sender, EventArgs e)
@@ -817,12 +821,12 @@ namespace SAPINT.Gui.CodeManager
 
         private void button2_Click(object sender, EventArgs e)
         {
-           // this.splitContainer1.Panel1Collapsed = !this.splitContainer1.Panel1Collapsed;
+            // this.splitContainer1.Panel1Collapsed = !this.splitContainer1.Panel1Collapsed;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-          //  this.splitContainer1.Panel2Collapsed = !this.splitContainer1.Panel2Collapsed;
+            //  this.splitContainer1.Panel2Collapsed = !this.splitContainer1.Panel2Collapsed;
         }
 
 
@@ -900,9 +904,9 @@ namespace SAPINT.Gui.CodeManager
                     SelectedFolder = db.GetFolder(SelectedFolder.Id);
                     if (SelectedFolder.CodeList != null)
                     {
-                       // SelectedFolder.CodeList.Add(newcode);
+                        // SelectedFolder.CodeList.Add(newcode);
                         this.dataGridView1.DataSource = SelectedFolder.CodeList;
-                       // this.listBox1.DisplayMember = "Title";
+                        // this.listBox1.DisplayMember = "Title";
                     }
 
                 }
@@ -912,17 +916,17 @@ namespace SAPINT.Gui.CodeManager
 
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
         {
-           // this.splitContainer1.Panel1Collapsed = !this.splitContainer1.Panel1Collapsed;
+            // this.splitContainer1.Panel1Collapsed = !this.splitContainer1.Panel1Collapsed;
         }
 
         private void toolStripSplitButton2_ButtonClick(object sender, EventArgs e)
         {
-           // this.splitContainer1.Panel2Collapsed = !this.splitContainer1.Panel2Collapsed;
+            // this.splitContainer1.Panel2Collapsed = !this.splitContainer1.Panel2Collapsed;
         }
 
 

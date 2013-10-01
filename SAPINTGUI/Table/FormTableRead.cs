@@ -93,6 +93,7 @@ namespace SAPINT.Gui.Table
             this.txtTableName.TextChanged += txtTableName_TextChanged;
             this.txtDelimiter.Items.AddRange(new object[] {
             "",
+            "\t",
             "★",
             "☆",
             "♀",

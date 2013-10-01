@@ -118,7 +118,7 @@ namespace SAPINTDB.CodeManager
         public string Content { get; set; }
         public string Version { get; set; }
         public string Desc { get; set; }
-        public string Categery { get; set; }
+        public string Category { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime LastChangeTime { get; set; }
         public string Author { get; set; }
@@ -138,7 +138,7 @@ namespace SAPINTDB.CodeManager
             Version = string.Empty;
             Title = string.Empty;
             Desc = string.Empty;
-            Categery = string.Empty;
+            Category = string.Empty;
             Author = string.Empty;
 
 

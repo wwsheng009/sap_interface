@@ -14,7 +14,7 @@ using SAPINTDB.CodeManager;
 
 namespace SAPINT.Gui.CodeManager
 {
-    
+
 
     public partial class FormImportFile : DockWindow
     {
@@ -24,13 +24,20 @@ namespace SAPINT.Gui.CodeManager
         int headerSize = 500;
         Dictionary<int, Code> pos = new Dictionary<int, Code>();
         public string fileName { get; set; }
-        Codedb db = new Codedb();
+        Codedb db = null;
+        String m_dbName = null;
 
         Thread thread = null;
 
         public FormImportFile()
         {
             InitializeComponent();
+
+            m_dbName = ConfigFileTool.SAPGlobalSettings.GetDefaultCodeManagerDb();
+            this.cbxDbSources.Text = m_dbName;
+            this.cbxDbSources.DataSource = ConfigFileTool.SAPGlobalSettings.GetManagerDbList();
+            this.cbxDbSources.SelectedIndexChanged += cbxDbSources_SelectedIndexChanged;
+
 
             dt = new DataTable("FileList");
             dt.Columns.AddRange(new DataColumn[]{
@@ -70,7 +77,17 @@ namespace SAPINT.Gui.CodeManager
             this.listExtension.Items.AddRange(new object[] { ".cs", ".abap", ".sql" });
             this.dataGridView1.CellClick += dataGridView1_CellClick;
             this.dataGridView1.CurrentCellChanged += dataGridView1_CurrentCellChanged;
-            this.btnStopImport.Enabled = false; 
+            this.btnStopImport.Enabled = false;
+        }
+
+        void cbxDbSources_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var cbx = sender as ComboBox;
+            m_dbName = cbx.Text;
+
+            db = new Codedb(m_dbName);
+
+            //throw new NotImplementedException();
         }
 
         void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
@@ -509,10 +526,13 @@ namespace SAPINT.Gui.CodeManager
             {
                 return false;
             }
+            this.cbxDbSources.Enabled = false;
             thread = new Thread(new ThreadStart(ImportFile));
             thread.Start();
             btnStopImport.Enabled = true;
             btnStartImport.Enabled = false;
+            this.cbxDbSources.Enabled = false;
+
             return true;
         }
         //private void ReadFiles()
@@ -747,7 +767,7 @@ namespace SAPINT.Gui.CodeManager
             this.TotalFileCount = SAPINT.Gui.Util.FileUtil.GetFilesCount(path);
             this.txtFilesCount.Text = TotalFileCount.ToString();
             this.progressBar1.Value = 0;
-            this.progressBar1.Maximum = TotalFileCount ;
+            this.progressBar1.Maximum = TotalFileCount;
             txtSavedFiles.Text = string.Empty;
 
             thread = new Thread(new ThreadStart(this.copyTheWholeLocalFolder));
@@ -769,7 +789,7 @@ namespace SAPINT.Gui.CodeManager
 
         private void btnStopImport_Click(object sender, EventArgs e)
         {
-            if (thread !=null)
+            if (thread != null)
             {
                 if (thread.IsAlive)
                 {

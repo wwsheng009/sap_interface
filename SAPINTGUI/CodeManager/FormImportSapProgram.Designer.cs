@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.syntaxDocument1 = new Alsing.SourceCode.SyntaxDocument(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.btnSearchReport = new System.Windows.Forms.Button();
@@ -55,6 +55,7 @@
             this.btnReadObjectFromSap = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cbxDbSources = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.syntaxBoxControl1 = new Alsing.Windows.Forms.SyntaxBoxControl();
             this.btnLoad = new System.Windows.Forms.Button();
@@ -78,7 +79,7 @@
             // 
             // btnSearchReport
             // 
-            this.btnSearchReport.Location = new System.Drawing.Point(170, 32);
+            this.btnSearchReport.Location = new System.Drawing.Point(141, 31);
             this.btnSearchReport.Name = "btnSearchReport";
             this.btnSearchReport.Size = new System.Drawing.Size(50, 23);
             this.btnSearchReport.TabIndex = 21;
@@ -120,7 +121,7 @@
             // 
             // btnCancelImport
             // 
-            this.btnCancelImport.Location = new System.Drawing.Point(370, 32);
+            this.btnCancelImport.Location = new System.Drawing.Point(456, 32);
             this.btnCancelImport.Name = "btnCancelImport";
             this.btnCancelImport.Size = new System.Drawing.Size(75, 23);
             this.btnCancelImport.TabIndex = 39;
@@ -168,7 +169,7 @@
             0,
             0,
             0});
-            this.numPauseTime.Location = new System.Drawing.Point(667, 33);
+            this.numPauseTime.Location = new System.Drawing.Point(753, 33);
             this.numPauseTime.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -186,7 +187,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(573, 40);
+            this.label1.Location = new System.Drawing.Point(659, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 33;
@@ -260,7 +261,7 @@
             // 
             // btnReadObjectFromSap
             // 
-            this.btnReadObjectFromSap.Location = new System.Drawing.Point(226, 32);
+            this.btnReadObjectFromSap.Location = new System.Drawing.Point(198, 30);
             this.btnReadObjectFromSap.Name = "btnReadObjectFromSap";
             this.btnReadObjectFromSap.Size = new System.Drawing.Size(76, 23);
             this.btnReadObjectFromSap.TabIndex = 24;
@@ -270,7 +271,7 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(308, 32);
+            this.btnImport.Location = new System.Drawing.Point(394, 32);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(56, 23);
             this.btnImport.TabIndex = 23;
@@ -297,25 +298,36 @@
             this.splitContainer1.SplitterDistance = 506;
             this.splitContainer1.TabIndex = 22;
             // 
+            // cbxDbSources
+            // 
+            this.cbxDbSources.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxDbSources.FormattingEnabled = true;
+            this.cbxDbSources.Location = new System.Drawing.Point(280, 32);
+            this.cbxDbSources.Name = "cbxDbSources";
+            this.cbxDbSources.Size = new System.Drawing.Size(98, 20);
+            this.cbxDbSources.TabIndex = 44;
+            // 
             // dataGridView1
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -355,7 +367,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(456, 33);
+            this.btnLoad.Location = new System.Drawing.Point(542, 33);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(111, 23);
             this.btnLoad.TabIndex = 16;
@@ -385,6 +397,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(858, 501);
+            this.Controls.Add(this.cbxDbSources);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDevClass);
@@ -454,5 +467,6 @@
         private System.Windows.Forms.TextBox txtDevClass;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbxDbSources;
     }
 }

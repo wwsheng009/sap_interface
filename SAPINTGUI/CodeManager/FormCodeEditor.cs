@@ -15,7 +15,23 @@ namespace SAPINT.Gui.CodeManager
     public partial class FormCodeEditor : DockWindow
     {
         private Code _code = null;
-        private Codedb db = new Codedb();
+        private Codedb db = null;
+
+        private bool db_changed = false;
+
+        public Codedb Db
+        {
+            get { return db; }
+            set { db = value; }
+        }
+        private String m_dbName = string.Empty;
+
+        public String DbName
+        {
+            get { return m_dbName; }
+            set { m_dbName = value; }
+        }
+
 
         public Code code
         {
@@ -32,20 +48,37 @@ namespace SAPINT.Gui.CodeManager
 
 
         }
-        public FormCodeEditor()
+        public FormCodeEditor(String dbName = null)
         {
             InitializeComponent();
+            this.cbxDbSources.DataSource = null;
+            this.cbxDbSources.DataSource = ConfigFileTool.SAPGlobalSettings.GetManagerDbList();
+            this.cbxDbSources.SelectedIndexChanged += cbxDbSources_SelectedIndexChanged;
+            if (dbName == null)
+            {
+                DbName = dbName = ConfigFileTool.SAPGlobalSettings.GetDefaultCodeManagerDb();
 
+            }
+            else
+            {
+                DbName = dbName;
+                this.cbxDbSources.Text = DbName;
+            }
+
+            db = new Codedb(DbName);
 
             if (_code == null)
             {
                 _code = new Code();
                 _code.Title = "新建文档*";
             }
+
             RefreshDisplay();
             this.txtTreeText.DoubleClick += txtTreeText_DoubleClick;
             DirectoryInfo directory = new DirectoryInfo("SyntaxFiles\\");
             FileInfo[] files = directory.GetFiles();
+            this.cbxCategory.DataSource = null;
+            this.cbxCategory.Items.Clear();
             foreach (var item in files)
             {
                 var newName = item.Name.Replace(".syn", "");
@@ -54,6 +87,25 @@ namespace SAPINT.Gui.CodeManager
             }
             this.syntaxBoxControl1.Document.Change += Document_Change;
             this.syntaxBoxControl1.Document.ModifiedChanged += Document_ModifiedChanged;
+        }
+
+        void cbxDbSources_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var cbx = sender as ComboBox;
+            m_dbName = cbx.Text;
+
+            db = new Codedb(m_dbName);
+            db_changed = true;
+            this.TreeId = null;
+
+            if (_code != null)
+            {
+                _code.Id = null;
+                _code.TreeId = null;
+
+            }
+
+            //throw new NotImplementedException();
         }
 
         void Document_ModifiedChanged(object sender, EventArgs e)
@@ -93,20 +145,25 @@ namespace SAPINT.Gui.CodeManager
                     if (!string.IsNullOrEmpty(_code.TreeId))
                     {
                         var codeFolder = db.GetFolder(_code.TreeId);
-                        this.txtTreeText.Text = codeFolder.Text;
-                        this.TreeId = codeFolder.Id;
+                        if (codeFolder != null)
+                        {
+                            this.txtTreeText.Text = codeFolder.Text;
+                            this.TreeId = codeFolder.Id;
+                        }
+
+
                     }
-                    if (String.IsNullOrEmpty(_code.Categery))
+                    if (String.IsNullOrEmpty(_code.Category))
                     {
-                        _code.Categery = "abap";
-                        
+                        _code.Category = "abap";
+
                     }
-                    this.cbxCategory.Text = _code.Categery;
-                    loadSynFile(_code.Categery);
+                    this.cbxCategory.Text = _code.Category;
+                    loadSynFile(_code.Category);
                     this.Text = _code.Title;
                     this.SatustoolStripLabel1.Text = "保存成功";
-                    
-                    
+
+
                 }
 
             }
@@ -123,7 +180,7 @@ namespace SAPINT.Gui.CodeManager
 
         void txtTreeText_DoubleClick(object sender, EventArgs e)
         {
-            FormCodeManager form = new FormCodeManager();
+            FormCodeManager form = new FormCodeManager(m_dbName, true);
             form.ShowDialog();
             this.TreeId = form.SelectedFolder.Id;
             this.txtTreeText.Text = form.SelectedFolder.Text;
@@ -135,6 +192,7 @@ namespace SAPINT.Gui.CodeManager
             {
                 _code.Title = this.txtTitle.Text;
                 _code.Content = this.syntaxBoxControl1.Document.Text;
+                _code.TreeId = this.TreeId;
                 if (String.IsNullOrEmpty(_code.TreeId))
                 {
                     if (!String.IsNullOrEmpty(this.TreeId))
@@ -151,7 +209,7 @@ namespace SAPINT.Gui.CodeManager
                     }
                 }
 
-                _code.Categery = this.cbxCategory.Text;
+                _code.Category = this.cbxCategory.Text;
                 _code.Desc = this.txtDesc.Text;
 
                 if (db.SaveCode(_code) != null)
@@ -177,7 +235,7 @@ namespace SAPINT.Gui.CodeManager
             var _code_new = new Code();
             _code_new.Version = "1.0.0";
             _code_new.Title = "NewCode*";
-            var codeEditor = new FormCodeEditor();
+            var codeEditor = new FormCodeEditor(this.DbName);
             if (this.DockPanel != null)
             {
                 codeEditor.Show(this.DockPanel);
@@ -273,7 +331,7 @@ namespace SAPINT.Gui.CodeManager
                 _code_copy.Id = "";
                 //_code_copy.TreeId = _code.TreeId;
 
-                var codeEditor = new FormCodeEditor();
+                var codeEditor = new FormCodeEditor(this.DbName);
                 codeEditor.code = _code_copy;
                 if (this.DockPanel != null)
                 {

@@ -10,6 +10,12 @@ namespace SAPINT.Utils
 {
    public static class ListHelper
     {
+       /// <summary>
+       /// 扩展类,把DataTable转换成List
+       /// </summary>
+       /// <typeparam name="T"></typeparam>
+       /// <param name="dt"></param>
+       /// <returns></returns>
        public static IList<T> ToList<T>(this DataTable dt) where T : class
        {
            // List<TableField> = fieldDt.to
@@ -30,19 +36,18 @@ namespace SAPINT.Utils
                        {
                            prop.SetValue(entity, value, null);
                        }
-                       
                    }
-
                }
                Fields.Add(entity);
            }
-
-           // table.Columns.Add(prop.Name, prop.PropertyType);
-
-
            return Fields;
        }
-
+       /// <summary>
+       /// 把List转换成
+       /// </summary>
+       /// <typeparam name="T"></typeparam>
+       /// <param name="data"></param>
+       /// <returns></returns>
        public static DataTable ToDataTable<T>(this IList<T> data) where T:class
        {
            Type t = typeof(T);

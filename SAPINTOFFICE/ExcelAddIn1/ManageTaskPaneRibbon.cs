@@ -122,8 +122,8 @@ namespace ExcelAddIn1
         {
            // SAPINTGUI.FormFunctionMetaEx formFunctionMetaEx = new SAPINTGUI.FormFunctionMetaEx();
            // formFunctionMetaEx.Show();
-            //FormFunctionMeta formFunctionMeta = new FormFunctionMeta();
-            //formFunctionMeta.Show();
+            FormFunctionMeta formFunctionMeta = new FormFunctionMeta();
+            formFunctionMeta.Show();
         }
 
 

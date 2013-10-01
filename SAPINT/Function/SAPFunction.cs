@@ -122,9 +122,12 @@
                         }
                     }
                 }
+                MetaValueList outputlist = new MetaValueList();
+
                 try
                 {
                     RfcDestination destination = SAPDestination.GetDesByName(sysName);
+
                     function.Invoke(destination);
                 }
                 catch (RfcAbapException ee)
@@ -136,7 +139,7 @@
                     throw new SAPException(runtimeEx.Key + runtimeEx.Message + runtimeEx.PlainText);
                 }
 
-                MetaValueList outputlist = new MetaValueList();
+                
                 for (int i = 0; i < MetaData.ParameterCount; i++)
                 {
 

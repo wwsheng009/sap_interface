@@ -38,16 +38,17 @@ namespace MiniSqlQuery
             //log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
             //log.Info("程序开始，加载SAP配置！！");
 
-            //  SAPINT.SapConfig.SAPConfigFromFile.LoadSAPAllConfig();
+            //SAPINT.SapConfig.SAPConfigFromFile.LoadSAPAllConfig();
             //SAPINT.SapConfig.SAPConfigFromFile.LoadSAPClientConfig();
 
 
-            //IOC入口
+            //IOC入口，获取主程序的实例
             IApplicationServices services = ApplicationServices.Instance;
 
-            ConfigureContainer(services);
+            //加载程序内部服务
+            Program.ConfigureContainer(services);
 
-
+            //跟上面不同，以下加载内部插件
             services.LoadPlugIn(new CoreApplicationPlugIn());
             services.LoadPlugIn(new ConnectionStringsManagerLoader());
             services.LoadPlugIn(new DatabaseInspectorLoader());
@@ -56,6 +57,7 @@ namespace MiniSqlQuery
             services.LoadPlugIn(new SearchToolsLoader());
             services.LoadPlugIn(new TextGeneratorLoader());
 
+            //加载外部插件
             if (services.Settings.LoadExternalPlugins)
             {
                 var plugins = PlugInUtility.GetInstances<IPlugIn>(Environment.CurrentDirectory, Settings.Default.PlugInFileFilter);
@@ -66,7 +68,9 @@ namespace MiniSqlQuery
                 }
             }
 
-            // services.HostWindow = services.Container.Resolve<IHostWindow>();
+            //插件加载完！！！
+
+            //services.HostWindow = services.Container.Resolve<IHostWindow>();
             //services.HostWindow.SetArguments(args);
             MainForm mainform = (MainForm)services.HostWindow;
             // mainform.Serivices = services;
@@ -75,11 +79,12 @@ namespace MiniSqlQuery
 
             Application.Run(mainform);
 
-
-
-            //Application.Run(new FormMain());
         }
 
+        /// <summary>
+        /// 配置主服务，加载必要的插件
+        /// </summary>
+        /// <param name="services"></param>
         public static void ConfigureContainer(IApplicationServices services)
         {
 
@@ -101,10 +106,6 @@ namespace MiniSqlQuery
             //services.RegisterComponent<IHostWindow, MainForm>();
 
 
-
-
-
-
             //services.RegisterComponent<IFileEditorResolver, FileEditorResolverService>();
             //services.RegisterComponent<AboutForm>();
             //services.RegisterComponent<ITextFindService, BasicTextFindService>();
@@ -114,10 +115,13 @@ namespace MiniSqlQuery
             // services.RegisterComponent<TemplateModel>();
             // services.RegisterComponent<BatchQuerySelectForm>();
 
+            //批量更新时，不使用services.RegisterComponent,
             var builder = new ContainerBuilder();
 
+            //首先注册设置服务
             builder.RegisterType<ApplicationSettings>().As<IApplicationSettings>().InstancePerLifetimeScope();
 
+            //
             builder.RegisterType<MainForm>().As<IHostWindow>().InstancePerLifetimeScope().WithParameters(
              new[] { new ResolvedParameter((p,c)=>p.ParameterType == typeof(IApplicationServices),(p,c)=>c.Resolve<IApplicationServices>()),
                     new ResolvedParameter((p,c)=>p.ParameterType == typeof(IHostWindow),(p,c)=>c.Resolve<IHostWindow>())
@@ -141,13 +145,13 @@ namespace MiniSqlQuery
                     new ResolvedParameter((p,c)=>p.ParameterType == typeof(IHostWindow),(p,c)=>c.Resolve<IHostWindow>())
                 });
 
-           
+
 
             builder.RegisterType<SqlWriter>().As<ISqlWriter>();
             builder.RegisterType<NVelocityWrapper>().As<ITextFormatter>();
-            
-            services.RegisterComponent<ITextFormatter, NVelocityWrapper>();
-            
+
+            // services.RegisterComponent<ITextFormatter, NVelocityWrapper>();
+
             builder.RegisterType<TemplateModel>().WithParameters(
             new[] { new ResolvedParameter((p,c)=>p.ParameterType == typeof(IApplicationServices),(p,c)=>c.Resolve<IApplicationServices>()),
                     new ResolvedParameter((p,c)=>p.ParameterType == typeof(ITextFormatter),(p,c)=>c.Resolve<ITextFormatter>()),
@@ -156,7 +160,7 @@ namespace MiniSqlQuery
             builder.RegisterType<BatchQuerySelectForm>();
             builder.Update(services.Container);
 
-           
+
 
 
 

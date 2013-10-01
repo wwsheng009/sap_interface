@@ -15,7 +15,7 @@
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\wangws\sap_interface_project\SAP接口功能发布\</PublishUrl>
+    <PublishUrl>D:\sapintgui\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -100,6 +100,7 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Open XML SDK\V2.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\lib\log4net.dll</HintPath>
@@ -148,6 +149,12 @@
     <Compile Include="CodeManager\FormAbapDoc.Designer.cs">
       <DependentUpon>FormAbapDoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="CodeManager\FormAlvGernerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeManager\FormAlvGernerator.Designer.cs">
+      <DependentUpon>FormAlvGernerator.cs</DependentUpon>
+    </Compile>
     <Compile Include="CodeManager\FormCodeEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,11 +167,11 @@
     <Compile Include="CodeManager\FormAbapCode2.Designer.cs">
       <DependentUpon>FormAbapCode2.cs</DependentUpon>
     </Compile>
-    <Compile Include="CodeManager\FormCodeGenerater.cs">
+    <Compile Include="CodeManager\FormCodeGernerator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CodeManager\FormCodeGenerater.Designer.cs">
-      <DependentUpon>FormCodeGenerater.cs</DependentUpon>
+    <Compile Include="CodeManager\FormCodeGernerator.Designer.cs">
+      <DependentUpon>FormCodeGernerator.cs</DependentUpon>
     </Compile>
     <Compile Include="CodeManager\FormCodeManager.cs">
       <SubType>Form</SubType>
@@ -434,11 +441,14 @@
     <EmbeddedResource Include="CodeManager\FormAbapDoc.resx">
       <DependentUpon>FormAbapDoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CodeManager\FormAlvGernerator.resx">
+      <DependentUpon>FormAlvGernerator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CodeManager\FormCodeEditor.resx">
       <DependentUpon>FormCodeEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CodeManager\FormCodeGenerater.resx">
-      <DependentUpon>FormCodeGenerater.cs</DependentUpon>
+    <EmbeddedResource Include="CodeManager\FormCodeGernerator.resx">
+      <DependentUpon>FormCodeGernerator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CodeManager\FormCodeManager.resx">
       <DependentUpon>FormCodeManager.cs</DependentUpon>

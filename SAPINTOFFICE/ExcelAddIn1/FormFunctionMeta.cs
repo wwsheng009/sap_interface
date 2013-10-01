@@ -20,7 +20,7 @@ namespace ExcelAddIn1
 
         private string _systemName;//连接的SAP系统的配置名称
 
-        FunctionMetaAsDataTable _metaList = null;
+        // FunctionMetaAsDataTable function. = null;
         Worksheet ws = null;
         Microsoft.Office.Interop.Excel.Range range = null;
 
@@ -28,6 +28,8 @@ namespace ExcelAddIn1
         List<String> _parsedTable = null;
 
         DataTable dtBatchInput = null;
+
+        SAPFunctionEx m_function = null;
 
         public FormFunctionMeta()
         {
@@ -38,25 +40,44 @@ namespace ExcelAddIn1
             InitializeBatchTable();
         }
 
-        private void LoadFunctionMetaData()
+        private bool LoadFunctionMetaData()
         {
             if (!check())
             {
-                return;
+                return false;
             }
             else
             {
                 try
                 {
 
-                    _metaList = SAPFunctionMeta.GetRfcFuncMetaAsDataTable(_systemName, _funcName);
+                    //function.FunctionMeta = SAPFunctionMeta.GetRfcFuncMetaAsDataTable(_systemName, _funcName);
 
-                    if (_metaList == null)
+                    //if (function.FunctionMeta == null)
+                    //{
+                    //    MessageBox.Show("无法找到函数信息！！");
+                    //}
+                    //ParseMetaData();
+                    m_function = new SAPFunctionEx(_systemName, _funcName);
+                    if (m_function.FunctionMeta == null)
                     {
                         MessageBox.Show("无法找到函数信息！！");
+                        return false;
                     }
-                    ParseMetaData();
+                    ParseMetaData(m_function);
+                    if (m_function.Is_rfc == true)
+                    {
+                        //this.button2.Enabled = true;
+                        //this.button2.Text = "RFC函数，可执行";
+                    }
+                    else
+                    {
+                        // this.button2.Text = "非RFC函数，不可执行";
+                        // this.button2.Enabled = false;
+                    }
 
+                    this.Text = "函数:" + _funcName;
+                    return true;
                 }
                 catch (Exception ee)
                 {
@@ -65,11 +86,21 @@ namespace ExcelAddIn1
                 }
 
             }
+            return true;
+
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
-
+            CleanAll();
             LoadFunctionMetaData();
+        }
+        private void CleanAll()
+        {
+            dgvImport.DataSource = null;
+            dgvExport.DataSource = null;
+            dgvChanging.DataSource = null;
+            dgvTables.DataSource = null;
+            // dgvException.DataSource = null;
         }
         private bool check()
         {
@@ -91,14 +122,16 @@ namespace ExcelAddIn1
             return true;
         }
 
-        private void ParseMetaData()
+        private void ParseMetaData(SAPFunctionEx function)
         {
             //_funcMeta.Import.Count
 
-            dgvImport.DataSource = _metaList.Import;
-            dgvExport.DataSource = _metaList.Export;
-            dgvChanging.DataSource = _metaList.Changing;
-            dgvTables.DataSource = _metaList.Tables;
+            dgvImport.DataSource = function.FunctionMeta.Import;
+            dgvExport.DataSource = function.FunctionMeta.Export;
+            dgvChanging.DataSource = function.FunctionMeta.Changing;
+            dgvTables.DataSource = function.FunctionMeta.Tables;
+            //dgvException.DataSource = function.FunctionMeta.Exception;
+
             dgvImport.AutoResizeColumns();
             dgvExport.AutoResizeColumns();
             dgvChanging.AutoResizeColumns();
@@ -106,18 +139,18 @@ namespace ExcelAddIn1
             tabPage2.BringToFront();
         }
 
-        public void ParseMetaDataToExcel()
+        public void ParseMetaDataToExcel(SAPFunctionEx pFunction = null)
         {
-            if (_metaList == null)
+            if (pFunction == null)
             {
-                LoadFunctionMetaData();
+                if (LoadFunctionMetaData() == false)
+                {
+                    MessageBox.Show("请先查找函数信息！！");
+                    return;
+                }
 
             }
-            if (_metaList == null)
-            {
-                MessageBox.Show("请先查找函数信息！！");
-                return;
-            }
+            
             Globals.ThisAddIn.Application.ActiveWorkbook.Worksheets.Add();
             ws = Globals.Factory.GetVstoObject(Globals.ThisAddIn.Application.ActiveWorkbook.ActiveSheet);
 
@@ -131,10 +164,10 @@ namespace ExcelAddIn1
                 // throw;
             }
 
-            DataTable dtImport = _metaList.Import;
-            DataTable dtExport = _metaList.Export;
-            DataTable dtChange = _metaList.Changing;
-            DataTable dtTables = _metaList.Tables;
+            DataTable dtImport = m_function.FunctionMeta.Import;
+            DataTable dtExport = m_function.FunctionMeta.Export;
+            DataTable dtChange = m_function.FunctionMeta.Changing;
+            DataTable dtTables = m_function.FunctionMeta.Tables;
 
             int rowsOffset = 0;
             int colsOffset = 0;
@@ -142,7 +175,7 @@ namespace ExcelAddIn1
             rowsOffset = 4; //从第4行开始
             colsOffset = 2; //从第2行开始
 
-            ParseParameterList(dtExport, "输入参数", rowsOffset, colsOffset);
+            ParseParameterList(dtImport, "输入参数", rowsOffset, colsOffset);
             rowsOffset += dtImport.Rows.Count + 5;
 
             ParseParameterList(dtExport, "输出参数", rowsOffset, colsOffset);
@@ -227,7 +260,7 @@ namespace ExcelAddIn1
                     {
                         return;
                     }
-                    DataTable dt2 = _metaList.StructureDetail[structurName];
+                    DataTable dt2 = m_function.FunctionMeta.StructureDetail[structurName];
                     if (dt2 != null)
                     {
 
@@ -273,7 +306,7 @@ namespace ExcelAddIn1
                     {
                         return;
                     }
-                    DataTable dt2 = _metaList.StructureDetail[tableName];
+                    DataTable dt2 = m_function.FunctionMeta.StructureDetail[tableName];
                     if (dt2 != null)
                     {
 
@@ -429,7 +462,7 @@ namespace ExcelAddIn1
             {
                 if (dgv.Rows[e.RowIndex].Cells["DataType"].Value.ToString() == "STRUCTURE")
                 {
-                    DataTable dt = _metaList.StructureDetail[dgvExport.Rows[e.RowIndex].Cells["DataTypeName"].Value.ToString()];
+                    DataTable dt = m_function.FunctionMeta.StructureDetail[dgvExport.Rows[e.RowIndex].Cells["DataTypeName"].Value.ToString()];
                     dgvDetail.DataSource = dt;
                     dgvDetail.AutoResizeColumns();
                 }
@@ -487,9 +520,18 @@ namespace ExcelAddIn1
                     String functionName = item["FunctionName"].ToString().Trim();
                     if (!String.IsNullOrWhiteSpace(systemName) && !String.IsNullOrWhiteSpace(functionName))
                     {
-                        _metaList = SAPFunctionMeta.GetRfcFuncMetaAsDataTable(systemName, functionName);
+                        //function. = SAPFunctionMeta.GetRfcFuncMetaAsDataTable(systemName, functionName);
+                        //LoadFunctionMetaData();
+                        m_function = new SAPFunctionEx(systemName, functionName);
+                        if (m_function.FunctionMeta == null)
+                        {
+                            MessageBox.Show("无法找到函数信息！！");
+                            return;
+                        }
+                        //ParseMetaData(function);
+
                         this._funcName = functionName;
-                        ParseMetaDataToExcel();
+                        ParseMetaDataToExcel(m_function);
                     }
                 }
             }
@@ -508,7 +550,7 @@ namespace ExcelAddIn1
                             break;
 
                         case Keys.V:
-                           // PasteClipboardValue(dgvBatchInput  ,false);
+                            // PasteClipboardValue(dgvBatchInput  ,false);
                             Paste(dgvBatchInput, "", 0, false);
                             break;
                     }
@@ -743,7 +785,7 @@ namespace ExcelAddIn1
                     int mmm = columnNum + columnindex + 1 - dgv.ColumnCount;
                     for (int iii = 0; iii < mmm; iii++)
                     {
-                       // dgv.DataBindings.Clear();
+                        // dgv.DataBindings.Clear();
                         DataGridViewTextBoxColumn colum = new DataGridViewTextBoxColumn();
                         dgv.Columns.Insert(columnindex + 1, colum);
                     }

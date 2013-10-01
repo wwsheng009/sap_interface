@@ -22,7 +22,7 @@ namespace SAPINT.Gui.Idocs
         public FormIdocCopy()
         {
             InitializeComponent();
-            this.cbxDbConnection.DataSource = ConfigFileTool.SAPGlobalSettings.getDbConnectionList();
+            this.cbxDbConnection.DataSource = ConfigFileTool.SAPGlobalSettings.GetDbConnectionList();
             this.cbxDbConnection.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
 
             this.cbxSapSystem.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();

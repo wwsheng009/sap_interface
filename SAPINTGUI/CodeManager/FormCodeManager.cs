@@ -11,11 +11,15 @@ using SAPINTDB.CodeManager;
 using WeifenLuo.WinFormsUI.Docking;
 namespace SAPINT.Gui.CodeManager
 {
-    public delegate void DeleGateSetNode();
+    public delegate void DeleGateSetNode(TreeNode node);
 
     public partial class FormCodeManager : DockWindow
     {
-        private Codedb db = new Codedb();
+
+        private Codedb db = null;
+
+        public string m_dbName = null;
+
         private bool loaded = false;
 
         public CodeFolder SelectedFolder { get; set; }
@@ -47,11 +51,44 @@ namespace SAPINT.Gui.CodeManager
         }
 
 
-        public FormCodeManager()
+        public FormCodeManager(String dbName = null, bool pick = false)
         {
+
+
             InitializeComponent();
-            initTree();
-            loaded = true;
+
+            if (String.IsNullOrEmpty(dbName))
+            {
+                m_dbName = ConfigFileTool.SAPGlobalSettings.GetDefaultCodeManagerDb();
+            }
+            else
+            {
+                m_dbName = dbName;
+            }
+
+
+
+
+
+            if (pick)
+            {
+                //this.cbxDbSources.Visible = false;
+                this.cbxDbSources.DataSource = null;
+                this.cbxDbSources.Text = m_dbName;
+                this.cbxDbSources.Enabled = false;
+            }
+            else
+            {
+                this.cbxDbSources.Text = m_dbName;
+                //this.cbxDbSources.SelectedText = m_dbName;
+
+
+                this.cbxDbSources.DataSource = ConfigFileTool.SAPGlobalSettings.GetManagerDbList();
+                this.cbxDbSources.SelectedIndexChanged += cbxDbSources_SelectedIndexChanged;
+            }
+
+            updateDbConnect();
+
             //一定要在初始化后再加上事件监听。否则控件会被循环引用，整个窗体会被卡死。
             treeView1.BeforeExpand += treeView1_BeforeExpand;
             treeView1.Click += treeView1_Click;
@@ -80,7 +117,33 @@ namespace SAPINT.Gui.CodeManager
             this.treeView1.DragDrop += treeView1_DragDrop;
             this.treeView1.MouseDown += treeView1_MouseDown;
             this.treeView1.DragOver += treeView1_DragOver;
+
+
             this.Shown += FormCodeManager_Shown;
+
+
+
+
+        }
+
+        void updateDbConnect()
+        {
+            try
+            {
+
+                db = new Codedb(m_dbName);
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+                return;
+            }
+
+
+
+            initTree();
+            loaded = true;
 
 
             if (this.TempFolder == null)
@@ -98,6 +161,19 @@ namespace SAPINT.Gui.CodeManager
                 }
 
             }
+        }
+
+        void cbxDbSources_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var chk = sender as ComboBox;
+            m_dbName = chk.Text;
+            this.treeView1.Nodes.Clear();
+            listBox1.DataSource = null;
+            this.TempFolder = null;
+            this.updateDbConnect();
+
+
+            //throw new NotImplementedException();
         }
 
         void treeView1_DragOver(object sender, DragEventArgs e)
@@ -299,6 +375,8 @@ namespace SAPINT.Gui.CodeManager
                     }
                 }
                 this.treeView1.Nodes.Add(node);
+               
+                this.UpdateTreeNode(node);
             }
 
         }
@@ -308,7 +386,7 @@ namespace SAPINT.Gui.CodeManager
             {
                 return;
             }
-            var frm = new FormCodeEditor();
+            var frm = new FormCodeEditor(this.m_dbName);
             frm.code = _selectCode;
             frm.Text = _selectCode.Title;
             if (!String.IsNullOrEmpty(_selectCode.TreeId))
@@ -358,8 +436,30 @@ namespace SAPINT.Gui.CodeManager
             {
                 return;
             }
+
+            CodeFolder _codeFolder = null;
+            if (treeView1.SelectedNode != null)
+            {
+                _codeFolder = treeView1.SelectedNode.Tag as CodeFolder;
+
+                if (_codeFolder!=null)
+                {
+                    this.SelectedFolder = _codeFolder;
+                }
+                
+
+            }
+
+            if (this.SelectedFolder == null)
+            {
+                MessageBox.Show("没有选中的文件夹");
+                return;
+            }
+            _codeFolder = SelectedFolder;
+
             var _selectCode = listBox1.SelectedItem as Code;
-            var _codeFolder = treeView1.SelectedNode.Tag as CodeFolder;
+            
+
             var list = listBox1.DataSource as List<Code>;
 
             if (_selectCode != null)
@@ -368,7 +468,8 @@ namespace SAPINT.Gui.CodeManager
                 IDockContent content = FindDocument(_selectCode.Title);
                 if (content == null)
                 {
-                    var frm = new FormCodeEditor();
+                    var frm = new FormCodeEditor(this.m_dbName);
+
                     frm.code = _selectCode;
                     frm.Text = _selectCode.Title;
                     if (_codeFolder != null)
@@ -476,21 +577,20 @@ namespace SAPINT.Gui.CodeManager
             if (this.treeView1.InvokeRequired)
             {
                 // var node = this.treeView1.SelectedNode;
-                this.Invoke(new DeleGateSetNode(UpdateTreeNode), new object[] { });
-
+                this.Invoke(new DeleGateSetNode(UpdateTreeNode), new object[] { null });
             }
             else
             {
                 UpdateTreeNode();
 
             }
-
-
-
         }
-        private void UpdateTreeNode()
+        private void UpdateTreeNode(TreeNode node = null)
         {
-            var node = this.treeView1.SelectedNode;
+            if (node == null)
+            {
+                node = this.treeView1.SelectedNode;
+            }
             if (node != null)
             {
                 node.Nodes.Clear();
@@ -551,9 +651,10 @@ namespace SAPINT.Gui.CodeManager
 
                 listBox1.DataSource = null;
                 var codeTree = node.Tag as CodeFolder;
+
                 if (codeTree != null)
                 {
-
+                    this.SelectedFolder = codeTree;
                     this.listBox1.DataSource = codeTree.CodeList;
                     this.listBox1.DisplayMember = "Title";
                 }
@@ -996,7 +1097,6 @@ namespace SAPINT.Gui.CodeManager
         {
             this.splitContainer1.Panel2Collapsed = !this.splitContainer1.Panel2Collapsed;
         }
-
 
     }
 }

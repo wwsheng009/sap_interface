@@ -92,7 +92,7 @@ namespace SAPINT.Gui.DataBase
             // SAPINT.SAPLogonConfigList.SystemNameList.ForEach(name => this.txtSapSystem.Items.Add(name));
             this.txtSapSystem.Text = _sapSystemName;
             this.txtSapSystem.DataSource = ConfigFileTool.SAPGlobalSettings.GetSAPClientList();
-            this.txtLocalDbConnection.DataSource = ConfigFileTool.SAPGlobalSettings.getDbConnectionList();
+            this.txtLocalDbConnection.DataSource = ConfigFileTool.SAPGlobalSettings.GetDbConnectionList();
             this.txtLocalDbConnection.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultDbConnection();
             this.textBoxLog.KeyDown += textBoxLog_KeyDown;
         }
@@ -152,7 +152,7 @@ namespace SAPINT.Gui.DataBase
                         _table.DbConnectionString = txtLocalDbConnection.Text.Trim();
                         _table.AppendToDb = radioBtAppend.Checked;
                         _table.NewTable = radioBtNew.Checked;
-                       // _table.saveDataTable(_dt);
+                        // _table.saveDataTable(_dt);
                     }
                     //if (!_table.saveDataTable(_dt))
                     //{
@@ -198,6 +198,33 @@ namespace SAPINT.Gui.DataBase
         {
             WriteMessage("开始处理.........");
             SaveToDb();
+        }
+
+        private void btnSave2Excel_Click(object sender, EventArgs e)
+        {
+            LocalTableName = txtLocalTableName.Text.Trim();
+            if (string.IsNullOrWhiteSpace(LocalTableName))
+            {
+                MessageBox.Show("请指定表名");
+                return;
+            }
+            try
+            {
+                if (_dt != null)
+                {
+                    SAPINT.Gui.Util.ClosedExcelGui.SaveDt2Excel(_dt, LocalTableName);
+
+                }
+                else
+                {
+                    MessageBox.Show("无效的数据!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //private void readDt()

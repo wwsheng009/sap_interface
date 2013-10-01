@@ -27,7 +27,7 @@ namespace MiniSqlQuery.Core
         private static readonly List<Type> _configurationObjects = new List<Type>();
 
         /// <summary>
-        /// 	The _container.
+        /// 	The _container.唯一的容器，所有类型都会注册到这里
         /// </summary>
         //private static readonly IKernel _container;
         private static readonly IContainer _container;
@@ -184,10 +184,12 @@ namespace MiniSqlQuery.Core
                 throw new ArgumentNullException("plugIn");
             }
 
+            //Services核心服务会从这里传入插件！！查看类PluginLoaderBase的实现
             plugIn.LoadPlugIn(this);
             _plugins.Add(plugIn.GetType(), plugIn);
             //_container.AddComponent(plugIn.GetType().FullName, typeof(IPlugIn), plugIn.GetType());
 
+            //插件加载后，立刻加入容器
             var _builder = new ContainerBuilder();
             //_builder.Register();
             _builder.RegisterType(plugIn.GetType()).As<IPlugIn>();

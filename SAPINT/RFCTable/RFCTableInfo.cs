@@ -33,7 +33,7 @@ namespace SAPINT.RFCTable
         {
 
         }
-        public SAPTableInfo(String pSystemName, String pTableName,String pTypeName="")
+        public SAPTableInfo(String pSystemName, String pTableName, String pTypeName = "")
         {
             name = pTableName;
             SystemName = pSystemName;
@@ -133,7 +133,7 @@ namespace SAPINT.RFCTable
                     {
                         row["DOTNETTYPE"] = "int";
                     }
-                    
+
 
                     if (has_dbtype_column)
                     {
@@ -191,6 +191,30 @@ namespace SAPINT.RFCTable
         /// <returns>结构定义</returns>
         private static DataTable _GetSAPTableDef(String p_sysName, String p_TableName)
         {
+
+            //有时读取的参数是表类型，无法使用函数DDIF_FIELDINFO_GET直接读取到表的定义。
+            //首先到表DD40L里查出表类型对应的结构类型。
+            var criteria = String.Format("TYPENAME = '{0}'", p_TableName);
+            var readTableFunction = ConfigFileTool.SAPGlobalSettings.GetReadTableFunction();
+            var dd40l = new SAPINT.Utils.ReadTable(p_sysName);
+            dd40l.TableName = "DD40L";
+            dd40l.RowCount = 1;
+            dd40l.SetCustomFunctionName(readTableFunction);
+            dd40l.AddCriteria(criteria);
+            dd40l.Run();
+
+            var dd40lt = dd40l.Result;
+            var structureName = string.Empty;
+
+            if (dd40lt.Rows.Count == 1)
+            {
+                structureName = dd40lt.Rows[0]["ROWTYPE"].ToString();
+            }
+            if (!string.IsNullOrEmpty(structureName))
+            {
+                p_TableName = structureName;
+            }
+
             try
             {
                 RfcDestination destination = SAPDestination.GetDesByName(p_sysName);
@@ -203,7 +227,7 @@ namespace SAPINT.RFCTable
             }
             catch (RfcAbapException abapException)
             {
-                throw new SAPException(abapException.Key + abapException.Message);
+                throw new SAPException(p_TableName + abapException.Key + abapException.Message);
             }
             catch (RfcAbapBaseException abapbaseException)
             {

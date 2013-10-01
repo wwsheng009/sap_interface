@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnChooseFolder = new System.Windows.Forms.Button();
             this.txtFolder = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -63,6 +65,7 @@
             this.txtSavedFiles = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnStopImport = new System.Windows.Forms.Button();
+            this.cbxDbSources = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -90,7 +93,23 @@
             // 
             // dataGridView1
             // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -100,7 +119,7 @@
             // 
             // btnStartImport
             // 
-            this.btnStartImport.Location = new System.Drawing.Point(290, 57);
+            this.btnStartImport.Location = new System.Drawing.Point(373, 58);
             this.btnStartImport.Name = "btnStartImport";
             this.btnStartImport.Size = new System.Drawing.Size(77, 25);
             this.btnStartImport.TabIndex = 11;
@@ -420,7 +439,7 @@
             // 
             // btnStopImport
             // 
-            this.btnStopImport.Location = new System.Drawing.Point(373, 58);
+            this.btnStopImport.Location = new System.Drawing.Point(456, 58);
             this.btnStopImport.Name = "btnStopImport";
             this.btnStopImport.Size = new System.Drawing.Size(75, 24);
             this.btnStopImport.TabIndex = 36;
@@ -428,11 +447,23 @@
             this.btnStopImport.UseVisualStyleBackColor = true;
             this.btnStopImport.Click += new System.EventHandler(this.btnStopImport_Click);
             // 
+            // cbxDbSources
+            // 
+            this.cbxDbSources.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxDbSources.FormattingEnabled = true;
+            this.cbxDbSources.Location = new System.Drawing.Point(251, 59);
+            this.cbxDbSources.Name = "cbxDbSources";
+            this.cbxDbSources.Size = new System.Drawing.Size(98, 20);
+            this.cbxDbSources.TabIndex = 45;
+            // 
             // FormImportFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(925, 524);
+            this.Controls.Add(this.cbxDbSources);
             this.Controls.Add(this.btnStopImport);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSavedFiles);
@@ -513,5 +544,6 @@
         private System.Windows.Forms.TextBox txtSavedFiles;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnStopImport;
+        private System.Windows.Forms.ComboBox cbxDbSources;
     }
 }

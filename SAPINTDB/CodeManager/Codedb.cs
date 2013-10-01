@@ -15,7 +15,9 @@ namespace SAPINTDB.CodeManager
 {
 
     /// <summary>
+    /// CODEdb统一管理代码的读写，关连等操作。
     /// 管理代码与树节点。
+    /// 
     /// </summary>
     public class Codedb
     {
@@ -32,50 +34,72 @@ namespace SAPINTDB.CodeManager
         {
             InitDb();
         }
-
-        private void InitDb()
+        public Codedb(String dbName)
         {
-            m_dbname = ConfigFileTool.SAPGlobalSettings.GetCodeManagerDb();
-            if (string.IsNullOrWhiteSpace(m_dbname))
+            InitDb(dbName);
+        }
+
+
+
+        private void InitDb(String dbName = "")
+        {
+            try
             {
-                throw new Exception("Can't get the dbName");
+
+                if (!String.IsNullOrEmpty(dbName))
+                {
+                    m_dbname = dbName;
+                }
+                else
+                {
+                    m_dbname = ConfigFileTool.SAPGlobalSettings.GetDefaultCodeManagerDb();
+                }
+               
+                if (string.IsNullOrWhiteSpace(m_dbname))
+                {
+                    throw new Exception("Can't get the dbName");
+                }
+                m_vdb = new SAPINTDB.netlib7(m_dbname);
+                connection = m_vdb.CreateConnection();
+
+
+                switch (m_vdb.ProviderType)
+                {
+                    case netlib7.ProviderTypes.Oracle:
+                        break;
+                    case netlib7.ProviderTypes.SqlServer:
+                        dialect = new SqlServerDialect();
+                        break;
+                    case netlib7.ProviderTypes.MsAccess:
+                        dialect = new SqlCeDialect();
+                        break;
+                    case netlib7.ProviderTypes.MySql:
+                        dialect = new MySqlDialect();
+                        break;
+                    case netlib7.ProviderTypes.PostgreSQL:
+                        break;
+                    case netlib7.ProviderTypes.OleDB:
+                        dialect = new SqlCeDialect();
+                        break;
+                    case netlib7.ProviderTypes.SQLite:
+                        dialect = new SqliteDialect();
+                        break;
+                    case netlib7.ProviderTypes.Unknown:
+                        break;
+                    default:
+                        break;
+                }
+
+                var config = new DapperExtensionsConfiguration(typeof(AutoClassMapper<>), new List<Assembly>(), dialect);
+                var sqlGenerator = new SqlGeneratorImpl(config);
+                Db = new Database(connection, sqlGenerator);
+
             }
-            m_vdb = new SAPINTDB.netlib7(m_dbname);
-            connection = m_vdb.CreateConnection();
-
-
-
-            switch (m_vdb.ProviderType)
+            catch (Exception)
             {
-                case netlib7.ProviderTypes.Oracle:
-                    break;
-                case netlib7.ProviderTypes.SqlServer:
-                    dialect = new SqlServerDialect();
-                    break;
-                case netlib7.ProviderTypes.MsAccess:
-                    dialect = new SqlCeDialect();
-                    break;
-                case netlib7.ProviderTypes.MySql:
-                    dialect = new MySqlDialect();
-                    break;
-                case netlib7.ProviderTypes.PostgreSQL:
-                    break;
-                case netlib7.ProviderTypes.OleDB:
-                    dialect = new SqlCeDialect();
-                    break;
-                case netlib7.ProviderTypes.SQLite:
-                    dialect = new SqliteDialect();
-                    break;
-                case netlib7.ProviderTypes.Unknown:
-                    break;
-                default:
-                    break;
+
+                throw;
             }
-
-            var config = new DapperExtensionsConfiguration(typeof(AutoClassMapper<>), new List<Assembly>(), dialect);
-            var sqlGenerator = new SqlGeneratorImpl(config);
-            Db = new Database(connection, sqlGenerator);
-
         }
 
         private void checkSqlError()
@@ -98,6 +122,19 @@ namespace SAPINTDB.CodeManager
         /// <returns></returns>
         public Code SaveCode(Code _code)
         {
+            if (!String.IsNullOrEmpty(_code.TreeId))
+            {
+                var codeFolder = Db.Get<CodeFolder>(_code.TreeId);
+                if (codeFolder == null)
+                {
+                    throw new Exception("文件夹不存在！");
+                }
+            }
+            else
+            {
+                throw new Exception("请指定文件夹！");
+            }
+           
             CodeVersion version = new CodeVersion();
             //Guid id = Guid.Empty;
             String id = null;
@@ -111,12 +148,34 @@ namespace SAPINTDB.CodeManager
                 _code.CreateTime = DateTime.Now;
                 _code.Id = Guid.NewGuid().ToString();
                 id = Db.Insert(_code);
-                saveOk = true;
+                if (id!=null)
+                {
+                    saveOk = true;
+                }
+                else
+                {
+                    saveOk = false;
+                    throw new Exception("代码保存失败");
+                }
+                
             }
             else
             {
                 id = _code.Id;
-                saveOk = Db.Update(_code);
+                var code = Db.Get<Code>(id);
+                if (code!=null)
+                {
+                    saveOk = Db.Update(_code);
+                }
+                else
+                {
+                    id = Db.Insert(_code);
+                }
+                
+                if (false == saveOk )
+                {
+                    throw new Exception("代码更新失败");
+                }
             }
 
             if (String.IsNullOrWhiteSpace(_code.Id))
@@ -132,7 +191,7 @@ namespace SAPINTDB.CodeManager
                 SaveIndex(_code);
 
             }
-
+            
             return _code;
 
         }
@@ -382,20 +441,20 @@ namespace SAPINTDB.CodeManager
             index.Content = code.Content.Replace("\r\n", string.Empty);
             //index.CodeId = code.Id;
 
-            //var pre = Predicates.Field<CodeIndex>(f => f.Id, Operator.Eq, code.Id, false);
-            //var count = Db.Count<CodeIndex>(pre);
-            //// var x = Db.Get<CodeIndex>(index.Id);
-            //if (count > 0)
-            //{
-            //    Db.Update(index);
-            //}
-            //else
-            //{
-            Db.Insert(index);
-            //}
+            var pre = Predicates.Field<CodeIndex>(f => f.Id, Operator.Eq, code.Id, false);
+            var count = Db.Count<CodeIndex>(pre);
+            // var x = Db.Get<CodeIndex>(index.Id);
+            if (count > 0)
+            {
+                Db.Update(index);
+            }
+            else
+            {
+                Db.Insert(index);
+            }
 
         }
-        public void SaveVersion(Code _code)
+        public String SaveVersion(Code _code)
         {
             var version = new CodeVersion();
             version.Title = _code.Title;
@@ -406,6 +465,7 @@ namespace SAPINTDB.CodeManager
 
             version.Id = Guid.NewGuid().ToString();
             String versionid = Db.Insert(version);
+            return versionid;
         }
 
 

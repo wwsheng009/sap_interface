@@ -17,7 +17,10 @@ namespace SAPINT.Gui.CodeManager
     public partial class FormImportSapProgram : DockWindow
     {
         private DataTable dt = null;
-        private Codedb db = new Codedb();
+        private Codedb db = null;
+        private string m_dbName = null;
+
+
         public string SapSysName { get; set; }
         public SAPINT.Utils.ABAPCode AbapCode { get; set; }
 
@@ -28,8 +31,15 @@ namespace SAPINT.Gui.CodeManager
             this.cboxSystemList1.Text = ConfigFileTool.SAPGlobalSettings.GetDefaultSapCient();
             Alsing.SourceCode.SyntaxDefinition sl = new Alsing.SourceCode.SyntaxDefinitionLoader().Load("SyntaxFiles\\abap.syn");
 
+
+            this.cbxDbSources.DataSource = ConfigFileTool.SAPGlobalSettings.GetManagerDbList();
+            this.m_dbName = ConfigFileTool.SAPGlobalSettings.GetDefaultCodeManagerDb();
+            db = new Codedb(m_dbName);
+            this.cbxDbSources.Text = this.m_dbName;
+            this.cbxDbSources.SelectedIndexChanged += cbxDbSources_SelectedIndexChanged;
+
             //this.txtObject.Text = "PROG";
-            
+
             this.syntaxBoxControl1.Document.Parser.Init(sl);
             this.backgroundWorker1.WorkerReportsProgress = true;
             this.backgroundWorker1.WorkerSupportsCancellation = true;
@@ -70,6 +80,14 @@ namespace SAPINT.Gui.CodeManager
 
         }
 
+        void cbxDbSources_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var cbx = sender as ComboBox;
+            this.m_dbName = cbx.Text;
+            db = new Codedb(m_dbName);
+            //throw new NotImplementedException();
+        }
+
         void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             // throw new NotImplementedException();
@@ -90,8 +108,6 @@ namespace SAPINT.Gui.CodeManager
         {
             BackgroundWorker bw = sender as BackgroundWorker;
             Form form = e.Argument as Form;
-
-
 
             LoadObjectFromSap(bw);
 
@@ -250,7 +266,7 @@ START-OF-SELECTION.
                 dt.Clear();
                 this.SapSysName = this.cboxSystemList1.Text.Trim().ToUpper();
                 SAPINT.Utils.ABAPCode abap = new SAPINT.Utils.ABAPCode(SapSysName);
-                var list = abap.SearchProgram(this.txtSapProgram.Text,this.txtObject.Text,this.txtDevClass.Text);
+                var list = abap.SearchProgram(this.txtSapProgram.Text, this.txtObject.Text, this.txtDevClass.Text);
                 //list.ForEach(x => { });
                 int index = 0;
                 foreach (var item in list)
@@ -304,7 +320,9 @@ START-OF-SELECTION.
                     {
                         codeTree.Text = "Imported_SAP_OBJECT " + DateTime.Now;
                     }
+                   
                     codeTree = db.SaveTree(codeTree);
+                    
                     this.TreeId = codeTree.Id;
                 }
 
@@ -312,7 +330,9 @@ START-OF-SELECTION.
                 this.progressBar1.Maximum = selectedItems;
 
                 //  backgroundWorker1.RunWorkerAsync();
+                this.cbxDbSources.Enabled = false;
                 this.backgroundWorker1.RunWorkerAsync(this);
+                this.cbxDbSources.Enabled = true;
                 //if ()
                 //{
                 //    MessageBox.Show("导入完成");
@@ -497,8 +517,9 @@ START-OF-SELECTION.
                     {
                         if (true == Saved)
                         {
+                            this.cbxDbSources.Enabled = false;
                             db.SaveCodeList(list);
-
+                            this.cbxDbSources.Enabled = true;
 
                         }
                         foreach (var positem in pos)
@@ -514,8 +535,9 @@ START-OF-SELECTION.
                     {
                         if (true == Saved)
                         {
+                            this.cbxDbSources.Enabled = false;
                             db.SaveCodeList(list);
-
+                            this.cbxDbSources.Enabled = true;
                         }
 
                         foreach (var positem in pos)
@@ -674,6 +696,9 @@ START-OF-SELECTION.
         private void btnCancelImport_Click(object sender, EventArgs e)
         {
             this.backgroundWorker1.CancelAsync();
+            this.cbxDbSources.Enabled = true;
         }
+
+
     }
 }

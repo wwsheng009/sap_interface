@@ -29,19 +29,19 @@ namespace SAPINTDB
         /// <param name="configConnectionName">the connection string section</param>
         public netlib7(string configConnectionName)
         {
-         //   providerName = SAPGlobalSettings.config.ConnectionStrings[configConnectionName].ProviderName;
-         //   connectionString = SAPGlobalSettings.config.ConnectionStrings[configConnectionName].ConnectionString;
-            if (SAPGlobalSettings.getConnectionStrings()[configConnectionName] == null)
+            //   providerName = SAPGlobalSettings.config.ConnectionStrings[configConnectionName].ProviderName;
+            //   connectionString = SAPGlobalSettings.config.ConnectionStrings[configConnectionName].ConnectionString;
+            if (SAPGlobalSettings.GetConnectionStrings()[configConnectionName] == null)
             {
-                errorMessage = String.Format("Can't find the connection {0}",configConnectionName);
+                errorMessage = String.Format("Can't find the connection {0}", configConnectionName);
                 throw new Exception(errorMessage);
             }
             else
             {
-                providerName = SAPGlobalSettings.getConnectionStrings()[configConnectionName].ProviderName;
-                connectionString = SAPGlobalSettings.getConnectionStrings()[configConnectionName].ConnectionString;
+                providerName = SAPGlobalSettings.GetConnectionStrings()[configConnectionName].ProviderName;
+                connectionString = SAPGlobalSettings.GetConnectionStrings()[configConnectionName].ConnectionString;
             }
-            
+
         }
         /// <summary>
         /// Advanced constructor (provider and connection string must be specified)
@@ -315,13 +315,22 @@ namespace SAPINTDB
         /// <returns></returns>
         public DbConnection CreateConnection(string providerName, string connectionString)
         {
-            
-            DbProviderFactory pf = DbProviderFactories.GetFactory(providerName);
 
-            DbConnection cn = pf.CreateConnection();
-            cn.ConnectionString = connectionString;
+            try
+            {
+                DbProviderFactory pf = DbProviderFactories.GetFactory(providerName);
 
-            return cn;
+                DbConnection cn = pf.CreateConnection();
+                cn.ConnectionString = connectionString;
+
+                return cn;
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+
         }
 
         /// <summary>
@@ -586,7 +595,7 @@ namespace SAPINTDB
         /// </summary>
         public bool DataTableFill(DataTable dt, string sqlCommandText)
         {
-            
+
             return DataTableFill(dt, sqlCommandText, null, false);
         }
         /// <summary>
@@ -1182,7 +1191,7 @@ namespace SAPINTDB
                         case "SByte": r = "CHARACTER"; break;
                         case "Single": r = "SINGLE"; break;
                         case "String": r = "STRING"; break;
-                         
+
                     }
                     break;
                 case ProviderTypes.SQLite:
@@ -1201,7 +1210,7 @@ namespace SAPINTDB
                         case "SByte": r = "Short"; break;
                         case "Single": r = "Real"; break;
                         case "String": r = "VarChar(255)"; break;
-                          
+
                     }
                     break;
             }
@@ -1396,7 +1405,7 @@ namespace SAPINTDB
             int i, j;
             string r = "";
             if (criptKey == "")
-              //  criptKey = SAPGlobalSettings.config.AppSettings["CriptKey"];
+                //  criptKey = SAPGlobalSettings.config.AppSettings["CriptKey"];
                 criptKey = ConfigurationManager.AppSettings["CriptKey"];
 
             j = Convert.ToInt32(RevSubString(StringToId(criptKey).ToString(), 2));
@@ -1421,8 +1430,8 @@ namespace SAPINTDB
             int i, j;
             string r = "";
             if (criptKey == "")
-             //criptKey = SAPGlobalSettings.config.AppSettings["CriptKey"];
-             criptKey = ConfigurationManager.AppSettings["CriptKey"];
+                //criptKey = SAPGlobalSettings.config.AppSettings["CriptKey"];
+                criptKey = ConfigurationManager.AppSettings["CriptKey"];
 
             j = Convert.ToInt32(RevSubString(StringToId(criptKey).ToString(), 2));
             for (i = 0; i < stringToEncrypt.Length; i++)

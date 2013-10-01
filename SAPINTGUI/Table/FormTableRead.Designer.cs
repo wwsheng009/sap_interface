@@ -123,8 +123,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.statusStrip1);
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView2);
-            this.splitContainer1.Size = new System.Drawing.Size(271, 511);
-            this.splitContainer1.SplitterDistance = 255;
+            this.splitContainer1.Size = new System.Drawing.Size(271, 442);
+            this.splitContainer1.SplitterDistance = 220;
             this.splitContainer1.TabIndex = 37;
             // 
             // dataGridView1
@@ -156,7 +156,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 20;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(271, 255);
+            this.dataGridView1.Size = new System.Drawing.Size(271, 220);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -189,7 +189,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 230);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 196);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(271, 22);
             this.statusStrip1.TabIndex = 3;
@@ -227,7 +227,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 20;
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(271, 252);
+            this.dataGridView2.Size = new System.Drawing.Size(271, 218);
             this.dataGridView2.TabIndex = 2;
             // 
             // Option
@@ -430,7 +430,7 @@
             this.AcceptButton = this.btRun;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(281, 673);
+            this.ClientSize = new System.Drawing.Size(281, 604);
             this.Controls.Add(this.btnAddFieldsToCache);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.cbx_systemlist);

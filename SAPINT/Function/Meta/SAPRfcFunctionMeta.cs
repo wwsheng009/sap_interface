@@ -403,6 +403,9 @@ namespace SAPINT.Function.Meta
                     case "X":
                         dtrow["DataType"] = "LIKE";
                         break;
+                    case "h"://表类型
+                        dtrow["DataType"] = "TABLE";
+                        break;
                     default:
                         dtrow["DataType"] = "";
                         break;

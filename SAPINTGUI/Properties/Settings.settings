@@ -1,5 +1,34 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SAPINT.Gui.Properties" GeneratedClassName="Settings">
   <Profiles />
-  <Settings />
+  <Settings>
+    <Setting Name="HeaderDesc" Type="System.String" Scope="User">
+      <Value Profile="(Default)">************************************************************************
+* Copyright 2013 Pactera文思海辉
+* All Rights Reserved 
+*----------------------------------------------------------------------*
+* Program Name : {0} 
+* Project : {1} 
+* Program Title:{2} 
+* Created by : {3} 
+* Created on : {4}
+* Version : 1.0 
+* Function Description: 
+* {5}
+*----------------------------------------------------------------------*
+"</Value>
+    </Setting>
+    <Setting Name="Author" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Vincent Wang,mail:vincent.wang@pactera.com</Value>
+    </Setting>
+    <Setting Name="Program_name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ZVI_PROGRAM_001</Value>
+    </Setting>
+    <Setting Name="Project_name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Pactera &amp; SAP Project</Value>
+    </Setting>
+    <Setting Name="Title_text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ALV 报表</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

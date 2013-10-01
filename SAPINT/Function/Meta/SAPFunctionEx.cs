@@ -84,6 +84,7 @@ namespace SAPINT.Function.Meta
         }
         private void HandleOutput()
         {
+           // _tableValueList.Clear();
             DataTableAndList.ListToDataTable(_outputList, _funcMeta.Import, ref _tableValueList);
             DataTableAndList.ListToDataTable(_outputList, _funcMeta.Export, ref _tableValueList);
             DataTableAndList.ListToDataTable(_outputList, _funcMeta.Changing, ref _tableValueList);

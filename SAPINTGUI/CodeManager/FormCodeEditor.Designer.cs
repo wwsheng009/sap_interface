@@ -55,6 +55,7 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cbxDbSources = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -293,11 +294,23 @@
             this.toolStripStatusLabel7.Size = new System.Drawing.Size(14, 17);
             this.toolStripStatusLabel7.Text = "..";
             // 
+            // cbxDbSources
+            // 
+            this.cbxDbSources.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxDbSources.FormattingEnabled = true;
+            this.cbxDbSources.Location = new System.Drawing.Point(271, 5);
+            this.cbxDbSources.Name = "cbxDbSources";
+            this.cbxDbSources.Size = new System.Drawing.Size(124, 20);
+            this.cbxDbSources.TabIndex = 31;
+            // 
             // FormCodeEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 409);
+            this.Controls.Add(this.cbxDbSources);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label7);
@@ -347,6 +360,7 @@
         private System.Windows.Forms.ToolStripLabel SatustoolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton CopytoolStripButton2;
+        private System.Windows.Forms.ComboBox cbxDbSources;
 
     }
 }
