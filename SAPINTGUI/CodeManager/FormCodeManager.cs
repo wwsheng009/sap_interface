@@ -136,7 +136,7 @@ namespace SAPINT.Gui.CodeManager
             catch (Exception e)
             {
 
-                MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message + e.Source + e.StackTrace);
                 return;
             }
 
@@ -375,7 +375,7 @@ namespace SAPINT.Gui.CodeManager
                     }
                 }
                 this.treeView1.Nodes.Add(node);
-               
+
                 this.UpdateTreeNode(node);
             }
 
@@ -442,11 +442,11 @@ namespace SAPINT.Gui.CodeManager
             {
                 _codeFolder = treeView1.SelectedNode.Tag as CodeFolder;
 
-                if (_codeFolder!=null)
+                if (_codeFolder != null)
                 {
                     this.SelectedFolder = _codeFolder;
                 }
-                
+
 
             }
 
@@ -458,7 +458,7 @@ namespace SAPINT.Gui.CodeManager
             _codeFolder = SelectedFolder;
 
             var _selectCode = listBox1.SelectedItem as Code;
-            
+
 
             var list = listBox1.DataSource as List<Code>;
 
@@ -574,16 +574,25 @@ namespace SAPINT.Gui.CodeManager
 
         private void UpdateNode()
         {
-            if (this.treeView1.InvokeRequired)
+            try
             {
-                // var node = this.treeView1.SelectedNode;
-                this.Invoke(new DeleGateSetNode(UpdateTreeNode), new object[] { null });
-            }
-            else
-            {
-                UpdateTreeNode();
+                if (this.treeView1.InvokeRequired)
+                {
+                    // var node = this.treeView1.SelectedNode;
+                    this.Invoke(new DeleGateSetNode(UpdateTreeNode), new object[] { null });
+                }
+                else
+                {
+                    UpdateTreeNode();
 
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                //throw;
+            }
+
         }
         private void UpdateTreeNode(TreeNode node = null)
         {

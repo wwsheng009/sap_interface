@@ -22,14 +22,14 @@ using Autofac.Core;
 
 namespace MiniSqlQuery
 {
-    static class Program
+   public static class Program
     {
 
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+         static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -46,7 +46,7 @@ namespace MiniSqlQuery
             IApplicationServices services = ApplicationServices.Instance;
 
             //加载程序内部服务
-            Program.ConfigureContainer(services);
+            ConfigureContainer(services);
 
             //跟上面不同，以下加载内部插件
             services.LoadPlugIn(new CoreApplicationPlugIn());
@@ -80,7 +80,45 @@ namespace MiniSqlQuery
             Application.Run(mainform);
 
         }
+        public static void LoadForm(string[] args)
+        {
+            //IOC入口，获取主程序的实例
+            IApplicationServices services = ApplicationServices.Instance;
 
+            //加载程序内部服务
+            ConfigureContainer(services);
+
+            //跟上面不同，以下加载内部插件
+            services.LoadPlugIn(new CoreApplicationPlugIn());
+            services.LoadPlugIn(new ConnectionStringsManagerLoader());
+            services.LoadPlugIn(new DatabaseInspectorLoader());
+            services.LoadPlugIn(new ViewTableLoader());
+            services.LoadPlugIn(new TemplateViewerLoader());
+            services.LoadPlugIn(new SearchToolsLoader());
+            services.LoadPlugIn(new TextGeneratorLoader());
+
+            //加载外部插件
+            if (services.Settings.LoadExternalPlugins)
+            {
+                var plugins = PlugInUtility.GetInstances<IPlugIn>(Environment.CurrentDirectory, Settings.Default.PlugInFileFilter);
+                Array.Sort(plugins, new PlugInComparer());
+                foreach (var plugin in plugins)
+                {
+                    services.LoadPlugIn(plugin);
+                }
+            }
+
+            //插件加载完！！！
+
+            //services.HostWindow = services.Container.Resolve<IHostWindow>();
+            //services.HostWindow.SetArguments(args);
+            MainForm mainform = (MainForm)services.HostWindow;
+            // mainform.Serivices = services;
+            //  mainform.Settings = services.Settings;
+            mainform.SetArguments(args);
+            mainform.Show();
+        }
+       
         /// <summary>
         /// 配置主服务，加载必要的插件
         /// </summary>

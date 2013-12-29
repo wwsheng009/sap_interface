@@ -107,7 +107,7 @@ namespace SAPINT.Gui.Table
                     }
                     else
                     {
-                        this.toolStripStatusLabel1.Text = string.Format("{0} 无可用字", m_TableName);
+                        this.toolStripStatusLabel1.Text = string.Format("{0} 无可用", m_TableName);
                         return false;
                     }
 
@@ -244,11 +244,12 @@ namespace SAPINT.Gui.Table
                     }
                 }
             }
-            if (!this.listBox1.Items.Contains(this.m_TableName))
+            if (!this.listBox1.Items.Contains(pTableName))
             {
-                this.listBox1.Items.Add(this.m_TableName);
+                this.listBox1.Items.Add(pTableName);
             }
-            this.toolStripStatusLabel1.Text = m_TableName + "保存成功";
+            
+            this.toolStripStatusLabel1.Text = pTableName + "保存成功";
             return true;
         }
 
@@ -406,5 +407,46 @@ namespace SAPINT.Gui.Table
         }
 
         public string m_TypeName { get; set; }
+
+        private void btnBatchInput_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SAPINT.Gui.Util.FormGetList frmBatch = new Util.FormGetList();
+                frmBatch.ShowDialog();
+                List<String> tableList = frmBatch.List;
+                frmBatch.Dispose();
+
+                this.m_SystemName = this.cbx_systemlist.Text.ToUpper().Trim();
+                if (string.IsNullOrEmpty(m_SystemName))
+                {
+                    MessageBox.Show("请选择系统");
+                    return;
+                }
+
+                foreach (var item in tableList)
+                {
+                    this.GetTableInfo(item);
+                }
+                MessageBox.Show("添加成功!!!!!!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                //throw;
+            }
+            
+        }
+
+        private void GetTableInfo(String pTableName)
+        {
+
+            m_FieldsDt = SAPTableInfo.GetTableDefinitionDt(m_SystemName, pTableName, pTableName);
+            foreach (DataRow item in m_FieldsDt.Rows)
+            {
+                item[0] = true;
+            }
+            SaveFieldsToCache(pTableName, m_FieldsDt);
+        }
     }
 }

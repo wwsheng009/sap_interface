@@ -8,7 +8,7 @@ using System.Text;
 namespace SAPINTDB
 {
     /// <summary>
-    /// 主要读取数据库的架构信息，如视图，数据库表清单
+    /// 读取数据库的架构信息，如视图，数据库表清单
     /// </summary>
     public class DbUtil
     {

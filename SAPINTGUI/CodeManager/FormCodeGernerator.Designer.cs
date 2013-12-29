@@ -55,6 +55,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.screenGerneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -90,7 +91,8 @@
             // 
             this.generateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.directGerneratorToolStripMenuItem,
-            this.aLVGerneratorToolStripMenuItem});
+            this.aLVGerneratorToolStripMenuItem,
+            this.screenGerneratorToolStripMenuItem});
             this.generateToolStripMenuItem.Name = "generateToolStripMenuItem";
             this.generateToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.generateToolStripMenuItem.Text = "生成";
@@ -98,14 +100,14 @@
             // directGerneratorToolStripMenuItem
             // 
             this.directGerneratorToolStripMenuItem.Name = "directGerneratorToolStripMenuItem";
-            this.directGerneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.directGerneratorToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.directGerneratorToolStripMenuItem.Text = "Direct Gernerator";
             this.directGerneratorToolStripMenuItem.Click += new System.EventHandler(this.directGerneratorToolStripMenuItem_Click);
             // 
             // aLVGerneratorToolStripMenuItem
             // 
             this.aLVGerneratorToolStripMenuItem.Name = "aLVGerneratorToolStripMenuItem";
-            this.aLVGerneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aLVGerneratorToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.aLVGerneratorToolStripMenuItem.Text = "ALV Gernerator";
             this.aLVGerneratorToolStripMenuItem.Click += new System.EventHandler(this.aLVGerneratorToolStripMenuItem_Click);
             // 
@@ -200,6 +202,13 @@
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(131, 17);
             this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
             // 
+            // screenGerneratorToolStripMenuItem
+            // 
+            this.screenGerneratorToolStripMenuItem.Name = "screenGerneratorToolStripMenuItem";
+            this.screenGerneratorToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.screenGerneratorToolStripMenuItem.Text = "Screen Gernerator";
+            this.screenGerneratorToolStripMenuItem.Click += new System.EventHandler(this.screenGerneratorToolStripMenuItem_Click);
+            // 
             // FormCodeGernerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -234,5 +243,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripMenuItem aLVGerneratorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem directGerneratorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem screenGerneratorToolStripMenuItem;
     }
 }

@@ -24,45 +24,56 @@ namespace MiniServer
             log4net.Config.XmlConfigurator.Configure(new FileInfo("log4net.config"));
             log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
             log.Info("服务器启动，加载SAP配置！！");
-
-            
-            SAPINT.SapConfig.SAPConfigFromFile.LoadSAPAllConfig();
-            
-            //1 Register the relevant destination object.
-            //2 Get the destination corresponding to the ABAP system you want to call.
-            //3 Next you need a repository for the metadata from the ABAP Dictionary of the corresponding destination system.
-            //4 Create a function object (that will hold the values of the relevant parameters)
-            //5 Provide the values for the relevant importing parameters of the function.
-            //6 Execute the function.
-            //7 Read the exporting or returning parameters and process them.
-
-
-           // RfcDestinationManager.RegisterDestinationConfiguration(new MyBackendConfig());//1
-           // RfcServerManager.RegisterServerConfiguration(new MyServerConfig());//2
-
-            Type[] handlers = new Type[1] { typeof(MiniServerHandler) };//3
-            string defaultServer = ConfigFileTool.SAPGlobalSettings.GetDefultSAPServer();
-            RfcServer server = RfcServerManager.GetServer(defaultServer, handlers);//3
-
-            server.RfcServerError += OnRfcServerError;
-            server.RfcServerApplicationError += OnRfcServerApplicationError;
-
-            if (server.TransactionIDHandler == null) { server.TransactionIDHandler = new MyTidHandler(); }
-
-            server.Start();//4
-            
-            Console.WriteLine();
-            Console.WriteLine("Server started: {0}", server.Parameters.ToString());
-            Console.WriteLine("You can now send requests for STFC_CONNECTION (synchronous or in background task) -- press X to stop the server");
-            while (true)
+            Console.WriteLine("服务器启动，加载SAP配置！！");
+            try
             {
-                if (Console.ReadLine().Equals("X")) break;
+                
+                SAPINT.SapConfig.SAPConfigFromFile.LoadSAPAllConfig();
+
+                //1 Register the relevant destination object.
+                //2 Get the destination corresponding to the ABAP system you want to call.
+                //3 Next you need a repository for the metadata from the ABAP Dictionary of the corresponding destination system.
+                //4 Create a function object (that will hold the values of the relevant parameters)
+                //5 Provide the values for the relevant importing parameters of the function.
+                //6 Execute the function.
+                //7 Read the exporting or returning parameters and process them.
+
+
+                // RfcDestinationManager.RegisterDestinationConfiguration(new MyBackendConfig());//1
+                // RfcServerManager.RegisterServerConfiguration(new MyServerConfig());//2
+
+                Type[] handlers = new Type[1] { typeof(MiniServerHandler) };//3
+                string defaultServer = ConfigFileTool.SAPGlobalSettings.GetDefultSAPServer();
+                Console.WriteLine("Default server is : " + defaultServer);
+                RfcServer server = RfcServerManager.GetServer(defaultServer, handlers);//3
+
+                server.RfcServerError += OnRfcServerError;
+                server.RfcServerApplicationError += OnRfcServerApplicationError;
+
+                if (server.TransactionIDHandler == null) { server.TransactionIDHandler = new MyTidHandler(); }
+
+                server.Start();//4
+
+                Console.WriteLine();
+                Console.WriteLine("Server started: {0}", server.Parameters.ToString());
+                Console.WriteLine("You can now send requests for STFC_CONNECTION (synchronous or in background task) -- press X to stop the server");
+                while (true)
+                {
+                    if (Console.ReadLine().Equals("X")) break;
+                }
+                server.Shutdown(true); //Shuts down 
+                server.RfcServerError -= OnRfcServerError;
+                server.RfcServerApplicationError -= OnRfcServerApplicationError;
+                server.TransactionIDHandler = null;
+                //immediately aborting ongoing requests.
             }
-            server.Shutdown(true); //Shuts down 
-            server.RfcServerError -= OnRfcServerError;
-            server.RfcServerApplicationError -= OnRfcServerApplicationError;
-            server.TransactionIDHandler = null;
-            //immediately aborting ongoing requests.
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error Occurs," + ex.Message);
+                
+                Console.ReadLine();
+                //throw;
+            }
 
         }
 

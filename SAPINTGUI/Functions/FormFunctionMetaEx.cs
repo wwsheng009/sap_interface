@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using SAPINT;
 using SAPINT.Function;
 using SAPINT.Function.Meta;
+using System.IO;
 
 namespace SAPINT.Gui.Functions
 {
@@ -341,6 +342,75 @@ namespace SAPINT.Gui.Functions
         private void btnDisplay1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void loadDataToColumnOne()
+        {
+            try
+            {
+                var dt = dgvTableContent.DataSource as DataTable;
+                if (dt == null)
+                {
+                    MessageBox.Show("请先选择表");
+                    return;
+                }
+                else if (dt.Columns.Count == 0)
+                {
+                    MessageBox.Show("DT没有列");
+                    return;
+                }
+                OpenFileDialog openFile = new OpenFileDialog();
+
+                openFile.InitialDirectory = Application.ExecutablePath;
+                openFile.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFile.FilterIndex = 1;
+                openFile.RestoreDirectory = true;
+                openFile.Multiselect = false;
+
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    string fullName = openFile.FileName;
+
+
+                    FileInfo filein = new FileInfo(fullName);
+                    if (!filein.Exists)
+                    {
+                        MessageBox.Show("没有文件");
+                        return;
+                    }
+                    // FileStream file = File.OpenRead(fullName);
+
+                    //StreamReader sr = new StreamReader(fullName, Encoding.Default);
+                    //String s = sr.ReadToEnd();
+                    //string[] xx = s.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+
+                    //foreach (var item in xx)
+                    //{
+                    //    dt.Rows.Add(item);
+
+                    //}
+                    StreamReader sr = new StreamReader(fullName, Encoding.Default);
+                    string strLine = null;
+                    while ((strLine = sr.ReadLine()) != null)
+                    {
+                        dt.Rows.Add(strLine);
+                        //MessageBox.Show(strLine);
+                    }
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void btnLoadFile_Click(object sender, EventArgs e)
+        {
+
+            loadDataToColumnOne();
         }
 
     }

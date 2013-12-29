@@ -33,6 +33,7 @@ namespace MiniSqlQuery.Core.Commands
 		public override void Execute()
 		{
 			var editor = Services.Resolve<IEditor>("txt-editor");
+            //var editor = Services.Resolve<IEditor>();
 			editor.FileName = null;
 			HostWindow.DisplayDockedForm(editor as DockContent);
 

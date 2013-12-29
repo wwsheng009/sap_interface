@@ -133,6 +133,10 @@ namespace ExcelAddIn1
         }
         private void SetQueryToExcel(Query q,Worksheet ws)
         {
+            if (q == null)
+            {
+                return;
+            }
             DataTable dt = q.Result;
 
 

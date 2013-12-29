@@ -257,5 +257,12 @@ namespace SAPINT.Gui.CodeManager
         {
             GenerateCode();
         }
+
+        private void screenGerneratorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormScreenGernerator screenGerneraoter = new FormScreenGernerator();
+            screenGerneraoter.setFormCodeManager(this.m_FormCodeManager);
+            screenGerneraoter.Show();
+        }
     }
 }

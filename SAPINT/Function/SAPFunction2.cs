@@ -39,7 +39,7 @@ namespace SAPINT.Function2
 
         }
         //类型赋值
-        private List<CParams> get_Params_list(IRfcFunction pFunction)
+        private List<CParams> Get_Params_list(IRfcFunction pFunction)
         {
             List<CParams> _Params_list = new List<CParams>();
             IRfcTable rfctable_Params = pFunction.GetTable("Params");
@@ -64,7 +64,7 @@ namespace SAPINT.Function2
             }
             return _Params_list;
         }
-        public void getFunctionDef(string pSystem, string pFunction)
+        public void GetFunctionDef(string pSystem, string pFunction)
         {
             destination = SAPDestination.GetDesByName(pSystem);
 
@@ -74,7 +74,7 @@ namespace SAPINT.Function2
             {
                 _functionInterface.Invoke(destination);
 
-                Params = get_Params_list(_functionInterface);
+                Params = Get_Params_list(_functionInterface);
 
             }
             catch (RfcAbapException abapEx)

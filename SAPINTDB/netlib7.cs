@@ -7,6 +7,8 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using ConfigFileTool;
+using System.Data.SQLite;
+using MySql.Data.MySqlClient;
 
 namespace SAPINTDB
 {
@@ -318,16 +320,29 @@ namespace SAPINTDB
 
             try
             {
-                DbProviderFactory pf = DbProviderFactories.GetFactory(providerName);
+                DbConnection cn;
+                //对于SQLITE 使用内置的连接，避免无法安装驱动。
+                if (String.Compare(ProviderName, "System.Data.SQLite", true) == 0)
+                {
+                    cn = new SQLiteConnection();
 
-                DbConnection cn = pf.CreateConnection();
+                }
+                else if (String.Compare(ProviderName, "MySql.Data.MySqlClient", true) == 0)
+                {
+                    cn = new MySql.Data.MySqlClient.MySqlConnection();
+                }
+                else
+                {
+                    DbProviderFactory pf = DbProviderFactories.GetFactory(providerName);
+                    cn = pf.CreateConnection();
+                }
                 cn.ConnectionString = connectionString;
 
                 return cn;
             }
             catch (Exception)
             {
-                return null;
+                //return null;
                 throw;
             }
 

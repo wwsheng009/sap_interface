@@ -18,6 +18,14 @@
             this._FieldText = "";
             this.LastKeyValue = "";
         }
+        public ReadTableField(string FieldName)
+        {
+            this._FieldName = "";
+            this._ABAPType = "";
+            this._FieldText = "";
+            this.LastKeyValue = "";
+            this._FieldName = FieldName;
+        }
         public ReadTableField(string FieldName, int Length, string ABAPType, string FieldText, int Decimals)
         {
             this._FieldName = "";

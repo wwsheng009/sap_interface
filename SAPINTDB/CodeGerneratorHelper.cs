@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace SAPINTDB
 {
+    /// <summary>
+    /// alv生成辅助类
+    /// </summary>
     public class CodeGerneratorHelper
     {
         private netlib7 db2 = null;
@@ -23,6 +26,10 @@ namespace SAPINTDB
             db2 = new netlib7(dbConnectionName);
         }
 
+        /// <summary>
+        /// 返回ALV的各种设置
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetAlvSettings()
         {
             DataTable dt = new DataTable();

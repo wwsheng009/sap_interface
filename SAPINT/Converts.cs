@@ -1465,6 +1465,10 @@ namespace SAPINT
                             o = 0;
                             break;
                         }
+                        else
+                        {
+                            o = o.ToString();
+                        }
                         //o = byte.Parse(o.ToString());
 
                         break;

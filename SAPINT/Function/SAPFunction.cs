@@ -139,7 +139,7 @@
                     throw new SAPException(runtimeEx.Key + runtimeEx.Message + runtimeEx.PlainText);
                 }
 
-                
+
                 for (int i = 0; i < MetaData.ParameterCount; i++)
                 {
 
@@ -159,8 +159,17 @@
                             for (int s = 0; s < structure.Metadata.FieldCount; s++)
                             {
                                 RfcFieldMetadata field = structure.Metadata[s];
-                                object result = null;
-                                result = structure.GetString(field.Name);
+                                Object result = null;
+
+                                if (field.DataType == RfcDataType.BYTE)
+                                {
+                                    result = structure.GetString(field.Name);
+                                }
+                                else
+                                {
+                                    result = structure.GetValue(field.Name);
+                                }
+
                                 result = Converts.RfcToDoNetValue(result, field.DataType).ToString();
                                 stru.Add(field.Name, result.ToString());
                             }
@@ -184,7 +193,16 @@
                                 for (int z = 0; z < rfcTableLine.Metadata.FieldCount; z++)
                                 {
                                     RfcFieldMetadata field = rfcTableLine[z].Metadata;
-                                    Object result = rfcTableLine.GetValue(field.Name);
+                                    Object result = null;
+
+                                    if (field.DataType == RfcDataType.BYTE)
+                                    {
+                                        result = rfcTableLine.GetString(field.Name);
+                                    }
+                                    else
+                                    {
+                                        result = rfcTableLine.GetValue(field.Name);
+                                    }
                                     result = Converts.RfcToDoNetValue(result, field.DataType).ToString();
                                     row.Add(field.Name, result.ToString());
                                 }
@@ -234,6 +252,12 @@
                 throw new SAPException(rfce.Key + rfce.Message);
             }
         }
+        /// <summary>
+        /// check if the function exist in sap
+        /// </summary>
+        /// <param name="sysName"></param>
+        /// <param name="functionName"></param>
+        /// <returns></returns>
         public static bool CheckFunction(string sysName, string functionName)
         {
             try
@@ -327,7 +351,13 @@
             return dtRet;
         }
 
-
+        /// <summary>
+        /// search rfc function in sap system.
+        /// </summary>
+        /// <param name="sysName"></param>
+        /// <param name="functionName"></param>
+        /// <param name="functionGroup"></param>
+        /// <returns></returns>
         public static DataTable SearchRfcFunctions(string sysName, string functionName, string functionGroup)
         {
             try

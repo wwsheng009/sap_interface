@@ -40,7 +40,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
@@ -68,11 +68,13 @@
     </Reference>
     <Reference Include="sapnco, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\SAP\SAP_DotNetConnector3\sapnco.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\SAP\SAP_DotNetConnector3_x64\sapnco.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="sapnco_utils, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\SAP\SAP_DotNetConnector3\sapnco_utils.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\SAP\SAP_DotNetConnector3_x64\sapnco_utils.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -90,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Function\CopyTable\TableField.cs" />
     <Compile Include="Function\SAPFunction2.cs" />
     <Compile Include="Idocs\IdocDb.cs" />
     <Compile Include="Idocs\IdocMeta\EDI_IAPI12.cs" />
@@ -102,19 +105,21 @@
     <Compile Include="Linq\SAPTable.cs" />
     <Compile Include="Linq\SAPTableAttribute.cs" />
     <Compile Include="RFCTable\SapTable.cs" />
+    <Compile Include="Screen\CSapScreen.cs" />
+    <Compile Include="Screen\ScreenField.cs" />
     <Compile Include="Utils\BapiReturn.cs" />
     <Compile Include="BapiReturnCollection.cs" />
     <Compile Include="BusinessObjectMethod.cs" />
     <Compile Include="Controls\INIClass.cs" />
     <Compile Include="Controls\ReadIniFile.cs" />
-    <Compile Include="Controls\SystemList.cs">
+    <Compile Include="Controls\CboxSystemList.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\SystemList.Designer.cs">
-      <DependentUpon>SystemList.cs</DependentUpon>
+    <Compile Include="Controls\CboxSystemList.Designer.cs">
+      <DependentUpon>CboxSystemList.cs</DependentUpon>
     </Compile>
     <Compile Include="Converts.cs" />
-    <Compile Include="ERPException.cs" />
+    <Compile Include="SAPException.cs" />
     <Compile Include="Controls\FormAddConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,8 +238,8 @@
       <DependentUpon>FormAddConfig.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SystemList.resx">
-      <DependentUpon>SystemList.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\CboxSystemList.resx">
+      <DependentUpon>CboxSystemList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>

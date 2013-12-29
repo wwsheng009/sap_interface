@@ -284,7 +284,7 @@ namespace MiniSqlQuery.Core
         public void RegisterEditor<TEditor>(FileEditorDescriptor fileEditorDescriptor) where TEditor : IEditor
         {
             //RegisterComponent<IEditor, TEditor>(fileEditorDescriptor.EditorKeyName);
-            RegisterComponent<IEditor, TEditor>();
+            RegisterComponent<IEditor, TEditor>(fileEditorDescriptor.EditorKeyName);
             // push the ext reg into the resolver....
             IFileEditorResolver resolver = Resolve<IFileEditorResolver>();
             resolver.Register(fileEditorDescriptor);

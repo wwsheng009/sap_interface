@@ -4,22 +4,32 @@ using System.Linq;
 using System.Text;
 using SAP.Middleware.Connector;
 using System.Data;
-namespace SAPINT.Table
+namespace SAPINT.Function.CopyTable
 {
-    public delegate void DelegateCopyFinished(FunctionCopyTable sender, DataTable result);
+    public delegate void DelegateCopyFinished(FunctionCopyTable sender, List<CopyTableField> fields, List<string> result);
     public delegate void DelegateImporeTableFinished(FunctionCopyTable sender);
 
     public class FunctionCopyTable
     {
-        private IRfcTable DATA = null;
-        private IRfcTable FIELDS = null;
+        private IRfcTable DATA = null;//用于传输导出导入的数据
+        private IRfcTable FIELDS = null;//字段列表
+
+        private FunctionImportTable _importTable = null;
+        private FunctionReadTable _readTable = null;
 
         //private static RfcDestination targetDestination = null;
         //private static RfcDestination destination = null;
 
-        private List<String> conditions = null;
+        public List<String> Conditions { get; set; }
 
-        public event DelegateCopyFinished eventCopied;
+        public List<String> ExchangeData { get; set; }
+        public List<CopyTableField> Fields { get; set; }
+
+        public event DelegateCopyFinished EventCopied;
+
+
+        public OperationType readOperation = OperationType.read;
+        public OperationType writeOperation = OperationType.write;
 
         public FunctionCopyTable(String soureSystem, String pSourceTable)
         {
@@ -33,7 +43,7 @@ namespace SAPINT.Table
             }
 
             this.SourceSystemName = soureSystem.Trim();
-            SourceTableName = pSourceTable.Trim().ToUpper();
+            this.SourceTableName = pSourceTable.Trim().ToUpper();
         }
         public FunctionCopyTable(String soureSystem, String targetSystem, String pSourceTable, String pTargetTable)
         {
@@ -54,18 +64,38 @@ namespace SAPINT.Table
             // TODO: Complete member initialization
         }
 
+        /// <summary>
+        /// 往SAP系统写入数据
+        /// </summary>
         public void WriteTable()
         {
-            FunctionImportTable functionImportTable = new FunctionImportTable();
-            functionImportTable.eventImportTableFinished += new delegateImporeTableDone(functionImportTable_eventImportTableFinished);
-            functionImportTable.Delimiter = this.ImportDelimiter;
-            functionImportTable.DATA = this.DATA;
-            functionImportTable.FIELDS = this.FIELDS;
-            functionImportTable.isDelete = this.isDelete;
-            functionImportTable.isInsert = this.isInsert;
-            functionImportTable.isModify = this.isModify;
-            functionImportTable.isUpdate = this.isUpdate;
-            functionImportTable.Excute(TargetSystemName, TargetTableName);
+            _importTable = new FunctionImportTable();
+            _importTable.eventImportTableFinished += new delegateImporeTableDone(functionImportTable_eventImportTableFinished);
+            _importTable.Delimiter = this.ImportDelimiter;
+
+            _importTable.isDelete = this.isDelete;
+            _importTable.isInsert = this.isInsert;
+            _importTable.isModify = this.isModify;
+            _importTable.isUpdate = this.isUpdate;
+            _importTable.SapClient = this.TargetSystemName;
+            _importTable.TableName = this.TargetTableName;
+
+            _importTable.setFields(this.Fields);
+
+            if (this.writeOperation == OperationType.direct)
+            {
+                _importTable.DATA = this.DATA;
+                _importTable.FIELDS = this.FIELDS;
+                _importTable.Operation = OperationType.direct;
+            }
+            else
+            {
+                _importTable.DataInput = this.ExchangeData;
+                _importTable.Operation = OperationType.write;
+            }
+
+
+            _importTable.Excute();
 
             //this.WriteTable(this.TargetSystemName, TargetTableName);
         }
@@ -76,49 +106,62 @@ namespace SAPINT.Table
             //throw new NotImplementedException();
         }
 
-
-
         public void ReadTable()
         {
-            FunctionReadTable functionReadTable = new FunctionReadTable();
-            functionReadTable.eventReadTableDone += new delegateReadTableDone(functionReadTable_eventReadTableDone);
-            functionReadTable.RowCount = this.RowCount;
-            functionReadTable.Delimiter = this.Delimiter;
-            functionReadTable.conditions = this.conditions;
-            functionReadTable.Excute(SourceSystemName, SourceTableName);
+            _readTable = new FunctionReadTable();
+            _readTable.eventReadTableDone += new delegateReadTableDone(functionReadTable_eventReadTableDone);
+            _readTable.RowCount = this.RowCount;
+            _readTable.Delimiter = this.Delimiter;
+            _readTable.conditions = this.Conditions;
+            _readTable.SapClient = this.SourceSystemName;
+            _readTable.TableName = this.SourceTableName;
 
-            this.DATA = functionReadTable.DATA;
-            this.FIELDS = functionReadTable.FIELDS;
+            _readTable.setFields(this.Fields);
+
+            if (this.readOperation == OperationType.direct)
+            {
+                _readTable.Operation = OperationType.direct;
+                _readTable.Excute();
+
+                this.DATA = _readTable.RfcDATA;
+                this.FIELDS = _readTable.RfcFIELDS;
+            }
+            else
+            {
+
+                //this.Fields = _readTable.getFields();
+                _readTable.Operation = OperationType.read;//读取到界面
+                _readTable.Excute();
+                this.ExchangeData = _readTable.Result;
+                this.Fields = _readTable.getFields();
+
+            }
+
+
             //this.ReadTable(SourceSystemName, SourceTableName);
         }
 
-        void functionReadTable_eventReadTableDone(FunctionReadTable sender, DataTable result)
+        void functionReadTable_eventReadTableDone(FunctionReadTable sender, List<CopyTableField> fields, List<String> result)
         {
-            if (eventCopied != null)
+            if (EventCopied != null)
             {
                 this.Message = sender.Message;
-                eventCopied(this, result);
+                EventCopied(this, fields, result);
             }
             // throw new NotImplementedException();
         }
 
         private void NotifyListener(String Message)
         {
-            if (eventCopied != null)
+            if (EventCopied != null)
             {
                 this.Message = Message;
-                eventCopied(this, null);
+                EventCopied(this, null, null);
                 //  eventReadTableDone(this, result);
                 //   eventReadTableDone(this, null);
             }
         }
 
-        public void SetCondition(List<String> conditionList)
-        {
-            conditions = conditionList;
-        }
-
-        
 
         public bool Excute()
         {

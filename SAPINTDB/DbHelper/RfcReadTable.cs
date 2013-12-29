@@ -87,6 +87,10 @@
             {
                 sqlstr = string.Format("SELECT count(*) FROM {0}",tableName);
             }
+            else if (helper.ProviderType == netlib7.ProviderTypes.MySql)
+            {
+                sqlstr = string.Format("SELECT count(*) FROM {0}",tableName);
+            }
             int isexist = Convert.ToInt32(helper.ExecScalar(sqlstr, null));
             if (isexist <= 0)
             {
